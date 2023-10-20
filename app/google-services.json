@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1026382970968",
+    "project_id": "epay-d13a8",
+    "storage_bucket": "epay-d13a8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1026382970968:android:4b2a05798f5c346f6e8a2d",
+        "android_client_info": {
+          "package_name": "com.epaymark.epay"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdX1ySSK04johJVYU0XotW0OobGF_nkfw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

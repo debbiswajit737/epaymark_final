@@ -848,7 +848,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:src="@drawable/arrow_drop_down"
-                    app:layout_constraintBottom_toTopOf="@+id/recycleAEPS"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout_new_2"
                     app:layout_constraintEnd_toEndOf="@+id/tv_title_new_2"
                     app:layout_constraintTop_toTopOf="parent"
                     app:tint="@color/white" />
