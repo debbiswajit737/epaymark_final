@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.epaymark.epay.data.model.ListIcon
-import com.epaymark.epay.databinding.MyBig9LayoutBinding
+import com.epaymark.epay.databinding.UpiLayoutBinding
 
 
 class UPIAdapter(private val items: List<ListIcon>, val circleShape: Int) : RecyclerView.Adapter<UPIAdapter.MyViewHolder>() {
@@ -17,7 +17,7 @@ class UPIAdapter(private val items: List<ListIcon>, val circleShape: Int) : Recy
 
 
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding: MyBig9LayoutBinding = MyBig9LayoutBinding.inflate(layoutInflater, parent, false)
+        val binding: UpiLayoutBinding = UpiLayoutBinding.inflate(layoutInflater, parent, false)
         return MyViewHolder(binding)
     }
 
@@ -34,7 +34,7 @@ class UPIAdapter(private val items: List<ListIcon>, val circleShape: Int) : Recy
 
 
 
-    inner class MyViewHolder(val binding: MyBig9LayoutBinding) :
+    inner class MyViewHolder(val binding: UpiLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ListIcon, position: Int) {
             ///*if (position!=items.size-1) {

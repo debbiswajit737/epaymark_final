@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.epaymark.epay.data.model.ListIcon
-import com.epaymark.epay.databinding.MyBig9LayoutBinding
+import com.epaymark.epay.databinding.AepsLayoutBinding
 
 
 class AEPSAdapter(private val items: List<ListIcon>, val circleShape: Int) : RecyclerView.Adapter<AEPSAdapter.MyViewHolder>() {
@@ -17,7 +17,7 @@ class AEPSAdapter(private val items: List<ListIcon>, val circleShape: Int) : Rec
 
 
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding: MyBig9LayoutBinding = MyBig9LayoutBinding.inflate(layoutInflater, parent, false)
+        val binding: AepsLayoutBinding = AepsLayoutBinding.inflate(layoutInflater, parent, false)
         return MyViewHolder(binding)
     }
 
@@ -34,7 +34,7 @@ class AEPSAdapter(private val items: List<ListIcon>, val circleShape: Int) : Rec
 
 
 
-    inner class MyViewHolder(val binding: MyBig9LayoutBinding) :
+    inner class MyViewHolder(val binding: AepsLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ListIcon, position: Int) {
             ///*if (position!=items.size-1) {

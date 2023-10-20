@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.epaymark.epay.data.model.ListIcon
-import com.epaymark.epay.databinding.MyBig9LayoutBinding
+import com.epaymark.epay.databinding.TravelLayoutBinding
 
 
 class TravelAdapter(private val items: List<ListIcon>, val circleShape: Int) : RecyclerView.Adapter<TravelAdapter.MyViewHolder>() {
@@ -17,7 +17,7 @@ class TravelAdapter(private val items: List<ListIcon>, val circleShape: Int) : R
 
 
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding: MyBig9LayoutBinding = MyBig9LayoutBinding.inflate(layoutInflater, parent, false)
+        val binding: TravelLayoutBinding = TravelLayoutBinding.inflate(layoutInflater, parent, false)
         return MyViewHolder(binding)
     }
 
@@ -34,7 +34,7 @@ class TravelAdapter(private val items: List<ListIcon>, val circleShape: Int) : R
 
 
 
-    inner class MyViewHolder(val binding: MyBig9LayoutBinding) :
+    inner class MyViewHolder(val binding: TravelLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ListIcon, position: Int) {
             ///*if (position!=items.size-1) {
