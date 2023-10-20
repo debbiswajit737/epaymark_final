@@ -11,10 +11,13 @@ import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.epaymark.epay.adapter.HorizontalMarginItemDecoration
 import com.epaymark.epay.R
+import com.epaymark.epay.adapter.AEPSAdapter
 import com.epaymark.epay.adapter.AutoScrollHandler
 import com.epaymark.epay.adapter.BannerViewpagerAdapter
 import com.epaymark.epay.adapter.MyBig9Adapter
 import com.epaymark.epay.adapter.RechargeAdapter
+import com.epaymark.epay.adapter.TravelAdapter
+import com.epaymark.epay.adapter.UPIAdapter
 import com.epaymark.epay.data.model.ListIcon
 import com.epaymark.epay.databinding.FragmentHomeBinding
 
@@ -285,16 +288,16 @@ class HomeFragment : BaseFragment() {
                 iconList5.add(ListIcon("MATM", R.drawable.transaction_history))
                 iconList5.add(ListIcon("Settlement", R.drawable.sattlement))
 
-                adapter= MyBig9Adapter(iconList5,R.drawable.circle_shape2)
+                adapter= AEPSAdapter(iconList5,R.drawable.circle_shape2)
             }
 
             recycleUPI.apply {
                 iconList6.add(ListIcon("Scan & Pay", R.drawable.baseline_qr_code_scanner_24))
-                iconList6.add(ListIcon("To Contact", R.drawable.contact))
+                iconList6.add(ListIcon("To Contact", R.drawable.ic_contacts))
                 iconList6.add(ListIcon("To Self", R.drawable.ic_self))
                 iconList6.add(ListIcon("To Bank A/C", R.drawable.ic_bank))
 
-                adapter= MyBig9Adapter(iconList6,R.drawable.circle_shape2)
+                adapter= UPIAdapter(iconList6,R.drawable.circle_shape2)
             }
             recycleTravel.apply {
                 iconList7.add(ListIcon("Flight", R.drawable.ic_flight))
@@ -302,7 +305,7 @@ class HomeFragment : BaseFragment() {
                 iconList7.add(ListIcon("Bus", R.drawable.bus))
                 iconList7.add(ListIcon("Hotel", R.drawable.hotel))
 
-                adapter= MyBig9Adapter(iconList7,R.drawable.circle_shape2)
+                adapter= TravelAdapter(iconList7,R.drawable.circle_shape2)
             }
 
 

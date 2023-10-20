@@ -17,9 +17,10 @@
         <activity
             android:name=".ui.activity.MainActivity"
             android:exported="false" />
+        <!--android:theme="@style/Theme.AppCompat"-->
         <activity
             android:name=".ui.activity.DashboardActivity"
-            android:theme="@style/Theme.AppCompat"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
