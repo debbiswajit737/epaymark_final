@@ -36,7 +36,7 @@ sealed class ResponseState<T>(
                 else -> {
                     //other exceptions
                     Log.d(TAG, "GenericApiResponse: other Error")
-                    Error(false, null, null)
+                    Error(false, throwable.message, null)
                 }
             }
         }

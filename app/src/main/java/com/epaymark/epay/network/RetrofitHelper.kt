@@ -3,6 +3,8 @@ package com.epaymark.epay.network
 import android.app.Activity
 import android.content.Context
 import androidx.fragment.app.Fragment
+import com.epaymark.epay.R
+import com.epaymark.epay.ui.popup.ErrorPopUp
 import com.google.gson.GsonBuilder
 import com.intuit.sdp.BuildConfig
 
@@ -53,6 +55,51 @@ object RetrofitHelper {
 
 
 
+    fun Fragment.handleApiError(isNetworkError: Boolean, errorCode: Int?, errorMessage: String?, isShowPopup:Boolean=true) {
+        context?.let {
+            handleError(it, isNetworkError, errorCode, errorMessage, isShowPopup)
+        }
+    }
 
+    fun Activity.handleApiError(isNetworkError: Boolean, errorCode: Int?, errorMessage: String?, isShowPopup:Boolean=true) {
+        handleError(this, isNetworkError, errorCode, errorMessage, isShowPopup)
+    }
+
+    private fun handleError(
+        context: Context,
+        isNetworkError: Boolean,
+        errorCode: Int?,
+        errorMessage: String?,
+        isShowPopup:Boolean,
+    ) {
+
+        if(isNetworkError) {
+            // network error
+            // ErrorPopUp(context).showMessageDialog(context.getString(R.string.network_error))
+        }else{
+            when (errorCode) {
+                400 -> {
+                    if(isShowPopup)
+                        ErrorPopUp(context).showMessageDialog(errorMessage)
+                }
+                401 -> {
+                    //session logout
+                //    context.userLogout()
+                }
+                403 -> {
+                    //App Update Required
+                  //  context.appUpdateRequired()
+                }
+                417 -> {
+                    //session logout
+                   // context.userLogout()
+                }
+                else -> {
+                    ErrorPopUp(context).showMessageDialog(errorMessage)
+                   // ErrorPopUp(context).showMessageDialog(context.getString(R.string.something_went_wrong))
+                }
+            }
+        }
+    }
 
 }

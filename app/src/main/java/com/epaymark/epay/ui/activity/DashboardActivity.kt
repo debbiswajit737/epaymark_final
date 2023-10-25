@@ -8,10 +8,12 @@ import com.epaymark.epay.R
 import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.ActivityDashboardBinding
 import com.epaymark.epay.network.ResponseState
+import com.epaymark.epay.network.RetrofitHelper.handleApiError
 import com.epaymark.epay.ui.base.BaseActivity
 import com.epaymark.epay.ui.popup.ErrorPopUp
 import com.epaymark.epay.ui.popup.LoadingPopup
 import com.epaymark.epay.utils.helpers.RequestBodyHelper
+import com.epaymark.epay.utils.helpers.SharedPreff
 import com.epaymark.epay.utils.helpers.helper.decryptData
 import com.epaymark.epay.utils.helpers.helper.encryptData
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,6 +28,8 @@ class DashboardActivity  : BaseActivity() {
     @Inject
     lateinit var requestBodyHelper: RequestBodyHelper
 
+    @Inject
+    lateinit var sharedPreff: SharedPreff
 
     var loadingPopup: LoadingPopup? = null
     var errorPopUp: ErrorPopUp? = null
@@ -51,19 +55,20 @@ class DashboardActivity  : BaseActivity() {
 
             when (it) {
                 is ResponseState.Loading -> {
-                  //  loadingPopup?.show()
+                    loadingPopup?.show()
                 }
                 is ResponseState.Success -> {
                     loadingPopup?.dismiss()
-                    var a=it.data?.response?.data?.get(0)?.name?.encryptData("ttt")
-                    var b=a?.decryptData("vvv")
-                    //Toast.makeText(this, "$a\n\n$b", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, ""+it?.data?.response?.data?.get(0)?.name, Toast.LENGTH_SHORT).show()
+                    //var a=it.data?.response?.data?.get(0)?.name?.encryptData("ttt")
+                    var a=it?.data?.response?.data?.get(0)?.name
+                    var b=a?.decryptData("ttt")
+                    Toast.makeText(this, "$b", Toast.LENGTH_SHORT).show()
                 }
                 is ResponseState.Error -> {
                     loadingPopup?.dismiss()
+                    handleApiError(it.isNetworkError,it.errorCode, it.errorMessage)
                 }
-
-                else -> {}
             }
         }
     }

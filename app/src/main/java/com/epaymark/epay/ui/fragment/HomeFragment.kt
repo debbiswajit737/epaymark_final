@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.epaymark.epay.adapter.HorizontalMarginItemDecoration
@@ -320,7 +321,8 @@ class HomeFragment : BaseFragment() {
     }
 
     fun init() {
-
+        //sharedPreff.setTestData("Abcd")
+        //Toast.makeText(requireActivity(), ""+sharedPreff.getTestData(), Toast.LENGTH_SHORT).show()
         iconList.add(ListIcon("Card", R.drawable.bb1))
         iconList.add(ListIcon("Card", R.drawable.b3))
         iconList.add(ListIcon("Card", R.drawable.card))
@@ -329,9 +331,6 @@ class HomeFragment : BaseFragment() {
         iconList.add(ListIcon("Card", R.drawable.card2))
         iconList.add(ListIcon("Card", R.drawable.card))
         iconList.add(ListIcon("Card", R.drawable.card2))
-
-
-
         binding.viewPager2.apply {
             val scaleMin = 0.32f // Minimum scale
             val scaleMax = 0.45f // Maximum scale

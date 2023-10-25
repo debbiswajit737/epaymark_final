@@ -3,8 +3,11 @@ package com.epaymark.epay.data.model.sample
 import com.google.gson.annotations.SerializedName
 
 class Test {
-    @SerializedName("response")
-    var response: Response? = Response()
+    /*@SerializedName("response")
+    var response: Response? = Response()*/
+
+    @SerializedName("name" ) var name : String? = null
+
 
 }
 
