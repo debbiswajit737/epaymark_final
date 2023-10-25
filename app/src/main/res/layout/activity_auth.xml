@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/const_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".ui.activity.AuthActivity">
+
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationViewHeader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/bg_login"
+        tools:ignore="MissingConstraints" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="false"
+        app:lottie_rawRes="@raw/bg_login"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cons_login"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+       >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Secured Login"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/title_header2"
+            android:textSize="18sp"
+            android:fontFamily="@font/montserrat_medium_500"
+            app:layout_constraintBottom_toTopOf="@+id/textView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/mobile_no"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/edt_ph_no" />
+
+
+        <EditText
+            android:id="@+id/edt_ph_no"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/textview_shape"
+            android:elevation="@dimen/_12sdp"
+            android:ems="10"
+            android:textColorHint="@color/gray"
+            android:hint="@string/mobile_no_hint"
+            android:inputType="phone"
+            android:paddingStart="@dimen/_12sdp"
+            android:paddingTop="@dimen/_4sdp"
+            android:paddingBottom="@dimen/_4sdp"
+            android:textSize="@dimen/_12ssp"
+
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="Autofill,RtlSymmetry" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_confirm_location"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_26sdp"
+            android:background="@drawable/teal_button_bg"
+            android:fontFamily="@font/russo_one"
+            android:padding="10dp"
+            android:text="@string/verifyRMN"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/edt_ph_no"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintTop_toBottomOf="@+id/edt_ph_no"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/img_logo"
+
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:src="@drawable/epay_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/tv_welcometext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textSize="15sp"
+            android:fontFamily="@font/montserrat_medium_500"
+            app:layout_constraintTop_toBottomOf="@+id/img_logo"
+            android:text="Welcome to epay"
+            android:textColor="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+             />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cons_otp"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+       >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:src="@drawable/user"
+            android:layout_margin="20dp"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/open_sans_e_bold"
+            android:text="User Name"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+            app:layout_constraintStart_toEndOf="@+id/profile_image"
+            app:layout_constraintTop_toTopOf="@+id/profile_image"
+            app:layout_constraintVertical_bias="0.07999998" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/open_sans_bold"
+            android:text="9800000000"
+            android:textSize="18sp"
+            android:textColor="@color/pink2"
+            android:textStyle="bold"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/profile_image"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Switch Account"
+            android:drawableStart="@drawable/user_switch"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/title_header2"
+            android:textSize="18sp"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/title_header2"
+            android:fontFamily="@font/montserrat_medium_500"
+            app:layout_constraintBottom_toTopOf="@+id/textView4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:text="@string/unlock_using_pin"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/pin_view"
+            app:layout_constraintStart_toStartOf="@+id/pin_view" />
+        <com.chaos.view.PinView
+            android:id="@+id/pin_view"
+            style="@style/PinWidget.PinView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:cursorVisible="true"
+            android:elevation="@dimen/_8sdp"
+
+            android:inputType="number"
+            android:itemBackground="@drawable/pinview_items_back"
+
+            android:textColor="@color/pink1"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="bold"
+
+            app:cursorColor="@color/pink1"
+            app:cursorWidth="@dimen/_2sdp"
+            app:elevation="@dimen/_8sdp"
+            app:hideLineWhenFilled="true"
+            app:itemCount="6"
+            app:itemHeight="@dimen/_48sdp"
+            app:itemRadius="@dimen/_4sdp"
+            app:itemSpacing="0dp"
+            app:itemWidth="@dimen/_42sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:lineColor="@color/gray"
+            app:lineWidth="@dimen/_2sdp"
+            app:viewType="rectangle" />
+        <TextView
+            android:id="@+id/btn_otp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+
+
+            android:fontFamily="@font/russo_one"
+            android:padding="10dp"
+            android:text="Forgot PIN"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/pin_view"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintTop_toBottomOf="@+id/pin_view"
+            app:layout_constraintVertical_bias="0.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -133,6 +133,15 @@ dependencies {
     /*implementation("com.google.android.gms:play-services-analytics:32.4.0")
     implementation("com.google.firebase:firebase-crashlytics:32.4.0")
     implementation("com.google.firebase:firebase-analytics:32.4.0")*/
+
+
+    //lottie
+    implementation ("com.airbnb.android:lottie:5.2.0")
+
+    implementation ("androidx.constraintlayout:constraintlayout:2.1.0")
+
+    //Otp PIN view
+    implementation ("io.github.chaosleung:pinview:1.4.4")
 }
 
 kapt {
