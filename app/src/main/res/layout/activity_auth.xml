@@ -235,21 +235,20 @@
             app:lineColor="@color/gray"
             app:lineWidth="@dimen/_2sdp"
             app:viewType="rectangle" />
+
         <TextView
             android:id="@+id/btn_otp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20sdp"
 
 
             android:fontFamily="@font/russo_one"
             android:padding="10dp"
-            android:text="Forgot PIN"
+            android:text="Verify OTP"
             android:textColor="@color/black"
             android:textSize="@dimen/_14ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/pin_view"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintTop_toBottomOf="@+id/pin_view"
             app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
