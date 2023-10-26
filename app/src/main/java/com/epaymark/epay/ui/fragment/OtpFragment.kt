@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.R
 import com.epaymark.epay.adapter.PhonePadAdapter
 import com.epaymark.epay.data.viewMovel.AuthViewModel
@@ -69,7 +70,8 @@ class OtpFragment : BaseFragment() {
                                 // binding.firstPinView.text=this
                                 authViewModel.otp.value = "${this}${item}"
                                 if(authViewModel.otp.value=="123456"){
-                                    Toast.makeText(requireContext(), "match", Toast.LENGTH_SHORT).show()
+                                    findNavController().navigate(R.id.action_otpFragment_to_congratulationFragment)
+                                   // Toast.makeText(requireContext(), "match", Toast.LENGTH_SHORT).show()
                                 }
 
                                 //binding.firstPinView.setText(authViewModel.otp.value)

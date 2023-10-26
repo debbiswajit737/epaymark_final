@@ -1,6 +1,8 @@
 package com.epaymark.epay.utils.helpers
 
 object Constants {
+    const val LOTTIE_CONFETTIE_LINK = "https://assets10.lottiefiles.com/packages/lf20_3xwxlyv7.json"
+    const val LOTTIE_TICK_LINK = "https://assets8.lottiefiles.com/packages/lf20_ikemt7or.json"
     const val CHIPER_CODE = "AES/CBC/PKCS5Padding"
     const val AES_CODE = "PBKDF2WithHmacSHA256"
     const val SECRET_KEY = "AES"

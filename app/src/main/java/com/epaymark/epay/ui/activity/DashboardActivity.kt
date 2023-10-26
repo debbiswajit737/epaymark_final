@@ -55,7 +55,7 @@ class DashboardActivity  : BaseActivity() {
 
             when (it) {
                 is ResponseState.Loading -> {
-                    loadingPopup?.show()
+                    //loadingPopup?.show()
                 }
                 is ResponseState.Success -> {
                     loadingPopup?.dismiss()
