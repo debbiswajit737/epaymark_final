@@ -20,7 +20,6 @@ import javax.inject.Inject
 class AuthViewModel @Inject constructor(private val repository: DeliveryOptionsRepository) : ViewModel() {
 
     var keyPadValue = MutableLiveData("")
-    var keyPadValue2 = MutableLiveData("")
     var mobError = MutableLiveData("")
     var timingValue = MutableLiveData("")
     //var otp = MutableLiveData(Editable)

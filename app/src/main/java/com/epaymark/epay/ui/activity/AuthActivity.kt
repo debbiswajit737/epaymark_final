@@ -2,22 +2,33 @@ package com.epaymark.epay.ui.activity
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.RecyclerView
 import com.epaymark.epay.R
+import com.epaymark.epay.adapter.PhonePadAdapter
+import com.epaymark.epay.data.viewMovel.AuthViewModel
 import com.epaymark.epay.databinding.ActivityAuthBinding
+import com.epaymark.epay.utils.helpers.Constants
+import com.epaymark.epay.utils.`interface`.KeyPadOnClickListner
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
 class AuthActivity : AppCompatActivity() {
     lateinit var binding:ActivityAuthBinding
+    private lateinit var authViewModel: AuthViewModel
+    var keyPad = ArrayList<Int>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Set the app to full-screen mode
@@ -38,19 +49,50 @@ class AuthActivity : AppCompatActivity() {
                 )
         //setContentView(R.layout.activity_auth)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_auth)
+        authViewModel = ViewModelProvider(this)[AuthViewModel::class.java]
+        binding.viewModel = authViewModel
+        binding.lifecycleOwner = this
 
+        setKeyPad(binding.recyclePhonePad)
+        setKeyPad(binding.recyclePhonePad2)
         setdata()
         viewOnClick()
-
+        binding.recyclePhonePad2.visibility=View.GONE
     }
 
     private fun viewOnClick() {
         binding.apply {
-            btnConfirmLocation.setOnClickListener {
+            tvSwitchAcc.setOnClickListener {
+                binding.recyclePhonePad2.visibility=View.VISIBLE
+                binding.recyclePhonePad.visibility=View.GONE
                 binding.consLogin.visibility=View.GONE
                 binding.consOtp.visibility=View.VISIBLE
                 binding.imgLogo.visibility=View.VISIBLE
                 binding.tvWelcometext.visibility=View.VISIBLE
+
+            binding.recyclePhonePad2.visibility=View.GONE
+            binding.recyclePhonePad.visibility=View.VISIBLE
+            }
+            pinView.setOnClickListener {
+
+            }
+            btnConfirmLocation.setOnClickListener {
+                authViewModel.mobError.value=""
+                if (viewModel?.keyPadValue?.value?.length==10){
+
+                    binding.recyclePhonePad2.visibility=View.VISIBLE
+                    binding.recyclePhonePad.visibility=View.GONE
+                    binding.consLogin.visibility=View.GONE
+                    binding.consOtp.visibility=View.VISIBLE
+                    binding.imgLogo.visibility=View.VISIBLE
+                    binding.tvWelcometext.visibility=View.VISIBLE
+                }
+                else{
+                    binding.recyclePhonePad2.visibility=View.GONE
+                    binding.recyclePhonePad.visibility=View.VISIBLE
+                    authViewModel.mobError.value="Please enter a valid mobile number."
+                }
+
             }
         }
 
@@ -150,5 +192,103 @@ class AuthActivity : AppCompatActivity() {
                     override fun onAnimationRepeat(animation: Animator) {}
                 })
         }
+    }
+
+    fun setKeyPad(PhonePad: RecyclerView) {
+        authViewModel.mobError.value=""
+        keyPad.clear()
+        keyPad.add(1)
+        keyPad.add(2)
+        keyPad.add(3)
+        keyPad.add(4)
+        keyPad.add(5)
+        keyPad.add(6)
+        keyPad.add(7)
+        keyPad.add(8)
+        keyPad.add(9)
+        keyPad.add(10)
+        keyPad.add(0)
+        keyPad.add(11)
+        PhonePad.apply {
+            //authViewModel.keyPadValue.value=getString(R.string.mobile_no_hint)
+            adapter= PhonePadAdapter(keyPad,object : KeyPadOnClickListner {
+                override fun onClick(item: Int) {
+                    if (binding.consLogin.isVisible){
+                        authViewModel.mobError.value = ""
+                    authViewModel.keyPadValue.value?.apply {
+                        if (item <= 9) {
+                            if (this.length != 10) {
+                                authViewModel.keyPadValue.value = "${this}$item"
+                            }
+                        } else if (item == 10) {
+                            //authViewModel.keyPadValue.value =""
+                        } else {
+                            if (this.isNotEmpty()) {
+                                authViewModel.keyPadValue.value = this.substring(0, this.length - 1)
+                            }
+
+                        }
+                    }
+                }
+               else{
+                        authViewModel.otp.value?.apply {
+                            if (item<=9 ) {
+                                if (this.length!=6) {
+
+                                    // binding.firstPinView.text=this
+                                    authViewModel.otp.value = "${this}${item}"
+                                    if(authViewModel.otp.value=="123456"){
+                                        //binding.lottieTickAnim.visibility=View.VISIBLE
+                                        binding.lottieConfettiAnim.visibility=View.VISIBLE
+                                        setdata2()
+                                        //findNavController().navigate(R.id.action_otpFragment_to_congratulationFragment)
+                                        // Toast.makeText(requireContext(), "match", Toast.LENGTH_SHORT).show()
+                                    }
+
+                                    //binding.firstPinView.setText(authViewModel.otp.value)
+                                }
+                            }
+                            else if(item==10){
+                                //authViewModel.keyPadValue.value =""
+                            }
+                            else {
+                                if (this.isNotEmpty()) {
+                                    authViewModel.otp.value = this.toString().substring(0, this.length - 1)
+                                    //binding.firstPinView.setText(authViewModel.otp.value)
+
+                                }
+
+                            }
+                        }
+               }
+                }
+
+            })
+            isNestedScrollingEnabled=false
+        }
+    }
+
+    private fun setdata2() {
+        //binding.lottieTickAnim.setAnimationFromUrl(Constants.LOTTIE_TICK_LINK)
+        //binding.lottieTickAnim.playAnimation()
+        binding.lottieConfettiAnim.setAnimationFromUrl(Constants.LOTTIE_CONFETTIE_LINK)
+        //        lottie_anim.setSpeed(0.7f);
+        binding.lottieConfettiAnim.playAnimation()
+        binding.lottieConfettiAnim.addAnimatorListener(
+            object : Animator.AnimatorListener {
+                override fun onAnimationStart(animation: Animator) {}
+                override fun onAnimationEnd(animation: Animator) {
+                    lifecycleScope.launch {
+                        //delay(500L)
+
+                            startActivity(Intent(this@AuthActivity, AuthenticationActivity::class.java))
+                            finish()
+
+                    }
+                }
+
+                override fun onAnimationCancel(animation: Animator) {}
+                override fun onAnimationRepeat(animation: Animator) {}
+            })
     }
 }

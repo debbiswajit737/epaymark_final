@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/authentication_nav"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/regFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -26,4 +26,8 @@
         android:id="@+id/congratulationFragment"
         android:name="com.epaymark.epay.ui.fragment.CongratulationFragment"
         android:label="CongratulationFragment" />
+    <fragment
+        android:id="@+id/regFragment"
+        android:name="com.epaymark.epay.ui.fragment.RegFragment"
+        android:label="RegFragment" />
 </navigation>

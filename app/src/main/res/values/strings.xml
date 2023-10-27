@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Expence</string>
+    <string name="app_name">Epay</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="recharge_bill_payment"><![CDATA[Recharge & Bill Payment]]></string>
@@ -21,4 +21,29 @@
     <string name="don_t_receive_code">Don\'t receive code</string>
     <string name="resend_otp">Resend OTP in <font color='#72110A'>%dS</font></string>
     <string name="verify">Verify</string>
+    <string name="name">Name<font color='#FF0000'>*</font></string>
+    <string name="basic_information">Basic Information</string>
+    <string name="enter_name">Enter name</string>
+    <string name="mobile_no_reg">Mobile No<font color='#FF0000'>*</font></string>
+    <string name="enter_mobile_no_reg">Enter Mobile No</string>
+    <string name="alternate_mobile_no">Alternate Mobile No<font color='#FF0000'>*</font></string>
+    <string name="enter_alternate_mobile_no">Enter Alternate Mobile No</string>
+    <string name="email_id">Email ID<font color='#FF0000'>*</font></string>
+    <string name="enter_email_id">Enter Email Id</string>
+    <string name="address">Address<font color='#FF0000'>*</font></string>
+    <string name="enter_address">Enter address</string>
+    <string name="pin_code">Pin Code<font color='#FF0000'>*</font></string>
+    <string name="enter_pin_code">Enter Pin Code</string>
+    <string name="date_of_birth">Date of Birth<font color='#FF0000'>*</font></string>
+    <string name="state">State<font color='#FF0000'>*</font></string>
+    <string name="select_state">Select State</string>
+    <string name="city_district">City/District<font color='#FF0000'>*</font></string>
+    <string name="city_district_hint">City/District</string>
+    <string name="area">Area<font color='#FF0000'>*</font></string>
+    <string name="gender">Gender<font color='#FF0000'>*</font></string>
+    <string name="aadhar_no">Aadhar No<font color='#FF0000'>*</font></string>
+    <string name="enter_aadhar_no">Enter Aadhar No</string>
+    <string name="pan_card_no">PAN Card No<font color='#FF0000'>*</font></string>
+    <string name="enter_pan_card_no">Enter PAN Card No</string>
+    <string name="select_date">Select Date</string>
 </resources>

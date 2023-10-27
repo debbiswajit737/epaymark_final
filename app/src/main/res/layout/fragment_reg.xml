@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/_10sdp"
+        android:shadowRadius="@dimen/_8sdp"
+        tools:context=".ui.activity.DashBoardActivity">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="@dimen/_12sdp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:padding="@dimen/_10sdp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/basic_information"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textSize="@dimen/_14ssp"/>
+                <!--name start-->
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                    android:fontFamily="@font/montserrat_medium_500"
+                    android:textSize="@dimen/_14ssp"
+                    android:text="@string/name"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:inputType="textCapWords"
+                    android:padding="@dimen/_5sdp"
+                    android:textSize="@dimen/edit_text_size"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    android:hint="@string/enter_name"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:background="@drawable/field_bg"/>
+                <!--name End-->
+
+                <!--mobile start-->
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                    android:fontFamily="@font/montserrat_medium_500"
+                    android:textSize="@dimen/_14ssp"
+                    android:text="@string/mobile_no_reg"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:textSize="@dimen/edit_text_size"
+                    android:padding="@dimen/_5sdp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    android:hint="@string/enter_mobile_no_reg"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:background="@drawable/field_bg"/>
+                <!--mobile End-->
+
+                <!--Alternate Mobile start-->
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                    android:fontFamily="@font/montserrat_medium_500"
+                    android:textSize="@dimen/_14ssp"
+                    android:text="@string/alternate_mobile_no"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:textSize="@dimen/edit_text_size"
+                    android:padding="@dimen/_5sdp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    android:hint="@string/enter_alternate_mobile_no"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:background="@drawable/field_bg"/>
+                <!--Alternate Mobile End-->
+
+
+                <!--Email start-->
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                    android:fontFamily="@font/montserrat_medium_500"
+                    android:textSize="@dimen/_14ssp"
+                    android:text="@string/email_id"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:inputType="textWebEmailAddress"
+                    android:padding="@dimen/_5sdp"
+                    android:textSize="@dimen/edit_text_size"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    android:hint="@string/enter_email_id"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:background="@drawable/field_bg"/>
+                <!--Email End-->
+
+
+                <!--Address start-->
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                    android:fontFamily="@font/montserrat_medium_500"
+                    android:textSize="@dimen/_14ssp"
+                    android:text="@string/address"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height_address"
+                    android:inputType="text"
+                    android:gravity="start"
+                    android:textSize="@dimen/edit_text_size"
+                    android:padding="@dimen/_5sdp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    android:hint="@string/enter_address"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:background="@drawable/field_bg"/>
+                <!--Address End-->
+
+
+                <!--Pin Code start-->
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                    android:fontFamily="@font/montserrat_medium_500"
+                    android:textSize="@dimen/_14ssp"
+                    android:text="@string/pin_code"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:inputType="number"
+                    android:maxLength="6"
+                    android:textSize="@dimen/edit_text_size"
+                    android:padding="@dimen/_5sdp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    android:hint="@string/enter_pin_code"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:background="@drawable/field_bg"/>
+                <!--Pin Code End-->
+
+
+                <!--Date of Birth start-->
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                    android:fontFamily="@font/montserrat_medium_500"
+                    android:textSize="@dimen/_14ssp"
+                    android:text="@string/date_of_birth"/>
+
+                <!--Date of Birth End-->
+
+
+                <!--State start-->
+                <TextView
+                    android:id="@+id/tv_dob"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:background="@drawable/field_bg"
+                    android:hint="@string/select_date"
+                    android:inputType="date"
+                    android:textSize="@dimen/edit_text_size"
+                    android:padding="@dimen/_5sdp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray" />
+
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                    android:fontFamily="@font/montserrat_medium_500"
+                    android:textSize="@dimen/_14ssp"
+                    android:text="@string/state"/>
+                <TextView
+                    android:id="@+id/tv_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:background="@drawable/field_bg"
+                    android:hint="@string/select_date"
+                    android:textSize="@dimen/edit_text_size"
+                    android:padding="@dimen/_5sdp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray" />
+                <EditText
+                    android:id="@+id/et_state"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:inputType="text"
+                    android:maxLength="6"
+                    android:textSize="@dimen/edit_text_size"
+                    android:padding="@dimen/_5sdp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    android:hint="@string/state"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:background="@drawable/field_bg"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycle_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_200sdp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/state_list"
+                    android:background="@drawable/field_bg"
+                    android:visibility="gone"
+                    />
+
+                <!--State End-->
+
+
+                <!--City/District* start-->
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                    android:fontFamily="@font/montserrat_medium_500"
+                    android:textSize="@dimen/_14ssp"
+                    android:text="@string/city_district"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:inputType="text"
+                    android:padding="@dimen/_5sdp"
+                    android:textSize="@dimen/edit_text_size"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    android:hint="@string/city_district_hint"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:background="@drawable/field_bg"/>
+                <!--City/District* End-->
+
+
+                <!--Area start-->
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                    android:fontFamily="@font/montserrat_medium_500"
+                    android:textSize="@dimen/_14ssp"
+                    android:text="@string/area"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:inputType="text"
+                    android:textSize="@dimen/edit_text_size"
+                    android:padding="@dimen/_5sdp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    android:hint="Enter Area"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:background="@drawable/field_bg"/>
+                <!--Area End-->
+
+
+                <!--Gender start-->
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                    android:fontFamily="@font/montserrat_medium_500"
+                    android:textSize="@dimen/_14ssp"
+                    android:text="@string/gender"/>
+                <Spinner
+                    android:id="@+id/spinner_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:inputType="textCapWords"
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:paddingEnd="@dimen/_5sdp"
+                    android:paddingStart="@dimen/_2sdp"
+                    android:textSize="@dimen/edit_text_size"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    android:hint="Gender"
+                    android:background="@drawable/field_bg"
+                    android:popupBackground="@color/gray2"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    />
+                <!--Gender End-->
+
+
+                <!--Aadhar start-->
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                    android:fontFamily="@font/montserrat_medium_500"
+                    android:textSize="@dimen/_14ssp"
+                    android:text="@string/aadhar_no"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:inputType="number"
+                    android:padding="@dimen/_5sdp"
+                    android:textSize="@dimen/edit_text_size"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    android:hint="@string/enter_aadhar_no"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:background="@drawable/field_bg"/>
+                <!--Aadhar End-->
+
+
+                <!--PAN Card No start-->
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                    android:fontFamily="@font/montserrat_medium_500"
+                    android:textSize="@dimen/_14ssp"
+                    android:text="@string/pan_card_no"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:inputType="textCapCharacters"
+                    android:padding="@dimen/_5sdp"
+                    android:textSize="@dimen/edit_text_size"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    android:hint="@string/enter_pan_card_no"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:background="@drawable/field_bg"/>
+                <!--PAN Card No End-->
+
+
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>
