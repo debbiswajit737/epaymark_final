@@ -40,20 +40,23 @@
                     android:fontFamily="@font/montserrat_medium_500"
                     android:textSize="@dimen/_14ssp"
                     android:text="@string/name"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/edit_text_height"
-                    android:inputType="textCapWords"
-                    android:padding="@dimen/_5sdp"
-                    android:textSize="@dimen/edit_text_size"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/gray"
-                    android:hint="@string/enter_name"
-                    android:layout_marginTop="@dimen/edit_text_margin_top"
-                    android:background="@drawable/field_bg"/>
+
                 <!--name End-->
 
                 <!--mobile start-->
+                <EditText
+                    android:id="@+id/et_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:background="@drawable/field_bg"
+                    android:hint="@string/enter_name"
+                    android:inputType="textCapWords"
+                    android:padding="@dimen/_5sdp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    android:textSize="@dimen/edit_text_size" />
+
                 <TextView
                     android:textColor="@color/black"
                     android:layout_width="match_parent"
@@ -63,6 +66,7 @@
                     android:textSize="@dimen/_14ssp"
                     android:text="@string/mobile_no_reg"/>
                 <EditText
+                    android:id="@+id/et_mob"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/edit_text_height"
                     android:inputType="number"
@@ -86,6 +90,7 @@
                     android:textSize="@dimen/_14ssp"
                     android:text="@string/alternate_mobile_no"/>
                 <EditText
+                    android:id="@+id/et_a_mob"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/edit_text_height"
                     android:inputType="number"
@@ -109,21 +114,23 @@
                     android:fontFamily="@font/montserrat_medium_500"
                     android:textSize="@dimen/_14ssp"
                     android:text="@string/email_id"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/edit_text_height"
-                    android:inputType="textWebEmailAddress"
-                    android:padding="@dimen/_5sdp"
-                    android:textSize="@dimen/edit_text_size"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/gray"
-                    android:hint="@string/enter_email_id"
-                    android:layout_marginTop="@dimen/edit_text_margin_top"
-                    android:background="@drawable/field_bg"/>
+
                 <!--Email End-->
 
 
                 <!--Address start-->
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:background="@drawable/field_bg"
+                    android:hint="@string/enter_email_id"
+                    android:inputType="textWebEmailAddress"
+                    android:padding="@dimen/_5sdp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    android:textSize="@dimen/edit_text_size" />
+
                 <TextView
                     android:textColor="@color/black"
                     android:layout_width="match_parent"
@@ -212,35 +219,42 @@
                     android:layout_height="@dimen/edit_text_height"
                     android:layout_marginTop="@dimen/edit_text_margin_top"
                     android:background="@drawable/field_bg"
-                    android:hint="@string/select_date"
-                    android:textSize="@dimen/edit_text_size"
-                    android:padding="@dimen/_5sdp"
                     android:gravity="center_vertical"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/gray" />
-                <EditText
-                    android:id="@+id/et_state"
-                    android:visibility="gone"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/edit_text_height"
-                    android:inputType="text"
-                    android:maxLength="6"
-                    android:textSize="@dimen/edit_text_size"
+                    android:hint="@string/select_date"
                     android:padding="@dimen/_5sdp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray"
-                    android:hint="@string/state"
-                    android:layout_marginTop="@dimen/edit_text_margin_top"
-                    android:background="@drawable/field_bg"/>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycle_state"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_200sdp"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/state_list"
+                    android:textSize="@dimen/edit_text_size" />
+                <LinearLayout
+                    android:orientation="vertical"
                     android:background="@drawable/field_bg"
-                    android:visibility="gone"
-                    />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/et_state"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:inputType="text"
+                        android:layout_margin="@dimen/_15sdp"
+                        android:textSize="@dimen/edit_text_size"
+                        android:padding="@dimen/_5sdp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:hint="@string/state"
+                        android:layout_marginTop="@dimen/edit_text_margin_top"
+                        android:background="@drawable/field_bg"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycle_state"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_200sdp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/state_list"
+
+                        android:visibility="gone"
+                        />
+
+                </LinearLayout>
 
                 <!--State End-->
 
@@ -254,7 +268,8 @@
                     android:fontFamily="@font/montserrat_medium_500"
                     android:textSize="@dimen/_14ssp"
                     android:text="@string/city_district"/>
-                <EditText
+                <TextView
+                    android:id="@+id/tv_city"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/edit_text_height"
                     android:inputType="text"
@@ -265,6 +280,36 @@
                     android:hint="@string/city_district_hint"
                     android:layout_marginTop="@dimen/edit_text_margin_top"
                     android:background="@drawable/field_bg"/>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:background="@drawable/field_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/et_city"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:inputType="text"
+                        android:layout_margin="@dimen/_15sdp"
+                        android:textSize="@dimen/edit_text_size"
+                        android:padding="@dimen/_5sdp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:hint="@string/state"
+                        android:layout_marginTop="@dimen/edit_text_margin_top"
+                        android:background="@drawable/field_bg"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycle_city"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_200sdp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/state_list"
+
+                        android:visibility="gone"
+                        />
+
+                </LinearLayout>
                 <!--City/District* End-->
 
 
@@ -363,7 +408,141 @@
                     android:layout_marginTop="@dimen/edit_text_margin_top"
                     android:background="@drawable/field_bg"/>
                 <!--PAN Card No End-->
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                    android:fontFamily="@font/montserrat_medium_500"
+                    android:textSize="@dimen/_14ssp"
+                    android:text="@string/pan_card"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:background="@drawable/field_image_bg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <TextView
+                    android:id="@+id/tv_pancard"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:hint="@string/select_date"
+                    android:textSize="@dimen/edit_text_size"
+                    android:padding="@dimen/_5sdp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black" />
 
+                <TextView
+                    android:id="@+id/tv_pancard_image"
+                    android:layout_width="0dp"
+                    android:gravity="center_vertical"
+                    android:layout_weight="2"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="@dimen/_2sdp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:hint="@string/select_date"
+                    android:textSize="@dimen/edit_text_size"
+                    android:padding="@dimen/_5sdp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray" />
+
+
+            </LinearLayout>
+
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                    android:fontFamily="@font/montserrat_medium_500"
+                    android:textSize="@dimen/_14ssp"
+                    android:text="@string/pan_card"/>
+                <LinearLayout
+                    android:id="@+id/ll_aadhar"
+                    android:orientation="horizontal"
+                    android:background="@drawable/field_image_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+                    <TextView
+                        android:id="@+id/tv_pancard3"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:layout_marginTop="@dimen/edit_text_margin_top"
+                        android:hint="@string/select_date"
+                        android:textSize="@dimen/edit_text_size"
+                        android:padding="@dimen/_5sdp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tv_pancard_image1"
+                        android:layout_width="0dp"
+                        android:gravity="center_vertical"
+                        android:layout_weight="2"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:hint="@string/select_date"
+                        android:textSize="@dimen/edit_text_size"
+                        android:padding="@dimen/_5sdp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                    android:fontFamily="@font/montserrat_medium_500"
+                    android:textSize="@dimen/_14ssp"
+                    android:text="@string/pan_card"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:background="@drawable/field_image_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+                    <TextView
+                        android:id="@+id/tv_pancard2"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:layout_marginTop="@dimen/edit_text_margin_top"
+                        android:hint="@string/select_date"
+                        android:textSize="@dimen/edit_text_size"
+                        android:padding="@dimen/_5sdp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tv_pancard_image3"
+                        android:layout_width="0dp"
+                        android:gravity="center_vertical"
+                        android:layout_weight="2"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:hint="@string/select_date"
+                        android:textSize="@dimen/edit_text_size"
+                        android:padding="@dimen/_5sdp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray" />
+
+
+                </LinearLayout>
 
 
 

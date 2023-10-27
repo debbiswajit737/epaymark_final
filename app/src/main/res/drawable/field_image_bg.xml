@@ -3,9 +3,9 @@
     android:shape="rectangle"
     android:padding="10dp">
 
-
-    <stroke android:width="@dimen/_1sdp"
-        android:color="@color/title_header2"/>
+    <solid android:color="@color/pink2"/>
+    <stroke android:width="@dimen/_2sdp"
+        android:color="@color/g1"/>
     <corners
         android:radius="@dimen/_5sdp"
         />

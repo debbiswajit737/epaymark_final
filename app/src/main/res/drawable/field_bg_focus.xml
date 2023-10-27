@@ -4,8 +4,8 @@
     android:padding="10dp">
 
 
-    <stroke android:width="@dimen/_1sdp"
-        android:color="@color/title_header2"/>
+    <stroke android:width="@dimen/_2sdp"
+        android:color="@color/border_color"/>
     <corners
         android:radius="@dimen/_5sdp"
         />

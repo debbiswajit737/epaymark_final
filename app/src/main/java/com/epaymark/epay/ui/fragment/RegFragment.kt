@@ -2,7 +2,12 @@ package com.epaymark.epay.ui.fragment
 
 
 import android.app.DatePickerDialog
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -10,22 +15,28 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.Spinner
-import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import com.epaymark.epay.R
 import com.epaymark.epay.adapter.StateListAdapter
-import com.epaymark.epay.data.model.ListIcon
 import com.epaymark.epay.databinding.FragmentRegBinding
 import com.epaymark.epay.ui.base.BaseFragment
+import com.epaymark.epay.utils.helpers.PermissionUtils
+import com.epaymark.epay.utils.helpers.PermissionUtils.createAlertDialog
 import com.epaymark.epay.utils.`interface`.CallBack
+import com.epaymark.epay.utils.`interface`.PermissionsCallback
 import java.util.Calendar
 
 class RegFragment : BaseFragment() {
     lateinit var binding: FragmentRegBinding
     var stateList = ArrayList<String>()
+    var cityList = ArrayList<String>()
     var stateListAdapter:StateListAdapter?=null
+    var cityListAdapter:StateListAdapter?=null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,6 +45,7 @@ class RegFragment : BaseFragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
@@ -64,7 +76,23 @@ class RegFragment : BaseFragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     fun initView() {
+        setFocus()
+        binding.llAadhar.setOnClickListener{
+            myFocusCheck(binding.llAadhar)
+
+        }
+        binding.tvPancard3.setOnClickListener{
+            myFocusCheck(binding.llAadhar)
+
+        }
+        binding.tvPancardImage1.setOnClickListener{
+            myFocusCheck(binding.llAadhar)
+
+        }
+
+        checkPermission()
         // Add all the states
         stateList.add("Andhra Pradesh")
         stateList.add("Arunachal Pradesh")
@@ -127,7 +155,7 @@ class RegFragment : BaseFragment() {
         adapter=stateListAdapter
 
 
-            binding.etState.addTextChangedListener(object : TextWatcher {
+        binding.etState.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(s: Editable?) {
                     stateListAdapter?.filter?.filter(s)
                 }
@@ -139,10 +167,123 @@ class RegFragment : BaseFragment() {
                 }
             })
         }
+
+
+
+        cityList.add("Kolkata")
+        cityList.add("Asansol")
+        cityList.add("Siliguri")
+        cityList.add("Kolkata")
+        cityList.add("Asansol")
+        cityList.add("Siliguri")
+        cityList.add("Kolkata")
+        cityList.add("Asansol")
+        cityList.add("Siliguri")
+
+        binding.recycleCity.apply {
+            binding.tvCity.setOnClickListener {
+
+                if (binding.recycleCity.isVisible){
+                    binding.recycleCity.visibility = View.GONE
+                    binding.etCity.visibility = View.GONE
+                }
+                else {
+                    binding.recycleCity.visibility = View.VISIBLE
+                    binding.etCity.visibility = View.VISIBLE
+                }
+            }
+            cityListAdapter= StateListAdapter(cityList,object :CallBack{
+                override fun getValue(s: String) {
+                    binding.tvCity.text = s
+                    binding.recycleCity.visibility=View.GONE
+                    binding.etCity.visibility = View.GONE
+                }
+
+            })
+        adapter=cityListAdapter
+
+
+        binding.etCity.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) {
+                    cityListAdapter?.filter?.filter(s)
+                }
+
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                }
+            })
+        }
+
+
+    }
+
+    private fun setFocus() {
+       binding.apply {
+           etName.myFocusCheck()
+           etMob.myFocusCheck()
+           etAMob.myFocusCheck()
+       }
     }
 
     fun setObserver() {
 
+    }
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    fun checkPermission() {
+        if (!PermissionUtils.hasVideoRecordingPermissions(binding.root.context)) {
+
+
+            PermissionUtils.requestVideoRecordingPermission(binding.root.context, object : PermissionsCallback {
+                override fun onPermissionRequest(granted: Boolean) {
+                    if (!granted) {
+                        dialogRecordingPermission()
+
+                    } else {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                            if (!Environment.isExternalStorageManager()) {
+                                dialogAllFileAccessPermissionAbove30()
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            })
+
+        }
+    }fun dialogAllFileAccessPermissionAbove30() {
+        createAlertDialog(
+            binding.root.context,
+            "All file permissions",
+            "Go to setting and enable all files permission",
+            "OK", ""
+        ) { value ->
+            if (value) {
+                val getpermission = Intent()
+                getpermission.action = Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION
+                startActivity(getpermission)
+            }
+        }
+    }
+
+    private fun dialogRecordingPermission() {
+        createAlertDialog(
+            binding.root.context,
+            "Permission Denied!",
+            "Go to setting and enable recording permission",
+            "OK", ""
+        ) { value ->
+            if (value) {
+                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                val uri = Uri.fromParts("package", requireActivity().packageName, null)
+                intent.data = uri
+                startActivity(intent)
+            }
+        }
     }
 
     private fun View.showDatePickerDialog(callBack: CallBack) {
@@ -180,4 +321,23 @@ class RegFragment : BaseFragment() {
             }
         }
     }
-}
+
+    fun EditText.myFocusCheck(){
+        this.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                this.setBackgroundResource(R.drawable.field_bg)
+            } else {
+                this.setBackgroundResource(R.drawable.field_bg_focus)
+            }
+        }
+    }
+    fun myFocusCheck(ll:LinearLayout){
+        ll.setBackgroundResource(R.drawable.field_image_bg_focus)
+    ll.setOnFocusChangeListener { _, hasFocus ->
+        if (hasFocus) {
+            ll.setBackgroundResource(R.drawable.field_image_bg_focus)
+        } else {
+            ll.setBackgroundResource(R.drawable.field_image_bg)
+        }
+    }
+}}

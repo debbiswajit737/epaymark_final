@@ -139,6 +139,8 @@ dependencies {
 
     //Otp PIN view
     implementation ("io.github.chaosleung:pinview:1.4.4")
+
+    implementation ("com.karumi:dexter:6.2.3")
 }
 
 kapt {
