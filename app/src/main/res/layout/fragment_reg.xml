@@ -2,6 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.epaymark.epay.data.viewMovel.AuthViewModel" />
+    </data>
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -38,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/edit_text_title_margin_top"
                     android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/text_size"
                     android:text="@string/name"/>
 
                 <!--name End-->
@@ -63,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/edit_text_title_margin_top"
                     android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/text_size"
                     android:text="@string/mobile_no_reg"/>
                 <EditText
                     android:id="@+id/et_mob"
@@ -71,6 +76,7 @@
                     android:layout_height="@dimen/edit_text_height"
                     android:inputType="number"
                     android:maxLength="10"
+                    android:longClickable="false"
                     android:textSize="@dimen/edit_text_size"
                     android:padding="@dimen/_5sdp"
                     android:textColor="@color/black"
@@ -87,7 +93,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/edit_text_title_margin_top"
                     android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/text_size"
                     android:text="@string/alternate_mobile_no"/>
                 <EditText
                     android:id="@+id/et_a_mob"
@@ -112,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/edit_text_title_margin_top"
                     android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/text_size"
                     android:text="@string/email_id"/>
 
                 <!--Email End-->
@@ -127,6 +133,7 @@
                     android:hint="@string/enter_email_id"
                     android:inputType="textWebEmailAddress"
                     android:padding="@dimen/_5sdp"
+                    android:longClickable="false"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray"
                     android:textSize="@dimen/edit_text_size" />
@@ -137,13 +144,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/edit_text_title_margin_top"
                     android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/text_size"
                     android:text="@string/address"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/edit_text_height_address"
                     android:inputType="text"
                     android:gravity="start"
+                    android:maxLines="50"
+                    android:scrollbars="vertical"
+                    android:longClickable="false"
                     android:textSize="@dimen/edit_text_size"
                     android:padding="@dimen/_5sdp"
                     android:textColor="@color/black"
@@ -161,12 +171,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/edit_text_title_margin_top"
                     android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/text_size"
                     android:text="@string/pin_code"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/edit_text_height"
                     android:inputType="number"
+                    android:longClickable="false"
                     android:maxLength="6"
                     android:textSize="@dimen/edit_text_size"
                     android:padding="@dimen/_5sdp"
@@ -185,7 +196,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/edit_text_title_margin_top"
                     android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/text_size"
                     android:text="@string/date_of_birth"/>
 
                 <!--Date of Birth End-->
@@ -211,7 +222,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/edit_text_title_margin_top"
                     android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/text_size"
                     android:text="@string/state"/>
                 <TextView
                     android:id="@+id/tv_state"
@@ -236,6 +247,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"
                         android:inputType="text"
+                        android:longClickable="false"
                         android:layout_margin="@dimen/_15sdp"
                         android:textSize="@dimen/edit_text_size"
                         android:padding="@dimen/_5sdp"
@@ -250,8 +262,8 @@
                         android:layout_height="@dimen/_200sdp"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         tools:listitem="@layout/state_list"
-
                         android:visibility="gone"
+                        android:layout_margin="@dimen/_10sdp"
                         />
 
                 </LinearLayout>
@@ -266,7 +278,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/edit_text_title_margin_top"
                     android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/text_size"
                     android:text="@string/city_district"/>
                 <TextView
                     android:id="@+id/tv_city"
@@ -291,14 +303,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"
                         android:inputType="text"
+                        android:longClickable="false"
                         android:layout_margin="@dimen/_15sdp"
                         android:textSize="@dimen/edit_text_size"
                         android:padding="@dimen/_5sdp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray"
-                        android:hint="@string/state"
+                        android:hint="@string/search"
+                        android:background="@drawable/field_bg_search_bg"
+                        android:drawableEnd="@drawable/baseline_search_24"
                         android:layout_marginTop="@dimen/edit_text_margin_top"
-                        android:background="@drawable/field_bg"/>
+                        />
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycle_city"
                         android:layout_width="match_parent"
@@ -308,7 +323,20 @@
 
                         android:visibility="gone"
                         />
-
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/tv_city_list_search"
+                        android:textColor="@color/black"
+                        android:gravity="center_vertical"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:layout_width="match_parent"
+                        android:drawableEnd="@drawable/baseline_arrow_drop_up_24"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:background="@drawable/field_bg_dropdown"
+                        android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                        android:fontFamily="@font/montserrat_medium_500"
+                        android:textSize="@dimen/text_size"
+                        android:text="@string/city_district_msg"/>
                 </LinearLayout>
                 <!--City/District* End-->
 
@@ -320,12 +348,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/edit_text_title_margin_top"
                     android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/text_size"
                     android:text="@string/area"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/edit_text_height"
                     android:inputType="text"
+                    android:longClickable="false"
                     android:textSize="@dimen/edit_text_size"
                     android:padding="@dimen/_5sdp"
                     android:textColor="@color/black"
@@ -343,7 +372,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/edit_text_title_margin_top"
                     android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/text_size"
                     android:text="@string/gender"/>
                 <Spinner
                     android:id="@+id/spinner_gender"
@@ -371,12 +400,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/edit_text_title_margin_top"
                     android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/text_size"
                     android:text="@string/aadhar_no"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/edit_text_height"
                     android:inputType="number"
+                    android:longClickable="false"
                     android:padding="@dimen/_5sdp"
                     android:textSize="@dimen/edit_text_size"
                     android:textColor="@color/black"
@@ -394,13 +424,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/edit_text_title_margin_top"
                     android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/text_size"
                     android:text="@string/pan_card_no"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/edit_text_height"
                     android:inputType="textCapCharacters"
                     android:padding="@dimen/_5sdp"
+                    android:longClickable="false"
                     android:textSize="@dimen/edit_text_size"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray"
@@ -414,22 +445,22 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/edit_text_title_margin_top"
                     android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/_14ssp"
-                    android:text="@string/pan_card"/>
+                    android:textSize="@dimen/text_size"
+                    android:text="@string/owner_pan_card"/>
             <LinearLayout
                 android:orientation="horizontal"
                 android:background="@drawable/field_image_bg"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/edit_text_height"
+                android:layout_marginTop="@dimen/edit_text_margin_top"
                 >
                 <TextView
                     android:id="@+id/tv_pancard"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:layout_height="@dimen/edit_text_height"
-                    android:layout_marginTop="@dimen/edit_text_margin_top"
-                    android:hint="@string/select_date"
+                    android:layout_height="match_parent"
+                    android:hint="@string/choose_file"
                     android:textSize="@dimen/edit_text_size"
                     android:padding="@dimen/_5sdp"
                     android:textColor="@color/black"
@@ -441,10 +472,9 @@
                     android:gravity="center_vertical"
                     android:layout_weight="2"
                     android:layout_gravity="center_vertical"
-                    android:layout_margin="@dimen/_2sdp"
                     android:layout_height="match_parent"
-                    android:background="@color/white"
-                    android:hint="@string/select_date"
+                    android:background="@drawable/image_edittext_field_bg"
+                    android:hint="@string/no_file_chosen"
                     android:textSize="@dimen/edit_text_size"
                     android:padding="@dimen/_5sdp"
                     android:textColor="@color/black"
@@ -459,23 +489,23 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/edit_text_title_margin_top"
                     android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/_14ssp"
-                    android:text="@string/pan_card"/>
+                    android:textSize="@dimen/text_size"
+                    android:text="@string/owner_aadhaar_card_front_side"/>
                 <LinearLayout
                     android:id="@+id/ll_aadhar"
                     android:orientation="horizontal"
                     android:background="@drawable/field_image_bg"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
                     >
                     <TextView
                         android:id="@+id/tv_pancard3"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:layout_height="@dimen/edit_text_height"
-                        android:layout_marginTop="@dimen/edit_text_margin_top"
-                        android:hint="@string/select_date"
+                        android:layout_height="match_parent"
+                        android:hint="@string/choose_file"
                         android:textSize="@dimen/edit_text_size"
                         android:padding="@dimen/_5sdp"
                         android:textColor="@color/black"
@@ -487,10 +517,10 @@
                         android:gravity="center_vertical"
                         android:layout_weight="2"
                         android:layout_gravity="center_vertical"
-                        android:layout_margin="@dimen/_2sdp"
+
                         android:layout_height="match_parent"
-                        android:background="@color/white"
-                        android:hint="@string/select_date"
+                        android:background="@drawable/image_edittext_field_bg"
+                        android:hint="@string/no_file_chosen"
                         android:textSize="@dimen/edit_text_size"
                         android:padding="@dimen/_5sdp"
                         android:textColor="@color/black"
@@ -505,22 +535,23 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/edit_text_title_margin_top"
                     android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/_14ssp"
-                    android:text="@string/pan_card"/>
+                    android:textSize="@dimen/text_size"
+                    android:text="@string/owner_aadhaar_card_back_side"/>
                 <LinearLayout
                     android:orientation="horizontal"
                     android:background="@drawable/field_image_bg"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
                     >
                     <TextView
                         android:id="@+id/tv_pancard2"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:layout_height="@dimen/edit_text_height"
-                        android:layout_marginTop="@dimen/edit_text_margin_top"
-                        android:hint="@string/select_date"
+                        android:layout_height="match_parent"
+                        android:hint="@string/choose_file"
+
                         android:textSize="@dimen/edit_text_size"
                         android:padding="@dimen/_5sdp"
                         android:textColor="@color/black"
@@ -532,10 +563,10 @@
                         android:gravity="center_vertical"
                         android:layout_weight="2"
                         android:layout_gravity="center_vertical"
-                        android:layout_margin="@dimen/_2sdp"
+
                         android:layout_height="match_parent"
-                        android:background="@color/white"
-                        android:hint="@string/select_date"
+                        android:background="@drawable/image_edittext_field_bg"
+                        android:hint="@string/no_file_chosen"
                         android:textSize="@dimen/edit_text_size"
                         android:padding="@dimen/_5sdp"
                         android:textColor="@color/black"
@@ -545,7 +576,50 @@
                 </LinearLayout>
 
 
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:paddingBottom="@dimen/_20sdp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/btn_next"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_26sdp"
+                        android:background="@drawable/teal_button_bg"
+                        android:fontFamily="@font/open_sans_e_bold"
+                        android:padding="10dp"
+                        android:gravity="center"
+                        android:minWidth="@dimen/_100sdp"
+                        android:text="Next"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/edt_ph_no"
+                        app:layout_constraintTop_toBottomOf="@+id/edt_ph_no"
+                        app:layout_constraintVertical_bias="0.0" />
+                        <View
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_1sdp"/>
+                    <TextView
+                        android:id="@+id/btn_confirm_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_26sdp"
+                        android:background="@drawable/teal_button_bg"
+                        android:fontFamily="@font/open_sans_e_bold"
+                        android:padding="10dp"
+                        android:minWidth="@dimen/_100sdp"
+                        android:text="Save"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/edt_ph_no"
+                        app:layout_constraintTop_toBottomOf="@+id/edt_ph_no"
+                        app:layout_constraintVertical_bias="0.0" />
+                </LinearLayout>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

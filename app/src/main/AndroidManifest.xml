@@ -7,7 +7,8 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -27,8 +28,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-
-
     <application
         android:name=".ui.base.EpayApplication"
         android:allowBackup="true"
@@ -42,13 +41,16 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activity.DashboardActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.AuthActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activity.SplashActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.DashboardActivity"
+            android:name=".ui.activity.WebviewActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activity.MainActivity"

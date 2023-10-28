@@ -1,7 +1,11 @@
 package com.epaymark.epay.ui.fragment
 
 
+
+import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -22,19 +26,27 @@ import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import com.epaymark.epay.R
+
 import com.epaymark.epay.adapter.StateListAdapter
+import com.epaymark.epay.data.model.StateCityModel
 import com.epaymark.epay.databinding.FragmentRegBinding
 import com.epaymark.epay.ui.base.BaseFragment
+import com.epaymark.epay.utils.*
 import com.epaymark.epay.utils.helpers.PermissionUtils
 import com.epaymark.epay.utils.helpers.PermissionUtils.createAlertDialog
 import com.epaymark.epay.utils.`interface`.CallBack
 import com.epaymark.epay.utils.`interface`.PermissionsCallback
+import java.io.BufferedReader
+import java.io.IOException
+import java.io.InputStreamReader
+import java.net.URLEncoder
 import java.util.Calendar
+
 
 class RegFragment : BaseFragment() {
     lateinit var binding: FragmentRegBinding
-    var stateList = ArrayList<String>()
-    var cityList = ArrayList<String>()
+    var stateList = ArrayList<StateCityModel>()
+    var cityList = ArrayList<StateCityModel>()
     var stateListAdapter:StateListAdapter?=null
     var cityListAdapter:StateListAdapter?=null
     override fun onCreateView(
@@ -74,12 +86,35 @@ class RegFragment : BaseFragment() {
             }
 
         }
+
+        binding.btnNext.setOnClickListener {
+           // sendData()
+            browserPOST()
+        }
+        binding.tvCityListSearch.setOnClickListener {
+            binding.tvCity.performClick()
+        }
+        binding.tvCity.setOnClickListener {
+
+            if (binding.recycleCity.isVisible){
+                binding.recycleCity.visibility = View.GONE
+                binding.etCity.visibility = View.GONE
+                binding.tvCity.visibility = View.GONE
+            }
+            else {
+                binding.recycleCity.visibility = View.VISIBLE
+                binding.etCity.visibility = View.VISIBLE
+                binding.tvCity.visibility = View.VISIBLE
+            }
+            binding.tvCityListSearch.isVisible = binding.recycleCity.isVisible
+            it.isVisible=!binding.recycleCity.isVisible
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     fun initView() {
         setFocus()
-        binding.llAadhar.setOnClickListener{
+        /*binding.llAadhar.setOnClickListener{
             myFocusCheck(binding.llAadhar)
 
         }
@@ -90,48 +125,48 @@ class RegFragment : BaseFragment() {
         binding.tvPancardImage1.setOnClickListener{
             myFocusCheck(binding.llAadhar)
 
-        }
+        }*/
 
         checkPermission()
         // Add all the states
-        stateList.add("Andhra Pradesh")
-        stateList.add("Arunachal Pradesh")
-        stateList.add("Assam")
-        stateList.add("Bihar")
-        stateList.add("Chhattisgarh")
-        stateList.add("Goa")
-        stateList.add("Gujarat")
-        stateList.add("Haryana")
-        stateList.add("Himachal Pradesh")
-        stateList.add("Jharkhand")
-        stateList.add("Karnataka")
-        stateList.add("Kerala")
-        stateList.add("Madhya Pradesh")
-        stateList.add("Maharashtra")
-        stateList.add("Manipur")
-        stateList.add("Meghalaya")
-        stateList.add("Mizoram")
-        stateList.add("Nagaland")
-        stateList.add("Odisha")
-        stateList.add("Punjab")
-        stateList.add("Rajasthan")
-        stateList.add("Sikkim")
-        stateList.add("Tamil Nadu")
-        stateList.add("Telangana")
-        stateList.add("Tripura")
-        stateList.add("Uttar Pradesh")
-        stateList.add("Uttarakhand")
-        stateList.add("West Bengal")
+        stateList.add(StateCityModel(false,"Andhra Pradesh"))
+        stateList.add(StateCityModel(false,"Arunachal Pradesh"))
+        stateList.add(StateCityModel(false,"Assam"))
+        stateList.add(StateCityModel(false,"Bihar"))
+        stateList.add(StateCityModel(false,"Chhattisgarh"))
+        stateList.add(StateCityModel(false,"Goa"))
+        stateList.add(StateCityModel(false,"Gujarat"))
+        stateList.add(StateCityModel(false,"Haryana"))
+        stateList.add(StateCityModel(false,"Himachal Pradesh"))
+        stateList.add(StateCityModel(false,"Jharkhand"))
+        stateList.add(StateCityModel(false,"Karnataka"))
+        stateList.add(StateCityModel(false,"Kerala"))
+        stateList.add(StateCityModel(false,"Madhya Pradesh"))
+        stateList.add(StateCityModel(false,"Maharashtra"))
+        stateList.add(StateCityModel(false,"Manipur"))
+        stateList.add(StateCityModel(false,"Meghalaya"))
+        stateList.add(StateCityModel(false,"Mizoram"))
+        stateList.add(StateCityModel(false,"Nagaland"))
+        stateList.add(StateCityModel(false,"Odisha"))
+        stateList.add(StateCityModel(false,"Punjab"))
+        stateList.add(StateCityModel(false,"Rajasthan"))
+        stateList.add(StateCityModel(false,"Sikkim"))
+        stateList.add(StateCityModel(false,"Tamil Nadu"))
+        stateList.add(StateCityModel(false,"Telangana"))
+        stateList.add(StateCityModel(false,"Tripura"))
+        stateList.add(StateCityModel(false,"Uttar Pradesh"))
+        stateList.add(StateCityModel(false,"Uttarakhand"))
+        stateList.add(StateCityModel(false,"West Bengal"))
 
 // Add all the union territories
-        stateList.add("Andaman and Nicobar Islands")
-        stateList.add("Chandigarh")
-        stateList.add("Dadra and Nagar Haveli and Daman and Diu")
-        stateList.add("Lakshadweep")
-        stateList.add("Delhi (National Capital Territory of Delhi)")
-        stateList.add("Puducherry")
-        stateList.add("Ladakh")
-        stateList.add("Jammu and Kashmir")
+        stateList.add(StateCityModel(false,"Andaman and Nicobar Islands"))
+        stateList.add(StateCityModel(false,"Chandigarh"))
+        stateList.add(StateCityModel(false,"Dadra and Nagar Haveli and Daman and Diu"))
+        stateList.add(StateCityModel(false,"Lakshadweep"))
+        stateList.add(StateCityModel(false,"Delhi (National Capital Territory of Delhi)"))
+        stateList.add(StateCityModel(false,"Puducherry"))
+        stateList.add(StateCityModel(false,"Ladakh"))
+        stateList.add(StateCityModel(false,"Jammu and Kashmir"))
         binding.recycleState.apply {
             binding.tvState.setOnClickListener {
 
@@ -170,33 +205,30 @@ class RegFragment : BaseFragment() {
 
 
 
-        cityList.add("Kolkata")
-        cityList.add("Asansol")
-        cityList.add("Siliguri")
-        cityList.add("Kolkata")
-        cityList.add("Asansol")
-        cityList.add("Siliguri")
-        cityList.add("Kolkata")
-        cityList.add("Asansol")
-        cityList.add("Siliguri")
+        cityList.add(StateCityModel(false,"Kolkata"))
+        cityList.add(StateCityModel(false,"Asansol"))
+        cityList.add(StateCityModel(false,"Siliguri"))
+        cityList.add(StateCityModel(false,"Kolkata"))
+        cityList.add(StateCityModel(false,"Asansol"))
+        cityList.add(StateCityModel(false,"Siliguri"))
+        cityList.add(StateCityModel(false,"Kolkata"))
+        cityList.add(StateCityModel(false,"Asansol"))
+        cityList.add(StateCityModel(false,"Siliguri"))
+
+
 
         binding.recycleCity.apply {
-            binding.tvCity.setOnClickListener {
 
-                if (binding.recycleCity.isVisible){
-                    binding.recycleCity.visibility = View.GONE
-                    binding.etCity.visibility = View.GONE
-                }
-                else {
-                    binding.recycleCity.visibility = View.VISIBLE
-                    binding.etCity.visibility = View.VISIBLE
-                }
-            }
             cityListAdapter= StateListAdapter(cityList,object :CallBack{
                 override fun getValue(s: String) {
-                    binding.tvCity.text = s
+
+
                     binding.recycleCity.visibility=View.GONE
                     binding.etCity.visibility = View.GONE
+                    binding.tvCity.visibility = View.GONE
+                    binding.tvCityListSearch.visibility = View.GONE
+                    binding.tvCity.isVisible=!binding.recycleCity.isVisible
+                    binding.tvCity.text = s
                 }
 
             })
@@ -221,15 +253,20 @@ class RegFragment : BaseFragment() {
 
     private fun setFocus() {
        binding.apply {
-           etName.myFocusCheck()
+           /*etName.myFocusCheck()
            etMob.myFocusCheck()
-           etAMob.myFocusCheck()
+           etAMob.myFocusCheck()*/
        }
     }
 
     fun setObserver() {
+        checkFocus()
+    }
+
+    private fun checkFocus() {
 
     }
+
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     fun checkPermission() {
         if (!PermissionUtils.hasVideoRecordingPermissions(binding.root.context)) {
@@ -340,4 +377,80 @@ class RegFragment : BaseFragment() {
             ll.setBackgroundResource(R.drawable.field_image_bg)
         }
     }
-}}
+}
+    fun sendData() {
+        /*// Create a Uri with the URL you want to open
+        val url = "https://www.gibl.in/wallet/validate2/?ret_data=eyJ1cmMiOiI5MzkxMTU1OTEwIiwidW1jIjoiNTE1ODM5IiwiYWsiOiI2NTA0MjA2MWQ4MTRhIiwiZm5hbWUiOiJzb3VteWEiLCJsbmFtZSI6InNvdW15YSIsImVtYWlsIjoiYmlnOWl0QGdtYWlsLmNvbSIsInBobm8iOiI5MjMxMTA5ODI5IiwicGluIjoiODg4ODg4In0="
+        val uri = Uri.parse(url)
+
+        // Create an Intent with ACTION_VIEW
+        val intent = Intent(Intent.ACTION_VIEW)
+
+        // Set the Uri with POST method and data
+        intent.data = uri
+        intent.putExtra("method", "POST")  // Specify the HTTP method as POST
+        //intent.putExtra("ret_data", "eyJ1cmMiOiI5MzkxMTU1OTEwIiwidW1jIjoiNTE1ODM5IiwiYWsiOiI2NTA0MjA2MWQ4MTRhIiwiZm5hbWUiOiJzb3VteWEiLCJsbmFtZSI6InNvdW15YSIsImVtYWlsIjoiYmlnOWl0QGdtYWlsLmNvbSIsInBobm8iOiI5MjMxMTA5ODI5IiwicGluIjoiODg4ODg4In0=")  // Add POST data
+          // Add more POST data
+
+        // Start the activity to open the web browser
+        startActivity(intent)*/
+
+
+
+
+
+        // Create a Uri with the URL you want to open
+        val url = "https://www.gibl.in/wallet/validate2/"
+        val uri = Uri.parse(url)
+
+        // Create an Intent with ACTION_VIEW
+        val intent = Intent(Intent.ACTION_VIEW)
+
+        // Set the Uri with POST method and data
+        intent.data = uri
+        intent.putExtra("method", "POST")  // Specify the HTTP method as POST
+
+        // Set the Content-Type header
+        intent.putExtra("Content-Type", "text/html; charset=UTF-8")
+
+        // Add other POST data if needed
+        intent.putExtra("ret_data", "eyJ1cmMiOiI5MzkxMTU1OTEwIiwidW1jIjoiNTE1ODM5IiwiYWsiOiI2NTA0MjA2MWQ4MTRhIiwiZm5hbWUiOiJzb3VteWEiLCJsbmFtZSI6InNvdW15YSIsImVtYWlsIjoiYmlnOWl0QGdtYWlsLmNvbSIsInBobm8iOiI5MjMxMTA5ODI5IiwicGluIjoiODg4ODg4In0=")
+
+        // Start the activity to open the web browser
+        startActivity(intent)
+    }
+
+
+    private fun browserPOST() {
+        val i = Intent()
+        // MUST instantiate android browser, otherwise it won't work (it won't find an activity to satisfy intent)
+        i.component = ComponentName("com.android.browser", "com.android.browser.BrowserActivity")
+        i.action = Intent.ACTION_VIEW
+        val html: String = readTrimRawTextFile()
+
+        // Replace params (if any replacement needed)
+
+        // May work without url encoding, but I think is advisable
+        // URLEncoder.encode replace space with "+", must replace again with %20
+        val dataUri = "data:text/html," + URLEncoder.encode(html).replace("\\+".toRegex(), "%20")
+        i.data = Uri.parse(dataUri)
+        startActivity(i)
+    }
+
+    private fun readTrimRawTextFile(): String {
+        var url="https://www.gibl.in/wallet/validate2/"
+        var value="eyJ1cmMiOiI5MzkxMTU1OTEwIiwidW1jIjoiNTE1ODM5IiwiYWsiOiI2NTA0MjA2MWQ4MTRhIiwiZm5hbWUiOiJzb3VteWEiLCJsbmFtZSI6InNvdW15YSIsImVtYWlsIjoiYmlnOWl0QGdtYWlsLmNvbSIsInBobm8iOiI5MjMxMTA5ODI5IiwicGluIjoiODg4ODg4In0="
+        var html="<html>\n" +
+                "        <body onLoad=\"document.getElementById('form').submit()\">\n" +
+                "        <form id=\"form\" target=\"_self\" method=\"POST\" action=\"${url}\">\n" +
+                "        <input type=\"hidden\" name=\"ret_data\" value=\"${value}\" />\n" +
+                "        ...\n" +
+                "        </form>\n" +
+                "        </body>\n" +
+                "        </html>"
+        return html
+    }
+
+
+
+}

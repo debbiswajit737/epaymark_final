@@ -47,4 +47,11 @@
     <string name="pan_card">PAN Card<font color='#FF0000'>*</font></string>
     <string name="enter_pan_card_no">Enter PAN Card No</string>
     <string name="select_date">Select Date</string>
+    <string name="choose_file">Choose file</string>
+    <string name="owner_pan_card">Owner PAN Card<font color='#FF0000'>*</font></string>
+    <string name="owner_aadhaar_card_front_side">Owner Aadhaar Card (Front Side)<font color='#FF0000'>*</font></string>
+    <string name="owner_aadhaar_card_back_side">Owner Aadhaar Card (Back Side)<font color='#FF0000'>*</font></string>
+    <string name="no_file_chosen">No file chosen</string>
+    <string name="search">Search</string>
+    <string name="city_district_msg">City/District</string>
 </resources>

@@ -5,7 +5,8 @@
     <dimen name="viewpager_next_item_visible">125dp</dimen>
     <dimen name="viewpager_current_item_horizontal_margin">58dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="edit_text_height">@dimen/_35sdp</dimen>
+    <dimen name="text_size">@dimen/_11ssp</dimen>
+    <dimen name="edit_text_height">@dimen/_28sdp</dimen>
     <dimen name="edit_text_size">@dimen/_14sdp</dimen>
     <dimen name="edit_text_height_address">@dimen/_70sdp</dimen>
     <dimen name="edit_text_title_margin_top">@dimen/_10sdp</dimen>

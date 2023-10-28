@@ -7,11 +7,12 @@ import com.epaymark.epay.databinding.StateListBinding
 import com.epaymark.epay.utils.`interface`.CallBack
 import android.widget.Filter
 import android.widget.Filterable
+import com.epaymark.epay.data.model.StateCityModel
 
-class StateListAdapter(private var items: List<String>, private val callBack: CallBack) :
+class StateListAdapter(private var items: List<StateCityModel>, private val callBack: CallBack) :
     RecyclerView.Adapter<StateListAdapter.MyViewHolder>(), Filterable {
 
-    private var filteredItems: List<String> = items
+    private var filteredItems: List<StateCityModel> = items
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -20,7 +21,8 @@ class StateListAdapter(private var items: List<String>, private val callBack: Ca
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(filteredItems[position])
+
+        holder.bind(filteredItems[position],position)
     }
 
     override fun getItemCount(): Int {
@@ -29,11 +31,17 @@ class StateListAdapter(private var items: List<String>, private val callBack: Ca
 
     inner class MyViewHolder(val binding: StateListBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: String) {
-            binding.tvState.text = item
+        fun bind(item: StateCityModel, position: Int) {
+            binding.tvState.text = item.stateCity
             binding.tvState.setOnClickListener {
-                callBack.getValue(item)
+                for(item in filteredItems){
+                    item.isSelecetd=false
+                }
+                filteredItems[position].isSelecetd=true
+                callBack.getValue(item.stateCity)
+                notifyDataSetChanged()
             }
+            binding.executePendingBindings()
         }
     }
 
@@ -46,7 +54,7 @@ class StateListAdapter(private var items: List<String>, private val callBack: Ca
                     items
                 } else {
                     items.filter { item ->
-                        item.toLowerCase().contains(charSequence)
+                        item.stateCity.lowercase().contains(charSequence)
                     }
                 }
                 val results = FilterResults()
@@ -55,14 +63,14 @@ class StateListAdapter(private var items: List<String>, private val callBack: Ca
             }
 
             override fun publishResults(constraint: CharSequence, results: FilterResults) {
-                filteredItems = results.values as List<String>
+                filteredItems = results.values as List<StateCityModel>
                 notifyDataSetChanged()
             }
         }
     }
 
     // Update the list of items
-    fun updateData(newItems: List<String>) {
+    fun updateData(newItems: List<StateCityModel>) {
         items = newItems
         filteredItems = newItems
         notifyDataSetChanged()
