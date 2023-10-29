@@ -231,7 +231,7 @@
                     android:layout_marginTop="@dimen/edit_text_margin_top"
                     android:background="@drawable/field_bg"
                     android:gravity="center_vertical"
-                    android:hint="@string/select_date"
+                    android:hint="@string/state_hint"
                     android:padding="@dimen/_5sdp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray"
@@ -253,7 +253,7 @@
                         android:padding="@dimen/_5sdp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray"
-                        android:hint="@string/state"
+                        android:hint="@string/state_hint"
                         android:layout_marginTop="@dimen/edit_text_margin_top"
                         android:background="@drawable/field_bg"/>
                     <androidx.recyclerview.widget.RecyclerView
@@ -265,7 +265,20 @@
                         android:visibility="gone"
                         android:layout_margin="@dimen/_10sdp"
                         />
-
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/tv_state_list_search"
+                        android:textColor="@color/black"
+                        android:gravity="center_vertical"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:layout_width="match_parent"
+                        android:drawableEnd="@drawable/baseline_arrow_drop_up_24"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:background="@drawable/field_bg_dropdown"
+                        android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                        android:fontFamily="@font/montserrat_medium_500"
+                        android:textSize="@dimen/text_size"
+                        android:text="@string/state_hint"/>
                 </LinearLayout>
 
                 <!--State End-->
@@ -317,6 +330,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycle_city"
                         android:layout_width="match_parent"
+                        android:layout_marginHorizontal="@dimen/_20sdp"
                         android:layout_height="@dimen/_200sdp"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         tools:listitem="@layout/state_list"

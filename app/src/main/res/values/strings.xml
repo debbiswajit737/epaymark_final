@@ -54,4 +54,5 @@
     <string name="no_file_chosen">No file chosen</string>
     <string name="search">Search</string>
     <string name="city_district_msg">City/District</string>
+    <string name="state_hint">State</string>
 </resources>

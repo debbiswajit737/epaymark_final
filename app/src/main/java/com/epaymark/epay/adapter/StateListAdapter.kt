@@ -1,5 +1,6 @@
 package com.epaymark.epay.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -32,15 +33,21 @@ class StateListAdapter(private var items: List<StateCityModel>, private val call
     inner class MyViewHolder(val binding: StateListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: StateCityModel, position: Int) {
-            binding.tvState.text = item.stateCity
+            //binding.tvState.text = item.stateCity
+            binding.model = item
             binding.tvState.setOnClickListener {
+
                 for(item in filteredItems){
                     item.isSelecetd=false
                 }
                 filteredItems[position].isSelecetd=true
                 callBack.getValue(item.stateCity)
+
+                binding.executePendingBindings()
+                Log.d("TAG_filteredItems", "bind: "+filteredItems)
                 notifyDataSetChanged()
             }
+
             binding.executePendingBindings()
         }
     }

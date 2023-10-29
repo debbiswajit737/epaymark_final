@@ -2,10 +2,8 @@ package com.epaymark.epay.ui.fragment
 
 
 
-import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.ComponentName
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -26,7 +24,6 @@ import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import com.epaymark.epay.R
-
 import com.epaymark.epay.adapter.StateListAdapter
 import com.epaymark.epay.data.model.StateCityModel
 import com.epaymark.epay.databinding.FragmentRegBinding
@@ -36,9 +33,6 @@ import com.epaymark.epay.utils.helpers.PermissionUtils
 import com.epaymark.epay.utils.helpers.PermissionUtils.createAlertDialog
 import com.epaymark.epay.utils.`interface`.CallBack
 import com.epaymark.epay.utils.`interface`.PermissionsCallback
-import java.io.BufferedReader
-import java.io.IOException
-import java.io.InputStreamReader
 import java.net.URLEncoder
 import java.util.Calendar
 
@@ -178,12 +172,17 @@ class RegFragment : BaseFragment() {
                     binding.recycleState.visibility = View.VISIBLE
                     binding.etState.visibility = View.VISIBLE
                 }
+
+                binding.tvStateListSearch.isVisible=binding.recycleState.isVisible
+                binding.tvState.isVisible=!binding.recycleState.isVisible
             }
             stateListAdapter= StateListAdapter(stateList,object :CallBack{
                 override fun getValue(s: String) {
                     binding.tvState.text = s
                     binding.recycleState.visibility=View.GONE
                     binding.etState.visibility = View.GONE
+                    binding.tvState.isVisible=!binding.recycleState.isVisible
+                    binding.tvStateListSearch.isVisible=binding.recycleState.isVisible
                 }
 
             })
