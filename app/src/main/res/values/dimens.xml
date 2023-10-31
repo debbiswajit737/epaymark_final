@@ -11,4 +11,5 @@
     <dimen name="edit_text_height_address">@dimen/_70sdp</dimen>
     <dimen name="edit_text_title_margin_top">@dimen/_10sdp</dimen>
     <dimen name="edit_text_margin_top">@dimen/_5sdp</dimen>
+    <dimen name="text_size_9ssp">@dimen/_9ssp</dimen>
 </resources>

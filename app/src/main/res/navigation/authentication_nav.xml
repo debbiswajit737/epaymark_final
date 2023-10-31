@@ -28,6 +28,32 @@
         android:label="CongratulationFragment" />
     <fragment
         android:id="@+id/regFragment"
-        android:name="com.epaymark.epay.ui.fragment.RegFragment"
-        android:label="RegFragment" />
+        android:name="com.epaymark.epay.ui.fragment.regandkyc.RegFragment"
+        android:label="RegFragment" >
+
+        <action
+            android:id="@+id/action_regFragment_to_kycDetailsFragment"
+            app:destination="@id/kycDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/docuploadFragment"
+        android:name="com.epaymark.epay.ui.fragment.regandkyc.DocuploadFragment"
+        android:label="DocuploadFragment" />
+    <fragment
+        android:id="@+id/kycDetailsFragment"
+        android:name="com.epaymark.epay.ui.fragment.regandkyc.KycDetailsFragment"
+        android:label="KycDetailsFragment" >
+
+        <action
+            android:id="@+id/action_kycDetailsFragment_to_bankDetailsFragment"
+            app:destination="@id/bankDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bankDetailsFragment"
+        android:name="com.epaymark.epay.ui.fragment.regandkyc.BankDetailsFragment"
+        android:label="BankDetailsFragment" >
+        <action
+            android:id="@+id/action_bankDetailsFragment_to_docuploadFragment"
+            app:destination="@id/docuploadFragment" />
+    </fragment>
 </navigation>

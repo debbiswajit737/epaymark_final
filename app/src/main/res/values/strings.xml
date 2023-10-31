@@ -43,6 +43,7 @@
     <string name="gender">Gender<font color='#FF0000'>*</font></string>
     <string name="aadhar_no">Aadhar No<font color='#FF0000'>*</font></string>
     <string name="enter_aadhar_no">Enter Aadhar No</string>
+    <string name="aadhar_no_hint">Aadhar No</string>
     <string name="pan_card_no">PAN Card No<font color='#FF0000'>*</font></string>
     <string name="pan_card">PAN Card<font color='#FF0000'>*</font></string>
     <string name="enter_pan_card_no">Enter PAN Card No</string>
@@ -55,4 +56,27 @@
     <string name="search">Search</string>
     <string name="city_district_msg">City/District</string>
     <string name="state_hint">State</string>
+    <string name="kyc_details">KYC DETAILS</string>
+    <string name="bank_details">BANK DETAILS</string>
+    <string name="doc_upload">DOC UPLOAD</string>
+    <string name="partner_aadhaar_card_back_side">Partner Aadhaar Card (Back side)</string>
+    <string name="gst_certificate_pdf_only">GST Certificate (PDF only)</string>
+    <string name="certificate_of_incorporation_pdf_only">Certificate of Incorporation (PDF only)</string>
+    <string name="board_resolution_pdf_only">Board Resolution(PDF Only)</string>
+    <string name="trade_license_pdf_only">Trade License(PDF Only)</string>
+    <string name="user_selfi">User Selfi<font color='#FF0000'>*</font></string>
+    <string name="selfi_with_company_person">Selfi with Company Person<font color='#FF0000'>*</font></string>
+    <string name="video_kyc">Video KYC<font color='#FF0000'>*</font></string>
+    <string name="save_amp_continue"><![CDATA[Save & Continue]]></string>
+    <string name="partner_name">Partner Name</string>
+    <string name="business_name">Business Name<font color='#FF0000'>*</font></string>
+    <string name="business_name_title">Business Name</string>
+    <string name="business_address">Business Address<font color='#FF0000'>*</font></string>
+    <string name="business_address_hint">Business Address</string>
+    <string name="pan_card_no_company">Pan Card No.(Company)</string>
+    <string name="pan_card_no_partner_if_any">Pan Card No.(Partner, If any)</string>
+    <string name="aadhar_no_partner_if_have">Aadhar No(Partner, If have)</string>
+    <string name="gstin_no">GSTIN No.</string>
+    <string name="business_type">Business Type<font color='#FF0000'>*</font></string>
+    <string name="business_category">Business Category<font color='#FF0000'>*</font></string>
 </resources>

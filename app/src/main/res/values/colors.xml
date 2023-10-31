@@ -8,10 +8,12 @@
     <color name="c2">#2196F3</color>
     <color name="g1">#a9e593</color>
     <color name="g3">#F44336</color>
+    <color name="g5">#27ae61</color>
     <color name="g4">#72110A</color>
     <color name="pink1">#182b6a</color>
     <color name="pink2">#EA5084</color>
     <color name="gray">#D9DDF1</color>
+    <color name="gray5">#7CD9DDF1</color>
     <color name="gray2">#e7ebee</color>
     <color name="gray3">#e8ecef</color>
     <color name="gray4">#d4d7db</color>
@@ -21,4 +23,6 @@
     <color name="yellow">#f5cf8a</color>
     <color name="border_color">#d0d4d9</color>
     <color name="border_focus">#c2dbff</color>
+    <color name="title_color">#0e0e0f</color>
+    <color name="brown">#4a0405</color>
 </resources>

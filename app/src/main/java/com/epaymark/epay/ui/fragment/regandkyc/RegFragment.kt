@@ -1,4 +1,4 @@
-package com.epaymark.epay.ui.fragment
+package com.epaymark.epay.ui.fragment.regandkyc
 
 
 
@@ -23,6 +23,9 @@ import android.widget.Spinner
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
+import androidx.window.layout.WindowMetricsCalculator
 import com.epaymark.epay.R
 import com.epaymark.epay.adapter.StateListAdapter
 import com.epaymark.epay.data.model.StateCityModel
@@ -82,14 +85,15 @@ class RegFragment : BaseFragment() {
         }
 
         binding.btnNext.setOnClickListener {
-           // sendData()
-            browserPOST()
+            //sendData()
+            //browserPOST()
+            findNavController().navigate(R.id.action_regFragment_to_kycDetailsFragment)
         }
         binding.tvCityListSearch.setOnClickListener {
             binding.tvCity.performClick()
         }
         binding.tvCity.setOnClickListener {
-
+            binding.etCity.setText("")
             if (binding.recycleCity.isVisible){
                 binding.recycleCity.visibility = View.GONE
                 binding.etCity.visibility = View.GONE
@@ -107,6 +111,7 @@ class RegFragment : BaseFragment() {
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     fun initView() {
+        getScreenSize()
         setFocus()
         /*binding.llAadhar.setOnClickListener{
             myFocusCheck(binding.llAadhar)
@@ -163,7 +168,7 @@ class RegFragment : BaseFragment() {
         stateList.add(StateCityModel(false,"Jammu and Kashmir"))
         binding.recycleState.apply {
             binding.tvState.setOnClickListener {
-
+                binding.etState.setText("")
                 if (binding.recycleState.isVisible){
                     binding.recycleState.visibility = View.GONE
                     binding.etState.visibility = View.GONE
@@ -175,6 +180,12 @@ class RegFragment : BaseFragment() {
 
                 binding.tvStateListSearch.isVisible=binding.recycleState.isVisible
                 binding.tvState.isVisible=!binding.recycleState.isVisible
+            }
+            binding.tvStateListSearch.setOnClickListener {
+                binding.recycleState.visibility=View.GONE
+                binding.etState.visibility = View.GONE
+                binding.tvState.isVisible=!binding.recycleState.isVisible
+                binding.tvStateListSearch.isVisible=binding.recycleState.isVisible
             }
             stateListAdapter= StateListAdapter(stateList,object :CallBack{
                 override fun getValue(s: String) {
@@ -249,6 +260,29 @@ class RegFragment : BaseFragment() {
 
 
     }
+
+    private fun getScreenSize() {
+        activity?.let {act->
+            val windowMetrics: androidx.window.layout.WindowMetrics =
+                WindowMetricsCalculator.getOrCreate().computeCurrentWindowMetrics(act)
+            val height = windowMetrics.bounds.height()
+            val width = windowMetrics.bounds.width()
+            setHeight(binding.recycleCity,height)
+            setHeight(binding.recycleState,height)
+
+
+
+        }
+
+    }
+
+    private fun setHeight(recycle: RecyclerView, height: Int) {
+        val layoutParams = recycle.layoutParams as LinearLayout.LayoutParams
+        layoutParams.height = (height * 0.25).toInt()
+        recycle.layoutParams = layoutParams
+    }
+
+
 
     private fun setFocus() {
        binding.apply {
