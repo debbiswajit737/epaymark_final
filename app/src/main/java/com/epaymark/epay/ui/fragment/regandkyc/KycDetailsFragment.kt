@@ -10,19 +10,24 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.R
+import com.epaymark.epay.data.viewMovel.AuthViewModel
 import com.epaymark.epay.databinding.KycDetailsFragmentBinding
 import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.utils.`interface`.CallBack
 
 class KycDetailsFragment : BaseFragment() {
     lateinit var binding: KycDetailsFragmentBinding
+    private val authViewModel: AuthViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.kyc_details_fragment, container, false)
+        binding.viewModel = authViewModel
+        binding.lifecycleOwner = this
         return binding.root
     }
 
@@ -35,7 +40,9 @@ class KycDetailsFragment : BaseFragment() {
 
     private fun onViewClick() {
         binding.btnSaveContinue.setOnClickListener {
-            findNavController().navigate(R.id.action_kycDetailsFragment_to_bankDetailsFragment)
+            if (authViewModel.kycValidation()) {
+                findNavController().navigate(R.id.action_kycDetailsFragment_to_bankDetailsFragment)
+            }
         }
     }
 
@@ -53,6 +60,7 @@ class KycDetailsFragment : BaseFragment() {
                 adapter = ArrayAdapter<String>(this.context, R.layout.custom_spinner_item, busnessType)
                 setSpinner(object : CallBack {
                     override fun getValue(s: String) {
+                        authViewModel.businessType.value=s
                         // Toast.makeText(binding.root.context, "$s", Toast.LENGTH_SHORT).show()
                     }
                 },busnessType)
@@ -75,6 +83,7 @@ class KycDetailsFragment : BaseFragment() {
                 adapter = ArrayAdapter<String>(this.context, R.layout.custom_spinner_item, busnesscategory)
                 setSpinner(object : CallBack {
                     override fun getValue(s: String) {
+                        authViewModel.businessCategory.value=s
                         // Toast.makeText(binding.root.context, "$s", Toast.LENGTH_SHORT).show()
                     }
                 },busnesscategory)

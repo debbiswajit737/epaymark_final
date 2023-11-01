@@ -2,747 +2,864 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="viewModel"
             type="com.epaymark.epay.data.viewMovel.AuthViewModel" />
     </data>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/_10sdp"
-        android:shadowRadius="@dimen/_8sdp"
-        tools:context=".ui.activity.DashBoardActivity">
 
-        <androidx.cardview.widget.CardView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:cardCornerRadius="@dimen/_12sdp"
-            >
-            <LinearLayout
+            android:layout_margin="@dimen/_10sdp"
+            android:shadowRadius="@dimen/_8sdp"
+            tools:context=".ui.activity.DashBoardActivity">
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:background="@color/white"
-                android:padding="@dimen/_10sdp">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/basic_information"
-                    android:textColor="@color/black"
-                    android:gravity="center"
-                    android:fontFamily="@font/poppins_bold"
-                    android:textSize="@dimen/_14ssp"/>
-                <!--name start-->
-                <TextView
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
-                    android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/text_size"
-                    android:text="@string/name"/>
+                app:cardCornerRadius="@dimen/_12sdp">
 
-                <!--name End-->
-
-                <!--mobile start-->
-                <EditText
-                    android:id="@+id/et_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/edit_text_height"
-                    android:layout_marginTop="@dimen/edit_text_margin_top"
-                    android:background="@drawable/field_bg"
-                    android:hint="@string/enter_name"
-                    android:inputType="textCapWords"
-                    android:padding="@dimen/_5sdp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/gray"
-                    android:textSize="@dimen/edit_text_size" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Name field required"
-                    android:textColor="@color/pink2"
-                    android:visibility="gone"
-                    android:textSize="@dimen/_9ssp"
-                    android:fontFamily="@font/montserrat_regular_400"/>
-                <TextView
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
-                    android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/text_size"
-                    android:text="@string/mobile_no_reg"/>
-                <EditText
-                    android:id="@+id/et_mob"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/edit_text_height"
-                    android:inputType="number"
-                    android:maxLength="10"
-                    android:longClickable="false"
-                    android:textSize="@dimen/edit_text_size"
-                    android:padding="@dimen/_5sdp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/gray"
-                    android:hint="@string/enter_mobile_no_reg"
-                    android:layout_marginTop="@dimen/edit_text_margin_top"
-                    android:background="@drawable/field_bg"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Mobile number field required"
-                    android:textColor="@color/pink2"
-                    android:visibility="gone"
-                    android:textSize="@dimen/_9ssp"
-                    android:fontFamily="@font/montserrat_regular_400"/>
-                <!--mobile End-->
-
-                <!--Alternate Mobile start-->
-                <TextView
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
-                    android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/text_size"
-                    android:text="@string/alternate_mobile_no"/>
-                <EditText
-                    android:id="@+id/et_a_mob"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/edit_text_height"
-                    android:inputType="number"
-                    android:maxLength="10"
-                    android:textSize="@dimen/edit_text_size"
-                    android:padding="@dimen/_5sdp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/gray"
-                    android:hint="@string/enter_alternate_mobile_no"
-                    android:layout_marginTop="@dimen/edit_text_margin_top"
-                    android:background="@drawable/field_bg"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Alternate mobile number field required"
-                    android:textColor="@color/pink2"
-                    android:visibility="gone"
-                    android:textSize="@dimen/_9ssp"
-                    android:fontFamily="@font/montserrat_regular_400"/>
-                <!--Alternate Mobile End-->
-
-
-                <!--Email start-->
-                <TextView
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
-                    android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/text_size"
-                    android:text="@string/email_id"/>
-
-                <!--Email End-->
-
-
-                <!--Address start-->
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/edit_text_height"
-                    android:layout_marginTop="@dimen/edit_text_margin_top"
-                    android:background="@drawable/field_bg"
-                    android:hint="@string/enter_email_id"
-                    android:inputType="textWebEmailAddress"
-                    android:padding="@dimen/_5sdp"
-                    android:longClickable="false"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/gray"
-                    android:textSize="@dimen/edit_text_size" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Email field required"
-                    android:textColor="@color/pink2"
-                    android:visibility="gone"
-                    android:textSize="@dimen/_9ssp"
-                    android:fontFamily="@font/montserrat_regular_400"/>
-                <TextView
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
-                    android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/text_size"
-                    android:text="@string/address"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/edit_text_height_address"
-                    android:inputType="text"
-                    android:gravity="start"
-                    android:maxLines="50"
-                    android:scrollbars="vertical"
-                    android:longClickable="false"
-                    android:textSize="@dimen/edit_text_size"
-                    android:padding="@dimen/_5sdp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/gray"
-                    android:hint="@string/enter_address"
-                    android:layout_marginTop="@dimen/edit_text_margin_top"
-                    android:background="@drawable/field_bg"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Address field required"
-                    android:textColor="@color/pink2"
-                    android:visibility="gone"
-                    android:textSize="@dimen/_9ssp"
-                    android:fontFamily="@font/montserrat_regular_400"/>
-                <!--Address End-->
-
-
-                <!--Pin Code start-->
-                <TextView
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
-                    android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/text_size"
-                    android:text="@string/pin_code"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/edit_text_height"
-                    android:inputType="number"
-                    android:longClickable="false"
-                    android:maxLength="6"
-                    android:textSize="@dimen/edit_text_size"
-                    android:padding="@dimen/_5sdp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/gray"
-                    android:hint="@string/enter_pin_code"
-                    android:layout_marginTop="@dimen/edit_text_margin_top"
-                    android:background="@drawable/field_bg"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Pincode required"
-                    android:textColor="@color/pink2"
-                    android:visibility="gone"
-                    android:textSize="@dimen/_9ssp"
-                    android:fontFamily="@font/montserrat_regular_400"/>
-                <!--Pin Code End-->
-
-
-                <!--Date of Birth start-->
-                <TextView
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
-                    android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/text_size"
-                    android:text="@string/date_of_birth"/>
-
-                <!--Date of Birth End-->
-
-
-                <!--State start-->
-                <TextView
-                    android:id="@+id/tv_dob"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/edit_text_height"
-                    android:layout_marginTop="@dimen/edit_text_margin_top"
-                    android:background="@drawable/field_bg"
-                    android:hint="@string/select_date"
-                    android:inputType="date"
-                    android:textSize="@dimen/edit_text_size"
-                    android:padding="@dimen/_5sdp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/gray" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Select DOB"
-                    android:textColor="@color/pink2"
-                    android:visibility="gone"
-                    android:textSize="@dimen/_9ssp"
-                    android:fontFamily="@font/montserrat_regular_400"/>
-                <TextView
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
-                    android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/text_size"
-                    android:text="@string/state"/>
-                <TextView
-                    android:id="@+id/tv_state"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/edit_text_height"
-                    android:layout_marginTop="@dimen/edit_text_margin_top"
-                    android:background="@drawable/field_bg"
-                    android:gravity="center_vertical"
-                    android:hint="@string/state_hint"
-                    android:padding="@dimen/_5sdp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/gray"
-                    android:textSize="@dimen/edit_text_size" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Choose State"
-                    android:textColor="@color/pink2"
-                    android:visibility="gone"
-                    android:textSize="@dimen/_9ssp"
-                    android:fontFamily="@font/montserrat_regular_400"/>
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:background="@drawable/field_bg"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <EditText
-                        android:id="@+id/et_state"
-                        android:visibility="gone"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/edit_text_height"
-                        android:inputType="text"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_10sdp">
 
-                        android:longClickable="false"
-                        android:layout_marginHorizontal="@dimen/_15sdp"
-                        android:textSize="@dimen/edit_text_size"
-                        android:padding="@dimen/_5sdp"
-                        android:drawableEnd="@drawable/baseline_search_24"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/gray"
-                        android:hint="@string/state_hint"
-                        android:layout_marginTop="@dimen/edit_text_margin_top"
-                        android:background="@drawable/field_bg_search_bg"/>
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recycle_state"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_200sdp"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:listitem="@layout/state_list"
-                        android:visibility="gone"
-                        android:layout_marginHorizontal="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        />
                     <TextView
-                        android:visibility="gone"
-                        android:id="@+id/tv_state_list_search"
-                        android:textColor="@color/black"
-                        android:gravity="center_vertical"
-                        android:paddingStart="@dimen/_10sdp"
                         android:layout_width="match_parent"
-                        android:drawableEnd="@drawable/baseline_arrow_drop_up_24"
-                        android:layout_height="@dimen/edit_text_height"
-                        android:background="@drawable/field_bg_dropdown"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_bold"
+                        android:gravity="center"
+                        android:text="@string/basic_information"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp" />
+                    <!--name start-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/edit_text_title_margin_top"
                         android:fontFamily="@font/montserrat_medium_500"
-                        android:textSize="@dimen/text_size"
-                        android:text="@string/state_hint"/>
-                </LinearLayout>
+                        android:text="@string/name"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size" />
 
-                <!--State End-->
+                    <!--name End-->
 
-
-                <!--City/District* start-->
-                <TextView
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
-                    android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/text_size"
-                    android:text="@string/city_district"/>
-                <TextView
-                    android:id="@+id/tv_city"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/edit_text_height"
-                    android:inputType="text"
-                    android:padding="@dimen/_5sdp"
-                    android:textSize="@dimen/edit_text_size"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/gray"
-                    android:hint="@string/city_district_hint"
-                    android:layout_marginTop="@dimen/edit_text_margin_top"
-                    android:background="@drawable/field_bg"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Choose City"
-                    android:textColor="@color/pink2"
-                    android:visibility="gone"
-                    android:textSize="@dimen/_9ssp"
-                    android:fontFamily="@font/montserrat_regular_400"/>
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:background="@drawable/field_bg"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    <!--mobile start-->
                     <EditText
-                        android:id="@+id/et_city"
-                        android:visibility="gone"
+                        android:id="@+id/et_name"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"
+                        android:layout_marginTop="@dimen/edit_text_margin_top"
+                        android:background="@drawable/field_bg"
+                        android:hint="@string/enter_name"
+
+                        android:inputType="textCapWords"
+                        android:padding="@dimen/_5sdp"
+                        android:text="@={viewModel.name}"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:textSize="@dimen/edit_text_size"
+                        app:addTextChangeListener="@{viewModel}"
+                        app:requestFocus="@{viewModel.nameErrorVisible}" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:fontFamily="@font/montserrat_regular_400"
+
+
+                        android:textColor="@color/pink2"
+                        android:textSize="@dimen/_9ssp"
+                        android:text="@{viewModel.nameError}"
+                        app:hideErrorTextView="@{viewModel.nameErrorVisible}" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                        android:fontFamily="@font/montserrat_medium_500"
+                        android:text="@string/mobile_no_reg"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size" />
+
+                    <EditText
+                        android:id="@+id/et_mob"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:layout_marginTop="@dimen/edit_text_margin_top"
+                        android:background="@drawable/field_bg"
+                        android:hint="@string/enter_mobile_no_reg"
+                        android:inputType="number"
+                        android:longClickable="false"
+                        android:maxLength="10"
+                        android:padding="@dimen/_5sdp"
+                        android:text="@={viewModel.mobile}"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:textSize="@dimen/edit_text_size"
+                        app:addTextChangeListener="@{viewModel}"
+                        app:requestFocus="@{viewModel.mobileErrorVisible}" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_regular_400"
+                        android:text="@{viewModel.mobileError}"
+                        android:textColor="@color/pink2"
+                        android:textSize="@dimen/_9ssp"
+                        android:visibility="gone"
+                        app:hideErrorTextView="@{viewModel.mobileErrorVisible}" />
+                    <!--mobile End-->
+
+                    <!--Alternate Mobile start-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                        android:fontFamily="@font/montserrat_medium_500"
+                        android:text="@string/alternate_mobile_no"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size" />
+
+                    <EditText
+                        android:id="@+id/et_a_mob"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:layout_marginTop="@dimen/edit_text_margin_top"
+                        android:background="@drawable/field_bg"
+                        android:hint="@string/enter_alternate_mobile_no"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:padding="@dimen/_5sdp"
+                        android:text="@={viewModel.alternativeMobile}"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:textSize="@dimen/edit_text_size"
+                        app:addTextChangeListener="@{viewModel}"
+                        app:requestFocus="@{viewModel.alternativeMobileErrorVisible}" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_regular_400"
+                        android:text="@{viewModel.alternativeMobileError}"
+                        android:textColor="@color/pink2"
+                        android:textSize="@dimen/_9ssp"
+                        android:visibility="gone"
+                        app:hideErrorTextView="@{viewModel.alternativeMobileErrorVisible}" />
+                    <!--Alternate Mobile End-->
+
+
+                    <!--Email start-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                        android:fontFamily="@font/montserrat_medium_500"
+                        android:text="@string/email_id"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size" />
+
+                    <!--Email End-->
+
+
+                    <!--Address start-->
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:layout_marginTop="@dimen/edit_text_margin_top"
+                        android:background="@drawable/field_bg"
+                        android:hint="@string/enter_email_id"
+                        android:inputType="textWebEmailAddress"
+                        android:longClickable="false"
+                        android:padding="@dimen/_5sdp"
+                        android:text="@={viewModel.email}"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:textSize="@dimen/edit_text_size"
+                        app:addTextChangeListener="@{viewModel}"
+                        app:requestFocus="@{viewModel.emailErrorVisible}" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_regular_400"
+                        android:text="@{viewModel.emailError}"
+                        android:textColor="@color/pink2"
+                        android:textSize="@dimen/_9ssp"
+                        android:visibility="gone"
+                        app:hideErrorTextView="@{viewModel.emailErrorVisible}" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                        android:fontFamily="@font/montserrat_medium_500"
+                        android:text="@string/address"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height_address"
+                        android:layout_marginTop="@dimen/edit_text_margin_top"
+                        android:background="@drawable/field_bg"
+                        android:gravity="start"
+                        android:hint="@string/enter_address"
                         android:inputType="text"
                         android:longClickable="false"
-                        android:layout_marginHorizontal="@dimen/_5sdp"
+                        android:maxLines="50"
+                        android:padding="@dimen/_5sdp"
+                        android:scrollbars="vertical"
+                        android:text="@={viewModel.address}"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
                         android:textSize="@dimen/edit_text_size"
+                        app:addTextChangeListener="@{viewModel}"
+                        app:requestFocus="@{viewModel.addressErrorVisible}" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_regular_400"
+                        android:text="@{viewModel.addressError}"
+                        android:textColor="@color/pink2"
+
+                        android:textSize="@dimen/_9ssp"
+                        android:visibility="gone"
+                        app:hideErrorTextView="@{viewModel.addressErrorVisible}" />
+                    <!--Address End-->
+
+
+                    <!--Pin Code start-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                        android:fontFamily="@font/montserrat_medium_500"
+                        android:text="@string/pin_code"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:layout_marginTop="@dimen/edit_text_margin_top"
+                        android:background="@drawable/field_bg"
+                        android:hint="@string/enter_pin_code"
+                        android:inputType="number"
+                        android:longClickable="false"
+                        android:maxLength="6"
+                        android:padding="@dimen/_5sdp"
+                        android:text="@={viewModel.pinCode}"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:textSize="@dimen/edit_text_size"
+                        app:addTextChangeListener="@{viewModel}"
+                        app:requestFocus="@{viewModel.pinCodeErrorVisible}" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_regular_400"
+                        android:text="@{viewModel.pinCodeError}"
+                        android:textColor="@color/pink2"
+                        android:textSize="@dimen/_9ssp"
+                        android:visibility="gone"
+                        app:hideErrorTextView="@{viewModel.pinCodeErrorVisible}" />
+                    <!--Pin Code End-->
+
+
+                    <!--Date of Birth start-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                        android:fontFamily="@font/montserrat_medium_500"
+                        android:text="@string/date_of_birth"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size" />
+
+                    <!--Date of Birth End-->
+
+
+                    <!--State start-->
+                    <TextView
+                        android:id="@+id/tv_dob"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:layout_marginTop="@dimen/edit_text_margin_top"
+                        android:background="@drawable/field_bg"
+                        android:hint="@string/select_date"
+                        android:inputType="date"
+                        android:text="@{viewModel.dateOfBirth}"
                         android:padding="@dimen/_5sdp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray"
-                        android:hint="@string/search"
-                        android:background="@drawable/field_bg_search_bg"
-                        android:drawableEnd="@drawable/baseline_search_24"
-                        android:layout_marginTop="@dimen/edit_text_margin_top"
-                        />
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recycle_city"
-                        android:layout_width="match_parent"
-                        android:layout_marginHorizontal="@dimen/_20sdp"
-                        android:layout_height="@dimen/_100sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:listitem="@layout/state_list"
+                        android:textSize="@dimen/edit_text_size" />
 
-                        android:visibility="gone"
-                        android:scrollbars="horizontal"
-                        />
                     <TextView
-                        android:visibility="gone"
-                        android:id="@+id/tv_city_list_search"
-                        android:textColor="@color/black"
-                        android:gravity="center_vertical"
-                        android:paddingStart="@dimen/_10sdp"
                         android:layout_width="match_parent"
-                        android:drawableEnd="@drawable/baseline_arrow_drop_up_24"
-                        android:layout_height="@dimen/edit_text_height"
-                        android:background="@drawable/field_bg_dropdown"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_regular_400"
+                        android:text="@{viewModel.dateOfBirthError}"
+                        app:hideErrorTextView="@{viewModel.dateOfBirthErrorVisible}"
+
+                        android:textColor="@color/pink2"
+                        android:textSize="@dimen/_9ssp"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/edit_text_title_margin_top"
                         android:fontFamily="@font/montserrat_medium_500"
-                        android:textSize="@dimen/text_size"
-                        android:text="@string/city_district_msg"/>
-                </LinearLayout>
-                <!--City/District* End-->
-
-
-                <!--Area start-->
-                <TextView
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
-                    android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/text_size"
-                    android:text="@string/area"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/edit_text_height"
-                    android:inputType="text"
-                    android:longClickable="false"
-                    android:textSize="@dimen/edit_text_size"
-                    android:padding="@dimen/_5sdp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/gray"
-                    android:hint="Enter Area"
-                    android:layout_marginTop="@dimen/edit_text_margin_top"
-                    android:background="@drawable/field_bg"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Area field required"
-                    android:textColor="@color/pink2"
-                    android:visibility="gone"
-                    android:textSize="@dimen/_9ssp"
-                    android:fontFamily="@font/montserrat_regular_400"/>
-                <!--Area End-->
-
-
-                <!--Gender start-->
-                <TextView
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
-                    android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/text_size"
-                    android:text="@string/gender"/>
-                <Spinner
-                    android:id="@+id/spinner_gender"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/edit_text_height"
-                    android:inputType="textCapWords"
-                    android:paddingVertical="@dimen/_5sdp"
-                    android:paddingEnd="@dimen/_5sdp"
-                    android:paddingStart="@dimen/_2sdp"
-                    android:textSize="@dimen/edit_text_size"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/gray"
-                    android:hint="Gender"
-                    android:background="@drawable/field_bg"
-                    android:popupBackground="@color/gray2"
-                    android:layout_marginTop="@dimen/edit_text_margin_top"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Choose Gender"
-                    android:textColor="@color/pink2"
-                    android:visibility="gone"
-                    android:textSize="@dimen/_9ssp"
-                    android:fontFamily="@font/montserrat_regular_400"/>
-                <!--Gender End-->
-
-
-                <!--Aadhar start-->
-                <TextView
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
-                    android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/text_size"
-                    android:text="@string/aadhar_no"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/edit_text_height"
-                    android:inputType="number"
-                    android:longClickable="false"
-                    android:padding="@dimen/_5sdp"
-                    android:textSize="@dimen/edit_text_size"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/gray"
-                    android:hint="@string/enter_aadhar_no"
-                    android:layout_marginTop="@dimen/edit_text_margin_top"
-                    android:background="@drawable/field_bg"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Aadhar no required"
-                    android:textColor="@color/pink2"
-                    android:visibility="gone"
-                    android:textSize="@dimen/_9ssp"
-                    android:fontFamily="@font/montserrat_regular_400"/>
-                <!--Aadhar End-->
-
-
-                <!--PAN Card No start-->
-                <TextView
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
-                    android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/text_size"
-                    android:text="@string/pan_card_no"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/edit_text_height"
-                    android:inputType="textCapCharacters"
-                    android:padding="@dimen/_5sdp"
-                    android:longClickable="false"
-                    android:textSize="@dimen/edit_text_size"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/gray"
-                    android:hint="@string/enter_pan_card_no"
-                    android:layout_marginTop="@dimen/edit_text_margin_top"
-                    android:background="@drawable/field_bg"/>
-                <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Pan card no required"
-                android:textColor="@color/pink2"
-                android:visibility="gone"
-                android:textSize="@dimen/_9ssp"
-                android:fontFamily="@font/montserrat_regular_400"/>
-                <!--PAN Card No End-->
-                <TextView
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
-                    android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/text_size"
-                    android:text="@string/owner_pan_card"/>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:background="@drawable/field_image_bg"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/edit_text_height"
-                android:layout_marginTop="@dimen/edit_text_margin_top"
-                >
-                <TextView
-                    android:id="@+id/tv_pancard"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:layout_height="match_parent"
-                    android:hint="@string/choose_file"
-                    android:textSize="@dimen/edit_text_size"
-                    android:padding="@dimen/_5sdp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
-
-                <TextView
-                    android:id="@+id/tv_pancard_image"
-                    android:layout_width="0dp"
-                    android:gravity="center_vertical"
-                    android:layout_weight="2"
-                    android:layout_gravity="center_vertical"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/image_edittext_field_bg"
-                    android:hint="@string/no_file_chosen"
-                    android:textSize="@dimen/edit_text_size"
-                    android:padding="@dimen/_5sdp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/gray" />
-
-
-            </LinearLayout>
-
-                <TextView
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
-                    android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/text_size"
-                    android:text="@string/owner_aadhaar_card_front_side"/>
-                <LinearLayout
-                    android:id="@+id/ll_aadhar"
-                    android:orientation="horizontal"
-                    android:background="@drawable/field_image_bg"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/edit_text_height"
-                    android:layout_marginTop="@dimen/edit_text_margin_top"
-                    >
-                    <TextView
-                        android:id="@+id/tv_pancard3"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:layout_height="match_parent"
-                        android:hint="@string/choose_file"
-                        android:textSize="@dimen/edit_text_size"
-                        android:padding="@dimen/_5sdp"
+                        android:text="@string/state"
                         android:textColor="@color/black"
-                        android:textColorHint="@color/black" />
+                        android:textSize="@dimen/text_size" />
 
                     <TextView
-                        android:id="@+id/tv_pancard_image1"
-                        android:layout_width="0dp"
+                        android:id="@+id/tv_state"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:layout_marginTop="@dimen/edit_text_margin_top"
+                        android:background="@drawable/field_bg"
                         android:gravity="center_vertical"
-                        android:layout_weight="2"
-                        android:layout_gravity="center_vertical"
-
-                        android:layout_height="match_parent"
-                        android:background="@drawable/image_edittext_field_bg"
-                        android:hint="@string/no_file_chosen"
-                        android:textSize="@dimen/edit_text_size"
+                        android:hint="@string/state_hint"
                         android:padding="@dimen/_5sdp"
+                        android:text="@{viewModel.state}"
                         android:textColor="@color/black"
-                        android:textColorHint="@color/gray" />
-
-
-                </LinearLayout>
-
-                <TextView
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/edit_text_title_margin_top"
-                    android:fontFamily="@font/montserrat_medium_500"
-                    android:textSize="@dimen/text_size"
-                    android:text="@string/owner_aadhaar_card_back_side"/>
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:background="@drawable/field_image_bg"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/edit_text_height"
-                    android:layout_marginTop="@dimen/edit_text_margin_top"
-                    >
-                    <TextView
-                        android:id="@+id/tv_pancard2"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:layout_height="match_parent"
-                        android:hint="@string/choose_file"
-
-                        android:textSize="@dimen/edit_text_size"
-                        android:padding="@dimen/_5sdp"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/black" />
+                        android:textColorHint="@color/gray"
+                        android:textSize="@dimen/edit_text_size" />
 
                     <TextView
-                        android:id="@+id/tv_pancard_image3"
-                        android:layout_width="0dp"
-                        android:gravity="center_vertical"
-                        android:layout_weight="2"
-                        android:layout_gravity="center_vertical"
-
-                        android:layout_height="match_parent"
-                        android:background="@drawable/image_edittext_field_bg"
-                        android:hint="@string/no_file_chosen"
-                        android:textSize="@dimen/edit_text_size"
-                        android:padding="@dimen/_5sdp"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/gray" />
-
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:paddingBottom="@dimen/_20sdp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/btn_next"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_26sdp"
-                        android:background="@drawable/teal_button_bg"
-                        android:fontFamily="@font/open_sans_e_bold"
-                        android:padding="10dp"
-                        android:gravity="center"
-                        android:minWidth="@dimen/_100sdp"
-                        android:text="Next"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/text_size"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/edt_ph_no"
-                        app:layout_constraintTop_toBottomOf="@+id/edt_ph_no"
-                        app:layout_constraintVertical_bias="0.0" />
+                        android:fontFamily="@font/montserrat_regular_400"
+                        android:text="@{viewModel.stateError}"
+                        app:hideErrorTextView="@{viewModel.stateErrorVisible}"
+                        android:textColor="@color/pink2"
+                        android:textSize="@dimen/_9ssp"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/field_bg"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/et_state"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_marginHorizontal="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/edit_text_margin_top"
+
+                            android:background="@drawable/field_bg_search_bg"
+                            android:drawableEnd="@drawable/baseline_search_24"
+                            android:hint="@string/state_hint"
+                            android:inputType="text"
+                            android:longClickable="false"
+                            android:padding="@dimen/_5sdp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray"
+                            android:textSize="@dimen/edit_text_size"
+                            android:visibility="gone" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recycle_state"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_200sdp"
+                            android:layout_marginHorizontal="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:visibility="gone"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/state_list" />
+
+                        <TextView
+                            android:id="@+id/tv_state_list_search"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                            android:background="@drawable/field_bg_dropdown"
+                            android:drawableEnd="@drawable/baseline_arrow_drop_up_24"
+                            android:fontFamily="@font/montserrat_medium_500"
+                            android:gravity="center_vertical"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:text="@string/state_hint"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <!--State End-->
+
+
+                    <!--City/District* start-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                        android:fontFamily="@font/montserrat_medium_500"
+                        android:text="@string/city_district"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size" />
+
+                    <TextView
+                        android:id="@+id/tv_city"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:layout_marginTop="@dimen/edit_text_margin_top"
+                        android:background="@drawable/field_bg"
+                        android:hint="@string/city_district_hint"
+                        android:inputType="text"
+                        android:text="@{viewModel.city}"
+                        android:padding="@dimen/_5sdp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:textSize="@dimen/edit_text_size" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_regular_400"
+                        android:text="@{viewModel.cityError}"
+                        app:hideErrorTextView="@{viewModel.cityErrorVisible}"
+                        android:textColor="@color/pink2"
+                        android:textSize="@dimen/_9ssp"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/field_bg"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/et_city"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/edit_text_margin_top"
+                            android:background="@drawable/field_bg_search_bg"
+                            android:drawableEnd="@drawable/baseline_search_24"
+                            android:hint="@string/search"
+                            android:inputType="text"
+                            android:longClickable="false"
+                            android:padding="@dimen/_5sdp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray"
+                            android:textSize="@dimen/edit_text_size"
+                            android:visibility="gone" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recycle_city"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_100sdp"
+                            android:layout_marginHorizontal="@dimen/_20sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:scrollbars="horizontal"
+                            android:visibility="gone"
+
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/state_list" />
+
+                        <TextView
+                            android:id="@+id/tv_city_list_search"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:background="@drawable/field_bg_dropdown"
+                            android:drawableEnd="@drawable/baseline_arrow_drop_up_24"
+                            android:fontFamily="@font/montserrat_medium_500"
+                            android:gravity="center_vertical"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:text="@string/city_district_msg"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                    <!--City/District* End-->
+
+
+                    <!--Area start-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                        android:fontFamily="@font/montserrat_medium_500"
+                        android:text="@string/area"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:layout_marginTop="@dimen/edit_text_margin_top"
+                        android:background="@drawable/field_bg"
+                        android:hint="Enter Area"
+                        android:inputType="text"
+                        android:longClickable="false"
+                        android:padding="@dimen/_5sdp"
+                        android:text="@={viewModel.area}"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:textSize="@dimen/edit_text_size"
+                        app:addTextChangeListener="@{viewModel}"
+                        app:requestFocus="@{viewModel.areaErrorVisible}" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_regular_400"
+                        android:text="@{viewModel.areaError}"
+                        android:textColor="@color/pink2"
+                        android:textSize="@dimen/_9ssp"
+                        android:visibility="gone"
+                        app:hideErrorTextView="@{viewModel.areaErrorVisible}" />
+                    <!--Area End-->
+
+
+                    <!--Gender start-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                        android:fontFamily="@font/montserrat_medium_500"
+                        android:text="@string/gender"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size" />
+
+                    <Spinner
+                        android:id="@+id/spinner_gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:layout_marginTop="@dimen/edit_text_margin_top"
+                        android:background="@drawable/field_bg"
+                        android:hint="Gender"
+                        android:inputType="textCapWords"
+                        android:paddingVertical="@dimen/_5sdp"
+                        android:paddingStart="@dimen/_2sdp"
+                        android:paddingEnd="@dimen/_5sdp"
+                        android:popupBackground="@color/gray2"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:textSize="@dimen/edit_text_size" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_regular_400"
+                        android:text="Choose Gender"
+                        android:textColor="@color/pink2"
+                        android:textSize="@dimen/_9ssp"
+                        android:visibility="gone" />
+                    <!--Gender End-->
+
+
+                    <!--Aadhar start-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                        android:fontFamily="@font/montserrat_medium_500"
+                        android:text="@string/aadhar_no"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:layout_marginTop="@dimen/edit_text_margin_top"
+                        android:background="@drawable/field_bg"
+                        android:hint="@string/enter_aadhar_no"
+                        android:inputType="number"
+                        android:longClickable="false"
+                        android:padding="@dimen/_5sdp"
+                        android:text="@={viewModel.aadhar}"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:textSize="@dimen/edit_text_size"
+                        app:addTextChangeListener="@{viewModel}"
+                        app:requestFocus="@{viewModel.aadharErrorVisible}" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_regular_400"
+                        android:text="@{viewModel.aadharError}"
+                        android:textColor="@color/pink2"
+                        android:textSize="@dimen/_9ssp"
+                        android:visibility="gone"
+                        app:hideErrorTextView="@{viewModel.aadharErrorVisible}" />
+                    <!--Aadhar End-->
+
+
+                    <!--PAN Card No start-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                        android:fontFamily="@font/montserrat_medium_500"
+                        android:text="@string/pan_card_no"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:layout_marginTop="@dimen/edit_text_margin_top"
+                        android:background="@drawable/field_bg"
+                        android:hint="@string/enter_pan_card_no"
+                        android:inputType="textCapCharacters"
+                        android:longClickable="false"
+                        android:padding="@dimen/_5sdp"
+
+                        android:text="@={viewModel.panCardNo}"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:textSize="@dimen/edit_text_size"
+                        app:addTextChangeListener="@{viewModel}"
+                        app:requestFocus="@{viewModel.panCardNoErrorVisible}" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_regular_400"
+                        android:text="@{viewModel.panCardNoError}"
+                        android:textColor="@color/pink2"
+                        android:textSize="@dimen/_9ssp"
+                        android:visibility="gone"
+                        app:hideErrorTextView="@{viewModel.panCardNoErrorVisible}" />
+                    <!--PAN Card No End-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                        android:fontFamily="@font/montserrat_medium_500"
+                        android:text="@string/owner_pan_card"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:layout_marginTop="@dimen/edit_text_margin_top"
+                        android:background="@drawable/field_image_bg"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_pancard"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:hint="@string/choose_file"
+                            android:padding="@dimen/_5sdp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black"
+                            android:textSize="@dimen/edit_text_size" />
+
+                        <TextView
+                            android:id="@+id/tv_pancard_image"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="2"
+                            android:text="@{viewModel.panCardImage}"
+                            android:background="@drawable/image_edittext_field_bg"
+                            android:gravity="center_vertical"
+                            android:hint="@string/no_file_chosen"
+                            android:padding="@dimen/_5sdp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray"
+                            android:textSize="@dimen/edit_text_size" />
+
+
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:fontFamily="@font/montserrat_regular_400"
+
+
+                        android:textColor="@color/pink2"
+                        android:textSize="@dimen/_9ssp"
+                        android:text="@{viewModel.panCardImageError}"
+                        app:hideErrorTextView="@{viewModel.panCardNoErrorVisible}" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                        android:fontFamily="@font/montserrat_medium_500"
+                        android:text="@string/owner_aadhaar_card_front_side"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_aadhar"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:layout_marginTop="@dimen/edit_text_margin_top"
+                        android:background="@drawable/field_image_bg"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_pancard3"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:hint="@string/choose_file"
+                            android:padding="@dimen/_5sdp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black"
+                            android:textSize="@dimen/edit_text_size" />
+
+                        <TextView
+                            android:id="@+id/tv_pancard_image1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="2"
+                            android:text="@{viewModel.aadharFontImage}"
+                            android:background="@drawable/image_edittext_field_bg"
+                            android:gravity="center_vertical"
+                            android:hint="@string/no_file_chosen"
+                            android:padding="@dimen/_5sdp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray"
+                            android:textSize="@dimen/edit_text_size" />
+
+
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:fontFamily="@font/montserrat_regular_400"
+
+
+                        android:textColor="@color/pink2"
+                        android:textSize="@dimen/_9ssp"
+                        android:text="@{viewModel.aadharFontError}"
+                        app:hideErrorTextView="@{viewModel.aadharFontErrorVisible}" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                        android:fontFamily="@font/montserrat_medium_500"
+                        android:text="@string/owner_aadhaar_card_back_side"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:layout_marginTop="@dimen/edit_text_margin_top"
+                        android:background="@drawable/field_image_bg"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_pancard2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:hint="@string/choose_file"
+
+                            android:padding="@dimen/_5sdp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black"
+                            android:textSize="@dimen/edit_text_size" />
+
+                        <TextView
+                            android:id="@+id/tv_pancard_image3"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="2"
+                            android:text="@{viewModel.aadharbackImage}"
+                            android:background="@drawable/image_edittext_field_bg"
+                            android:gravity="center_vertical"
+                            android:hint="@string/no_file_chosen"
+                            android:padding="@dimen/_5sdp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray"
+                            android:textSize="@dimen/edit_text_size" />
+
+
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_regular_400"
+                        android:textColor="@color/pink2"
+                        android:textSize="@dimen/_9ssp"
+                        android:text="@{viewModel.aadharbackImageError}"
+                        app:hideErrorTextView="@{viewModel.aadharbackImageErrorVisible}" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:paddingBottom="@dimen/_20sdp">
+
+                        <TextView
+                            android:id="@+id/btn_next"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_26sdp"
+                            android:background="@drawable/teal_button_bg"
+                            android:fontFamily="@font/open_sans_e_bold"
+                            android:gravity="center"
+                            android:minWidth="@dimen/_100sdp"
+                            android:padding="10dp"
+                            android:text="Next"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/edt_ph_no"
+                            app:layout_constraintTop_toBottomOf="@+id/edt_ph_no"
+                            app:layout_constraintVertical_bias="0.0" />
+
                         <View
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_1sdp"/>
-                    <TextView
-                        android:id="@+id/btn_confirm_location"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_26sdp"
-                        android:background="@drawable/teal_button_bg"
-                        android:fontFamily="@font/open_sans_e_bold"
-                        android:padding="10dp"
-                        android:minWidth="@dimen/_100sdp"
-                        android:text="Save"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/text_size"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/edt_ph_no"
-                        app:layout_constraintTop_toBottomOf="@+id/edt_ph_no"
-                        app:layout_constraintVertical_bias="0.0" />
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_1sdp" />
+
+                        <TextView
+                            android:id="@+id/btn_confirm_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_26sdp"
+                            android:background="@drawable/teal_button_bg"
+                            android:fontFamily="@font/open_sans_e_bold"
+                            android:gravity="center"
+                            android:minWidth="@dimen/_100sdp"
+                            android:padding="10dp"
+                            android:text="Save"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/edt_ph_no"
+                            app:layout_constraintTop_toBottomOf="@+id/edt_ph_no"
+                            app:layout_constraintVertical_bias="0.0" />
+                    </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

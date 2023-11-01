@@ -70,8 +70,8 @@ class AuthActivity : AppCompatActivity() {
                 binding.imgLogo.visibility=View.VISIBLE
                 binding.tvWelcometext.visibility=View.VISIBLE
 
-            binding.recyclePhonePad2.visibility=View.GONE
-            binding.recyclePhonePad.visibility=View.VISIBLE
+                binding.recyclePhonePad2.visibility=View.GONE
+                binding.recyclePhonePad.visibility=View.VISIBLE
             }
             pinView.setOnClickListener {
 

@@ -2,7 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
 
+        <variable
+            name="viewModel"
+            type="com.epaymark.epay.data.viewMovel.AuthViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -129,7 +134,7 @@
                         android:layout_marginTop="@dimen/edit_text_title_margin_top"
                         android:fontFamily="@font/montserrat_medium_500"
                         android:textSize="@dimen/text_size"
-                        android:text="Beneficiary Name*"/>
+                        android:text="@string/beneficiary_name"/>
 
                     <!--name End-->
 
@@ -137,15 +142,27 @@
                     <EditText
                         android:id="@+id/et_beneficiary_name"
                         android:layout_width="match_parent"
+                        android:text="@={viewModel.beneficiaryName}"
                         android:layout_height="@dimen/edit_text_height"
                         android:layout_marginTop="@dimen/edit_text_margin_top"
                         android:background="@drawable/field_bg"
-                        android:hint="Beneficiary Name"
+                        android:hint="@string/beneficiary_name_hint"
                         android:inputType="textCapWords"
                         android:padding="@dimen/_5sdp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray"
                         android:textSize="@dimen/edit_text_size" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:fontFamily="@font/montserrat_regular_400"
+
+
+                        android:textColor="@color/pink2"
+                        android:textSize="@dimen/_9ssp"
+                        android:text="@{viewModel.beneficiaryNameError}"
+                        app:hideErrorTextView="@{viewModel.beneficiaryNameErrorVisible}" />
                     <!--name start-->
                     <TextView
                         android:textColor="@color/black"
@@ -154,7 +171,7 @@
                         android:layout_marginTop="@dimen/edit_text_title_margin_top"
                         android:fontFamily="@font/montserrat_medium_500"
                         android:textSize="@dimen/text_size"
-                        android:text="Account Number*"/>
+                        android:text="@string/account_number"/>
 
                     <!--name End-->
 
@@ -164,13 +181,25 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"
                         android:layout_marginTop="@dimen/edit_text_margin_top"
+                        android:text="@={viewModel.accountNumber}"
                         android:background="@drawable/field_bg"
-                        android:hint="Account Number"
+                        android:hint="@string/account_number_hint"
                         android:inputType="textCapWords"
                         android:padding="@dimen/_5sdp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray"
                         android:textSize="@dimen/edit_text_size" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:fontFamily="@font/montserrat_regular_400"
+
+
+                        android:textColor="@color/pink2"
+                        android:textSize="@dimen/_9ssp"
+                        android:text="@{viewModel.accountNumberError}"
+                        app:hideErrorTextView="@{viewModel.accountNumberErrorVisible}" />
                     <!--name start-->
                     <TextView
                         android:textColor="@color/black"
@@ -179,7 +208,7 @@
                         android:layout_marginTop="@dimen/edit_text_title_margin_top"
                         android:fontFamily="@font/montserrat_medium_500"
                         android:textSize="@dimen/text_size"
-                        android:text="Confirm Account Number*"/>
+                        android:text="@string/confirm_account_number"/>
 
                     <!--name End-->
 
@@ -190,12 +219,24 @@
                         android:layout_height="@dimen/edit_text_height"
                         android:layout_marginTop="@dimen/edit_text_margin_top"
                         android:background="@drawable/field_bg"
-                        android:hint="Confirm Account Number"
+                        android:text="@={viewModel.confirmAccountNumber}"
+                        android:hint="@string/confirm_account_number_hint"
                         android:inputType="textCapWords"
                         android:padding="@dimen/_5sdp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray"
                         android:textSize="@dimen/edit_text_size" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:fontFamily="@font/montserrat_regular_400"
+
+
+                        android:textColor="@color/pink2"
+                        android:textSize="@dimen/_9ssp"
+                        android:text="@{viewModel.confirmAccountNumberError}"
+                        app:hideErrorTextView="@{viewModel.confirmAccountNumberErrorVisible}" />
                     <!--Gender start-->
                     <TextView
                         android:textColor="@color/black"
@@ -204,7 +245,7 @@
                         android:layout_marginTop="@dimen/edit_text_title_margin_top"
                         android:fontFamily="@font/montserrat_medium_500"
                         android:textSize="@dimen/text_size"
-                        android:text="Bank Name*"/>
+                        android:text="@string/bank_name"/>
                     <Spinner
                         android:id="@+id/spinner_bank"
                         android:layout_width="match_parent"
@@ -216,12 +257,22 @@
                         android:textSize="@dimen/edit_text_size"
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray"
-                        android:hint="Gender"
+                        android:hint="@string/gender_hint"
                         android:background="@drawable/field_bg"
                         android:popupBackground="@color/gray2"
                         android:layout_marginTop="@dimen/edit_text_margin_top"
                         />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
 
+                        android:fontFamily="@font/montserrat_regular_400"
+
+
+                        android:textColor="@color/pink2"
+                        android:textSize="@dimen/_9ssp"
+                        android:text="@{viewModel.bankNameError}"
+                        app:hideErrorTextView="@{viewModel.bankNameErrorVisible}" />
                     <!--Gender End-->
                     <!--name start-->
                     <TextView
@@ -231,7 +282,7 @@
                         android:layout_marginTop="@dimen/edit_text_title_margin_top"
                         android:fontFamily="@font/montserrat_medium_500"
                         android:textSize="@dimen/text_size"
-                        android:text="IFSC Code*"/>
+                        android:text="@string/ifsc_code"/>
 
                     <!--name End-->
 
@@ -242,12 +293,24 @@
                         android:layout_height="@dimen/edit_text_height"
                         android:layout_marginTop="@dimen/edit_text_margin_top"
                         android:background="@drawable/field_bg"
-                        android:hint="IFSC Code"
+                        android:hint="@string/ifsc_code_hint"
                         android:inputType="textCapWords"
                         android:padding="@dimen/_5sdp"
+                        android:text="@={viewModel.ifscCode}"
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray"
                         android:textSize="@dimen/edit_text_size" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:fontFamily="@font/montserrat_regular_400"
+
+
+                        android:textColor="@color/pink2"
+                        android:textSize="@dimen/_9ssp"
+                        android:text="@{viewModel.ifscCodeError}"
+                        app:hideErrorTextView="@{viewModel.ifscCodeErrorVisible}" />
                     <!--name start-->
                     <TextView
                         android:textColor="@color/black"
@@ -256,7 +319,7 @@
                         android:layout_marginTop="@dimen/edit_text_title_margin_top"
                         android:fontFamily="@font/montserrat_medium_500"
                         android:textSize="@dimen/text_size"
-                        android:text="Employee Code/ID*"/>
+                        android:text="@string/employee_code_id"/>
 
                     <!--name End-->
 
@@ -267,13 +330,24 @@
                         android:layout_height="@dimen/edit_text_height"
                         android:layout_marginTop="@dimen/edit_text_margin_top"
                         android:background="@drawable/field_bg"
-                        android:hint="Employee Code/ID"
+                        android:text="@={viewModel.employeeCode}"
+                        android:hint="@string/employee_code_id_hint"
                         android:inputType="textCapWords"
                         android:padding="@dimen/_5sdp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray"
                         android:textSize="@dimen/edit_text_size" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
 
+                        android:fontFamily="@font/montserrat_regular_400"
+
+
+                        android:textColor="@color/pink2"
+                        android:textSize="@dimen/_9ssp"
+                        android:text="@{viewModel.employeeCodeError}"
+                        app:hideErrorTextView="@{viewModel.employeeCodeErrorVisible}" />
                     <TextView
                         android:textColor="@color/black"
                         android:layout_width="match_parent"
@@ -281,7 +355,7 @@
                         android:layout_marginTop="@dimen/edit_text_title_margin_top"
                         android:fontFamily="@font/montserrat_medium_500"
                         android:textSize="@dimen/text_size"
-                        android:text="Cancelled Cheque(JPG ONLY)*"/>
+                        android:text="@string/cancelled_cheque_jpg_only"/>
                     <LinearLayout
                         android:orientation="horizontal"
                         android:background="@drawable/field_image_bg"
@@ -319,6 +393,17 @@
 
 
                     </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:fontFamily="@font/montserrat_regular_400"
+
+
+                        android:textColor="@color/pink2"
+                        android:textSize="@dimen/_9ssp"
+                        android:text="@{viewModel.businessNameError}"
+                        app:hideErrorTextView="@{viewModel.businessNameErrorVisible}" />
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

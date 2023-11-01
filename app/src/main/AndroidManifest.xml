@@ -47,7 +47,7 @@
             android:name=".ui.activity.AuthActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.SplashActivity"
+            android:name=".ui.activity.AuthenticationActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activity.WebviewActivity"
@@ -56,7 +56,7 @@
             android:name=".ui.activity.MainActivity"
             android:exported="false" /> <!-- android:theme="@style/Theme.AppCompat" -->
         <activity
-            android:name=".ui.activity.AuthenticationActivity"
+            android:name=".ui.activity.SplashActivity"
             android:exported="true"
             android:theme="@style/AppTheme">
             <intent-filter>

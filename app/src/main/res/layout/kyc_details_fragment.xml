@@ -2,7 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
 
+        <variable
+            name="viewModel"
+            type="com.epaymark.epay.data.viewMovel.AuthViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -84,7 +89,7 @@
             android:layout_marginBottom="@dimen/_10sdp"
             android:background="@color/brown"
             android:gravity="center"
-            android:text="2"
+            android:text="3"
             app:layout_constraintBottom_toTopOf="@+id/button3"
             app:layout_constraintEnd_toEndOf="@+id/button3"
             app:layout_constraintStart_toStartOf="@+id/button3" />
@@ -154,7 +159,17 @@
                         android:popupBackground="@color/gray2"
                         android:layout_marginTop="@dimen/edit_text_margin_top"
                         />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
 
+                        android:fontFamily="@font/montserrat_regular_400"
+
+
+                        android:textColor="@color/pink2"
+                        android:textSize="@dimen/_9ssp"
+                        android:text="@{viewModel.businessTypeError}"
+                        app:hideErrorTextView="@{viewModel.businessTypeErrorVisible}" />
                     <!--business_category start-->
                     <TextView
                         android:textColor="@color/black"
@@ -179,7 +194,17 @@
                         android:popupBackground="@color/gray2"
                         android:layout_marginTop="@dimen/edit_text_margin_top"
                         />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
 
+                        android:fontFamily="@font/montserrat_regular_400"
+
+
+                        android:textColor="@color/pink2"
+                        android:textSize="@dimen/_9ssp"
+                        android:text="@{viewModel.businessCategoryError}"
+                        app:hideErrorTextView="@{viewModel.businessCategoryErrorVisible}" />
                     <!--partner_name-->
                     <TextView
                         android:textColor="@color/black"
@@ -214,6 +239,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"
                         android:inputType="text"
+                        android:text="@={viewModel.businessName}"
                         android:longClickable="false"
                         android:textSize="@dimen/edit_text_size"
                         android:padding="@dimen/_5sdp"
@@ -222,6 +248,17 @@
                         android:hint="@string/business_name_title"
                         android:layout_marginTop="@dimen/edit_text_margin_top"
                         android:background="@drawable/field_bg"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:fontFamily="@font/montserrat_regular_400"
+
+
+                        android:textColor="@color/pink2"
+                        android:textSize="@dimen/_9ssp"
+                        android:text="@{viewModel.businessNameError}"
+                        app:hideErrorTextView="@{viewModel.businessNameErrorVisible}" />
                     <!--Area start-->
                     <TextView
                         android:textColor="@color/black"
@@ -237,6 +274,7 @@
                         android:inputType="text"
                         android:gravity="start"
                         android:maxLines="50"
+                        android:text="@={viewModel.businessAddress}"
                         android:scrollbars="vertical"
                         android:longClickable="false"
                         android:textSize="@dimen/edit_text_size"
@@ -246,6 +284,17 @@
                         android:hint="@string/business_address_hint"
                         android:layout_marginTop="@dimen/edit_text_margin_top"
                         android:background="@drawable/field_bg"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:fontFamily="@font/montserrat_regular_400"
+
+
+                        android:textColor="@color/pink2"
+                        android:textSize="@dimen/_9ssp"
+                        android:text="@{viewModel.businessAddressError}"
+                        app:hideErrorTextView="@{viewModel.businessAddressErrorVisible}" />
                     <!--Area start-->
                     <TextView
                         android:textColor="@color/black"

@@ -9,19 +9,24 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.R
+import com.epaymark.epay.data.viewMovel.AuthViewModel
 import com.epaymark.epay.databinding.BankDetailsFragmentBinding
 import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.utils.`interface`.CallBack
 
 class BankDetailsFragment : BaseFragment() {
     lateinit var binding: BankDetailsFragmentBinding
+    private val authViewModel: AuthViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.bank_details_fragment, container, false)
+        binding.viewModel = authViewModel
+        binding.lifecycleOwner = this
         return binding.root
     }
 
@@ -34,8 +39,10 @@ class BankDetailsFragment : BaseFragment() {
 
     private fun onViewClick() {
         binding.btnSaveContinue.setOnClickListener {
-           findNavController().navigate(R.id.action_bankDetailsFragment_to_docuploadFragment)
-        }
+            if (authViewModel.bankDetailsValidation()) {
+                findNavController().navigate(R.id.action_bankDetailsFragment_to_docuploadFragment)
+             }
+            }
 
     }
 
@@ -46,6 +53,7 @@ class BankDetailsFragment : BaseFragment() {
                 adapter = ArrayAdapter<String>(this.context, R.layout.custom_spinner_item, bankArray)
                 setSpinner(object : CallBack {
                     override fun getValue(s: String) {
+                        authViewModel.bankName.value=s
                         // Toast.makeText(binding.root.context, "$s", Toast.LENGTH_SHORT).show()
                     }
                 },bankArray)

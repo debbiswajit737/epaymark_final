@@ -20,15 +20,20 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.window.layout.WindowMetricsCalculator
 import com.epaymark.epay.R
 import com.epaymark.epay.adapter.StateListAdapter
 import com.epaymark.epay.data.model.StateCityModel
+import com.epaymark.epay.data.viewMovel.AuthViewModel
 import com.epaymark.epay.databinding.FragmentRegBinding
 import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.utils.*
@@ -46,11 +51,14 @@ class RegFragment : BaseFragment() {
     var cityList = ArrayList<StateCityModel>()
     var stateListAdapter:StateListAdapter?=null
     var cityListAdapter:StateListAdapter?=null
+    private val authViewModel: AuthViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_reg, container, false)
+        binding.viewModel = authViewModel
+        binding.lifecycleOwner = this
         return binding.root
     }
 
@@ -76,24 +84,33 @@ class RegFragment : BaseFragment() {
             tvDob.setOnClickListener {
                 it.showDatePickerDialog(object :CallBack{
                     override fun getValue(s: String) {
-                        tvDob.text = s
+                        //tvDob.text = s
+                        viewModel?.dateOfBirth?.value=s
+                        viewModel?.dateOfBirthErrorVisible?.value =
+                            viewModel?.dateOfBirth?.value?.isNotEmpty() != true
                     }
 
                 })
             }
-
+            btnNext.setOnClickListener {
+                if (authViewModel?.regValidation()==true) {
+                   findNavController().navigate(R.id.action_regFragment_to_kycDetailsFragment)
+                }
+            }
         }
 
-        binding.btnNext.setOnClickListener {
+        /*binding.btnNext.setOnClickListener {
             //sendData()
             //browserPOST()
-            findNavController().navigate(R.id.action_regFragment_to_kycDetailsFragment)
-        }
+
+        }*/
         binding.tvCityListSearch.setOnClickListener {
             binding.tvCity.performClick()
         }
         binding.tvCity.setOnClickListener {
-            binding.etCity.setText("")
+            //binding.etCity.setText("")
+            authViewModel.city.value=""
+            authViewModel.cityErrorVisible.value =false
             if (binding.recycleCity.isVisible){
                 binding.recycleCity.visibility = View.GONE
                 binding.etCity.visibility = View.GONE
@@ -168,7 +185,9 @@ class RegFragment : BaseFragment() {
         stateList.add(StateCityModel(false,"Jammu and Kashmir"))
         binding.recycleState.apply {
             binding.tvState.setOnClickListener {
-                binding.etState.setText("")
+                authViewModel.state.value="A"
+                //authViewModel.stateErrorVisible.value=true
+                //binding.etState.setText("")
                 if (binding.recycleState.isVisible){
                     binding.recycleState.visibility = View.GONE
                     binding.etState.visibility = View.GONE
@@ -189,7 +208,9 @@ class RegFragment : BaseFragment() {
             }
             stateListAdapter= StateListAdapter(stateList,object :CallBack{
                 override fun getValue(s: String) {
-                    binding.tvState.text = s
+                    //binding.tvState.text = s
+                    authViewModel.state.value=s
+                    authViewModel.stateErrorVisible.value=false
                     binding.recycleState.visibility=View.GONE
                     binding.etState.visibility = View.GONE
                     binding.tvState.isVisible=!binding.recycleState.isVisible
@@ -233,12 +254,14 @@ class RegFragment : BaseFragment() {
                 override fun getValue(s: String) {
 
 
+                    authViewModel.cityErrorVisible.value=false
                     binding.recycleCity.visibility=View.GONE
                     binding.etCity.visibility = View.GONE
                     binding.tvCity.visibility = View.GONE
                     binding.tvCityListSearch.visibility = View.GONE
                     binding.tvCity.isVisible=!binding.recycleCity.isVisible
-                    binding.tvCity.text = s
+                    //binding.tvCity.text = s
+                    authViewModel.city.value=s
                 }
 
             })
@@ -292,8 +315,15 @@ class RegFragment : BaseFragment() {
        }
     }
 
-    fun setObserver() {
+    private fun setObserver() {
         checkFocus()
+        authViewModel.state.observe(viewLifecycleOwner){
+            authViewModel.stateErrorVisible.value = it.isNotEmpty()
+        }
+        authViewModel.city.observe(viewLifecycleOwner){
+            authViewModel.cityErrorVisible.value = it.isNotEmpty()
+        }
+
     }
 
     private fun checkFocus() {
