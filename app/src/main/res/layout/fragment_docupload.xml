@@ -130,6 +130,7 @@
                         android:textSize="@dimen/text_size"
                         android:text="Partner PAN Card(If any)"/>
                     <LinearLayout
+                        android:id="@+id/ll_partner_pan_id"
                         android:orientation="horizontal"
                         android:background="@drawable/field_image_bg"
                         android:layout_width="match_parent"
@@ -578,6 +579,7 @@
                         android:textSize="@dimen/text_size"
                         android:text="@string/video_kyc"/>
                     <LinearLayout
+                        android:id="@+id/ll_video_kyc"
                         android:orientation="horizontal"
                         android:background="@drawable/field_image_bg"
                         android:layout_width="match_parent"

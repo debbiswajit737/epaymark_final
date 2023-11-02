@@ -1,5 +1,6 @@
 package com.epaymark.epay.data.viewMovel
 
+import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
@@ -10,7 +11,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(private val repository: DeliveryOptionsRepository) : ViewModel() {
-
+    var filePath: MutableLiveData<Uri> = MutableLiveData()
     var keyPadValue = MutableLiveData("")
     var mobError = MutableLiveData("")
     var timingValue = MutableLiveData("")

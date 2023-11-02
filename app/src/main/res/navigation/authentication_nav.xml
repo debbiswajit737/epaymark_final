@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/authentication_nav"
-    app:startDestination="@id/regFragment">
+    app:startDestination="@id/docuploadFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -38,7 +38,14 @@
     <fragment
         android:id="@+id/docuploadFragment"
         android:name="com.epaymark.epay.ui.fragment.regandkyc.DocuploadFragment"
-        android:label="DocuploadFragment" />
+        android:label="DocuploadFragment" >
+        <action
+            android:id="@+id/action_docuploadFragment_to_cameraFragment"
+            app:destination="@id/cameraFragment" />
+        <action
+            android:id="@+id/action_docuploadFragment_to_videoRecordingFragment"
+            app:destination="@id/videoRecordingFragment" />
+    </fragment>
     <fragment
         android:id="@+id/kycDetailsFragment"
         android:name="com.epaymark.epay.ui.fragment.regandkyc.KycDetailsFragment"
@@ -56,4 +63,13 @@
             android:id="@+id/action_bankDetailsFragment_to_docuploadFragment"
             app:destination="@id/docuploadFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="com.epaymark.epay.ui.fragment.regandkyc.CameraFragment"
+        android:label="CameraFragment" />
+    <fragment
+        android:id="@+id/videoRecordingFragment"
+        android:name="com.epaymark.epay.ui.fragment.regandkyc.VideoRecordingFragment"
+        android:label="VideoRecordingFragment" />
+
 </navigation>

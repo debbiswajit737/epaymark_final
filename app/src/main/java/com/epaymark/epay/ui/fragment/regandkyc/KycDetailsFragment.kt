@@ -44,6 +44,7 @@ class KycDetailsFragment : BaseFragment() {
                 findNavController().navigate(R.id.action_kycDetailsFragment_to_bankDetailsFragment)
             }
         }
+
     }
 
     fun initView() {

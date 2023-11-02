@@ -92,4 +92,6 @@
     <string name="confirm_account_number_hint">Confirm Account Number</string>
     <string name="ifsc_code_hint">IFSC Code</string>
     <string name="employee_code_id_hint">Employee Code/ID</string>
+    <string name="choose_an_action">Choose an action</string>
+    <string name="capture_image">Capture Image</string>
 </resources>
