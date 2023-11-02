@@ -3,6 +3,7 @@ package com.epaymark.epay.data.viewMovel
 import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.epaymark.epay.data.model.FileModel
 
 import com.epaymark.epay.repository.DeliveryOptionsRepository
 import com.epaymark.epay.utils.helpers.helper.validate
@@ -17,6 +18,9 @@ class AuthViewModel @Inject constructor(private val repository: DeliveryOptionsR
     var timingValue = MutableLiveData("")
     //var otp = MutableLiveData(Editable)
     val otp: MutableLiveData<String> = MutableLiveData("")
+
+
+    val videoFile = MutableLiveData<FileModel>()
 
 
     // Fields
@@ -46,6 +50,17 @@ class AuthViewModel @Inject constructor(private val repository: DeliveryOptionsR
     val bankName = MutableLiveData<String>()
     val ifscCode = MutableLiveData<String>()
     val employeeCode = MutableLiveData<String>()
+    val panPath = MutableLiveData<String>()
+    val cpanPath = MutableLiveData<String>()
+    val paadhar = MutableLiveData<String>()
+    val PartnerAadharBack = MutableLiveData<String>()
+    val llGst = MutableLiveData<String>()
+    val llCertificateOfIncorporation = MutableLiveData<String>()
+    val llBoardResolution = MutableLiveData<String>()
+    val llTrade = MutableLiveData<String>()
+    val llUserSelfi = MutableLiveData<String>()
+    val llCselfi = MutableLiveData<String>()
+    val videokyc = MutableLiveData<String>()
 
     // Error messages for fields
     val nameError = MutableLiveData<String>()

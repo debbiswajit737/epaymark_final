@@ -1,8 +1,16 @@
 package com.epaymark.epay.utils.common
 
+import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.view.View
+import android.view.ViewGroup
+import android.view.Window
+import android.widget.TextView
+import com.epaymark.epay.R
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import okhttp3.ResponseBody
@@ -10,7 +18,27 @@ import org.json.JSONObject
 
 
 object MethodClass {
+    fun custom_loader(ctx: Context?, msg: String?): Dialog? {
+        var dialog: Dialog? = null
+        ctx?.let {
+            dialog = Dialog(it)
+            dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog?.window?.setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            dialog?.setCancelable(false)
+            dialog?.setContentView(R.layout.custom_loader)
 
+            val text = dialog?.findViewById<View>(R.id.text_dialog) as TextView
+            text.text = msg
+        }
+        return dialog
+
+
+
+    }
  fun get_error_method(err: ResponseBody): String {
          val jsonErr = JSONObject(err.string())
          val gson = Gson()

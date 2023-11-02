@@ -2,7 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
 
+        <variable
+            name="viewModel"
+            type="com.epaymark.epay.data.viewMovel.AuthViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -154,6 +159,7 @@
                             android:layout_width="0dp"
                             android:gravity="center_vertical"
                             android:layout_weight="2"
+                            android:text="@{viewModel.panPath}"
                             android:layout_gravity="center_vertical"
                             android:layout_height="match_parent"
                             android:background="@drawable/image_edittext_field_bg"
@@ -175,7 +181,7 @@
                         android:textSize="@dimen/text_size"
                         android:text="Company PAN Card(If any)"/>
                     <LinearLayout
-                        android:id="@+id/ll_aadhar"
+                        android:id="@+id/ll_cpan"
                         android:orientation="horizontal"
                         android:background="@drawable/field_image_bg"
                         android:layout_width="match_parent"
@@ -200,7 +206,7 @@
                             android:gravity="center_vertical"
                             android:layout_weight="2"
                             android:layout_gravity="center_vertical"
-
+                            android:text="@{viewModel.cpanPath}"
                             android:layout_height="match_parent"
                             android:background="@drawable/image_edittext_field_bg"
                             android:hint="@string/no_file_chosen"
@@ -221,6 +227,7 @@
                         android:textSize="@dimen/text_size"
                         android:text="Partner Aadhaar Card (Front side)"/>
                     <LinearLayout
+                        android:id="@+id/ll_paadhar"
                         android:orientation="horizontal"
                         android:background="@drawable/field_image_bg"
                         android:layout_width="match_parent"
@@ -246,7 +253,7 @@
                             android:gravity="center_vertical"
                             android:layout_weight="2"
                             android:layout_gravity="center_vertical"
-
+                            android:text="@{viewModel.paadhar}"
                             android:layout_height="match_parent"
                             android:background="@drawable/image_edittext_field_bg"
                             android:hint="@string/no_file_chosen"
@@ -271,6 +278,7 @@
                         android:textSize="@dimen/text_size"
                         android:text="@string/partner_aadhaar_card_back_side"/>
                     <LinearLayout
+                        android:id="@+id/ll_partner_aadhar_back"
                         android:orientation="horizontal"
                         android:background="@drawable/field_image_bg"
                         android:layout_width="match_parent"
@@ -294,6 +302,7 @@
                             android:layout_width="0dp"
                             android:gravity="center_vertical"
                             android:layout_weight="2"
+                            android:text="@{viewModel.PartnerAadharBack}"
                             android:layout_gravity="center_vertical"
                             android:layout_height="match_parent"
                             android:background="@drawable/image_edittext_field_bg"
@@ -315,6 +324,7 @@
                         android:textSize="@dimen/text_size"
                         android:text="@string/gst_certificate_pdf_only"/>
                     <LinearLayout
+                        android:id="@+id/ll_gst"
                         android:orientation="horizontal"
                         android:background="@drawable/field_image_bg"
                         android:layout_width="match_parent"
@@ -338,6 +348,7 @@
                             android:layout_width="0dp"
                             android:gravity="center_vertical"
                             android:layout_weight="2"
+                            android:text="@{viewModel.llGst}"
                             android:layout_gravity="center_vertical"
                             android:layout_height="match_parent"
                             android:background="@drawable/image_edittext_field_bg"
@@ -359,6 +370,7 @@
                         android:textSize="@dimen/text_size"
                         android:text="@string/certificate_of_incorporation_pdf_only"/>
                     <LinearLayout
+                        android:id="@+id/ll_certificate_of_incorporation"
                         android:orientation="horizontal"
                         android:background="@drawable/field_image_bg"
                         android:layout_width="match_parent"
@@ -386,6 +398,7 @@
                             android:layout_height="match_parent"
                             android:background="@drawable/image_edittext_field_bg"
                             android:hint="@string/no_file_chosen"
+                            android:text="@{viewModel.llCertificateOfIncorporation}"
                             android:textSize="@dimen/edit_text_size"
                             android:padding="@dimen/_5sdp"
                             android:textColor="@color/black"
@@ -403,6 +416,7 @@
                         android:textSize="@dimen/text_size"
                         android:text="@string/board_resolution_pdf_only"/>
                     <LinearLayout
+                        android:id="@+id/ll_board_resolution"
                         android:orientation="horizontal"
                         android:background="@drawable/field_image_bg"
                         android:layout_width="match_parent"
@@ -426,6 +440,7 @@
                             android:layout_width="0dp"
                             android:gravity="center_vertical"
                             android:layout_weight="2"
+                            android:text="@{viewModel.llBoardResolution}"
                             android:layout_gravity="center_vertical"
                             android:layout_height="match_parent"
                             android:background="@drawable/image_edittext_field_bg"
@@ -447,6 +462,7 @@
                         android:textSize="@dimen/text_size"
                         android:text="@string/trade_license_pdf_only"/>
                     <LinearLayout
+                        android:id="@+id/ll_trade"
                         android:orientation="horizontal"
                         android:background="@drawable/field_image_bg"
                         android:layout_width="match_parent"
@@ -470,6 +486,7 @@
                             android:layout_width="0dp"
                             android:gravity="center_vertical"
                             android:layout_weight="2"
+                            android:text="@{viewModel.llTrade}"
                             android:layout_gravity="center_vertical"
                             android:layout_height="match_parent"
                             android:background="@drawable/image_edittext_field_bg"
@@ -491,6 +508,7 @@
                         android:textSize="@dimen/text_size"
                         android:text="@string/user_selfi"/>
                     <LinearLayout
+                        android:id="@+id/ll_user_selfi"
                         android:orientation="horizontal"
                         android:background="@drawable/field_image_bg"
                         android:layout_width="match_parent"
@@ -514,6 +532,7 @@
                             android:layout_width="0dp"
                             android:gravity="center_vertical"
                             android:layout_weight="2"
+                            android:text="@{viewModel.llUserSelfi}"
                             android:layout_gravity="center_vertical"
                             android:layout_height="match_parent"
                             android:background="@drawable/image_edittext_field_bg"
@@ -535,6 +554,7 @@
                         android:textSize="@dimen/text_size"
                         android:text="@string/selfi_with_company_person"/>
                     <LinearLayout
+                        android:id="@+id/ll_cselfi"
                         android:orientation="horizontal"
                         android:background="@drawable/field_image_bg"
                         android:layout_width="match_parent"
@@ -558,6 +578,7 @@
                             android:layout_width="0dp"
                             android:gravity="center_vertical"
                             android:layout_weight="2"
+                            android:text="@{viewModel.llCselfi}"
                             android:layout_gravity="center_vertical"
                             android:layout_height="match_parent"
                             android:background="@drawable/image_edittext_field_bg"
@@ -579,6 +600,7 @@
                         android:textSize="@dimen/text_size"
                         android:text="@string/video_kyc"/>
                     <LinearLayout
+
                         android:id="@+id/ll_video_kyc"
                         android:orientation="horizontal"
                         android:background="@drawable/field_image_bg"
@@ -603,6 +625,7 @@
                             android:layout_width="0dp"
                             android:gravity="center_vertical"
                             android:layout_weight="2"
+                            android:text="@{viewModel.videokyc}"
                             android:layout_gravity="center_vertical"
                             android:layout_height="match_parent"
                             android:background="@drawable/image_edittext_field_bg"

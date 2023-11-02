@@ -8,8 +8,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Environment
-import android.os.Handler
-import android.os.Looper
 import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
@@ -36,14 +34,11 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
 
 import com.epaymark.epay.R
 import com.epaymark.epay.data.viewMovel.AuthViewModel
 import com.epaymark.epay.databinding.FragmentCameraBinding
-import com.epaymark.epay.ui.base.BaseBottomSheetFragment
 import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.utils.helpers.Constants.contentValues
 import com.epaymark.epay.utils.helpers.Constants.isGallary
@@ -54,44 +49,23 @@ import com.epaymark.epay.utils.`interface`.PermissionsCallback
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Locale
-import kotlin.math.log
 
 
 class CameraFragment : BaseFragment() {
     val TAG = "camera"
+    @RequiresApi(Build.VERSION_CODES.P)
+
 
     private lateinit var countDownTimer: CountDownTimer
     private val initialCountDown: Long = 5000
     private val countDownInterval: Long = 1000
 
     lateinit var binding: FragmentCameraBinding
-    //private val authViewModel: AuthViewModel by viewModels()
+    private val authViewModel: AuthViewModel by activityViewModels()
     private var imageCapture: ImageCapture? = null
     private var videoCapture: VideoCapture<Recorder>? = null
     private var recording: Recording? = null
     private val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
-
-    fun getAuthViewModel():AuthViewModel?{
-        activity?.let {
-            val authViewModel: AuthViewModel by activityViewModels()
-            return authViewModel
-        }
-        return null
-    }
-
-    @RequiresApi(Build.VERSION_CODES.P)
-    val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-
-        if (uri != null) {
-            getAuthViewModel()?.filePath?.value = uri
-            findNavController().popBackStack()
-            //findNavController().navigate(R.id.action_homeFragment_to_previewFragment)
-        } else {
-            Log.d("PhotoPicker", "No media selected")
-        }
-    }
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -108,7 +82,6 @@ class CameraFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         init()
     }
-
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     fun init() {
@@ -129,8 +102,10 @@ class CameraFragment : BaseFragment() {
                 }
             })
         }
-        }
+    }
 
+   
+    @RequiresApi(Build.VERSION_CODES.P)
     fun onViewClick() {
         binding.apply {
             btnCaptureImg.setOnClickListener {
@@ -147,7 +122,6 @@ class CameraFragment : BaseFragment() {
                 btnCaptureVideo.visibility = View.GONE
                 videoCapture()
             }
-
             binding.tvTimer.visibility = View.GONE
             if (!isVideo) {
                 btnCaptureImg.visibility = View.VISIBLE
@@ -155,11 +129,7 @@ class CameraFragment : BaseFragment() {
             } else {
                 binding.tvTimer.visibility = View.VISIBLE
                 btnCaptureImg.visibility = View.GONE
-                //btnCaptureVideo.visibility = View.VISIBLE
-                Handler(Looper.getMainLooper()).postDelayed({
-                    videoCapture()
-                },1000)
-
+                btnCaptureVideo.visibility = View.VISIBLE
             }
 
         }
@@ -177,11 +147,9 @@ class CameraFragment : BaseFragment() {
         imageCapture?.takePicture(outputOptions, ContextCompat.getMainExecutor(binding.btnCaptureImg.context), object : ImageCapture.OnImageSavedCallback {
             override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
 
-                outputFileResults.savedUri?.let {
-                    getAuthViewModel()?.filePath?.value = it
-                    findNavController().popBackStack()
-                }
-               // findNavController().navigate(R.id.action_cameraFragment_to_previewFragment)
+                outputFileResults.savedUri?.let { authViewModel.filePath.value = it }
+                findNavController().navigate(R.id.action_cameraFragment_to_docuploadFragment)
+               // findNavController().popBackStack()
                 // Image capture successful, you can handle success here
             }
 
@@ -212,10 +180,10 @@ class CameraFragment : BaseFragment() {
                     .setQualitySelector(QualitySelector.from(Quality.HIGHEST))
                     .build()
                 videoCapture = VideoCapture.withOutput(recorder)
-                val cameraSelector =CameraSelector.DEFAULT_BACK_CAMERA
-                /*val cameraSelector = if (isVideo) {
+
+                val cameraSelector = if (isVideo) {
                     CameraSelector.DEFAULT_BACK_CAMERA
-                } else CameraSelector.DEFAULT_FRONT_CAMERA*/
+                } else CameraSelector.DEFAULT_FRONT_CAMERA
                 try {
                     cameraProvider.unbindAll()
                     cameraProvider.bindToLifecycle(
@@ -251,13 +219,13 @@ class CameraFragment : BaseFragment() {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 // For Android 10 and higher, use RELATIVE_PATH
-                put(MediaStore.Video.Media.RELATIVE_PATH, Environment.DIRECTORY_DCIM + "/epay")
+                put(MediaStore.Video.Media.RELATIVE_PATH, Environment.DIRECTORY_MOVIES + "/epay")
                 //put(MediaStore.Video.Media.RELATIVE_PATH, "epay/image")
             } else {
                 // For versions prior to Android 10, manage the file operations manually
                 val directoryPath = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     // For Android Nougat and higher, use getExternalStoragePublicDirectory
-                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
+                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES)
                 } else {
                     // For versions prior to Nougat, use a hardcoded path
                     File(Environment.getExternalStorageDirectory(), "epay/image")
@@ -294,11 +262,9 @@ class CameraFragment : BaseFragment() {
                 }
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    output.savedUri?.let {
-                        getAuthViewModel()?.filePath?.value = it
-                        findNavController().popBackStack()
-                    }
+                    output.savedUri?.let { authViewModel.filePath.value = it }
                     //findNavController().navigate(R.id.action_cameraFragment_to_previewFragment)
+                    findNavController().popBackStack()
 
                 }
             }
@@ -307,6 +273,7 @@ class CameraFragment : BaseFragment() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.P)
     fun videoCapture() {
         try {
             val videoCapture = this.videoCapture ?: return
@@ -331,12 +298,12 @@ class CameraFragment : BaseFragment() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                     // For Android 10 and higher, use RELATIVE_PATH
                   //  put(MediaStore.Video.Media.RELATIVE_PATH, "epay/video")
-                    put(MediaStore.Video.Media.RELATIVE_PATH, Environment.DIRECTORY_DCIM + "/epay")
+                    put(MediaStore.Video.Media.RELATIVE_PATH, Environment.DIRECTORY_MOVIES + "/epay")
                 } else {
                     // For versions prior to Android 10, manage the file operations manually
                     val directoryPath = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                         // For Android Nougat and higher, use getExternalStoragePublicDirectory
-                        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
+                        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES)
                     } else {
                         // For versions prior to Nougat, use a hardcoded path
                         File(Environment.getExternalStorageDirectory(), "epay/video")
@@ -389,7 +356,8 @@ class CameraFragment : BaseFragment() {
 
                                 if (!recordEvent.hasError()) {
                                     recordEvent.outputResults.outputUri?.let {
-                                        getAuthViewModel()?.filePath?.value = it
+                                        authViewModel.filePath.value = it
+                                        authViewModel.videoFile.value?.url=it.toString()
                                     }
 
                                 } else {
@@ -406,6 +374,7 @@ class CameraFragment : BaseFragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.P)
     private fun startCountdown() {
         countDownTimer = object : CountDownTimer(initialCountDown, countDownInterval) {
             override fun onTick(millisUntilFinished: Long) {
@@ -426,33 +395,21 @@ class CameraFragment : BaseFragment() {
                 contentValues?.let {
 
                     val path = it.get(
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
-                            "${Environment.DIRECTORY_MOVIES}/epay"
-                        }
-                        else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                             MediaStore.Video.Media.RELATIVE_PATH
-                        }
-                        else {
+                        } else {
                             MediaStore.MediaColumns.DATA
                         }
                     )
 
 
-                    getAuthViewModel()?.filePath?.value = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                        getFullPath()?.let {
-                            Uri.parse(it)
-                        }
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+                        authViewModel.filePath.value = Uri.parse("$path")
 
-
+                        authViewModel.videoFile.value?.url= path.toString()
                     }
-                    else{
-                        Uri.parse("$path")
-                    }
-                    Log.d("TAG_path", "test: "+"${getAuthViewModel()?.filePath?.value}")
-                    findNavController().popBackStack()
-
-
-                   // findNavController().navigate(R.id.action_cameraFragment_to_previewFragment)
+                    findNavController().navigate(R.id.action_cameraFragment_to_docuploadFragment)
+                 //   findNavController().popBackStack()
 
                 }
 
@@ -462,6 +419,7 @@ class CameraFragment : BaseFragment() {
         countDownTimer.start()
     }
 
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun onDestroy() {
         super.onDestroy()
         // Make sure to cancel the countdown timer when the activity is destroyed
@@ -486,48 +444,14 @@ class CameraFragment : BaseFragment() {
         }
     }
 
-    fun getFullPath():String?{
-        var fullPath: String? =null
-        val relativePath = "${Environment.DIRECTORY_DCIM}/epay"
-        val contentResolver = context?.contentResolver
-        val collection = MediaStore.Video.Media.getContentUri("external")
+    val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
 
-        val projection = arrayOf(
-            MediaStore.Video.Media._ID,
-            MediaStore.Video.Media.DISPLAY_NAME,
-            MediaStore.Video.Media.RELATIVE_PATH
-        )
-
-        val selection = "${MediaStore.Video.Media.RELATIVE_PATH} = ?"
-        val selectionArgs = arrayOf(relativePath)
-
-        val sortOrder = "${MediaStore.Video.Media.DATE_MODIFIED} DESC"
-
-        val query = contentResolver?.query(
-            collection,
-            projection,
-            selection,
-            selectionArgs,
-            sortOrder
-        )
-
-        query?.use { cursor ->
-            val idColumn = cursor.getColumnIndexOrThrow(MediaStore.Video.Media._ID)
-            val nameColumn = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DISPLAY_NAME)
-            val relativePathColumn = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.RELATIVE_PATH)
-
-            while (cursor.moveToNext()) {
-                val id = cursor.getLong(idColumn)
-                val name = cursor.getString(nameColumn)
-                val relativePath = cursor.getString(relativePathColumn)
-
-                // Construct the full file path
-                 fullPath = "$relativePath/$name"
-                Log.d("TAG_file", "getFullPath: "+fullPath)
-                 return  fullPath
-                // fullPath now contains the full path of the video file
-            }
+        if (uri != null) {
+            authViewModel?.filePath?.value = uri
+            findNavController().popBackStack()
+            //findNavController().navigate(R.id.action_homeFragment_to_previewFragment)
+        } else {
+            Log.d("PhotoPicker", "No media selected")
         }
-        return null
     }
 }

@@ -94,4 +94,5 @@
     <string name="employee_code_id_hint">Employee Code/ID</string>
     <string name="choose_an_action">Choose an action</string>
     <string name="capture_image">Capture Image</string>
+    <string name="please_wait">Please wait...</string>
 </resources>

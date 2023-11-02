@@ -707,7 +707,7 @@
                         android:textSize="@dimen/text_size" />
 
                     <LinearLayout
-                        android:id="@+id/ll_aadhar"
+                        android:id="@+id/ll_cpan"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"
                         android:layout_marginTop="@dimen/edit_text_margin_top"
