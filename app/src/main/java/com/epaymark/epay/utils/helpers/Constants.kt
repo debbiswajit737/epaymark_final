@@ -13,6 +13,8 @@ object Constants {
     const val EPAY_SHAREDFREFFRENCE = "EPAY_SHAREDFREFFRENCE"
     const val TEST = "TEST"
     var isVideo=false
+    var isPdf=false
+    var isBackCamera=true
     var isGallary=false
     var contentValues: ContentValues? =null
 

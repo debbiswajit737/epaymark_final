@@ -24,11 +24,12 @@
             android:id="@+id/btnCaptureImg"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="#CDDC39"
+            android:background="@color/title_header2"
             android:text="Capture Image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnCaptureVideo"
@@ -36,6 +37,7 @@
             android:layout_height="60dp"
             android:background="#FFC107"
             android:text="Capture Video"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/btnCaptureImg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -47,8 +49,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="00:00:00"
-            android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textColor="@color/title_header2"
+            android:textSize="@dimen/_22ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

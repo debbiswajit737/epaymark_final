@@ -12,6 +12,7 @@ import android.os.Environment
 import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,7 +37,9 @@ import com.epaymark.epay.data.model.StateCityModel
 import com.epaymark.epay.data.viewMovel.AuthViewModel
 import com.epaymark.epay.databinding.FragmentRegBinding
 import com.epaymark.epay.ui.base.BaseFragment
+import com.epaymark.epay.ui.fragment.CameraDialog
 import com.epaymark.epay.utils.*
+import com.epaymark.epay.utils.helpers.Constants
 import com.epaymark.epay.utils.helpers.PermissionUtils
 import com.epaymark.epay.utils.helpers.PermissionUtils.createAlertDialog
 import com.epaymark.epay.utils.`interface`.CallBack
@@ -51,6 +54,7 @@ class RegFragment : BaseFragment() {
     var cityList = ArrayList<StateCityModel>()
     var stateListAdapter:StateListAdapter?=null
     var cityListAdapter:StateListAdapter?=null
+    var type=""
     private val authViewModel: AuthViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -93,10 +97,58 @@ class RegFragment : BaseFragment() {
                 })
             }
             btnNext.setOnClickListener {
+
                 if (authViewModel?.regValidation()==true) {
                    findNavController().navigate(R.id.action_regFragment_to_kycDetailsFragment)
                 }
             }
+
+            activity?.let {act->
+                llPan.setOnClickListener{
+                    Constants.isBackCamera =true
+                    type="llPan"
+                    Constants.isPdf =false
+                    val cameraDialog = CameraDialog(object : CallBack {
+                        override fun getValue(s: String) {
+
+                            getImage(s)
+                        }
+
+                    })
+                    cameraDialog.show(act.supportFragmentManager, cameraDialog.tag)
+                }
+
+                llCpan.setOnClickListener{
+                    Constants.isBackCamera =true
+                    type="llCpan"
+                    Constants.isPdf =false
+                    val cameraDialog = CameraDialog(object : CallBack {
+                        override fun getValue(s: String) {
+
+                            getImage(s)
+                        }
+
+                    })
+                    cameraDialog.show(act.supportFragmentManager, cameraDialog.tag)
+                }
+
+                llBpan.setOnClickListener{
+                    Constants.isBackCamera =true
+                    type="llBpan"
+                    Constants.isPdf =false
+                    val cameraDialog = CameraDialog(object : CallBack {
+                        override fun getValue(s: String) {
+
+                            getImage(s)
+                        }
+
+                    })
+                    cameraDialog.show(act.supportFragmentManager, cameraDialog.tag)
+                }
+            }
+
+
+
         }
 
         /*binding.btnNext.setOnClickListener {
@@ -124,6 +176,11 @@ class RegFragment : BaseFragment() {
             binding.tvCityListSearch.isVisible = binding.recycleCity.isVisible
             it.isVisible=!binding.recycleCity.isVisible
         }
+
+
+
+
+
     }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -324,6 +381,25 @@ class RegFragment : BaseFragment() {
             authViewModel.cityErrorVisible.value = it.isNotEmpty()
         }
 
+
+        authViewModel.filePath.observe(viewLifecycleOwner){
+            when(type){
+                "llPan"->{
+                    authViewModel.llPan.value=it.toString()
+                }
+                "llCpan"->{
+                    authViewModel.llCpan.value=it.toString()
+                }
+                "llBpan"->{
+                    authViewModel.llBpan.value=it.toString()
+                }
+
+
+            }
+
+            Log.d("TAG_file", "true setObserver: "+it.uriToBase64(binding.root.context.contentResolver))
+        }
+
     }
 
     private fun checkFocus() {
@@ -514,6 +590,19 @@ class RegFragment : BaseFragment() {
         return html
     }
 
+    private fun getImage(s:String) {
+        when(s){
+            "g"->{
+                Constants.isVideo =false
+                Constants.isGallary =true
+                findNavController().navigate(R.id.action_regFragment_to_cameraFragment)
+            }
+            "t"->{
+                Constants.isVideo =false
+                Constants.isGallary =false
+                findNavController().navigate(R.id.action_regFragment_to_cameraFragment)
+            }
 
-
+        }
+    }
 }

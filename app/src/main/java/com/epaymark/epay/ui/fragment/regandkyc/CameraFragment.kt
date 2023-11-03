@@ -1,6 +1,7 @@
 package com.epaymark.epay.ui.fragment.regandkyc
 
 import android.Manifest
+import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
 import android.net.Uri
@@ -8,6 +9,8 @@ import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Environment
+import android.os.Handler
+import android.os.Looper
 import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
@@ -15,6 +18,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -30,6 +34,7 @@ import androidx.camera.video.Recorder
 import androidx.camera.video.Recording
 import androidx.camera.video.VideoCapture
 import androidx.camera.video.VideoRecordEvent
+import androidx.compose.ui.graphics.Color
 import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker
 import androidx.databinding.DataBindingUtil
@@ -40,12 +45,16 @@ import com.epaymark.epay.R
 import com.epaymark.epay.data.viewMovel.AuthViewModel
 import com.epaymark.epay.databinding.FragmentCameraBinding
 import com.epaymark.epay.ui.base.BaseFragment
+import com.epaymark.epay.utils.helpers.Constants
 import com.epaymark.epay.utils.helpers.Constants.contentValues
+import com.epaymark.epay.utils.helpers.Constants.isBackCamera
 import com.epaymark.epay.utils.helpers.Constants.isGallary
+import com.epaymark.epay.utils.helpers.Constants.isPdf
 import com.epaymark.epay.utils.helpers.Constants.isVideo
 import com.epaymark.epay.utils.helpers.PermissionUtils
 import com.epaymark.epay.utils.helpers.PermissionUtils.createAlertDialog
 import com.epaymark.epay.utils.`interface`.PermissionsCallback
+import com.mikhaellopez.circularprogressbar.CircularProgressBar
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -57,7 +66,7 @@ class CameraFragment : BaseFragment() {
 
 
     private lateinit var countDownTimer: CountDownTimer
-    private val initialCountDown: Long = 5000
+    private val initialCountDown: Long = 10000
     private val countDownInterval: Long = 1000
 
     lateinit var binding: FragmentCameraBinding
@@ -66,6 +75,9 @@ class CameraFragment : BaseFragment() {
     private var videoCapture: VideoCapture<Recorder>? = null
     private var recording: Recording? = null
     private val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
+
+    private lateinit var pickPdfLauncher: ActivityResultLauncher<Array<String>>
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -86,7 +98,21 @@ class CameraFragment : BaseFragment() {
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     fun init() {
         if (isGallary) {
-            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+            if (isPdf){
+                //pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+
+                pickPdfLauncher = registerForActivityResult(ActivityResultContracts.OpenDocument()) { result: Uri? ->
+                    if (result != null) {
+                        authViewModel?.filePath?.value = result
+                        findNavController().popBackStack()
+                    }
+                }
+                val mimeTypes = arrayOf("application/pdf")
+                pickPdfLauncher.launch(mimeTypes)
+            }
+            else {
+                pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+            }
         }
         else{
             PermissionUtils.requestVideoRecordingPermission(requireActivity(), object :
@@ -125,11 +151,16 @@ class CameraFragment : BaseFragment() {
             binding.tvTimer.visibility = View.GONE
             if (!isVideo) {
                 btnCaptureImg.visibility = View.VISIBLE
-                btnCaptureVideo.visibility = View.GONE
+               // circularProgressBar.visibility = View.VISIBLE
+              //  btnCaptureVideo.visibility = View.GONE
             } else {
                 binding.tvTimer.visibility = View.VISIBLE
                 btnCaptureImg.visibility = View.GONE
-                btnCaptureVideo.visibility = View.VISIBLE
+              //  circularProgressBar.visibility = View.GONE
+              //  btnCaptureVideo.visibility = View.VISIBLE
+                Handler(Looper.getMainLooper()).postDelayed({
+                    videoCapture()
+                },1000)
             }
 
         }
@@ -147,10 +178,15 @@ class CameraFragment : BaseFragment() {
         imageCapture?.takePicture(outputOptions, ContextCompat.getMainExecutor(binding.btnCaptureImg.context), object : ImageCapture.OnImageSavedCallback {
             override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
 
-                outputFileResults.savedUri?.let { authViewModel.filePath.value = it }
-                findNavController().navigate(R.id.action_cameraFragment_to_docuploadFragment)
-               // findNavController().popBackStack()
+                outputFileResults.savedUri?.let { authViewModel.filePath.value = it
+                    authViewModel?.filePath?.value = it
+                    findNavController().popBackStack()
+                }
+               // findNavController().navigate(R.id.action_cameraFragment_to_docuploadFragment)
+                //findNavController().popBackStack()
                 // Image capture successful, you can handle success here
+
+
             }
 
             override fun onError(exception: ImageCaptureException) {
@@ -181,7 +217,7 @@ class CameraFragment : BaseFragment() {
                     .build()
                 videoCapture = VideoCapture.withOutput(recorder)
 
-                val cameraSelector = if (isVideo) {
+                val cameraSelector = if (isBackCamera) {
                     CameraSelector.DEFAULT_BACK_CAMERA
                 } else CameraSelector.DEFAULT_FRONT_CAMERA
                 try {
@@ -219,13 +255,13 @@ class CameraFragment : BaseFragment() {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 // For Android 10 and higher, use RELATIVE_PATH
-                put(MediaStore.Video.Media.RELATIVE_PATH, Environment.DIRECTORY_MOVIES + "/epay")
+                put(MediaStore.Video.Media.RELATIVE_PATH, Environment.DIRECTORY_DCIM + "/epay")
                 //put(MediaStore.Video.Media.RELATIVE_PATH, "epay/image")
             } else {
                 // For versions prior to Android 10, manage the file operations manually
                 val directoryPath = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     // For Android Nougat and higher, use getExternalStoragePublicDirectory
-                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES)
+                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
                 } else {
                     // For versions prior to Nougat, use a hardcoded path
                     File(Environment.getExternalStorageDirectory(), "epay/image")
@@ -262,9 +298,13 @@ class CameraFragment : BaseFragment() {
                 }
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    output.savedUri?.let { authViewModel.filePath.value = it }
-                    //findNavController().navigate(R.id.action_cameraFragment_to_previewFragment)
-                    findNavController().popBackStack()
+                    output.savedUri?.let { authViewModel.filePath.value = it
+
+                        authViewModel?.filePath?.value = it
+                        findNavController().popBackStack()
+                    }
+                    //findNavController().navigate(R.id.action_cameraFragment_to_docuploadFragment)
+                    //findNavController().popBackStack()
 
                 }
             }
@@ -298,12 +338,12 @@ class CameraFragment : BaseFragment() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                     // For Android 10 and higher, use RELATIVE_PATH
                   //  put(MediaStore.Video.Media.RELATIVE_PATH, "epay/video")
-                    put(MediaStore.Video.Media.RELATIVE_PATH, Environment.DIRECTORY_MOVIES + "/epay")
+                    put(MediaStore.Video.Media.RELATIVE_PATH, Environment.DIRECTORY_DCIM + "/epay")
                 } else {
                     // For versions prior to Android 10, manage the file operations manually
                     val directoryPath = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                         // For Android Nougat and higher, use getExternalStoragePublicDirectory
-                        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES)
+                        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
                     } else {
                         // For versions prior to Nougat, use a hardcoded path
                         File(Environment.getExternalStorageDirectory(), "epay/video")
@@ -344,19 +384,51 @@ class CameraFragment : BaseFragment() {
                     .start(ContextCompat.getMainExecutor(binding.root.context)) { recordEvent ->
                         when (recordEvent) {
                             is VideoRecordEvent.Start -> {
-                                Toast.makeText(
+                                /*Toast.makeText(
                                     binding.root.context,
                                     "Start Record",
                                     Toast.LENGTH_SHORT
                                 )
-                                    .show()
+                                    .show()*/
+                                /*binding.circularProgressBar.apply {
+                                    // Set Progress
+                                    progress = 65f
+                                    // or with animation
+                                    setProgressWithAnimation(65f, 1000) // =1s
+
+                                    // Set Progress Max
+                                    progressMax = 200f
+
+                                    // Set ProgressBar Color
+                                    progressBarColor = ContextCompat.getColor(context, R.color.title_header2)
+                                    // or with gradient
+                                    progressBarColorStart = ContextCompat.getColor(context, R.color.gray)
+                                    progressBarColorEnd =ContextCompat.getColor(context, R.color.pink2)
+                                    progressBarColorDirection = CircularProgressBar.GradientDirection.TOP_TO_BOTTOM
+
+                                    // Set background ProgressBar Color
+                                    backgroundProgressBarColor = ContextCompat.getColor(context, R.color.yellow)
+                                    // or with gradient
+                                    backgroundProgressBarColorStart = ContextCompat.getColor(context, R.color.white)
+                                    backgroundProgressBarColorEnd = ContextCompat.getColor(context, R.color.brown)
+                                    backgroundProgressBarColorDirection = CircularProgressBar.GradientDirection.TOP_TO_BOTTOM
+
+                                    // Set Width
+                                    progressBarWidth = 7f // in DP
+                                    backgroundProgressBarWidth = 3f // in DP
+
+                                    // Other
+                                    roundBorder = true
+                                    startAngle = 180f
+                                    progressDirection = CircularProgressBar.ProgressDirection.TO_RIGHT
+                                }*/
                             }
 
                             is VideoRecordEvent.Finalize -> {
 
                                 if (!recordEvent.hasError()) {
                                     recordEvent.outputResults.outputUri?.let {
-                                        authViewModel.filePath.value = it
+                                        authViewModel.videoFilePath.value = it
                                         authViewModel.videoFile.value?.url=it.toString()
                                     }
 
@@ -404,7 +476,7 @@ class CameraFragment : BaseFragment() {
 
 
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-                        authViewModel.filePath.value = Uri.parse("$path")
+                        authViewModel.videoFilePath.value = Uri.parse("$path")
 
                         authViewModel.videoFile.value?.url= path.toString()
                     }
@@ -447,7 +519,7 @@ class CameraFragment : BaseFragment() {
     val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
 
         if (uri != null) {
-            authViewModel?.filePath?.value = uri
+            authViewModel.filePath.value = uri
             findNavController().popBackStack()
             //findNavController().navigate(R.id.action_homeFragment_to_previewFragment)
         } else {

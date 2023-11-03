@@ -2,6 +2,7 @@ package com.epaymark.epay.ui.fragment.regandkyc
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,8 @@ import com.epaymark.epay.R
 import com.epaymark.epay.data.viewMovel.AuthViewModel
 import com.epaymark.epay.databinding.BankDetailsFragmentBinding
 import com.epaymark.epay.ui.base.BaseFragment
+import com.epaymark.epay.ui.fragment.CameraDialog
+import com.epaymark.epay.utils.helpers.Constants
 import com.epaymark.epay.utils.`interface`.CallBack
 
 class BankDetailsFragment : BaseFragment() {
@@ -44,6 +47,19 @@ class BankDetailsFragment : BaseFragment() {
              }
             }
 
+        binding.llCheck.setOnClickListener{
+            Constants.isBackCamera =true
+
+            Constants.isPdf =false
+            val cameraDialog = CameraDialog(object : CallBack {
+                override fun getValue(s: String) {
+
+                    getImage(s)
+                }
+
+            })
+           activity?.let { act->  cameraDialog.show(act.supportFragmentManager, cameraDialog.tag)}
+        }
     }
 
     fun initView() {
@@ -63,7 +79,10 @@ class BankDetailsFragment : BaseFragment() {
     }
 
     fun setObserver() {
-
+        authViewModel.filePath.observe(viewLifecycleOwner){
+         authViewModel.pancardImage3.value=it.toString()
+         Log.d("TAG_file", "true setObserver: "+it.uriToBase64(binding.root.context.contentResolver))
+        }
     }
 
     fun Spinner.setSpinner(callBack: CallBack, genderArray: Array<String>){
@@ -78,6 +97,22 @@ class BankDetailsFragment : BaseFragment() {
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // Handle when nothing is selected
             }
+        }
+    }
+
+    private fun getImage(s:String) {
+        when(s){
+            "g"->{
+                Constants.isVideo =false
+                Constants.isGallary =true
+                findNavController().navigate(R.id.action_bankDetailsFragment_to_cameraFragment)
+            }
+            "t"->{
+                Constants.isVideo =false
+                Constants.isGallary =false
+                findNavController().navigate(R.id.action_bankDetailsFragment_to_cameraFragment)
+            }
+
         }
     }
 }

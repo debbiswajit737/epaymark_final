@@ -3,10 +3,14 @@ package com.epaymark.epay.ui.fragment.regandkyc
 
 import android.app.Activity
 import android.app.Dialog
+import android.content.ContentResolver
+import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -22,9 +26,14 @@ import com.epaymark.epay.databinding.FragmentDocuploadBinding
 import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.ui.fragment.CameraDialog
 import com.epaymark.epay.utils.common.MethodClass
+import com.epaymark.epay.utils.helpers.Constants
+import com.epaymark.epay.utils.helpers.Constants.isBackCamera
 import com.epaymark.epay.utils.helpers.Constants.isGallary
+import com.epaymark.epay.utils.helpers.Constants.isPdf
 import com.epaymark.epay.utils.helpers.Constants.isVideo
 import com.epaymark.epay.utils.`interface`.CallBack
+import java.io.ByteArrayOutputStream
+import java.io.InputStream
 
 class DocuploadFragment : BaseFragment() {
     lateinit var binding: FragmentDocuploadBinding
@@ -56,10 +65,10 @@ class DocuploadFragment : BaseFragment() {
             loader?.let {
                 it.show()
                 Handler(Looper.getMainLooper()).postDelayed({
-                    authViewModel.videokyc.value=authViewModel.videoFile.value?.file
+                    authViewModel.videokyc.value=authViewModel.videoFilePath.value.toString()
                     it.dismiss()
                     isVideo=false
-                },12000)
+                },15000)
             }
         }
     }
@@ -68,6 +77,7 @@ class DocuploadFragment : BaseFragment() {
             binding.apply {
                 llVideoKyc.setOnClickListener{
                     isVideo=true
+                    isBackCamera=true
                     /*val intent = Intent(MediaStore.ACTION_VIDEO_CAPTURE)
 
                     // Set the maximum video duration in seconds (30 minutes = 30 * 60 seconds)
@@ -81,7 +91,9 @@ class DocuploadFragment : BaseFragment() {
 
 
                 llPartnerPanId.setOnClickListener{
+                    isBackCamera=true
                     type="pan"
+                    isPdf=false
                     val cameraDialog = CameraDialog(object : CallBack {
                         override fun getValue(s: String) {
 
@@ -93,6 +105,8 @@ class DocuploadFragment : BaseFragment() {
                 }
 
                 llCpan.setOnClickListener{
+                    isBackCamera=true
+                    isPdf=false
                     type="cpan"
                     val cameraDialog = CameraDialog(object : CallBack {
                         override fun getValue(s: String) {
@@ -105,6 +119,8 @@ class DocuploadFragment : BaseFragment() {
                 }
 
                 llPaadhar.setOnClickListener{
+                    isBackCamera=true
+                    isPdf=false
                     type="paadhar"
                     val cameraDialog = CameraDialog(object : CallBack {
                         override fun getValue(s: String) {
@@ -116,6 +132,8 @@ class DocuploadFragment : BaseFragment() {
                     cameraDialog.show(act.supportFragmentManager, cameraDialog.tag)
                 }
                 llPartnerAadharBack.setOnClickListener{
+                    isBackCamera=true
+                    isPdf=false
                     type="PartnerAadharBack"
                     val cameraDialog = CameraDialog(object : CallBack {
                         override fun getValue(s: String) {
@@ -127,6 +145,8 @@ class DocuploadFragment : BaseFragment() {
                     cameraDialog.show(act.supportFragmentManager, cameraDialog.tag)
                 }
                 llGst.setOnClickListener{
+                    isBackCamera=true
+                    isPdf=true
                     type="llGst"
                     val cameraDialog = CameraDialog(object : CallBack {
                         override fun getValue(s: String) {
@@ -139,6 +159,8 @@ class DocuploadFragment : BaseFragment() {
                 }
 
                 llCertificateOfIncorporation.setOnClickListener{
+                    isBackCamera=true
+                    isPdf=true
                     type="llCertificateOfIncorporation"
                     val cameraDialog = CameraDialog(object : CallBack {
                         override fun getValue(s: String) {
@@ -150,6 +172,8 @@ class DocuploadFragment : BaseFragment() {
                     cameraDialog.show(act.supportFragmentManager, cameraDialog.tag)
                 }
                 llBoardResolution.setOnClickListener{
+                    isBackCamera=true
+                    isPdf=true
                     type="llBoardResolution"
                     val cameraDialog = CameraDialog(object : CallBack {
                         override fun getValue(s: String) {
@@ -161,6 +185,8 @@ class DocuploadFragment : BaseFragment() {
                     cameraDialog.show(act.supportFragmentManager, cameraDialog.tag)
                 }
                 llTrade.setOnClickListener{
+                    isBackCamera=true
+                    isPdf=true
                     type="llTrade"
                     val cameraDialog = CameraDialog(object : CallBack {
                         override fun getValue(s: String) {
@@ -173,6 +199,8 @@ class DocuploadFragment : BaseFragment() {
                 }
 
                 llUserSelfi.setOnClickListener{
+                    isBackCamera=false
+                    isPdf=false
                     type="llUserSelfi"
                     val cameraDialog = CameraDialog(object : CallBack {
                         override fun getValue(s: String) {
@@ -185,6 +213,8 @@ class DocuploadFragment : BaseFragment() {
                 }
 
                 llCselfi.setOnClickListener{
+                    isBackCamera=false
+                    isPdf=false
                     type="llCselfi"
                     val cameraDialog = CameraDialog(object : CallBack {
                         override fun getValue(s: String) {
@@ -212,20 +242,49 @@ class DocuploadFragment : BaseFragment() {
                                 authViewModel.filePath.value?.toString()?.videoToBase64(binding.root.context)
                                     .toString()
 
-                            Log.d("TAG_videofileaa", "onViewClick: "+authViewModel.videoFile.value?.file)
-                            Log.d("TAG_videofile", "onViewClick: "+authViewModel.filePath.value)
+                            authViewModel.videoFilePath.value?.let {uri->
+                                Log.d("TAG_videofilebbbbb", "onViewClick: "+uriToBase64(binding.tvPancardVideoKycImage.context,uri))
+                            }
 
 
 
-                        Toast.makeText(binding.root.context, ""+authViewModel.filePath.value, Toast.LENGTH_SHORT).show()
+
+
                     }catch (e:Exception){
-                        Toast.makeText(binding.root.context, "Video file required \n"+e.message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(binding.root.context, e.message, Toast.LENGTH_SHORT).show()
                     }
 
                 }
             }
         }
 
+    }
+
+
+    // Function to convert a video file URI to Base64
+    fun uriToBase64(context: Context, videoUri: Uri): String {
+        val contentResolver: ContentResolver = context.contentResolver
+
+        // Open an input stream from the content resolver
+        val inputStream: InputStream? = contentResolver.openInputStream(videoUri)
+
+        // Use a ByteArrayOutputStream to read the data from the input stream
+        val buffer = ByteArray(8192) // You can adjust the buffer size as needed
+        val outputStream = ByteArrayOutputStream()
+
+        try {
+            var bytesRead: Int
+            while (inputStream!!.read(buffer).also { bytesRead = it } != -1) {
+                outputStream.write(buffer, 0, bytesRead)
+            }
+        } finally {
+            inputStream?.close()
+        }
+
+        // Convert the bytes to a Base64 encoded string
+        val base64String = Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT)
+
+        return base64String
     }
 
     private fun getImage(s:String) {

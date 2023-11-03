@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/authentication_nav"
-    app:startDestination="@id/docuploadFragment">
+    app:startDestination="@id/regFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_regFragment_to_kycDetailsFragment"
             app:destination="@id/kycDetailsFragment" />
+        <action
+            android:id="@+id/action_regFragment_to_cameraFragment"
+            app:destination="@id/cameraFragment" />
     </fragment>
     <fragment
         android:id="@+id/docuploadFragment"
@@ -62,6 +65,9 @@
         <action
             android:id="@+id/action_bankDetailsFragment_to_docuploadFragment"
             app:destination="@id/docuploadFragment" />
+        <action
+            android:id="@+id/action_bankDetailsFragment_to_cameraFragment"
+            app:destination="@id/cameraFragment" />
     </fragment>
     <fragment
         android:id="@+id/cameraFragment"

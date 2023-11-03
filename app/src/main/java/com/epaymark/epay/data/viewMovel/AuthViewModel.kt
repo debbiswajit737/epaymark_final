@@ -13,6 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AuthViewModel @Inject constructor(private val repository: DeliveryOptionsRepository) : ViewModel() {
     var filePath: MutableLiveData<Uri> = MutableLiveData()
+    var videoFilePath: MutableLiveData<Uri> = MutableLiveData()
     var keyPadValue = MutableLiveData("")
     var mobError = MutableLiveData("")
     var timingValue = MutableLiveData("")
@@ -61,6 +62,15 @@ class AuthViewModel @Inject constructor(private val repository: DeliveryOptionsR
     val llUserSelfi = MutableLiveData<String>()
     val llCselfi = MutableLiveData<String>()
     val videokyc = MutableLiveData<String>()
+
+    val llPan = MutableLiveData<String>()
+    val llCpan = MutableLiveData<String>()
+    val llBpan = MutableLiveData<String>()
+
+
+    val pancardImage3 = MutableLiveData<String>()
+
+
 
     // Error messages for fields
     val nameError = MutableLiveData<String>()
@@ -117,6 +127,24 @@ class AuthViewModel @Inject constructor(private val repository: DeliveryOptionsR
     val bankNameErrorVisible = MutableLiveData<Boolean>()
     val ifscCodeErrorVisible = MutableLiveData<Boolean>()
     val employeeCodeErrorVisible = MutableLiveData<Boolean>()
+
+
+
+    val panPathErrorVisible = MutableLiveData<Boolean>()
+    val cpanPathErrorVisible = MutableLiveData<Boolean>()
+    val paadharErrorVisible = MutableLiveData<Boolean>()
+    val PartnerAadharBackErrorVisible = MutableLiveData<Boolean>()
+    val llGstErrorVisible = MutableLiveData<Boolean>()
+    val llCertificateOfIncorporationErrorVisible = MutableLiveData<Boolean>()
+    val llBoardResolutionErrorVisible = MutableLiveData<Boolean>()
+    val llTradeErrorVisible = MutableLiveData<Boolean>()
+    val llUserSelfiErrorVisible = MutableLiveData<Boolean>()
+    val llCselfiErrorVisible = MutableLiveData<Boolean>()
+    val videokycErrorVisible = MutableLiveData<Boolean>()
+
+    val llPanErrorVisible = MutableLiveData<Boolean>()
+    val llCpanErrorVisible = MutableLiveData<Boolean>()
+    val llBpanErrorVisible = MutableLiveData<Boolean>()
 
     //validation
     fun regValidation(): Boolean {
@@ -310,10 +338,29 @@ class AuthViewModel @Inject constructor(private val repository: DeliveryOptionsR
             }
         }
 
+
+        if (llPan.value?.trim().isNullOrBlank()) {
+
+            panCardNoErrorVisible.value = true
+            isValid = false
+        } else {
+            panCardNoErrorVisible.value = false
+        }
+        if (llCpan.value?.trim().isNullOrBlank()) {
+
+            aadharFontErrorVisible.value = true
+            isValid = false
+        } else {
+            aadharFontErrorVisible.value = false
+        }
+        if (llBpan.value?.trim().isNullOrBlank()) {
+
+            aadharbackImageErrorVisible.value = true
+            isValid = false
+        } else {
+            aadharbackImageErrorVisible.value = false
+        }
         return isValid
-
-
-
 
     }
 
@@ -448,6 +495,34 @@ class AuthViewModel @Inject constructor(private val repository: DeliveryOptionsR
 
         return isValid
     }
+
+    /*fun documentValidation(): Boolean {
+        var isValid = true
+        invisibleErrorTexts()
+
+        val panPath = MutableLiveData<String>()
+        val cpanPath = MutableLiveData<String>()
+        val paadhar = MutableLiveData<String>()
+        val PartnerAadharBack = MutableLiveData<String>()
+        val llGst = MutableLiveData<String>()
+        val llCertificateOfIncorporation = MutableLiveData<String>()
+        val llBoardResolution = MutableLiveData<String>()
+        val llTrade = MutableLiveData<String>()
+        val llUserSelfi = MutableLiveData<String>()
+        val llCselfi = MutableLiveData<String>()
+        val videokyc = MutableLiveData<String>()
+
+
+        if (panPath.value?.trim().isNullOrBlank()) {
+            businessNameError.value = "Please enter a valid business name."
+            businessNameErrorVisible.value = true
+            isValid = false
+        }else {
+            businessCategoryError.value = ""
+            businessCategoryErrorVisible.value = false
+        }
+
+    }*/
 
 
     //error texts primary state

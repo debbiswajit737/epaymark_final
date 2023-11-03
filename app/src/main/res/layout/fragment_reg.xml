@@ -583,6 +583,7 @@
                         android:background="@drawable/field_bg"
                         android:hint="@string/enter_aadhar_no"
                         android:inputType="number"
+                        android:maxLength="12"
                         android:longClickable="false"
                         android:padding="@dimen/_5sdp"
                         android:text="@={viewModel.aadhar}"
@@ -623,7 +624,7 @@
                         android:inputType="textCapCharacters"
                         android:longClickable="false"
                         android:padding="@dimen/_5sdp"
-
+                        android:maxLength="10"
                         android:text="@={viewModel.panCardNo}"
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray"
@@ -651,6 +652,7 @@
                         android:textSize="@dimen/text_size" />
 
                     <LinearLayout
+                        android:id="@+id/ll_pan"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"
                         android:layout_marginTop="@dimen/edit_text_margin_top"
@@ -675,7 +677,7 @@
                             android:layout_height="match_parent"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="2"
-                            android:text="@{viewModel.panCardImage}"
+                            android:text="@{viewModel.llPan}"
                             android:background="@drawable/image_edittext_field_bg"
                             android:gravity="center_vertical"
                             android:hint="@string/no_file_chosen"
@@ -695,7 +697,7 @@
 
                         android:textColor="@color/pink2"
                         android:textSize="@dimen/_9ssp"
-                        android:text="@{viewModel.panCardImageError}"
+                        android:text="This field is required"
                         app:hideErrorTextView="@{viewModel.panCardNoErrorVisible}" />
                     <TextView
                         android:layout_width="match_parent"
@@ -732,7 +734,7 @@
                             android:layout_height="match_parent"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="2"
-                            android:text="@{viewModel.aadharFontImage}"
+                            android:text="@{viewModel.llCpan}"
                             android:background="@drawable/image_edittext_field_bg"
                             android:gravity="center_vertical"
                             android:hint="@string/no_file_chosen"
@@ -748,11 +750,10 @@
                         android:layout_height="wrap_content"
 
                         android:fontFamily="@font/montserrat_regular_400"
-
+                        android:text="This field is required"
 
                         android:textColor="@color/pink2"
                         android:textSize="@dimen/_9ssp"
-                        android:text="@{viewModel.aadharFontError}"
                         app:hideErrorTextView="@{viewModel.aadharFontErrorVisible}" />
                     <TextView
                         android:layout_width="match_parent"
@@ -764,6 +765,7 @@
                         android:textSize="@dimen/text_size" />
 
                     <LinearLayout
+                        android:id="@+id/ll_bpan"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"
                         android:layout_marginTop="@dimen/edit_text_margin_top"
@@ -789,7 +791,7 @@
                             android:layout_height="match_parent"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="2"
-                            android:text="@{viewModel.aadharbackImage}"
+                            android:text="@{viewModel.llBpan}"
                             android:background="@drawable/image_edittext_field_bg"
                             android:gravity="center_vertical"
                             android:hint="@string/no_file_chosen"
@@ -806,7 +808,7 @@
                         android:fontFamily="@font/montserrat_regular_400"
                         android:textColor="@color/pink2"
                         android:textSize="@dimen/_9ssp"
-                        android:text="@{viewModel.aadharbackImageError}"
+                        android:text="This field is required"
                         app:hideErrorTextView="@{viewModel.aadharbackImageErrorVisible}" />
 
                     <LinearLayout

@@ -357,6 +357,7 @@
                         android:textSize="@dimen/text_size"
                         android:text="@string/cancelled_cheque_jpg_only"/>
                     <LinearLayout
+                        android:id="@+id/ll_check"
                         android:orientation="horizontal"
                         android:background="@drawable/field_image_bg"
                         android:layout_width="match_parent"
@@ -382,7 +383,7 @@
                             android:gravity="center_vertical"
                             android:layout_weight="2"
                             android:layout_gravity="center_vertical"
-
+                            android:text="@{viewModel.pancardImage3}"
                             android:layout_height="match_parent"
                             android:background="@drawable/image_edittext_field_bg"
                             android:hint="@string/no_file_chosen"

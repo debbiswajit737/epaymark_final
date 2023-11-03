@@ -17,6 +17,7 @@ import com.epaymark.epay.R
 import com.epaymark.epay.data.viewMovel.AuthViewModel
 import com.epaymark.epay.databinding.CameraBottomsheetLayoutBinding
 import com.epaymark.epay.ui.base.BaseBottomSheetFragment
+import com.epaymark.epay.utils.helpers.Constants.isPdf
 import com.epaymark.epay.utils.`interface`.CallBack
 
 class CameraDialog(val callBack: CallBack) :BaseBottomSheetFragment() {
@@ -85,6 +86,18 @@ class CameraDialog(val callBack: CallBack) :BaseBottomSheetFragment() {
     }
 
     private fun initView() {
+        binding.apply {
+            if (isPdf){
+                tvGallery.setText("Choose a PDF file.")
+                imgTakephoto.visibility=View.GONE
+                tvTakePhoto.visibility=View.GONE
+            }
+            else{
+                binding.tvGallery.setText("Choose from gallery")
+                imgTakephoto.visibility=View.VISIBLE
+                tvTakePhoto.visibility=View.VISIBLE
+            }
+        }
 
     }
 
