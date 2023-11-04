@@ -7,7 +7,10 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.util.Base64
 import android.util.Log
+import android.view.View
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.utils.helpers.SharedPreff
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.ByteArrayOutputStream
@@ -101,6 +104,13 @@ open class BaseFragment: Fragment(){
             e.printStackTrace()
             return null
         }
+    }
+
+    fun View.back(){
+        this.setOnClickListener{
+            findNavController().popBackStack()
+        }
+
     }
 }
 

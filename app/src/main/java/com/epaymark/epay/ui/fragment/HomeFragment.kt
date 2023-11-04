@@ -2,12 +2,14 @@ package com.epaymark.epay.ui.fragment
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.epaymark.epay.adapter.HorizontalMarginItemDecoration
@@ -24,6 +26,7 @@ import com.epaymark.epay.databinding.FragmentHomeBinding
 
 
 import com.epaymark.epay.ui.base.BaseFragment
+import com.epaymark.epay.utils.`interface`.CallBack
 
 
 class HomeFragment : BaseFragment() {
@@ -263,18 +266,30 @@ class HomeFragment : BaseFragment() {
 
 
             recycleViewRecharge.apply {
-                iconList3.add(ListIcon("Mobile Recharge", R.drawable.db_mobile))
-                iconList3.add(ListIcon("DTH Recharge", R.drawable.ic_dth_recharge))
+                iconList3.clear()
+                iconList3.add(ListIcon(getString(R.string.mobile_recharge), R.drawable.db_mobile))
+                iconList3.add(ListIcon(getString(R.string.dth_recharge), R.drawable.ic_dth_recharge))
                 iconList3.add(ListIcon("Electricity", R.drawable.electric))
                 iconList3.add(ListIcon("Fast Tag", R.drawable.icons8_fastag))
                 iconList3.add(ListIcon("Google Play", R.drawable.google_play))
                 iconList3.add(ListIcon("Insurance", R.drawable.insurance))
                 iconList3.add(ListIcon("Water", R.drawable.water))
                 iconList3.add(ListIcon("View More", R.drawable.view_more))
-                adapter= RechargeAdapter(iconList3,R.drawable.circle_shape)
+                adapter= RechargeAdapter(iconList3,R.drawable.circle_shape, object : CallBack {
+                    override fun getValue(s: String) {
+                        Log.d("TAG_mobile_recharge", "getValue: $s")
+                        when(s){
+                            getString(R.string.mobile_recharge)->{
+                                findNavController().navigate(R.id.action_homeFragment2_to_mobileRechargeFragment)
+                            }
+                        }
+                    }
+
+                })
             }
 
             recycleMyBig.apply {
+                iconList4.clear()
                 iconList4.add(ListIcon("Balence & History", R.drawable.transaction_history))
                 iconList4.add(ListIcon("CMS", R.drawable.cms))
                 iconList4.add(ListIcon("Wallet", R.drawable.db_balance))
@@ -284,6 +299,7 @@ class HomeFragment : BaseFragment() {
             }
 
             recycleAEPS.apply {
+                iconList5.clear()
                 iconList5.add(ListIcon("AePS", R.drawable.ic_fingerprint_dark))
                 iconList5.add(ListIcon("DMT", R.drawable.bank_transfer))
                 iconList5.add(ListIcon("MATM", R.drawable.transaction_history))
@@ -293,6 +309,7 @@ class HomeFragment : BaseFragment() {
             }
 
             recycleUPI.apply {
+                iconList6.clear()
                 iconList6.add(ListIcon("Scan & Pay", R.drawable.baseline_qr_code_scanner_24))
                 iconList6.add(ListIcon("To Contact", R.drawable.ic_contacts))
                 iconList6.add(ListIcon("To Self", R.drawable.ic_self))
@@ -301,6 +318,7 @@ class HomeFragment : BaseFragment() {
                 adapter= UPIAdapter(iconList6,R.drawable.circle_shape2)
             }
             recycleTravel.apply {
+                iconList7.clear()
                 iconList7.add(ListIcon("Flight", R.drawable.ic_flight))
                 iconList7.add(ListIcon("Train", R.drawable.ic_train))
                 iconList7.add(ListIcon("Bus", R.drawable.bus))

@@ -25,4 +25,6 @@
     <color name="border_focus">#c2dbff</color>
     <color name="title_color">#0e0e0f</color>
     <color name="brown">#4a0405</color>
+    <color name="logo_color">#060658</color>
+    <color name="logo_second_color">#b77b1b</color>
 </resources>

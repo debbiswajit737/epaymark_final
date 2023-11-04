@@ -5,9 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.epaymark.epay.data.model.ListIcon
 import com.epaymark.epay.databinding.RechargeLayoutBinding
+import com.epaymark.epay.utils.`interface`.CallBack
 
 
-class RechargeAdapter(private val items: List<ListIcon>, val circleShape: Int) : RecyclerView.Adapter<RechargeAdapter.MyViewHolder>() {
+class RechargeAdapter(private val items: List<ListIcon>, val circleShape: Int,val listner: CallBack) : RecyclerView.Adapter<RechargeAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         /*val view = LayoutInflater.from(parent.context).inflate(R.layout.banner_items, parent, false)
@@ -40,12 +41,19 @@ class RechargeAdapter(private val items: List<ListIcon>, val circleShape: Int) :
             if (position!=items.size-1) {
                 binding.imgIcon.setBackgroundResource(circleShape)
             }
-            item.title.let {
-                binding.tvTitle.text = it
+            item.title?.let { title->
+                binding.tvTitle.text = title
+                binding.llItem.setOnClickListener{
+                    listner.getValue(title)
+                }
             }
             item.image?.let {image->
                 binding.imgIcon.setImageResource(image)
             }
+
+
+
+
         }
     }
 

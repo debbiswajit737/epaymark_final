@@ -13,5 +13,13 @@
     <fragment
         android:id="@+id/homeFragment2"
         android:name="com.epaymark.epay.ui.fragment.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment2_to_mobileRechargeFragment"
+            app:destination="@id/mobileRechargeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mobileRechargeFragment"
+        android:name="com.epaymark.epay.ui.fragment.MobileRechargeFragment"
+        android:label="MobileRechargeFragment" />
 </navigation>

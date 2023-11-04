@@ -1,9 +1,12 @@
 package com.epaymark.epay.ui.activity
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.epaymark.epay.R
 import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.ActivityDashboardBinding
@@ -15,16 +18,14 @@ import com.epaymark.epay.ui.popup.LoadingPopup
 import com.epaymark.epay.utils.helpers.RequestBodyHelper
 import com.epaymark.epay.utils.helpers.SharedPreff
 import com.epaymark.epay.utils.helpers.helper.decryptData
-import com.epaymark.epay.utils.helpers.helper.encryptData
 import dagger.hilt.android.AndroidEntryPoint
-import org.json.JSONObject
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class DashboardActivity  : BaseActivity() {
-    lateinit var activityDashboardBinding:ActivityDashboardBinding
+    lateinit var binding:ActivityDashboardBinding
     private lateinit var myViewModel: MyViewModel
-
+    private var navController: NavController? = null
     @Inject
     lateinit var requestBodyHelper: RequestBodyHelper
 
@@ -36,18 +37,35 @@ class DashboardActivity  : BaseActivity() {
     private val mTag = "tag"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activityDashboardBinding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard)
         myViewModel = ViewModelProvider(this)[MyViewModel::class.java]
-
+        init()
         observer()
 
         loadingPopup = LoadingPopup(this)
         errorPopUp = ErrorPopUp(this)
 
-        myViewModel.login(requestBodyHelper.getLoginRequest("test@abc.com", "123"))
+       // myViewModel.login(requestBodyHelper.getLoginRequest("test@abc.com", "123"))
 
     }
 
+    fun init(){
+
+        val navHostFragment: NavHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.navController
+
+
+        var currentFragmentId = navController?.currentDestination?.id
+        if (currentFragmentId==R.id.homeFragment){
+            binding.bottomNav.visibility= View.VISIBLE
+            binding.clHeader.visibility= View.VISIBLE
+        }
+        else{
+            binding.bottomNav.visibility= View.GONE
+            binding.clHeader.visibility= View.GONE
+        }
+    }
 
     fun observer(){
 

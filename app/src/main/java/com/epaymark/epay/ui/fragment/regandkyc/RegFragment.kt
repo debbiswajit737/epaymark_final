@@ -110,7 +110,6 @@ class RegFragment : BaseFragment() {
                     Constants.isPdf =false
                     val cameraDialog = CameraDialog(object : CallBack {
                         override fun getValue(s: String) {
-
                             getImage(s)
                         }
 
