@@ -2,6 +2,8 @@ package com.epaymark.epay.ui.activity
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -20,7 +22,6 @@ import com.epaymark.epay.databinding.ActivityAuthBinding
 import com.epaymark.epay.utils.helpers.Constants
 import com.epaymark.epay.utils.`interface`.KeyPadOnClickListner
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
@@ -290,5 +291,11 @@ class AuthActivity : AppCompatActivity() {
                 override fun onAnimationCancel(animation: Animator) {}
                 override fun onAnimationRepeat(animation: Animator) {}
             })
+    }
+
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed() {
+
+
     }
 }

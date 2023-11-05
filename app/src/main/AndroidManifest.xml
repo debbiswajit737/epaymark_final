@@ -41,27 +41,30 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:screenOrientation="portrait"
+            android:name=".ui.activity.RegActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.DashboardActivity"
-            android:exported="false" />
-        <activity
-            android:screenOrientation="portrait"
-            android:name=".ui.activity.SplashActivity"
-            android:exported="false" />
-        <activity
-            android:screenOrientation="portrait"
-            android:name=".ui.activity.AuthActivity"
-            android:exported="false" />
-        <activity
-            android:screenOrientation="portrait"
-            android:name=".ui.activity.WebviewActivity"
-            android:exported="false" />
-        <activity
-            android:screenOrientation="portrait"
-            android:name=".ui.activity.MainActivity"
-            android:exported="false" /> <!-- android:theme="@style/Theme.AppCompat" -->
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.AuthenticationActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.AuthActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.WebviewActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" /> <!-- android:theme="@style/Theme.AppCompat" -->
+        <activity
+            android:name=".ui.activity.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
