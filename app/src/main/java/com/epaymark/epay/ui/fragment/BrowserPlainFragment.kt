@@ -56,7 +56,7 @@ class BrowserPlainFragment : BaseFragment() {
             browser.clear()
             browser.add(BrowserModel("152","Truly Unlimited","1GB","SMS 300","20 days",false))
             browser.add(BrowserModel("199","Truly unlimited calls","1GB","SMS 100/day","180 days",false))
-            browser.add(BrowserModel("1000","Truly Unlimited","1GB","SMS 300","54 days",false))
+            browser.add(BrowserModel("1000","Truly Unlimited","1GB/day","SMS 300","54 days",false))
             browser.add(BrowserModel("2199","Truly unlimited calls","1GB","SMS 100/day","84 days",false))
             browser.add(BrowserModel("3000","Truly Unlimited","1GB","SMS 100","24 days",false))
 

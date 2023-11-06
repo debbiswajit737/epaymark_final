@@ -55,7 +55,7 @@
                 android:layout_marginStart="@dimen/_2sdp"
                 android:fontFamily="@font/russo_one"
                 tools:text="₹155"
-                android:textSize="@dimen/_18ssp"
+                android:textSize="@dimen/_12ssp"
                 />
             <View
                 android:layout_width="@dimen/_1sdp"
@@ -105,33 +105,37 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans_medium"
                 android:text="(data)"
-                android:textColor="@color/black"
+                android:textColor="@color/logo_second_color"
                 android:textSize="@dimen/_11ssp" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/textView11"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:gravity="center"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_20sdp"
+            android:layout_marginVertical="@dimen/_2sdp"
             android:singleLine="false"
+            android:paddingHorizontal="@dimen/_2sdp"
             android:text="@{`calls : `+model.desc+` | `+model.sms}"
             android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout4"
             app:layout_constraintStart_toStartOf="@+id/ll_header"
             app:layout_constraintTop_toBottomOf="@+id/ll_header"
-            tools:text="Calls:Truly Unlimited | Data" />
+            tools:text="Calls:Truly Unlimited" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="FULLTT"
             android:fontFamily="@font/russo_one"
-            android:padding="@dimen/_10sdp"
+            android:padding="@dimen/_2sdp"
+            android:text="FULLTT"
+            android:layout_marginEnd="@dimen/_2sdp"
             android:textColor="@color/logo_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+            app:layout_constraintTop_toBottomOf="@+id/textView11"
+            app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>
