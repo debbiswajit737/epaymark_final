@@ -30,7 +30,10 @@ class BrowserAdapter(private val operatorList: ArrayList<BrowserModel>, val list
     inner class MyViewHolder(val binding: BrowserListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: BrowserModel, position: Int) {
-            //binding.model=item
+            binding.model=item
+            binding.cardView.setOnClickListener{
+                listner.getValue(item.amt)
+            }
             ///*if (position!=items.size-1) {
 
             //}*/
@@ -44,7 +47,7 @@ class BrowserAdapter(private val operatorList: ArrayList<BrowserModel>, val list
                 }
 
             }*/
-            //binding.executePendingBindings()
+            binding.executePendingBindings()
         }
     }
 

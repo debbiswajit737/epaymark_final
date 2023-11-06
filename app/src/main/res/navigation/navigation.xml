@@ -21,5 +21,20 @@
     <fragment
         android:id="@+id/mobileRechargeFragment"
         android:name="com.epaymark.epay.ui.fragment.MobileRechargeFragment"
-        android:label="MobileRechargeFragment" />
+        android:label="MobileRechargeFragment" >
+        <action
+            android:id="@+id/action_mobileRechargeFragment_to_operatorFragment"
+            app:destination="@id/operatorFragment" />
+        <action
+            android:id="@+id/action_mobileRechargeFragment_to_browserPlainFragment"
+            app:destination="@id/browserPlainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/operatorFragment"
+        android:name="com.epaymark.epay.ui.fragment.OperatorFragment"
+        android:label="OperatorFragment" />
+    <fragment
+        android:id="@+id/browserPlainFragment"
+        android:name="com.epaymark.epay.ui.fragment.BrowserPlainFragment"
+        android:label="BrowserPlainFragment" />
 </navigation>

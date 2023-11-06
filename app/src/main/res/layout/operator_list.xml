@@ -8,28 +8,40 @@
             name="model"
             type="com.epaymark.epay.data.model.OperatorModel" />
     </data>
-
+<androidx.cardview.widget.CardView
+    android:layout_marginTop="@dimen/_3sdp"
+    android:layout_width="match_parent"
+    android:layout_margin="@dimen/_2sdp"
+    app:cardBackgroundColor="@color/white"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/_8sdp">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/cl_header"
-    android:paddingVertical="@dimen/_10sdp"
+    android:paddingVertical="@dimen/_1sdp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imgOperatorLogo"
-        android:layout_width="@dimen/_50sdp"
-        android:layout_height="@dimen/_50sdp"
-        android:padding="@dimen/_2sdp"
-        app:civ_border_color="@color/yellow"
-        android:src="@drawable/epay_logo"
-        android:scaleType="centerCrop"
-        app:civ_border_width="1dp"
-
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        app:cardBackgroundColor="@android:color/transparent"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        app:cardCornerRadius="@dimen/_20sdp"
+        app:cardPreventCornerOverlap="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="@dimen/_5sdp"
+        android:padding="@dimen/_14sdp"
+        >
+        <ImageView
+            android:id="@+id/imgOperatorLogo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/default_1"
+            android:scaleType="fitXY"/>
+    </androidx.cardview.widget.CardView>
+
 
 
 
@@ -37,23 +49,21 @@
     <TextView
         android:id="@+id/tv_state"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
         android:padding="@dimen/_5sdp"
+        android:paddingStart="@dimen/_10sdp"
         android:text="@{model.title}"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
-        android:textSize="@dimen/edit_text_size"
-        android:fontFamily="@font/poppins_bold"
+        android:textSize="@dimen/_10ssp"
+        android:fontFamily="@font/poppins_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imgOperatorLogo"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
         app:layout_constraintTop_toTopOf="parent"
         tools:hint="state" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray5"
-        app:layout_constraintTop_toBottomOf="@+id/tv_state"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
 </layout>

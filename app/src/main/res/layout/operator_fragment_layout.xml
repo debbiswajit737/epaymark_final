@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans_e_bold"
-            android:text="@string/select_a_recharge_plan"
+            android:text="@string/choose_operator"
             android:drawableEnd="@drawable/arrow_drop_down"
             android:textColor="@color/logo_color"
             android:textSize="@dimen/_12ssp"
@@ -68,27 +68,16 @@
             app:layout_constraintTop_toBottomOf="@+id/textView9"
             tools:layout_editor_absoluteX="16dp" />
 
-
-        <androidx.core.widget.NestedScrollView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycle_operator"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginBottom="@dimen/_20sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12ssp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycle_browser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/browser_list" />
-        </androidx.core.widget.NestedScrollView>
-
-
-
-
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            tools:listitem="@layout/operator_list" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
