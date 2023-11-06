@@ -5,12 +5,16 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.text.InputFilter
 import android.util.Base64
 import android.util.Log
 import android.view.View
-import androidx.fragment.app.DialogFragment
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.epaymark.epay.utils.helpers.Constants.INPUT_FILTER_MAX_VALUE
+import com.epaymark.epay.utils.helpers.Constants.INPUT_FILTER_POINTER_LENGTH
+import com.epaymark.epay.utils.helpers.DecimalDigitsInputFilter
 import com.epaymark.epay.utils.helpers.SharedPreff
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.ByteArrayOutputStream
@@ -110,6 +114,23 @@ open class BaseFragment: Fragment(){
         this.setOnClickListener{
             findNavController().popBackStack()
         }
+
+    }
+
+
+    fun EditText.setupAmount() {
+        /*val inputFilter = InputFilter { source, start, end, dest, dstart, dend ->
+            // Define your filter logic here
+            val newText = dest.toString().substring(0, dstart) + source.subSequence(start, end) + dest.toString().substring(dend)
+            if (newText.matches(Regex("^\\d{0,7}(\\.\\d{0,2})?\$"))) {
+                null // Accept the input
+            } else {
+                "" // Reject the input
+            }
+        }*/
+
+        //this.filters = arrayOf(inputFilter)
+        this.filters = arrayOf<InputFilter>(DecimalDigitsInputFilter(INPUT_FILTER_MAX_VALUE, INPUT_FILTER_POINTER_LENGTH))
 
     }
 }

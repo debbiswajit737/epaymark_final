@@ -5,6 +5,8 @@ import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 
 object Constants {
+    const val INPUT_FILTER_MAX_VALUE:Long = 9999999999999
+    const val INPUT_FILTER_POINTER_LENGTH = 2
     const val LOTTIE_CONFETTIE_LINK = "https://assets10.lottiefiles.com/packages/lf20_3xwxlyv7.json"
     const val LOTTIE_TICK_LINK = "https://assets8.lottiefiles.com/packages/lf20_ikemt7or.json"
     const val CHIPER_CODE = "AES/CBC/PKCS5Padding"

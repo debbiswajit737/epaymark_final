@@ -282,6 +282,10 @@ class HomeFragment : BaseFragment() {
                             getString(R.string.mobile_recharge)->{
                                 findNavController().navigate(R.id.action_homeFragment2_to_mobileRechargeFragment)
                             }
+                            getString(R.string.dth_recharge)->{
+                                findNavController().navigate(R.id.action_homeFragment2_to_DTHRechargeFragment)
+                            }
+
                         }
                     }
 

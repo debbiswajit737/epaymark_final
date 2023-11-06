@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_homeFragment2_to_mobileRechargeFragment"
             app:destination="@id/mobileRechargeFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_DTHRechargeFragment"
+            app:destination="@id/DTHRechargeFragment" />
     </fragment>
     <fragment
         android:id="@+id/mobileRechargeFragment"
@@ -37,4 +40,12 @@
         android:id="@+id/browserPlainFragment"
         android:name="com.epaymark.epay.ui.fragment.BrowserPlainFragment"
         android:label="BrowserPlainFragment" />
+    <fragment
+        android:id="@+id/DTHRechargeFragment"
+        android:name="com.epaymark.epay.ui.fragment.DTHRechargeFragment"
+        android:label="DTHRechargeFragment" >
+        <action
+            android:id="@+id/action_DTHRechargeFragment_to_operatorFragment"
+            app:destination="@id/operatorFragment" />
+    </fragment>
 </navigation>

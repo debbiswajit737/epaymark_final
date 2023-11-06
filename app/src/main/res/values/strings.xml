@@ -103,4 +103,8 @@
     <string name="browse_plans"> BROWSE PLANS </string>
     <string name="proceed">PROCEED</string>
     <string name="select_a_recharge_plan">Select a recharge plan</string>
+    <string name="subscriber_id">Subscriber id</string>
+    <string name="customer_info">Customer info</string>
+    <string name="enter_amount">Enter amount</string>
+    <string name="balance">Balance</string>
 </resources>

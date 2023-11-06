@@ -3,6 +3,7 @@ package com.epaymark.epay.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.epaymark.epay.data.model.OperatorModel
 import com.epaymark.epay.databinding.OperatorListBinding
 import com.epaymark.epay.utils.`interface`.CallBack
@@ -38,7 +39,10 @@ class OperatorAdapter(private val operatorList: ArrayList<OperatorModel>, val li
               //  binding.tvState.text = it
             }
             item.image?.let { image ->
-                binding.imgOperatorLogo.setImageResource(image)
+                Glide.with(binding.imgOperatorLogo.context)
+                    .load(image)
+                    .into(binding.imgOperatorLogo)
+                //binding.imgOperatorLogo.setImageResource(image)
                 //binding.imgOperatorLogo.setBackgroundResource(item.image)
             }
             binding.clHeader.setOnClickListener{

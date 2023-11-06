@@ -87,7 +87,9 @@ class MobileRechargeFragment : BaseFragment() {
     }
 
     fun initView() {
-
+        binding.apply {
+            etAmt.setupAmount()
+        }
     }
 
     fun setObserver() {

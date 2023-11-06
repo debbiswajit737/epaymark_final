@@ -25,17 +25,25 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val mobile = MutableLiveData<String>()
     val operator = MutableLiveData<String>()
     val amt = MutableLiveData<String>()
+    val subId = MutableLiveData<String>()
+    val dthOperator = MutableLiveData<String>()
+    val dthAmt = MutableLiveData<String>()
 
 
     val mobileError = MutableLiveData<String>()
     val operatorError = MutableLiveData<String>()
     val amtError = MutableLiveData<String>()
+    val subIdError = MutableLiveData<String>()
+    val dthError = MutableLiveData<String>()
+    val dthAmtError = MutableLiveData<String>()
 
 
     val mobileErrorVisible = MutableLiveData<Boolean>()
     val operatorErrorVisible = MutableLiveData<Boolean>()
     val amtErrorErrorVisible = MutableLiveData<Boolean>()
-
+    val subIdErrorVisible = MutableLiveData<Boolean>()
+    val dthErrorErrorVisible = MutableLiveData<Boolean>()
+    val dthAmtErrorVisible = MutableLiveData<Boolean>()
 
 
 
@@ -82,7 +90,42 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
         return isValid
     }
 
+    fun dthValidation(): Boolean {
 
+        invisibleErrorTexts()
+
+        var isValid = true
+        if (subId.value?.trim().isNullOrBlank()) {
+            subIdError.value = "Please enter a valid DTH subscriber ID."
+            subIdErrorVisible.value = true
+            isValid = false
+        } else {
+            subIdError.value = ""
+            subIdErrorVisible.value = false
+        }
+
+        if (dthOperator.value?.trim().isNullOrBlank()) {
+            dthError.value = "Please select an operator"
+            dthErrorErrorVisible.value = true
+            isValid = false
+        } else {
+            dthError.value = ""
+            dthErrorErrorVisible.value = false
+        }
+
+        if (dthAmt.value?.trim().isNullOrBlank()) {
+            dthAmtError.value = "Please enter a valid amount."
+            dthAmtErrorVisible.value = true
+            isValid = false
+        } else {
+            dthAmtError.value = ""
+            dthAmtErrorVisible.value = false
+        }
+
+
+
+        return isValid
+    }
 
         val loginResponseLiveData: LiveData<ResponseState<BaseResponse<Test>>>
         get() = repository.loginResponseLiveData

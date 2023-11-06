@@ -63,7 +63,11 @@ class OperatorFragment : BaseFragment() {
 
             adapter= OperatorAdapter(operator, object : CallBack {
                 override fun getValue(s: String) {
-                    viewModel?.operator?.value=s
+                    viewModel?.apply {
+                        operator.value=s
+                        dthOperator.value =s
+                    }
+
                    // callBack.getValue(s)
                     findNavController().popBackStack()
                 }
