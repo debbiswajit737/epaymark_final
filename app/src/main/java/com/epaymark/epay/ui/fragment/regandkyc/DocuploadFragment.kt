@@ -245,11 +245,9 @@ class DocuploadFragment : BaseFragment() {
                             authViewModel.videoFilePath.value?.let {uri->
                                 Log.d("TAG_videofilebbbbb", "onViewClick: "+uriToBase64(binding.tvPancardVideoKycImage.context,uri))
                             }
-
-
-
-
-
+                        if (authViewModel.docValidation()){
+                            Toast.makeText(binding.root.context, "Ok", Toast.LENGTH_SHORT).show()
+                        }
                     }catch (e:Exception){
                         Toast.makeText(binding.root.context, e.message, Toast.LENGTH_SHORT).show()
                     }

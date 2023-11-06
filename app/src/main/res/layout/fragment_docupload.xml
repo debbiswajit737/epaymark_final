@@ -666,17 +666,17 @@
                         <TextView
                             android:id="@+id/tv_pancard_selfi_with_company_person_image"
                             android:layout_width="0dp"
-                            android:gravity="center_vertical"
-                            android:layout_weight="2"
-                            android:text="@{viewModel.llCselfi}"
-                            android:layout_gravity="center_vertical"
                             android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="2"
                             android:background="@drawable/image_edittext_field_bg"
+                            android:gravity="center_vertical"
                             android:hint="@string/no_file_chosen"
-                            android:textSize="@dimen/edit_text_size"
                             android:padding="@dimen/_5sdp"
+                            android:text="@{viewModel.llCselfi}"
                             android:textColor="@color/black"
-                            android:textColorHint="@color/gray" />
+                            android:textColorHint="@color/gray"
+                            android:textSize="@dimen/edit_text_size" />
 
 
                     </LinearLayout>

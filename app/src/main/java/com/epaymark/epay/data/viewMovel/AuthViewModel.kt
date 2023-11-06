@@ -524,7 +524,36 @@ class AuthViewModel @Inject constructor(private val repository: DeliveryOptionsR
 
     }*/
 
+    fun docValidation(): Boolean {
+        var isValid = true
+        invisibleErrorTexts()
+       if (videokyc.value?.trim().isNullOrBlank()) {
+           videokycErrorVisible.value =true
+           isValid= false
+       }
+        else{
+           videokycErrorVisible.value =false
+       }
+        if (llCselfi.value?.trim().isNullOrBlank()) {
+            llCselfiErrorVisible.value = true
+            isValid= false
+       }
+        else{
+            llCselfiErrorVisible.value = false
+        }
+         if (llTrade.value?.trim().isNullOrBlank()) {
+             llTradeErrorVisible.value = true
+             isValid= false
+       }
+        else{
+             llTradeErrorVisible.value=false
+         }
 
+
+
+
+        return isValid
+    }
     //error texts primary state
     fun invisibleErrorTexts() {
          nameErrorVisible.value = false
