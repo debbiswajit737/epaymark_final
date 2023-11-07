@@ -108,4 +108,6 @@
     <string name="enter_amount">Enter amount</string>
     <string name="balance">Balance</string>
     <string name="thank_you_for_using_our_app">Thank you for using our app!</string>
+    <string name="electric">Electricity</string>
+    <string name="choose_state">Choose state</string>
 </resources>

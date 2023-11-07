@@ -13,6 +13,8 @@ import com.epaymark.epay.R
 import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentMobileRechargeBinding
 import com.epaymark.epay.ui.base.BaseFragment
+import com.epaymark.epay.utils.helpers.Constants
+import com.epaymark.epay.utils.helpers.Constants.isDthOperator
 import com.epaymark.epay.utils.`interface`.CallBack
 
 class MobileRechargeFragment : BaseFragment() {
@@ -56,6 +58,7 @@ class MobileRechargeFragment : BaseFragment() {
                     }
                 })*/
                 activity?.let {act->
+                    isDthOperator =false
                     findNavController().navigate(R.id.action_mobileRechargeFragment_to_operatorFragment)
                     //operatorDialog.show(act.supportFragmentManager, operatorDialog.tag)
                 }

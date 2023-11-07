@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
@@ -22,6 +23,7 @@ import com.epaymark.epay.adapter.RechargeAdapter
 import com.epaymark.epay.adapter.TravelAdapter
 import com.epaymark.epay.adapter.UPIAdapter
 import com.epaymark.epay.data.model.ListIcon
+import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentHomeBinding
 
 
@@ -44,7 +46,7 @@ class HomeFragment : BaseFragment() {
     var iconList7 = ArrayList<ListIcon>()
     lateinit var binding: FragmentHomeBinding
     private lateinit var autoScrollHandler: AutoScrollHandler
-
+    private val viewModel: MyViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -269,7 +271,7 @@ class HomeFragment : BaseFragment() {
                 iconList3.clear()
                 iconList3.add(ListIcon(getString(R.string.mobile_recharge), R.drawable.db_mobile))
                 iconList3.add(ListIcon(getString(R.string.dth_recharge), R.drawable.ic_dth_recharge))
-                iconList3.add(ListIcon("Electricity", R.drawable.electric))
+                iconList3.add(ListIcon(getString(R.string.electric), R.drawable.electric))
                 iconList3.add(ListIcon("Fast Tag", R.drawable.icons8_fastag))
                 iconList3.add(ListIcon("Google Play", R.drawable.google_play))
                 iconList3.add(ListIcon("Insurance", R.drawable.insurance))
@@ -285,6 +287,20 @@ class HomeFragment : BaseFragment() {
                             getString(R.string.dth_recharge)->{
                                 findNavController().navigate(R.id.action_homeFragment2_to_DTHRechargeFragment)
                             }
+                            getString(R.string.electric)->{
+                                activity?.let {act->
+                                    val stateListDialog = StateListDialog(object : CallBack {
+                                        override fun getValue(s: String) {
+                                            viewModel?.state?.value=s
+                                            findNavController().navigate(R.id.action_homeFragment2_to_electricRechargeFragment)
+                                        }
+
+                                    })
+                                    stateListDialog.show(act.supportFragmentManager, stateListDialog.tag)
+
+                                }
+                                }
+
 
                         }
                     }

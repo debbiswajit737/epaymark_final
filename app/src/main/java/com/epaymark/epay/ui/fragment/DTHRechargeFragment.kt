@@ -15,6 +15,8 @@ import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentDthRechargeBinding
 import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.ui.popup.CustomPopup.showBindingPopup
+import com.epaymark.epay.utils.helpers.Constants
+import com.epaymark.epay.utils.helpers.Constants.isDthOperator
 
 class DTHRechargeFragment : BaseFragment() {
     lateinit var binding: FragmentDthRechargeBinding
@@ -62,6 +64,7 @@ class DTHRechargeFragment : BaseFragment() {
             }
             rlOperator.setOnClickListener{
                 activity?.let {act->
+                    isDthOperator=true
                     findNavController().navigate(R.id.action_DTHRechargeFragment_to_operatorFragment)
                 }
 

@@ -17,6 +17,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRepository) : ViewModel() {
+    val state = MutableLiveData<String>()
+
     val userName = MutableLiveData<String>()
     val balence = MutableLiveData<String>()
     val nextRecharge = MutableLiveData<String>()

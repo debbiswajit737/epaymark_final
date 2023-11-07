@@ -16,6 +16,7 @@ import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.OperatorFragmentLayoutBinding
 
 import com.epaymark.epay.ui.base.BaseFragment
+import com.epaymark.epay.utils.helpers.Constants.isDthOperator
 import com.epaymark.epay.utils.`interface`.CallBack
 
 class OperatorFragment : BaseFragment() {
@@ -55,11 +56,24 @@ class OperatorFragment : BaseFragment() {
 
         binding.recycleOperator.apply {
             operator.clear()
-            operator.add(OperatorModel(R.drawable.airtel_com_logo,"Airtel",false))
-            operator.add(OperatorModel(R.drawable.bharat_sanchar_logo,"BSNL Topup",false))
-            operator.add(OperatorModel(R.drawable.bharat_sanchar_logo,"BSNL-Validity",false))
-            operator.add(OperatorModel(R.drawable.jio,"Reliance Jio",false))
-            operator.add(OperatorModel(R.drawable.vi,"VI",false))
+            if (!isDthOperator) {
+                operator.add(OperatorModel(R.drawable.airtel_com_logo, "Airtel", false))
+                operator.add(OperatorModel(R.drawable.bharat_sanchar_logo, "BSNL Topup", false))
+                operator.add(OperatorModel(R.drawable.bharat_sanchar_logo, "BSNL-Validity", false))
+                operator.add(OperatorModel(R.drawable.jio, "Reliance Jio", false))
+                operator.add(OperatorModel(R.drawable.vi, "VI", false))
+            }
+            else{
+                operator.add(OperatorModel(R.drawable.airtel_dth,"Airtel DTH",false))
+                operator.add(OperatorModel(R.drawable.dish_tv_4,"Dish Tv",false))
+                operator.add(OperatorModel(R.drawable.sun_direct,"Sun Direct",false))
+                operator.add(OperatorModel(R.drawable.tata_sky,"TATA Sky",false))
+                operator.add(OperatorModel(R.drawable.videocon,"VideoCon D2h",false))
+            }
+
+
+
+
 
             adapter= OperatorAdapter(operator, object : CallBack {
                 override fun getValue(s: String) {

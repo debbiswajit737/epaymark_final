@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_homeFragment2_to_billPayFragment"
             app:destination="@id/billPayFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_electricRechargeFragment"
+            app:destination="@id/electricRechargeFragment" />
     </fragment>
     <fragment
         android:id="@+id/mobileRechargeFragment"
@@ -55,4 +58,8 @@
         android:id="@+id/billPayFragment"
         android:name="com.epaymark.epay.ui.fragment.billpay.BillPayFragment"
         android:label="BillPayFragment" />
+    <fragment
+        android:id="@+id/electricRechargeFragment"
+        android:name="com.epaymark.epay.ui.fragment.ElectricRechargeFragment"
+        android:label="ElectricRechargeFragment" />
 </navigation>
