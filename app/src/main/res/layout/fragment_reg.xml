@@ -677,11 +677,11 @@
                             android:layout_height="match_parent"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="2"
-                            android:text="@{viewModel.llPan}"
                             android:background="@drawable/image_edittext_field_bg"
                             android:gravity="center_vertical"
                             android:hint="@string/no_file_chosen"
                             android:padding="@dimen/_5sdp"
+                            android:text="@{viewModel.llPan}"
                             android:textColor="@color/black"
                             android:textColorHint="@color/gray"
                             android:textSize="@dimen/edit_text_size" />

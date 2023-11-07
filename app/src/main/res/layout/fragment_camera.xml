@@ -24,12 +24,22 @@
             android:id="@+id/btnCaptureImg"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:visibility="gone"
             android:background="@color/title_header2"
             android:text="Capture Image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnGallaryImg"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:visibility="gone"
+            android:background="@color/title_header2"
+            android:text="Image from galary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnCaptureVideo"

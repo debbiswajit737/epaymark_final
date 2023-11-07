@@ -93,11 +93,23 @@ class CameraFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
+        viewOnClick()
+    }
+
+    private fun viewOnClick() {
+        binding.apply {
+            btnGallaryImg.setOnClickListener {
+                pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+            }
+        }
+
     }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     fun init() {
+        binding.btnGallaryImg.visibility=View.GONE
         if (isGallary) {
+            binding.btnCaptureImg.visibility=View.GONE
             if (isPdf){
                 //pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
 
@@ -111,10 +123,12 @@ class CameraFragment : BaseFragment() {
                 pickPdfLauncher.launch(mimeTypes)
             }
             else {
+                binding.btnGallaryImg.visibility=View.VISIBLE
                 pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
             }
         }
         else{
+            binding.btnCaptureImg.visibility=View.VISIBLE
             PermissionUtils.requestVideoRecordingPermission(requireActivity(), object :
                 PermissionsCallback {
                 override fun onPermissionRequest(granted: Boolean) {
@@ -149,7 +163,7 @@ class CameraFragment : BaseFragment() {
                 videoCapture()
             }
             binding.tvTimer.visibility = View.GONE
-            if (!isVideo) {
+            if (!isVideo && !isGallary) {
                 btnCaptureImg.visibility = View.VISIBLE
                // circularProgressBar.visibility = View.VISIBLE
               //  btnCaptureVideo.visibility = View.GONE
@@ -520,10 +534,13 @@ class CameraFragment : BaseFragment() {
 
         if (uri != null) {
             authViewModel.filePath.value = uri
-            findNavController().popBackStack()
+
             //findNavController().navigate(R.id.action_homeFragment_to_previewFragment)
         } else {
+            authViewModel.filePath.value =Uri.parse("/")
+
             Log.d("PhotoPicker", "No media selected")
         }
+        findNavController().popBackStack()
     }
 }

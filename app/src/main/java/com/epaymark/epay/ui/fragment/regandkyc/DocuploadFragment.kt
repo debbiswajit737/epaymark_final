@@ -76,6 +76,7 @@ class DocuploadFragment : BaseFragment() {
         activity?.let {act->
             binding.apply {
                 llVideoKyc.setOnClickListener{
+                    isGallary=false
                     isVideo=true
                     isBackCamera=true
                     /*val intent = Intent(MediaStore.ACTION_VIDEO_CAPTURE)

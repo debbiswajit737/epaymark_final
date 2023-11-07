@@ -381,7 +381,7 @@ class RegFragment : BaseFragment() {
         }
 
 
-        authViewModel.filePath.observe(viewLifecycleOwner){
+        authViewModel?.filePath?.observe(viewLifecycleOwner){
             when(type){
                 "llPan"->{
                     authViewModel.llPan.value=it.toString()
