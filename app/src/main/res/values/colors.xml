@@ -27,4 +27,5 @@
     <color name="brown">#4a0405</color>
     <color name="logo_color">#060658</color>
     <color name="logo_second_color">#b77b1b</color>
+    <color name="logo_second_color_opacity">#9CB77B1B</color>
 </resources>

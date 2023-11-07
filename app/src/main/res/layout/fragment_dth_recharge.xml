@@ -237,21 +237,210 @@
 
                 </androidx.cardview.widget.CardView>
 
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_userDetails"
+                    android:layout_width="0dp"
+                    android:visibility="gone"
+                    app:cardPreventCornerOverlap="false"
+                    app:cardUseCompatPadding="true"
+                    app:cardCornerRadius="@dimen/_12sdp"
+                    android:elevation="@dimen/_12sdp"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView2">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:visibility="visible"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_gradian"
+
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/logo_second_color"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_gravity="center_horizontal"
+                                android:fontFamily="@font/open_sans_medium"
+                                android:gravity="center_horizontal"
+                                android:padding="@dimen/_5sdp"
+                                android:text="Subscriber info"
+                                android:textColor="@color/white"
+
+                                android:textSize="@dimen/_10ssp" />
+
+                            <ImageView
+                                android:id="@+id/img_close"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                                app:tint="@color/logo_color" />
+                        </RelativeLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/_10sdp"
+                                android:fontFamily="@font/montserrat_medium_500"
+                                android:text="@{viewModel.userName}"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_16ssp"
+                                tools:text="Test User" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{`(`+viewModel.type+`)`}"
+                                tools:text="(active)"
+                                android:textColor="@color/logo_second_color"/>
+                        </LinearLayout>
+
+                        <!--<RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+
+
+                            <TextView
+                                android:id="@+id/tv_balence_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginHorizontal="@dimen/_10sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:fontFamily="@font/open_sans_medium"
+                                android:text="@string/balance"
+                                android:textColor="@color/logo_second_color"
+                                android:textSize="@dimen/_11ssp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginHorizontal="@dimen/_10sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_toEndOf="@+id/tv_balence_title"
+                                android:fontFamily="@font/open_sans_medium"
+                                android:text="@{`₹`+viewModel.balence}"
+                                android:textColor="@color/logo_color"
+                                android:textSize="@dimen/_16ssp"
+                                tools:text="₹1009" />
+                        </RelativeLayout>
+-->
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight=".1"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_14ssp"
+                                    tools:text="₹1000"
+                                    android:fontFamily="@font/open_sans_medium"
+                                    android:text="@{`₹`+viewModel.balence}"/>
+                                <TextView
+                                    android:layout_gravity="center_horizontal"
+                                    android:textColor="@color/logo_second_color"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="(balance)"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight=".1"
+                                android:orientation="vertical"
+                                android:paddingBottom="@dimen/_2sdp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:fontFamily="@font/open_sans_medium"
+                                    android:text="@{`₹`+viewModel.nextRecharge}"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_14ssp"
+                                    tools:text="23-08-2023" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:text="(next recharge)"
+                                    android:textColor="@color/logo_second_color" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight=".1"
+                                android:orientation="vertical"
+                                android:paddingBottom="@dimen/_2sdp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:fontFamily="@font/open_sans_medium"
+                                    android:text="@{`₹`+viewModel.monthly}"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_14ssp"
+                                    tools:text="₹789" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:text="(monthly)"
+                                    android:textColor="@color/logo_second_color" />
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+
                 <Button
                     android:id="@+id/btn_submit"
                     android:layout_width="0dp"
-                    android:layout_marginTop="@dimen/_20sdp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="end"
-                    android:layout_marginVertical="@dimen/_5sdp"
+                    android:layout_marginVertical="@dimen/_10sdp"
                     android:background="@drawable/btn_bg"
                     android:padding="@dimen/_5sdp"
                     android:text="@string/proceed"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/cardView2"
-                    app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+                    app:layout_constraintTop_toBottomOf="@+id/card_userDetails" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.R
-import com.epaymark.epay.data.model.UserInfoModel
 import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentDthRechargeBinding
 import com.epaymark.epay.ui.base.BaseFragment
@@ -43,9 +43,12 @@ class DTHRechargeFragment : BaseFragment() {
 
             btnCustomerInfo.setOnClickListener{
                 context?.let {ctx->
-                    val userInfoModel=UserInfoModel("Sample Test User","178.00","23-04-2023","752")
-
-                    showBindingPopup(ctx,userInfoModel)
+                    viewModel?.userName?.value = "Sample user"
+                    viewModel?.balence?.value = "1009"
+                    viewModel?.nextRecharge?.value = "01-01-2023"
+                    viewModel?.monthly?.value = "789"
+                    viewModel?.type?.value = "Active"
+                    binding.cardUserDetails.visibility=View.VISIBLE
                 }
             }
 
@@ -65,7 +68,9 @@ class DTHRechargeFragment : BaseFragment() {
             }
         }
 
-
+        binding.imgClose.setOnClickListener{
+            binding.cardUserDetails.visibility=View.GONE
+        }
 
     }
 

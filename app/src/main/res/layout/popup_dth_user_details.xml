@@ -4,25 +4,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
     <data>
-        <variable
+        <!--<variable
             name="model"
-            type="com.epaymark.epay.data.model.UserInfoModel" />
+            type="com.epaymark.epay.data.model.UserInfoModel" />-->
     </data>
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical">
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Subscriber info"
-    android:textColor="@color/logo_color"
-    android:textSize="@dimen/_10ssp"
-    android:gravity="center_horizontal"
-    android:padding="@dimen/_5sdp"
-    android:background="@color/logo_second_color"
-    android:fontFamily="@font/open_sans_medium"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/logo_second_color">
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Subscriber info"
+            android:layout_centerInParent="true"
+            android:textColor="@color/logo_color"
+            android:textSize="@dimen/_10ssp"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/_5sdp"
+
+            android:fontFamily="@font/open_sans_medium"/>
+        <ImageView
+            android:id="@+id/img_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            app:tint="@color/logo_color"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -49,10 +65,11 @@
             android:layout_marginTop="@dimen/_5sdp"
             android:textColor="@color/logo_second_color"
             android:layout_marginHorizontal="@dimen/_10sdp"/>
+       <!-- android:text="@{`₹`+model.balence}"-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{`₹`+model.balence}"
+
             tools:text="₹1009"
             android:layout_centerVertical="true"
             android:textSize="@dimen/_16ssp"
@@ -62,22 +79,23 @@
             android:textColor="@color/logo_color"
             android:layout_marginHorizontal="@dimen/_10sdp"/>
     </RelativeLayout>
-
+    <!--android:text="@{model.name}"-->
     <TextView
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@{model.name}"
+
         tools:text="Test User"
         android:layout_marginHorizontal="@dimen/_10sdp"
         android:textSize="@dimen/_16ssp"
         android:textColor="@color/black"
-        android:fontFamily="@font/open_sans_e_bold"
+        android:fontFamily="@font/montserrat_medium_500"
         />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@color/gray">
         <!--<LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -104,7 +122,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/_2sdp">
+            <!--android:text="@{`₹`+model.nextRecharge}"-->
             <TextView
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
@@ -113,7 +133,7 @@
                 android:textSize="@dimen/_14ssp"
                 tools:text="23-08-2023"
                 android:fontFamily="@font/open_sans_medium"
-                android:text="@{`₹`+model.nextRecharge}"/>
+               />
             <TextView
                 android:layout_gravity="center_horizontal"
                 android:textColor="@color/logo_second_color"
@@ -126,7 +146,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1"
+            android:paddingBottom="@dimen/_2sdp"
             android:orientation="vertical">
+            <!--android:text="@{`₹`+model.monthly}"-->
             <TextView
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
@@ -135,7 +157,7 @@
                 android:textSize="@dimen/_14ssp"
                 tools:text="₹789"
                 android:fontFamily="@font/open_sans_medium"
-                android:text="@{`₹`+model.monthly}"/>
+                />
             <TextView
                 android:layout_gravity="center_horizontal"
                 android:textColor="@color/logo_second_color"
@@ -146,16 +168,6 @@
 
 
     </LinearLayout>
-    <TextView
-        android:id="@+id/tv_ok"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/ok"
-        android:layout_marginTop="@dimen/_1sdp"
-        android:background="@color/gray"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_18ssp"
-        android:fontFamily="@font/open_sans_e_bold"
-        android:gravity="center_horizontal"/>
+
 </LinearLayout>
 </layout>

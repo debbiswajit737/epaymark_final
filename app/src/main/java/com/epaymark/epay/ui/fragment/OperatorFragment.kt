@@ -55,10 +55,10 @@ class OperatorFragment : BaseFragment() {
 
         binding.recycleOperator.apply {
             operator.clear()
-            operator.add(OperatorModel(R.drawable.airtel,"AIRTEL",false))
-            operator.add(OperatorModel(R.drawable.bharat_sanchar_logo,"BSNL TOPUP",false))
-            operator.add(OperatorModel(R.drawable.bharat_sanchar_logo,"BSNL- VALIDITY",false))
-            operator.add(OperatorModel(R.drawable.jio,"RELIANCE JIO",false))
+            operator.add(OperatorModel(R.drawable.airtel_com_logo,"Airtel",false))
+            operator.add(OperatorModel(R.drawable.bharat_sanchar_logo,"BSNL Topup",false))
+            operator.add(OperatorModel(R.drawable.bharat_sanchar_logo,"BSNL-Validity",false))
+            operator.add(OperatorModel(R.drawable.jio,"Reliance Jio",false))
             operator.add(OperatorModel(R.drawable.vi,"VI",false))
 
             adapter= OperatorAdapter(operator, object : CallBack {

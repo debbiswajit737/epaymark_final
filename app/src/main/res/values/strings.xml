@@ -107,4 +107,5 @@
     <string name="customer_info">Customer info</string>
     <string name="enter_amount">Enter amount</string>
     <string name="balance">Balance</string>
+    <string name="thank_you_for_using_our_app">Thank you for using our app!</string>
 </resources>
