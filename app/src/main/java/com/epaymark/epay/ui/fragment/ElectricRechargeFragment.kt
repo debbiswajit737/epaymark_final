@@ -7,13 +7,11 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.epaymark.epay.R
 import com.epaymark.epay.adapter.BillerListAdapter
-import com.epaymark.epay.adapter.StateListAdapter
-import com.epaymark.epay.data.model.StateCityModel
+import com.epaymark.epay.data.model.ElectricModel
 import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentElectricRechargeBinding
 import com.epaymark.epay.ui.base.BaseFragment
@@ -22,7 +20,7 @@ import com.epaymark.epay.utils.`interface`.CallBack
 class ElectricRechargeFragment : BaseFragment() {
     lateinit var binding: FragmentElectricRechargeBinding
     private val viewModel: MyViewModel by activityViewModels()
-    var billerList = ArrayList<StateCityModel>()
+    var billerList = ArrayList<ElectricModel>()
     var billerListAdapter: BillerListAdapter?=null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,19 +46,22 @@ class ElectricRechargeFragment : BaseFragment() {
 
     fun initView() {
         binding.apply {
-            billerList.add(StateCityModel(false,"Kolkata"))
-            billerList.add(StateCityModel(false,"Asansol"))
-            billerList.add(StateCityModel(false,"Siliguri"))
-            billerList.add(StateCityModel(false,"Kolkata"))
-            billerList.add(StateCityModel(false,"Asansol"))
-            billerList.add(StateCityModel(false,"Siliguri"))
-            billerList.add(StateCityModel(false,"Kolkata"))
-            billerList.add(StateCityModel(false,"Asansol"))
-            billerList.add(StateCityModel(false,"Siliguri"))
+            billerList.add(ElectricModel("West Bengal Electricity",R.drawable.ic_home,false))
+            billerList.add(ElectricModel("CESC Limited",R.drawable.ic_home,false))
+billerList.add(ElectricModel("West Bengal Electricity",R.drawable.ic_home,false))
+            billerList.add(ElectricModel("CESC Limited",R.drawable.ic_home,false))
+billerList.add(ElectricModel("West Bengal Electricity",R.drawable.ic_home,false))
+            billerList.add(ElectricModel("CESC Limited",R.drawable.ic_home,false))
+billerList.add(ElectricModel("West Bengal Electricity",R.drawable.ic_home,false))
+            billerList.add(ElectricModel("CESC Limited",R.drawable.ic_home,false))
+billerList.add(ElectricModel("West Bengal Electricity",R.drawable.ic_home,false))
+            billerList.add(ElectricModel("CESC Limited",R.drawable.ic_home,false))
+billerList.add(ElectricModel("West Bengal Electricity",R.drawable.ic_home,false))
+            billerList.add(ElectricModel("CESC Limited",R.drawable.ic_home,false))
+billerList.add(ElectricModel("West Bengal Electricity",R.drawable.ic_home,false))
+            billerList.add(ElectricModel("CESC Limited",R.drawable.ic_home,false))
 
-
-
-           /* binding.recycleCity.apply {
+            binding.recycleElectric.apply {
 
                 billerListAdapter= BillerListAdapter(billerList,object : CallBack {
                     override fun getValue(s: String) {
@@ -84,7 +85,7 @@ class ElectricRechargeFragment : BaseFragment() {
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     }
                 })
-            }*/
+            }
         }
 
     }

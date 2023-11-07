@@ -4,20 +4,21 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.epaymark.epay.databinding.StateListBinding
 import com.epaymark.epay.utils.`interface`.CallBack
 import android.widget.Filter
 import android.widget.Filterable
+import com.epaymark.epay.data.model.ElectricModel
 import com.epaymark.epay.data.model.StateCityModel
+import com.epaymark.epay.databinding.ListElectricBillerBinding
 
-class BillerListAdapter(private var items: List<StateCityModel>, private val callBack: CallBack) :
+class BillerListAdapter(private var items: List<ElectricModel>, private val callBack: CallBack) :
     RecyclerView.Adapter<BillerListAdapter.MyViewHolder>(), Filterable {
 
-    private var filteredItems: List<StateCityModel> = items
-
+    private var filteredItems: List<ElectricModel> = items
+//list_electric_biller
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding: StateListBinding = StateListBinding.inflate(layoutInflater, parent, false)
+        val binding: ListElectricBillerBinding = ListElectricBillerBinding.inflate(layoutInflater, parent, false)
         return MyViewHolder(binding)
     }
 
@@ -30,18 +31,18 @@ class BillerListAdapter(private var items: List<StateCityModel>, private val cal
         return filteredItems.size
     }
 
-    inner class MyViewHolder(val binding: StateListBinding) :
+    inner class MyViewHolder(val binding: ListElectricBillerBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: StateCityModel, position: Int) {
+        fun bind(item: ElectricModel, position: Int) {
             //binding.tvState.text = item.stateCity
             binding.model = item
-            binding.tvState.setOnClickListener {
+            binding.clHeader.setOnClickListener {
 
                 for(item in filteredItems){
-                    item.isSelecetd=false
+                    item.isSelected=false
                 }
-                filteredItems[position].isSelecetd=true
-                callBack.getValue(item.stateCity)
+                filteredItems[position].isSelected=true
+                callBack.getValue(item.biller_name)
 
                 binding.executePendingBindings()
                 Log.d("TAG_filteredItems", "bind: "+filteredItems)
@@ -61,7 +62,7 @@ class BillerListAdapter(private var items: List<StateCityModel>, private val cal
                     items
                 } else {
                     items.filter { item ->
-                        item.stateCity.lowercase().contains(charSequence)
+                        item.biller_name.lowercase().contains(charSequence)
                     }
                 }
                 val results = FilterResults()
@@ -70,14 +71,14 @@ class BillerListAdapter(private var items: List<StateCityModel>, private val cal
             }
 
             override fun publishResults(constraint: CharSequence, results: FilterResults) {
-                filteredItems = results.values as List<StateCityModel>
+                filteredItems = results.values as List<ElectricModel>
                 notifyDataSetChanged()
             }
         }
     }
 
     // Update the list of items
-    fun updateData(newItems: List<StateCityModel>) {
+    fun updateData(newItems: List<ElectricModel>) {
         items = newItems
         filteredItems = newItems
         notifyDataSetChanged()
