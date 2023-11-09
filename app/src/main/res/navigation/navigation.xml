@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_homeFragment2_to_electricRechargeFragment"
             app:destination="@id/electricRechargeFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_reportFragment"
+            app:destination="@id/reportFragment" />
     </fragment>
     <fragment
         android:id="@+id/mobileRechargeFragment"
@@ -61,5 +64,25 @@
     <fragment
         android:id="@+id/electricRechargeFragment"
         android:name="com.epaymark.epay.ui.fragment.ElectricRechargeFragment"
-        android:label="ElectricRechargeFragment" />
+        android:label="ElectricRechargeFragment" >
+        <action
+            android:id="@+id/action_electricRechargeFragment_to_utilityBillPaymentFragment"
+            app:destination="@id/utilityBillPaymentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/utilityBillPaymentFragment"
+        android:name="com.epaymark.epay.ui.fragment.UtilityBillPaymentFragment"
+        android:label="UtilityBillPaymentFragment" >
+        <action
+            android:id="@+id/action_utilityBillPaymentFragment_to_electricPriceListFragment"
+            app:destination="@id/electricPriceListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/electricPriceListFragment"
+        android:name="com.epaymark.epay.ui.fragment.ElectricPriceListFragment"
+        android:label="ElectricPriceListFragment" />
+    <fragment
+        android:id="@+id/reportFragment"
+        android:name="com.epaymark.epay.ui.fragment.ReportFragment"
+        android:label="ReportFragment" />
 </navigation>

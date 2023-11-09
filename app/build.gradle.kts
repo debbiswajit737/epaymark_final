@@ -162,6 +162,10 @@ dependencies {
     implementation ("com.mikhaellopez:circularprogressbar:3.1.0")
 
     implementation ("com.github.bumptech.glide:glide:4.16.0")
+
+    //https://github.com/poovamraj/PinEditTextField
+    //implementation ("com.github.poovamraj:PinEditTextField:1.2.6")
+
 }
 
 kapt {

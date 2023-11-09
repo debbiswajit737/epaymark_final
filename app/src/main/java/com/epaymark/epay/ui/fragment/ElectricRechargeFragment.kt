@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.R
 import com.epaymark.epay.adapter.BillerListAdapter
 import com.epaymark.epay.data.model.ElectricModel
@@ -41,33 +42,24 @@ class ElectricRechargeFragment : BaseFragment() {
 
     private fun onViewClick() {
 
-
+        binding.apply {
+            imgBack.back()
+        }
     }
 
     fun initView() {
         binding.apply {
-            billerList.add(ElectricModel("West Bengal Electricity",R.drawable.ic_home,false))
-            billerList.add(ElectricModel("CESC Limited",R.drawable.ic_home,false))
-billerList.add(ElectricModel("West Bengal Electricity",R.drawable.ic_home,false))
-            billerList.add(ElectricModel("CESC Limited",R.drawable.ic_home,false))
-billerList.add(ElectricModel("West Bengal Electricity",R.drawable.ic_home,false))
-            billerList.add(ElectricModel("CESC Limited",R.drawable.ic_home,false))
-billerList.add(ElectricModel("West Bengal Electricity",R.drawable.ic_home,false))
-            billerList.add(ElectricModel("CESC Limited",R.drawable.ic_home,false))
-billerList.add(ElectricModel("West Bengal Electricity",R.drawable.ic_home,false))
-            billerList.add(ElectricModel("CESC Limited",R.drawable.ic_home,false))
-billerList.add(ElectricModel("West Bengal Electricity",R.drawable.ic_home,false))
-            billerList.add(ElectricModel("CESC Limited",R.drawable.ic_home,false))
-billerList.add(ElectricModel("West Bengal Electricity",R.drawable.ic_home,false))
-            billerList.add(ElectricModel("CESC Limited",R.drawable.ic_home,false))
+            billerList.clear()
+            billerList.add(ElectricModel("West Bengal Electricity",R.drawable.wbsedcl,false))
+            billerList.add(ElectricModel("CESC Limited",R.drawable.cesc,false))
+
 
             binding.recycleElectric.apply {
 
                 billerListAdapter= BillerListAdapter(billerList,object : CallBack {
                     override fun getValue(s: String) {
-
-
-
+                        viewModel?.billerAddress?.value=s
+                        findNavController().navigate(R.id.action_electricRechargeFragment_to_utilityBillPaymentFragment)
                     }
 
                 })

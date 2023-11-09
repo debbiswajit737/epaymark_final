@@ -1,5 +1,6 @@
 package com.epaymark.epay.ui.base
 
+import android.app.DatePickerDialog
 import android.content.ContentResolver
 import android.content.Context
 import android.graphics.Bitmap
@@ -17,12 +18,15 @@ import com.epaymark.epay.utils.helpers.Constants.INPUT_FILTER_MAX_VALUE
 import com.epaymark.epay.utils.helpers.Constants.INPUT_FILTER_POINTER_LENGTH
 import com.epaymark.epay.utils.helpers.DecimalDigitsInputFilter
 import com.epaymark.epay.utils.helpers.SharedPreff
+import com.epaymark.epay.utils.`interface`.CallBack
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileInputStream
 import java.io.IOException
 import java.io.InputStream
+import java.text.SimpleDateFormat
+import java.util.Calendar
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -134,6 +138,34 @@ open class BaseFragment: Fragment(){
         this.filters = arrayOf<InputFilter>(DecimalDigitsInputFilter(INPUT_FILTER_MAX_VALUE, INPUT_FILTER_POINTER_LENGTH))
 
     }
+    fun View.showDatePickerDialog(callBack: CallBack) {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            this.context,
+            DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+                val selectedDate = "$year-${month + 1}-$dayOfMonth" // +1 because months are zero-based
+                callBack.getValue(selectedDate)
+            },
+            year,
+            month,
+            day
+        )
+
+        datePickerDialog.show()
+    }
+    fun String.currentdate(): String {
+        val calendar = Calendar.getInstance()
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val currentDate = dateFormat.format(calendar.time)
+        return currentDate
+    }
+
+
+
 }
 
 

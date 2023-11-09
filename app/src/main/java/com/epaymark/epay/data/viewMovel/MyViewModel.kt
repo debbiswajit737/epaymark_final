@@ -17,7 +17,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRepository) : ViewModel() {
+    val reportType = MutableLiveData<String>("")
+    val startDate = MutableLiveData<String>("")
+    val enddate = MutableLiveData<String>("")
+
+
+    val tPin = MutableLiveData<String>("")
     val state = MutableLiveData<String>()
+    val billerAddress = MutableLiveData<String>()
 
     val userName = MutableLiveData<String>()
     val balence = MutableLiveData<String>()
@@ -38,6 +45,9 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val dthOperator = MutableLiveData<String>()
     val dthAmt = MutableLiveData<String>()
 
+    val consumerId = MutableLiveData<String>()
+    val consumerIdPrice = MutableLiveData<String>()
+
 
     val mobileError = MutableLiveData<String>()
     val operatorError = MutableLiveData<String>()
@@ -46,6 +56,9 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val dthError = MutableLiveData<String>()
     val dthAmtError = MutableLiveData<String>()
 
+    val consumerIdError = MutableLiveData<String>()
+    val consumerIdPriceError = MutableLiveData<String>()
+
 
     val mobileErrorVisible = MutableLiveData<Boolean>()
     val operatorErrorVisible = MutableLiveData<Boolean>()
@@ -53,6 +66,9 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val subIdErrorVisible = MutableLiveData<Boolean>()
     val dthErrorErrorVisible = MutableLiveData<Boolean>()
     val dthAmtErrorVisible = MutableLiveData<Boolean>()
+
+    val consumerIdErrorVisible = MutableLiveData<Boolean>()
+    val consumerIdPriceErrorVisible = MutableLiveData<Boolean>()
 
 
 
@@ -136,6 +152,36 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
         return isValid
     }
 
+
+    fun electricValidation(): Boolean {
+
+        invisibleErrorTexts()
+
+        var isValid = true
+        if (consumerId.value?.trim().isNullOrBlank()) {
+            consumerIdError.value = "Please enter a valid Customer Id fixed 11 digit"
+            consumerIdErrorVisible.value = true
+            isValid = false
+        } else {
+            consumerIdError.value = ""
+            consumerIdErrorVisible.value = false
+        }
+
+        if (consumerIdPrice.value?.trim().isNullOrBlank()) {
+            consumerIdPriceError.value = "Please select amount"
+            consumerIdPriceErrorVisible.value = true
+            isValid = false
+        } else {
+            consumerIdPriceError.value = ""
+            consumerIdPriceErrorVisible.value = false
+        }
+
+
+
+
+        return isValid
+    }
+
         val loginResponseLiveData: LiveData<ResponseState<BaseResponse<Test>>>
         get() = repository.loginResponseLiveData
     fun login(requestBody: JsonObject) {
@@ -153,5 +199,13 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
         mobileErrorVisible.value = false
         operatorErrorVisible.value = false
         amtErrorErrorVisible.value = false
+
+
+         subIdErrorVisible.value = false
+         dthErrorErrorVisible.value = false
+         dthAmtErrorVisible.value = false
+
+         consumerIdErrorVisible.value = false
+         consumerIdPriceErrorVisible.value = false
     }
 }

@@ -78,9 +78,18 @@ class MobileRechargeFragment : BaseFragment() {
             }
 
             btnSubmit.setOnClickListener{
-                if (viewModel?.regValidation() == true){
-                    Toast.makeText(btnSubmit.context, "ok", Toast.LENGTH_SHORT).show()
+                activity?.let {act->
+                    if (viewModel?.regValidation() == true){
+                        val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
+                            override fun getValue(s: String) {
+
+                            }
+                        })
+                        tpinBottomSheetDialog.show(act.supportFragmentManager, tpinBottomSheetDialog.tag)
+
+                    }
                 }
+
             }
 
         }

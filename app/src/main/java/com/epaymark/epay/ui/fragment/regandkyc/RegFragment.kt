@@ -461,25 +461,7 @@ class RegFragment : BaseFragment() {
         }
     }
 
-    private fun View.showDatePickerDialog(callBack: CallBack) {
-        val calendar = Calendar.getInstance()
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-        val datePickerDialog = DatePickerDialog(
-            this.context,
-            DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-                val selectedDate = "$year-${month + 1}-$dayOfMonth" // +1 because months are zero-based
-                callBack.getValue(selectedDate)
-            },
-            year,
-            month,
-            day
-        )
-
-        datePickerDialog.show()
-    }
 
 
      fun Spinner.setSpinner(callBack: CallBack, genderArray: Array<String>){

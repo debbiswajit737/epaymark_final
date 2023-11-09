@@ -4,10 +4,12 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingListener
 import androidx.lifecycle.ViewModel
+import com.epaymark.epay.R
 import com.epaymark.epay.data.viewMovel.AuthViewModel
 
 
@@ -44,4 +46,15 @@ fun addTextChangeListener(view: EditText, viewModel: ViewModel) {
 
     })
 
+}
+
+
+@BindingAdapter("app:setImage")
+fun setImage(view: ImageView, imageInt: Int) {
+    if (imageInt!=null) {
+        view.setImageResource(imageInt)
+    }
+    else{
+        view.setImageResource(R.drawable.default_1)
+    }
 }

@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
@@ -20,6 +19,7 @@ import com.epaymark.epay.adapter.AutoScrollHandler
 import com.epaymark.epay.adapter.BannerViewpagerAdapter
 import com.epaymark.epay.adapter.MyBig9Adapter
 import com.epaymark.epay.adapter.RechargeAdapter
+import com.epaymark.epay.adapter.ReportAdapter
 import com.epaymark.epay.adapter.TravelAdapter
 import com.epaymark.epay.adapter.UPIAdapter
 import com.epaymark.epay.data.model.ListIcon
@@ -28,6 +28,7 @@ import com.epaymark.epay.databinding.FragmentHomeBinding
 
 
 import com.epaymark.epay.ui.base.BaseFragment
+import com.epaymark.epay.ui.popup.CustomPopup.showBalencePopup
 import com.epaymark.epay.utils.`interface`.CallBack
 
 
@@ -44,6 +45,7 @@ class HomeFragment : BaseFragment() {
     var iconList5 = ArrayList<ListIcon>()
     var iconList6 = ArrayList<ListIcon>()
     var iconList7 = ArrayList<ListIcon>()
+    var iconList8 = ArrayList<ListIcon>()
     lateinit var binding: FragmentHomeBinding
     private lateinit var autoScrollHandler: AutoScrollHandler
     private val viewModel: MyViewModel by activityViewModels()
@@ -310,12 +312,17 @@ class HomeFragment : BaseFragment() {
 
             recycleMyBig.apply {
                 iconList4.clear()
-                iconList4.add(ListIcon("Balence & History", R.drawable.transaction_history))
+                iconList4.add(ListIcon("Balence", R.drawable.transaction_history))
                 iconList4.add(ListIcon("CMS", R.drawable.cms))
                 iconList4.add(ListIcon("Wallet", R.drawable.db_balance))
                 iconList4.add(ListIcon("Postpaid", R.drawable.cms))
 
-                adapter= MyBig9Adapter(iconList4,R.drawable.circle_shape2)
+                adapter= MyBig9Adapter(iconList4,R.drawable.circle_shape2,object : CallBack{
+                    override fun getValue(s: String) {
+                        showBalencePopup(binding.root.context)
+                    }
+
+                })
             }
 
             recycleAEPS.apply {
@@ -339,12 +346,59 @@ class HomeFragment : BaseFragment() {
             }
             recycleTravel.apply {
                 iconList7.clear()
-                iconList7.add(ListIcon("Flight", R.drawable.ic_flight))
-                iconList7.add(ListIcon("Train", R.drawable.ic_train))
-                iconList7.add(ListIcon("Bus", R.drawable.bus))
-                iconList7.add(ListIcon("Hotel", R.drawable.hotel))
+                iconList7.add(ListIcon(getString(R.string.flight), R.drawable.ic_flight))
+                iconList7.add(ListIcon(getString(R.string.train), R.drawable.ic_train))
+                iconList7.add(ListIcon(getString(R.string.bus), R.drawable.bus))
+                iconList7.add(ListIcon(getString(R.string.hotel), R.drawable.hotel))
 
-                adapter= TravelAdapter(iconList7,R.drawable.circle_shape2)
+                adapter= TravelAdapter(iconList7, R.drawable.circle_shape2, object : CallBack {
+                    override fun getValue(s: String) {
+
+                    }
+
+                })
+            }
+
+
+            recycleReport.apply {
+                iconList8.clear()
+                iconList8.add(ListIcon(getString(R.string.payment), R.drawable.report))
+                iconList8.add(ListIcon(getString(R.string.transactions), R.drawable.report))
+                iconList8.add(ListIcon(getString(R.string.dmt), R.drawable.report))
+                iconList8.add(ListIcon(getString(R.string.load_Requests), R.drawable.report))
+                iconList8.add(ListIcon(getString(R.string.wallet_ledger), R.drawable.report))
+                iconList8.add(ListIcon(getString(R.string.cashout_ledger), R.drawable.report))
+                iconList8.add(ListIcon(getString(R.string.aeps), R.drawable.report))
+                iconList8.add(ListIcon(getString(R.string.micro_atm), R.drawable.report))
+                iconList8.add(ListIcon(getString(R.string.commissions), R.drawable.report))
+                iconList8.add(ListIcon(getString(R.string.bank_settle), R.drawable.report))
+                iconList8.add(ListIcon(getString(R.string.wallet_settle), R.drawable.report))
+                iconList8.add(ListIcon(getString(R.string.complaints), R.drawable.report))
+
+
+                adapter= ReportAdapter(iconList8,R.drawable.circle_shape2,object : CallBack {
+                    override fun getValue(s: String) {
+                        viewModel.reportType.value=s//.replaceFirstChar(Char::titlecase)
+                        findNavController().navigate(R.id.action_homeFragment2_to_reportFragment)
+                       /*when(s){
+
+                           getString(R.string.payment)->{}
+                           getString(R.string.transactions)->{}
+                           getString(R.string.dmt)->{}
+                           getString(R.string.load_Requests)->{}
+                           getString(R.string.wallet_ledger)->{}
+                           getString(R.string.cashout_ledger)->{}
+                           getString(R.string.aeps)->{}
+                           getString(R.string.micro_atm)->{}
+                           getString(R.string.commissions)->{}
+                           getString(R.string.bank_settle)->{}
+                           getString(R.string.wallet_settle)->{}
+                           getString(R.string.complaints)->{}
+
+                       }*/
+                    }
+
+                })
             }
 
 

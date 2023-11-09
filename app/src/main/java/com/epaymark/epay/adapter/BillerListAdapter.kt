@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.epaymark.epay.utils.`interface`.CallBack
 import android.widget.Filter
 import android.widget.Filterable
+import com.bumptech.glide.Glide
 import com.epaymark.epay.data.model.ElectricModel
 import com.epaymark.epay.data.model.StateCityModel
 import com.epaymark.epay.databinding.ListElectricBillerBinding
@@ -36,6 +37,13 @@ class BillerListAdapter(private var items: List<ElectricModel>, private val call
         fun bind(item: ElectricModel, position: Int) {
             //binding.tvState.text = item.stateCity
             binding.model = item
+            item.image?.let {
+                Glide.with(binding.imgElectricBiller.context)
+                    .load(it)
+                    .into(binding.imgElectricBiller)
+
+            }
+
             binding.clHeader.setOnClickListener {
 
                 for(item in filteredItems){

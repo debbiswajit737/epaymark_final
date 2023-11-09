@@ -8,7 +8,7 @@ import com.epaymark.epay.databinding.TravelLayoutBinding
 import com.epaymark.epay.utils.`interface`.CallBack
 
 
-class TravelAdapter(private val items: List<ListIcon>, val circleShape: Int, param: CallBack) : RecyclerView.Adapter<TravelAdapter.MyViewHolder>() {
+class ReportAdapter(private val items: List<ListIcon>, val circleShape: Int,val callBack: CallBack) : RecyclerView.Adapter<ReportAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         /*val view = LayoutInflater.from(parent.context).inflate(R.layout.banner_items, parent, false)
@@ -41,12 +41,17 @@ class TravelAdapter(private val items: List<ListIcon>, val circleShape: Int, par
             ///*if (position!=items.size-1) {
                 binding.imgIcon.setBackgroundResource(circleShape)
             //}*/
-            item.title.let {
-                binding.tvTitle.text = it
+            item.title?.let {title->
+                binding.tvTitle.text = title
+                binding.llContainer.setOnClickListener{
+                    callBack.getValue(title)
+                }
             }
             item.image?.let {image->
                 binding.imgIcon.setImageResource(image)
             }
+
+
         }
     }
 

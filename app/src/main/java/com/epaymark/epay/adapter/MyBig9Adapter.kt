@@ -5,9 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.epaymark.epay.data.model.ListIcon
 import com.epaymark.epay.databinding.MyBig9LayoutBinding
+import com.epaymark.epay.utils.`interface`.CallBack
 
 
-class MyBig9Adapter(private val items: List<ListIcon>, val circleShape: Int) : RecyclerView.Adapter<MyBig9Adapter.MyViewHolder>() {
+class MyBig9Adapter(private val items: List<ListIcon>, val circleShape: Int,val callBack:  CallBack) : RecyclerView.Adapter<MyBig9Adapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         /*val view = LayoutInflater.from(parent.context).inflate(R.layout.banner_items, parent, false)
@@ -40,12 +41,17 @@ class MyBig9Adapter(private val items: List<ListIcon>, val circleShape: Int) : R
             ///*if (position!=items.size-1) {
                 binding.imgIcon.setBackgroundResource(circleShape)
             //}*/
-            item.title.let {
-                binding.tvTitle.text = it
+            item.title?.let {title->
+                binding.tvTitle.text = title
+                binding.llContainer.setOnClickListener{
+                    callBack.getValue(title)
+                }
             }
             item.image?.let {image->
                 binding.imgIcon.setImageResource(image)
             }
+
+
         }
     }
 
