@@ -69,6 +69,7 @@ class AuthViewModel @Inject constructor(private val repository: DeliveryOptionsR
 
 
     val pancardImage3 = MutableLiveData<String>()
+    val cancleCheck = MutableLiveData<String>()
 
 
 
@@ -92,6 +93,7 @@ class AuthViewModel @Inject constructor(private val repository: DeliveryOptionsR
     val businessTypeError = MutableLiveData<String>()
     val businessCategoryError = MutableLiveData<String>()
     val businessNameError = MutableLiveData<String>()
+    val chooseCancleCheckError = MutableLiveData<String>()
     val businessAddressError = MutableLiveData<String>()
     val beneficiaryNameError = MutableLiveData<String>()
     val accountNumberError = MutableLiveData<String>()
@@ -127,6 +129,7 @@ class AuthViewModel @Inject constructor(private val repository: DeliveryOptionsR
     val bankNameErrorVisible = MutableLiveData<Boolean>()
     val ifscCodeErrorVisible = MutableLiveData<Boolean>()
     val employeeCodeErrorVisible = MutableLiveData<Boolean>()
+    val chooseCancleCheckErrorVisible = MutableLiveData<Boolean>()
 
 
 
@@ -474,6 +477,17 @@ class AuthViewModel @Inject constructor(private val repository: DeliveryOptionsR
             employeeCodeErrorVisible.value = false
         }
 
+        if (cancleCheck?.value?.trim().isNullOrBlank()) {
+            chooseCancleCheckError.value = "Employee Code/ID is required"
+            chooseCancleCheckErrorVisible.value = true
+            isValid = false
+        } else {
+            chooseCancleCheckError.value = ""
+            chooseCancleCheckErrorVisible.value = false
+        }
+
+
+
         // Validate the Cancelled Cheque field for JPG only
         /*val allowedExtensions = listOf("jpg", "jpeg")
         val chequeFilePath = cancelledChequeFilePath // Replace with your LiveData variable for the file path
@@ -541,12 +555,12 @@ class AuthViewModel @Inject constructor(private val repository: DeliveryOptionsR
         else{
             llCselfiErrorVisible.value = false
         }
-         if (llTrade.value?.trim().isNullOrBlank()) {
-             llTradeErrorVisible.value = true
+         if (llUserSelfi.value?.trim().isNullOrBlank()) {
+             llUserSelfiErrorVisible.value = true
              isValid= false
        }
         else{
-             llTradeErrorVisible.value=false
+             llUserSelfiErrorVisible.value=false
          }
 
 

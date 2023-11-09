@@ -17,12 +17,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.R
 import com.epaymark.epay.data.viewMovel.AuthViewModel
 import com.epaymark.epay.databinding.FragmentDocuploadBinding
+import com.epaymark.epay.ui.activity.DashboardActivity
 import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.ui.fragment.CameraDialog
 import com.epaymark.epay.utils.common.MethodClass
@@ -247,7 +250,8 @@ class DocuploadFragment : BaseFragment() {
                                 Log.d("TAG_videofilebbbbb", "onViewClick: "+uriToBase64(binding.tvPancardVideoKycImage.context,uri))
                             }
                         if (authViewModel.docValidation()){
-                            Toast.makeText(binding.root.context, "Ok", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(requireActivity(),DashboardActivity::class.java))
+                        //Toast.makeText(binding.root.context, "Ok", Toast.LENGTH_SHORT).show()
                         }
                     }catch (e:Exception){
                         Toast.makeText(binding.root.context, e.message, Toast.LENGTH_SHORT).show()
@@ -291,7 +295,8 @@ class DocuploadFragment : BaseFragment() {
             "g"->{
                 isVideo=false
                 isGallary=true
-                findNavController().navigate(R.id.action_docuploadFragment_to_cameraFragment)
+                pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+                //findNavController().navigate(R.id.action_docuploadFragment_to_cameraFragment)
             }
             "t"->{
                 isVideo=false
@@ -365,5 +370,19 @@ class DocuploadFragment : BaseFragment() {
                     Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+
+        if (uri != null) {
+            authViewModel.filePath.value = uri
+
+            //findNavController().navigate(R.id.action_homeFragment_to_previewFragment)
+        } else {
+            authViewModel.filePath.value =Uri.parse("/")
+
+            Log.d("PhotoPicker", "No media selected")
+        }
+
     }
 }

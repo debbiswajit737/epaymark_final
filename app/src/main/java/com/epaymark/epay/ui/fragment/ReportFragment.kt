@@ -67,8 +67,8 @@ class ReportFragment : BaseFragment() {
                     when (type) {
 
                         getString(R.string.payment) -> {
-                            reportList.add(ReportModel("001","778.00","10-10-2023","Payment send",false, desc = "AEPS-MINI_STATEMENT -9163265863\nReferance id - 30000018",imageInt = R.drawable.send_logo))
-                            reportList.add(ReportModel("002","778.00","10-10-2023","Payment received",true ,desc = "AEPS-MINI_STATEMENT -9163265863\nReferance id - 30000018",imageInt = R.drawable.receive_logo))
+                            reportList.add(ReportModel("001","778.00","10-10-2023","Payment send",0, desc = "AEPS-MINI_STATEMENT -9163265863\nReferance id - 30000018",imageInt = R.drawable.send_logo))
+                            reportList.add(ReportModel("002","778.00","10-10-2023","Payment received",1 ,desc = "AEPS-MINI_STATEMENT -9163265863\nReferance id - 30000018",imageInt = R.drawable.receive_logo))
 
 
                         }
@@ -81,7 +81,7 @@ class ReportFragment : BaseFragment() {
                                     "778.00",
                                     "10-10-2023",
                                     "Failed",
-                                    false,
+                                    0,
                                     desc = "AEPS-MINI_STATEMENT -9163265863\nReferance id - 30000018",
                                     imageInt = R.drawable.close_icon
                                 )
@@ -92,7 +92,7 @@ class ReportFragment : BaseFragment() {
                                     "778.00",
                                     "10-10-2023",
                                     getString(R.string.success),
-                                    true,
+                                    1,
                                     desc = "AEPS-MINI_STATEMENT -9163265863\nReferance id - 30000018",
                                     imageInt = R.drawable.right_tick
                                 )
@@ -101,23 +101,99 @@ class ReportFragment : BaseFragment() {
                         }
 
                         getString(R.string.dmt) -> {
-                            ReportPropertyModel("Transaction id")
-                            reportList.add(ReportModel("001","778.00","10-10-2023","Refunded",false, desc = "AEPS-MINI_STATEMENT -9163265863\nReferance id - 30000018",imageInt = R.drawable.imps_logo))
-                            reportList.add(ReportModel("002","778.00","10-10-2023","Success",true ,desc = "AEPS-MINI_STATEMENT -9163265863\nReferance id - 30000018",imageInt = R.drawable.imps_logo))
-
+                            reportList.add(
+                                ReportModel(
+                                    "001",
+                                    "778.00",
+                                    "10-10-2023",
+                                    "Refunded",
+                                    0,
+                                    desc = "Rajiv\nA/c No.:111111111111\nSender: 5555555555",
+                                    imageInt = R.drawable.imps_logo,
+                                    image1 = 2
+                                )
+                            )
+                            reportList.add(
+                                ReportModel(
+                                    "002",
+                                    "778.00",
+                                    "10-10-2023",
+                                    getString(R.string.success),
+                                    1,
+                                    desc = "Jhuma Chowdhary\nA/c No.:000000000000\nSender :8888888888",
+                                    imageInt = R.drawable.imps_logo,
+                                    image1 = 2
+                                )
+                            )
 
                         }
 
                         getString(R.string.load_Requests) -> {
-                            ReportPropertyModel("Transaction id")
+                            reportList.add(
+                                ReportModel(
+                                    "001",
+                                    "778.00",
+                                    "10-10-2023",
+                                    "Credit/Sales Supports",
+                                    2,
+                                    desc = "Axis Bank-Online\nPayment Ref id- 5376254\nApproved on 2023-10-30",
+                                    imageInt = R.drawable.right_tick
+                                )
+                            )
+                            reportList.add(
+                                ReportModel(
+                                    "001",
+                                    "778.00",
+                                    "10-10-2023",
+                                    "Credit/Sales Supports",
+                                    2,
+                                    desc = "Axis Bank-Online\nSame Bank\nPayment Ref Id: ASEESSS",
+                                    imageInt = R.drawable.rounded_i
+                                )
+                            )
                         }
 
                         getString(R.string.wallet_ledger) -> {
-                            ReportPropertyModel("Transaction id")
+                            reportList.add(
+                                ReportModel(
+                                    "001",
+                                    "778.00",
+                                    "10-10-2023",
+                                    "ePotlyNB Money\nForward",
+                                    2,
+                                    desc = "",
+                                    price2 = "Closing ₹1021.00",
+                                    proce1TextColor = 1
+                                )
+                            )
+                            reportList.add(
+                                ReportModel(
+                                    "001",
+                                    "-778.00",
+                                    "10-10-2023",
+                                    "ePotlyNB Money\nForward",
+                                    2,
+                                    desc = "",
+                                    price2 = "Closing ₹1021.00",
+                                    proce1TextColor = 2
+                                )
+                            )
+
                         }
 
                         getString(R.string.cashout_ledger) -> {
-                            ReportPropertyModel("Transaction id")
+                            reportList.add(
+                                ReportModel(
+                                    "001",
+                                    "778.00",
+                                    "10-10-2023",
+                                    "Wallet Statement",
+                                    2,
+                                    desc = "",
+                                    price2 = "Closing ₹1021.00",
+                                    proce1TextColor = 1
+                                )
+                            )
                         }
 
                         getString(R.string.aeps) -> {
@@ -133,11 +209,33 @@ class ReportFragment : BaseFragment() {
                         }
 
                         getString(R.string.bank_settle) -> {
-                            ReportPropertyModel("Transaction id")
+                            reportList.add(
+                                ReportModel(
+                                    "001",
+                                    "778.00",
+                                    "10-10-2023",
+                                    "Failed",
+                                    0,
+                                    desc = "Type: Settle to bank",
+
+                                    image1 = 3
+                                )
+                            )
                         }
 
                         getString(R.string.wallet_settle) -> {
-                            ReportPropertyModel("Transaction id")
+                            reportList.add(
+                                ReportModel(
+                                    "001",
+                                    "10.00",
+                                    "10-10-2023",
+                                    "Failed",
+                                    0,
+                                    desc = "Type: Settle to wallet\nstatus - processed\ndetails-wallet",
+
+                                    image1 = 3
+                                )
+                            )
                         }
 
                         getString(R.string.complaints) -> {

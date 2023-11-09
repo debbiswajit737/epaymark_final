@@ -1,6 +1,7 @@
 package com.epaymark.epay.ui.fragment.regandkyc
 
 
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -105,7 +108,8 @@ class BankDetailsFragment : BaseFragment() {
             "g"->{
                 Constants.isVideo =false
                 Constants.isGallary =true
-                findNavController().navigate(R.id.action_bankDetailsFragment_to_cameraFragment)
+                pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+                //findNavController().navigate(R.id.action_bankDetailsFragment_to_cameraFragment)
             }
             "t"->{
                 Constants.isVideo =false
@@ -114,5 +118,19 @@ class BankDetailsFragment : BaseFragment() {
             }
 
         }
+    }
+
+    val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+
+        if (uri != null) {
+            authViewModel?.cancleCheck?.value = uri.toString()
+
+            //findNavController().navigate(R.id.action_homeFragment_to_previewFragment)
+        } else {
+            authViewModel?.cancleCheck?.value = "/"
+
+            Log.d("PhotoPicker", "No media selected")
+        }
+
     }
 }

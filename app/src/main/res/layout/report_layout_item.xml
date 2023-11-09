@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
     <data>
+        <import type="android.view.View"/>
         <variable
             name="model"
             type="com.epaymark.epay.data.model.ReportModel" />
@@ -92,10 +93,21 @@
 
                         android:layout_marginEnd="@dimen/_10sdp"
                         android:text="@{`₹`+model.price}"
-                        android:textColor="@color/logo_color"
+                        android:textColor="@{model.proce1TextColor==1?@color/g5:model.proce1TextColor==0?@color/black:@color/g4}"
                         tools:text="price" />
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/tv_price2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="@dimen/_10sdp"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
+                    android:text="@{model.price2}"
+                    android:textColor="@color/logo_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/linearLayout6"
+                    tools:text="price" />
                 <TextView
                     android:id="@+id/tv_date"
                     android:layout_width="0dp"
@@ -114,7 +126,7 @@
                     android:layout_marginStart="@dimen/_20sdp"
 
                     android:text="@{model.reporyStatus}"
-                    android:textColor="@{model.reporyStatusFlag==true?@color/g5:@color/g4  }"
+                    android:textColor="@{model.reporyStatusFlag==1?@color/g5:model.reporyStatusFlag==0?@color/g4:model.reporyStatusFlag==2?@color/black:@color/gray  }"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_date"
                     tools:text="success" />
@@ -126,22 +138,37 @@
                     android:layout_margin="@dimen/_10sdp"
                     android:scaleType="fitXY"
                     android:src="@drawable/default_1"
-                    app:setImage="@{model.imageInt}"
+                    android:visibility="@{model.image1==1?View.VISIBLE:View.GONE}"
+
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
+                    app:setImage="@{model.imageInt}" />
 
                 <TextView
+                    android:id="@+id/textView16"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@{model.desc}"
-                    android:textSize="@dimen/_8ssp"
-                    tools:text="desc"
                     android:fontFamily="@font/montserrat_regular_400"
+                    android:text="@{model.desc}"
                     android:textColor="@color/black"
+                    android:textSize="@dimen/_8ssp"
                     app:layout_constraintEnd_toStartOf="@+id/imageView6"
                     app:layout_constraintStart_toStartOf="@+id/textView15"
-                    app:layout_constraintTop_toBottomOf="@+id/textView15" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView15"
+                    tools:text="desc" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    app:civ_border_width="@dimen/_1sdp"
+                    android:visibility="@{model.image1==2?View.VISIBLE:View.GONE}"
+                    android:src="@drawable/default_1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:setImage="@{model.imageInt}" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 

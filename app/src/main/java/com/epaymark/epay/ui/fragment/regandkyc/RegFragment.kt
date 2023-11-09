@@ -22,6 +22,8 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
@@ -576,7 +578,8 @@ class RegFragment : BaseFragment() {
             "g"->{
                 Constants.isVideo =false
                 Constants.isGallary =true
-                findNavController().navigate(R.id.action_regFragment_to_cameraFragment)
+                pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+                //findNavController().navigate(R.id.action_regFragment_to_cameraFragment)
             }
             "t"->{
                 Constants.isVideo =false
@@ -585,5 +588,20 @@ class RegFragment : BaseFragment() {
             }
 
         }
+    }
+
+
+    val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+
+        if (uri != null) {
+            authViewModel.filePath.value = uri
+
+            //findNavController().navigate(R.id.action_homeFragment_to_previewFragment)
+        } else {
+            authViewModel.filePath.value =Uri.parse("/")
+
+            Log.d("PhotoPicker", "No media selected")
+        }
+
     }
 }
