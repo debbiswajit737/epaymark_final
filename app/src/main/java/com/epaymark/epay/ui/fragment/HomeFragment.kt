@@ -66,6 +66,9 @@ class HomeFragment : BaseFragment() {
 
     private fun viewOnClick() {
         binding.apply {
+            imgBalance.setOnClickListener{
+                showBalencePopup(binding.root.context)
+            }
             rotateView(arrowImageView, 0f)
             val collapseAnimation: Animation =
                 AnimationUtils.loadAnimation(requireActivity(), R.anim.collapse_animation)
@@ -103,7 +106,7 @@ class HomeFragment : BaseFragment() {
 
 
 
-            arrowImageView2.setOnClickListener {
+        /*    arrowImageView2.setOnClickListener {
 
                 if (isRotated2) {
 
@@ -134,7 +137,7 @@ class HomeFragment : BaseFragment() {
 
                 isRotated2 = !isRotated2
             }
-
+*/
 
 
 
@@ -310,20 +313,25 @@ class HomeFragment : BaseFragment() {
                 })
             }
 
-            recycleMyBig.apply {
+           /* recycleMyBig.apply {
                 iconList4.clear()
-                iconList4.add(ListIcon("Balence", R.drawable.transaction_history))
+                iconList4.add(ListIcon(getString(R.string.balance), R.drawable.transaction_history))
                 iconList4.add(ListIcon("CMS", R.drawable.cms))
                 iconList4.add(ListIcon("Wallet", R.drawable.db_balance))
                 iconList4.add(ListIcon("Postpaid", R.drawable.cms))
 
                 adapter= MyBig9Adapter(iconList4,R.drawable.circle_shape2,object : CallBack{
                     override fun getValue(s: String) {
-                        showBalencePopup(binding.root.context)
+                        when(s){
+                            getString(R.string.balance)->{
+                                showBalencePopup(binding.root.context)
+                            }
+                        }
+
                     }
 
                 })
-            }
+            }*/
 
             recycleAEPS.apply {
                 iconList5.clear()
@@ -337,12 +345,21 @@ class HomeFragment : BaseFragment() {
 
             recycleUPI.apply {
                 iconList6.clear()
-                iconList6.add(ListIcon("Scan & Pay", R.drawable.baseline_qr_code_scanner_24))
+                iconList6.add(ListIcon(getString(R.string.scan), R.drawable.baseline_qr_code_scanner_24))
                 iconList6.add(ListIcon("To Contact", R.drawable.ic_contacts))
                 iconList6.add(ListIcon("To Self", R.drawable.ic_self))
                 iconList6.add(ListIcon("To Bank A/C", R.drawable.ic_bank))
 
-                adapter= UPIAdapter(iconList6,R.drawable.circle_shape2)
+                adapter= UPIAdapter(iconList6,R.drawable.circle_shape2, object : CallBack {
+                    override fun getValue(s: String) {
+                    when(s){
+                        getString(R.string.scan)->{
+                            findNavController().navigate(R.id.action_homeFragment2_to_QRCodeFragment)
+                        }
+                    }
+                    }
+
+                })
             }
             recycleTravel.apply {
                 iconList7.clear()

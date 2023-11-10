@@ -128,4 +128,5 @@
     <string name="bus">Bus</string>
     <string name="success">Success</string>
     <string name="hotel">Hotel</string>
+    <string name="scan"><![CDATA[Scan & Pay]]></string>
 </resources>

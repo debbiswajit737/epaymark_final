@@ -47,7 +47,7 @@ class CongratulationFragment : Fragment() {
                 override fun onAnimationStart(animation: Animator) {}
                 override fun onAnimationEnd(animation: Animator) {
                     lifecycleScope.launch {
-                        delay(500L)
+
 
                         (activity as? AuthenticationActivity)?.let{act->
                             startActivity(Intent(act, DashboardActivity::class.java))

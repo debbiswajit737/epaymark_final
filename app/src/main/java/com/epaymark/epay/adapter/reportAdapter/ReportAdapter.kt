@@ -3,11 +3,12 @@ package com.epaymark.epay.adapter.reportAdapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.epaymark.epay.R
 import com.epaymark.epay.data.model.ReportModel
 import com.epaymark.epay.data.model.ReportPropertyModel
 import com.epaymark.epay.databinding.ReportLayoutItemBinding
+import com.epaymark.epay.utils.*
 import com.epaymark.epay.utils.`interface`.CallBack
+import com.google.gson.Gson
 
 
 class ReportAdapter(
@@ -49,9 +50,20 @@ class ReportAdapter(
     inner class MyViewHolder(val binding: ReportLayoutItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ReportModel, position: Int) {
-            binding.model=item
-            binding.propertyModel=reportPropertyModel
-            binding.executePendingBindings()
+            binding.apply {
+
+                model=item
+                cardView.setOnClickListener{
+                    if (item.isClickAble){
+                        val gson = Gson()
+                        val json = gson.toJson(item)
+                        callBack.getValue(json)
+                    }
+
+                }
+                propertyModel=reportPropertyModel
+                executePendingBindings()
+            }
 
         }
     }

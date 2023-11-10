@@ -5,8 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.R
 import com.epaymark.epay.adapter.reportAdapter.ReportAdapter
 import com.epaymark.epay.data.model.ReportModel
@@ -83,7 +86,8 @@ class ReportFragment : BaseFragment() {
                                     "Failed",
                                     0,
                                     desc = "AEPS-MINI_STATEMENT -9163265863\nReferance id - 30000018",
-                                    imageInt = R.drawable.close_icon
+                                    imageInt = R.drawable.close_icon,
+                                    isClickAble = true
                                 )
                             )
                             reportList.add(
@@ -110,7 +114,8 @@ class ReportFragment : BaseFragment() {
                                     0,
                                     desc = "Rajiv\nA/c No.:111111111111\nSender: 5555555555",
                                     imageInt = R.drawable.imps_logo,
-                                    image1 = 2
+                                    image1 = 2,
+                                    isClickAble = true
                                 )
                             )
                             reportList.add(
@@ -157,25 +162,33 @@ class ReportFragment : BaseFragment() {
                             reportList.add(
                                 ReportModel(
                                     "001",
-                                    "778.00",
-                                    "10-10-2023",
+                                    "-778.00",
+                                    "10-10-2023\n" +
+                                            "05:49:11",
                                     "ePotlyNB Money\nForward",
-                                    2,
+                                    3,
                                     desc = "",
+                                    image1 = 2,
+                                    imageInt=R.drawable.rupee_rounded,
                                     price2 = "Closing ₹1021.00",
-                                    proce1TextColor = 1
+                                    proce1TextColor = 2,
+                                    isMiniStatement = false
                                 )
                             )
                             reportList.add(
                                 ReportModel(
                                     "001",
                                     "-778.00",
-                                    "10-10-2023",
+                                    "10-10-2023\n" +
+                                            "05:49:11",
                                     "ePotlyNB Money\nForward",
-                                    2,
+                                    3,
                                     desc = "",
+                                    image1 = 2,
+                                    imageInt=R.drawable.rupee_rounded,
                                     price2 = "Closing ₹1021.00",
-                                    proce1TextColor = 2
+                                    proce1TextColor = 2,
+                                    isMiniStatement = false
                                 )
                             )
 
@@ -185,23 +198,40 @@ class ReportFragment : BaseFragment() {
                             reportList.add(
                                 ReportModel(
                                     "001",
-                                    "778.00",
-                                    "10-10-2023",
-                                    "Wallet Statement",
-                                    2,
+                                    "-778.00",
+                                    "10-10-2023\n" +
+                                            "05:49:11",
+                                    "ePotlyNB Money\nForward",
+                                    3,
                                     desc = "",
+                                    image1 = 2,
+                                    imageInt=R.drawable.rupee_rounded,
                                     price2 = "Closing ₹1021.00",
-                                    proce1TextColor = 1
+                                    proce1TextColor = 2,
+                                    isMiniStatement = false
                                 )
                             )
                         }
 
                         getString(R.string.aeps) -> {
-                            ReportPropertyModel("Transaction id")
+                            reportList.add(
+                                ReportModel(
+                                    "001",
+                                    "778.00",
+                                    "10-10-2023",
+
+                                    desc = "AAdhar No.:xxxx-xxxx-1458\nRRN: Balance 0\nSettltment Transaction id: 300000312",
+                                    imageInt = R.drawable.close_icon,
+                                    isMiniStatement = true,
+                                    miniStatementValue = "Mini Statement",
+                                    isClickAble = true
+                                )
+                            )
                         }
 
                         getString(R.string.micro_atm) -> {
                             ReportPropertyModel("Transaction id")
+                            //isClickAble = true
                         }
 
                         getString(R.string.commissions) -> {
@@ -217,7 +247,7 @@ class ReportFragment : BaseFragment() {
                                     "Failed",
                                     0,
                                     desc = "Type: Settle to bank",
-
+                                    isClickAble = true,
                                     image1 = 3
                                 )
                             )
@@ -270,11 +300,18 @@ class ReportFragment : BaseFragment() {
 
                         else -> {ReportPropertyModel("Transaction id")}
                     }
+                    if (reportList.size>0){
+                        binding.tvNoDataFound.visibility=View.GONE
+                    }else{
+                        binding.tvNoDataFound.visibility=View.VISIBLE
 
-
+                    }
+                    binding.nsv.isVisible=!tvNoDataFound.isVisible
                     adapter= ReportAdapter(reportPropertyModel,reportList,  object : CallBack {
                         override fun getValue(s: String) {
-
+                            val bundle = Bundle()
+                            bundle.putString("jsonData", s)
+                            findNavController().navigate(R.id.action_reportFragment_to_reportDetailsFragment,bundle)
                         }
 
                     })

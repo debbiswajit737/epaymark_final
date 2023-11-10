@@ -8,6 +8,10 @@
         android:name="android.hardware.camera"
         android:required="true" />
 
+
+
+
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
@@ -45,7 +49,7 @@
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".ui.activity.DashboardActivity"
+            android:name=".ui.activity.SplashActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -65,7 +69,7 @@
             android:exported="false"
             android:screenOrientation="portrait" /> <!-- android:theme="@style/Theme.AppCompat" -->
         <activity
-            android:name=".ui.activity.SplashActivity"
+            android:name=".ui.activity.DashboardActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">

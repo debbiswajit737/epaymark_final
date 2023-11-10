@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_homeFragment2_to_reportFragment"
             app:destination="@id/reportFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_QRCodeFragment"
+            app:destination="@id/QRCodeFragment" />
     </fragment>
     <fragment
         android:id="@+id/mobileRechargeFragment"
@@ -84,5 +87,17 @@
     <fragment
         android:id="@+id/reportFragment"
         android:name="com.epaymark.epay.ui.fragment.ReportFragment"
-        android:label="ReportFragment" />
+        android:label="ReportFragment" >
+        <action
+            android:id="@+id/action_reportFragment_to_reportDetailsFragment"
+            app:destination="@id/reportDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/reportDetailsFragment"
+        android:name="com.epaymark.epay.ui.fragment.ReportDetailsFragment"
+        android:label="ReportDetailsFragment" />
+    <fragment
+        android:id="@+id/QRCodeFragment"
+        android:name="com.epaymark.epay.ui.fragment.QRCodeFragment"
+        android:label="QRCodeFragment" />
 </navigation>

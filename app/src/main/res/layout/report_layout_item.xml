@@ -61,14 +61,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@{propertyModel.id}"
-                        android:textColor="@color/black"
+                        android:textColor="@color/logo_second_color_opacity"
                         tools:text="id" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@{model.id}"
-                        android:textColor="@color/black"
+                        android:textColor="@color/logo_second_color_opacity"
                         tools:text="id" />
                 </LinearLayout>
 
@@ -99,14 +99,13 @@
 
                 <TextView
                     android:id="@+id/tv_price2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:paddingEnd="@dimen/_10sdp"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
                     android:text="@{model.price2}"
                     android:textColor="@color/logo_color"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/linearLayout6"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
                     tools:text="price" />
                 <TextView
                     android:id="@+id/tv_date"
@@ -123,11 +122,10 @@
                     android:id="@+id/textView15"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_20sdp"
-
                     android:text="@{model.reporyStatus}"
-                    android:textColor="@{model.reporyStatusFlag==1?@color/g5:model.reporyStatusFlag==0?@color/g4:model.reporyStatusFlag==2?@color/black:@color/gray  }"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:textColor="@{model.reporyStatusFlag==1?@color/g5:model.reporyStatusFlag==0?@color/g4:model.reporyStatusFlag==2?@color/gray:@color/title_container  }"
+                    android:visibility="@{model.reporyStatus==``?View.GONE:View.VISIBLE}"
+                    app:layout_constraintStart_toStartOf="@+id/linearLayout5"
                     app:layout_constraintTop_toBottomOf="@+id/tv_date"
                     tools:text="success" />
 
@@ -139,7 +137,10 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/default_1"
                     android:visibility="@{model.image1==1?View.VISIBLE:View.GONE}"
-
+                    android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="3"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
                     app:setImage="@{model.imageInt}" />
@@ -151,6 +152,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/montserrat_regular_400"
                     android:text="@{model.desc}"
+                    android:visibility="@{model.desc==``?View.GONE:View.VISIBLE}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_8ssp"
                     app:layout_constraintEnd_toStartOf="@+id/imageView6"
@@ -163,12 +165,29 @@
                     android:layout_width="33dp"
                     android:layout_height="33dp"
                     app:civ_border_width="@dimen/_1sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
                     android:visibility="@{model.image1==2?View.VISIBLE:View.GONE}"
                     android:src="@drawable/default_1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:setImage="@{model.imageInt}" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/btn_bg"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:paddingVertical="@dimen/_1sdp"
+                    android:text="@{model.miniStatementValue}"
+                    tools:text="Mini Statement"
+                    android:visibility="@{model.isMiniStatement==true?View.VISIBLE:View.GONE }"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView16" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
