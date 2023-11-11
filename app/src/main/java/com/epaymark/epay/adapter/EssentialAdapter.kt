@@ -8,7 +8,7 @@ import com.epaymark.epay.databinding.RechargeLayoutBinding
 import com.epaymark.epay.utils.`interface`.CallBack
 
 
-class RechargeAdapter(private val items: List<ListIcon>, val circleShape: Int,val listner: CallBack) : RecyclerView.Adapter<RechargeAdapter.MyViewHolder>() {
+class EssentialAdapter(private val items: List<ListIcon>, val circleShape: Int, val listner: CallBack) : RecyclerView.Adapter<EssentialAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         /*val view = LayoutInflater.from(parent.context).inflate(R.layout.banner_items, parent, false)
@@ -38,9 +38,9 @@ class RechargeAdapter(private val items: List<ListIcon>, val circleShape: Int,va
     inner class MyViewHolder(val binding: RechargeLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ListIcon, position: Int) {
-            if (position!=items.size-1) {
+           // if (position!=items.size-1) {
                 binding.imgIcon.setBackgroundResource(circleShape)
-            }
+           // }
             item.title?.let { title->
                 binding.tvTitle.text = title
                 binding.llItem.setOnClickListener{

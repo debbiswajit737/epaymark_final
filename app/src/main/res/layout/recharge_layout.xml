@@ -22,7 +22,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
-            tools:background="@drawable/circle_shape">
+            tools:background="@drawable/circle_shape2">
 
             <ImageView
                 android:id="@+id/img_icon"
@@ -30,7 +30,7 @@
                 android:layout_height="match_parent"
                 android:padding="5dp"
                 android:src="@drawable/db_mobile"
-                app:tint="#2196F3" />
+                app:tint="@color/white" />
         </LinearLayout>
 
         <TextView
@@ -40,7 +40,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             tools:text="Mobile Recharge"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:gravity="center"
             android:textSize="10sp" />
 

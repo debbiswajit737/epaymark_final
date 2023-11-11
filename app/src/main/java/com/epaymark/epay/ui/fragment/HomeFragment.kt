@@ -17,11 +17,13 @@ import com.epaymark.epay.R
 import com.epaymark.epay.adapter.AEPSAdapter
 import com.epaymark.epay.adapter.AutoScrollHandler
 import com.epaymark.epay.adapter.BannerViewpagerAdapter
-import com.epaymark.epay.adapter.MyBig9Adapter
-import com.epaymark.epay.adapter.RechargeAdapter
+import com.epaymark.epay.adapter.EssentialAdapter
 import com.epaymark.epay.adapter.ReportAdapter
 import com.epaymark.epay.adapter.TravelAdapter
-import com.epaymark.epay.adapter.UPIAdapter
+import com.epaymark.epay.adapter.BankingAdapter
+import com.epaymark.epay.adapter.FinancialAdapter
+import com.epaymark.epay.adapter.MostPopularAdapter
+import com.epaymark.epay.adapter.UtilityAdapter
 import com.epaymark.epay.data.model.ListIcon
 import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentHomeBinding
@@ -46,6 +48,10 @@ class HomeFragment : BaseFragment() {
     var iconList6 = ArrayList<ListIcon>()
     var iconList7 = ArrayList<ListIcon>()
     var iconList8 = ArrayList<ListIcon>()
+    var iconList9 = ArrayList<ListIcon>()
+    var iconList10 = ArrayList<ListIcon>()
+    var iconList11 = ArrayList<ListIcon>()
+    var iconList12 = ArrayList<ListIcon>()
     lateinit var binding: FragmentHomeBinding
     private lateinit var autoScrollHandler: AutoScrollHandler
     private val viewModel: MyViewModel by activityViewModels()
@@ -141,27 +147,60 @@ class HomeFragment : BaseFragment() {
 
 
 
-            arrowImageViewNew2.setOnClickListener {
+            arrowImageViewNew2Aeps.setOnClickListener {
+
+                if (isRotated2) {
+
+                    rotateView(arrowImageViewNew2Aeps, 0f)
+
+
+                    val layoutParams = recycleAEPS.layoutParams
+                    layoutParams.height = 40
+                    recycleAEPS.layoutParams = layoutParams
+                    recycleAEPS.startAnimation(collapseAnimation)
+
+                    recycleAEPS.visibility = View.INVISIBLE
+
+                } else {
+                    rotateView(arrowImageViewNew2Aeps, 180f)
+                    val layoutParams = recycleAEPS.layoutParams
+                    layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
+                    recycleAEPS.layoutParams = layoutParams
+                    recycleAEPS.visibility = View.VISIBLE
+                    recycleAEPS.startAnimation(
+                        AnimationUtils.loadAnimation(
+                            requireActivity(),
+                            R.anim.expand_animation
+                        )
+                    )
+
+                }
+
+                isRotated2 = !isRotated2
+            }
+
+
+            arrowImageViewNewEssential.setOnClickListener {
 
                 if (isRotated3) {
 
-                    rotateView(arrowImageViewNew2, 0f)
+                    rotateView(arrowImageViewNewEssential, 0f)
 
 
-                    val layoutParams = recycleUPI.layoutParams
+                    val layoutParams = recycleEssential.layoutParams
                     layoutParams.height = 40
-                    recycleUPI.layoutParams = layoutParams
-                    recycleUPI.startAnimation(collapseAnimation)
+                    recycleEssential.layoutParams = layoutParams
+                    recycleEssential.startAnimation(collapseAnimation)
 
-                    recycleUPI.visibility = View.INVISIBLE
+                    recycleEssential.visibility = View.INVISIBLE
 
                 } else {
-                    rotateView(arrowImageViewNew2, 180f)
-                    val layoutParams = recycleUPI.layoutParams
+                    rotateView(arrowImageViewNewEssential, 180f)
+                    val layoutParams = recycleEssential.layoutParams
                     layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
-                    recycleUPI.layoutParams = layoutParams
-                    recycleUPI.visibility = View.VISIBLE
-                    recycleUPI.startAnimation(
+                    recycleEssential.layoutParams = layoutParams
+                    recycleEssential.visibility = View.VISIBLE
+                    recycleEssential.startAnimation(
                         AnimationUtils.loadAnimation(
                             requireActivity(),
                             R.anim.expand_animation
@@ -173,28 +212,27 @@ class HomeFragment : BaseFragment() {
                 isRotated3 = !isRotated3
             }
 
-
-            arrowImageViewNew2.setOnClickListener {
+            arrowImageViewNewMostUses.setOnClickListener {
 
                 if (isRotated3) {
 
-                    rotateView(arrowImageViewNew2, 0f)
+                    rotateView(arrowImageViewNewMostUses, 0f)
 
 
-                    val layoutParams = recycleUPI.layoutParams
+                    val layoutParams = recycleMostUses.layoutParams
                     layoutParams.height = 40
-                    recycleUPI.layoutParams = layoutParams
-                    recycleUPI.startAnimation(collapseAnimation)
+                    recycleMostUses.layoutParams = layoutParams
+                    recycleMostUses.startAnimation(collapseAnimation)
 
-                    recycleUPI.visibility = View.INVISIBLE
+                    recycleMostUses.visibility = View.INVISIBLE
 
                 } else {
-                    rotateView(arrowImageViewNew2, 180f)
-                    val layoutParams = recycleUPI.layoutParams
+                    rotateView(arrowImageViewNewMostUses, 180f)
+                    val layoutParams = recycleMostUses.layoutParams
                     layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
-                    recycleUPI.layoutParams = layoutParams
-                    recycleUPI.visibility = View.VISIBLE
-                    recycleUPI.startAnimation(
+                    recycleMostUses.layoutParams = layoutParams
+                    recycleMostUses.visibility = View.VISIBLE
+                    recycleMostUses.startAnimation(
                         AnimationUtils.loadAnimation(
                             requireActivity(),
                             R.anim.expand_animation
@@ -205,8 +243,7 @@ class HomeFragment : BaseFragment() {
 
                 isRotated3 = !isRotated3
             }
-
-            arrowImageViewNew3.setOnClickListener {
+            /*arrowImageViewNew3.setOnClickListener {
 
                 if (isRotated3) {
 
@@ -236,12 +273,12 @@ class HomeFragment : BaseFragment() {
                 }
 
                 isRotated3 = !isRotated3
-            }
+            }*/
 
 
             arrowImageViewNew4.setOnClickListener {
 
-                if (isRotated3) {
+                if (isRotated4) {
 
                     rotateView(arrowImageViewNew4, 0f)
 
@@ -268,30 +305,105 @@ class HomeFragment : BaseFragment() {
 
                 }
 
-                isRotated3 = !isRotated3
+                isRotated4 = !isRotated4
+            }
+
+            arrowImageViewNew44.setOnClickListener {
+
+                if (isRotated5) {
+
+                    rotateView(arrowImageViewNew44, 0f)
+
+
+                    val layoutParams = recycleFinancial.layoutParams
+                    layoutParams.height = 40
+                    recycleFinancial.layoutParams = layoutParams
+                    recycleFinancial.startAnimation(collapseAnimation)
+
+                    recycleFinancial.visibility = View.INVISIBLE
+
+                } else {
+                    rotateView(arrowImageViewNew4, 180f)
+                    val layoutParams = recycleFinancial.layoutParams
+                    layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
+                    recycleFinancial.layoutParams = layoutParams
+                    recycleFinancial.visibility = View.VISIBLE
+                    recycleFinancial.startAnimation(
+                        AnimationUtils.loadAnimation(
+                            requireActivity(),
+                            R.anim.expand_animation
+                        )
+                    )
+
+                }
+
+                isRotated5 = !isRotated5
             }
 
 
-            recycleViewRecharge.apply {
+
+
+            recycleEssential.apply {
                 iconList3.clear()
-                iconList3.add(ListIcon(getString(R.string.mobile_recharge), R.drawable.db_mobile))
+                iconList3.add(ListIcon(getString(R.string.prepaid), R.drawable.db_mobile))
+                iconList3.add(ListIcon(getString(R.string.postpaid), R.drawable.db_mobile))
                 iconList3.add(ListIcon(getString(R.string.dth_recharge), R.drawable.ic_dth_recharge))
-                iconList3.add(ListIcon(getString(R.string.electric), R.drawable.electric))
+                /*iconList3.add(ListIcon(getString(R.string.electric), R.drawable.electric))
                 iconList3.add(ListIcon("Fast Tag", R.drawable.icons8_fastag))
-                iconList3.add(ListIcon("Google Play", R.drawable.google_play))
-                iconList3.add(ListIcon("Insurance", R.drawable.insurance))
-                iconList3.add(ListIcon("Water", R.drawable.water))
-                iconList3.add(ListIcon("View More", R.drawable.view_more))
-                adapter= RechargeAdapter(iconList3,R.drawable.circle_shape, object : CallBack {
+                iconList3.add(ListIcon("Google Play", R.drawable.google_play))*/
+                iconList3.add(ListIcon(getString(R.string.insurance), R.drawable.insurance))
+                /*iconList3.add(ListIcon("Water", R.drawable.water))
+                iconList3.add(ListIcon("View More", R.drawable.view_more))*/
+                adapter= EssentialAdapter(iconList3,R.drawable.circle_shape2, object : CallBack {
                     override fun getValue(s: String) {
                         Log.d("TAG_mobile_recharge", "getValue: $s")
                         when(s){
-                            getString(R.string.mobile_recharge)->{
+                            getString(R.string.prepaid)->{
                                 findNavController().navigate(R.id.action_homeFragment2_to_mobileRechargeFragment)
                             }
+                            getString(R.string.postpaid)->{
+                                findNavController().navigate(R.id.action_homeFragment2_to_mobileRechargeFragment)
+                            }
+
                             getString(R.string.dth_recharge)->{
                                 findNavController().navigate(R.id.action_homeFragment2_to_DTHRechargeFragment)
                             }
+
+
+
+
+                        }
+                    }
+
+                })
+            }
+
+
+
+
+            recycleFinancial.apply {
+                iconList11.clear()
+                iconList11.add(ListIcon(getString(R.string.credit_card), R.drawable.credit_card))
+                iconList11.add(ListIcon(getString(R.string.cash_collection), R.drawable.cash_collection))
+                iconList11.add(ListIcon(getString(R.string.matm), R.drawable.matm))
+                iconList11.add(ListIcon(getString(R.string.money_transfer), R.drawable.imps))
+                /*iconList3.add(ListIcon("Water", R.drawable.water))
+                iconList3.add(ListIcon("View More", R.drawable.view_more))*/
+                adapter= FinancialAdapter(iconList11,R.drawable.circle_shape2, object : CallBack {
+                    override fun getValue(s: String) {
+                        Log.d("TAG_mobile_recharge", "getValue: $s")
+                        when(s){
+                            getString(R.string.prepaid)->{
+                                findNavController().navigate(R.id.action_homeFragment2_to_mobileRechargeFragment)
+                            }
+                            getString(R.string.postpaid)->{
+                                findNavController().navigate(R.id.action_homeFragment2_to_mobileRechargeFragment)
+                            }
+
+                            getString(R.string.dth_recharge)->{
+                                findNavController().navigate(R.id.action_homeFragment2_to_DTHRechargeFragment)
+                            }
+
                             getString(R.string.electric)->{
                                 activity?.let {act->
                                     val stateListDialog = StateListDialog(object : CallBack {
@@ -304,7 +416,7 @@ class HomeFragment : BaseFragment() {
                                     stateListDialog.show(act.supportFragmentManager, stateListDialog.tag)
 
                                 }
-                                }
+                            }
 
 
                         }
@@ -312,6 +424,78 @@ class HomeFragment : BaseFragment() {
 
                 })
             }
+
+
+            recycleUtility.apply {
+                iconList10.clear()
+                iconList10.add(ListIcon(getString(R.string.electric), R.drawable.electric))
+                iconList10.add(ListIcon(getString(R.string.gas), R.drawable.gas_ioc))
+                iconList10.add(ListIcon(getString(R.string.fast_tag), R.drawable.icons8_fastag))
+                iconList10.add(ListIcon(getString(R.string.view_more), R.drawable.view_more))
+                adapter= UtilityAdapter(iconList10,R.drawable.circle_shape2, object : CallBack {
+                    override fun getValue(s: String) {
+                        when(s){
+
+                            getString(R.string.electric)->{
+                                activity?.let {act->
+                                    val stateListDialog = StateListDialog(object : CallBack {
+                                        override fun getValue(s: String) {
+                                            viewModel?.state?.value=s
+                                            findNavController().navigate(R.id.action_homeFragment2_to_electricRechargeFragment)
+                                        }
+
+                                    })
+                                    stateListDialog.show(act.supportFragmentManager, stateListDialog.tag)
+
+                                }
+                            }
+                            getString(R.string.view_more)->{}
+
+                        }
+                    }
+
+                })
+            }
+
+
+
+
+            recycleMostUses.apply {
+                iconList12.clear()
+                iconList12.add(ListIcon(getString(R.string.electric), R.drawable.electric))
+
+                adapter= MostPopularAdapter(iconList12,R.drawable.circle_shape2, object : CallBack {
+                    override fun getValue(s: String) {
+                        when(s){
+
+                            getString(R.string.electric)->{
+                                activity?.let {act->
+                                    val stateListDialog = StateListDialog(object : CallBack {
+                                        override fun getValue(s: String) {
+                                            viewModel?.state?.value=s
+                                            findNavController().navigate(R.id.action_homeFragment2_to_electricRechargeFragment)
+                                        }
+
+                                    })
+                                    stateListDialog.show(act.supportFragmentManager, stateListDialog.tag)
+
+                                }
+                            }
+                            getString(R.string.view_more)->{}
+
+                        }
+                    }
+
+                })
+            }
+
+
+
+
+
+
+
+
 
            /* recycleMyBig.apply {
                 iconList4.clear()
@@ -335,22 +519,32 @@ class HomeFragment : BaseFragment() {
 
             recycleAEPS.apply {
                 iconList5.clear()
-                iconList5.add(ListIcon("AePS", R.drawable.ic_fingerprint_dark))
-                iconList5.add(ListIcon("DMT", R.drawable.bank_transfer))
-                iconList5.add(ListIcon("MATM", R.drawable.transaction_history))
-                iconList5.add(ListIcon("Settlement", R.drawable.sattlement))
+                iconList5.add(ListIcon(getString(R.string.balance), R.drawable.transaction_history))
+                iconList5.add(ListIcon(getString(R.string.cash_withdraw), R.drawable.cashcol))
+                iconList5.add(ListIcon(getString(R.string.mini_statement), R.drawable.ministatement))
 
-                adapter= AEPSAdapter(iconList5,R.drawable.circle_shape2)
+                iconList5.add(ListIcon(getString(R.string.aadhar_pay), R.drawable.aadharpay))
+
+                adapter= AEPSAdapter(iconList5,R.drawable.circle_shape2,object : CallBack {
+                    override fun getValue(s: String) {
+                        when(s) {
+                            getString(R.string.balance) -> {
+                                showBalencePopup(binding.root.context)
+                            }
+                        }
+                    }
+                })
+
             }
 
-            recycleUPI.apply {
+            recycleViewEpayBanking.apply {
                 iconList6.clear()
-                iconList6.add(ListIcon(getString(R.string.scan), R.drawable.baseline_qr_code_scanner_24))
-                iconList6.add(ListIcon("To Contact", R.drawable.ic_contacts))
-                iconList6.add(ListIcon("To Self", R.drawable.ic_self))
-                iconList6.add(ListIcon("To Bank A/C", R.drawable.ic_bank))
-
-                adapter= UPIAdapter(iconList6,R.drawable.circle_shape2, object : CallBack {
+                iconList6.add(ListIcon(getString(R.string.move_to_bank), R.drawable.bank_transfer_icon))
+                iconList6.add(ListIcon(getString(R.string.move_to_wallet), R.drawable.balance))
+                iconList6.add(ListIcon(getString(R.string.ePotly), R.drawable.epotlyinb))
+                iconList6.add(ListIcon(getString(R.string.payment_request), R.drawable.balance))
+                //circle_shape
+                adapter= BankingAdapter(iconList6,R.drawable.circle_shape2, object : CallBack {
                     override fun getValue(s: String) {
                     when(s){
                         getString(R.string.scan)->{
@@ -418,7 +612,37 @@ class HomeFragment : BaseFragment() {
                 })
             }
 
+            recycleAccount.apply {
+                iconList9.clear()
+                iconList9.add(ListIcon(getString(R.string.myaccount), R.drawable.myaccount))
+                iconList9.add(ListIcon(getString(R.string.support), R.drawable.baseline_notifications_24))
+                iconList9.add(ListIcon(getString(R.string.likeus), R.drawable.like_us))
+                iconList9.add(ListIcon(getString(R.string.usage_terms), R.drawable.baseline_assignment_24))
 
+                iconList9.add(ListIcon(getString(R.string.password), R.drawable.baseline_lock_person_24))
+                iconList9.add(ListIcon(getString(R.string.certificate), R.drawable.baseline_receipt_24))
+                iconList9.add(ListIcon(getString(R.string.logout), R.drawable.baseline_logout_24))
+
+
+                adapter= ReportAdapter(iconList9,R.drawable.circle_shape2,object : CallBack {
+                    override fun getValue(s: String) {
+                        when(s){
+                           getString(R.string.myaccount)->{
+                            findNavController().navigate(R.id.action_homeFragment2_to_userDetailsFragment)
+                           }
+                           getString(R.string.support)->{
+                               findNavController().navigate(R.id.action_homeFragment2_to_supportFragment)
+                           }
+                           getString(R.string.likeus)->{}
+                           getString(R.string.usage_terms)->{}
+                           getString(R.string.password)->{}
+                           getString(R.string.certificate)->{}
+                           getString(R.string.logout)->{}
+                        }
+                    }
+
+                })
+            }
 
         }
     }

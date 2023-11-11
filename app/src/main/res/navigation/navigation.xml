@@ -32,6 +32,12 @@
         <action
             android:id="@+id/action_homeFragment2_to_QRCodeFragment"
             app:destination="@id/QRCodeFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_userDetailsFragment"
+            app:destination="@id/userDetailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_supportFragment"
+            app:destination="@id/supportFragment" />
     </fragment>
     <fragment
         android:id="@+id/mobileRechargeFragment"
@@ -100,4 +106,12 @@
         android:id="@+id/QRCodeFragment"
         android:name="com.epaymark.epay.ui.fragment.QRCodeFragment"
         android:label="QRCodeFragment" />
+    <fragment
+        android:id="@+id/userDetailsFragment"
+        android:name="com.epaymark.epay.ui.fragment.UserDetailsFragment"
+        android:label="UserDetailsFragment" />
+    <fragment
+        android:id="@+id/supportFragment"
+        android:name="com.epaymark.epay.ui.fragment.SupportFragment"
+        android:label="SupportFragment" />
 </navigation>

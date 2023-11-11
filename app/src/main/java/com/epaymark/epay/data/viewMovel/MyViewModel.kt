@@ -20,6 +20,7 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val reportType = MutableLiveData<String>("")
     val startDate = MutableLiveData<String>("")
     val enddate = MutableLiveData<String>("")
+    val kycStatus = MutableLiveData<String>("KYC Approved")
 
 
     val tPin = MutableLiveData<String>("")

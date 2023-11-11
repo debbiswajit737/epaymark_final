@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.epaymark.epay.data.model.ListIcon
-import com.epaymark.epay.databinding.UpiLayoutBinding
+import com.epaymark.epay.databinding.RechargeLayoutBinding
 import com.epaymark.epay.utils.`interface`.CallBack
 
 
-class UPIAdapter(private val items: List<ListIcon>, val circleShape: Int, val callback: CallBack) : RecyclerView.Adapter<UPIAdapter.MyViewHolder>() {
+class FinancialAdapter(private val items: List<ListIcon>, val circleShape: Int, val listner: CallBack) : RecyclerView.Adapter<FinancialAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         /*val view = LayoutInflater.from(parent.context).inflate(R.layout.banner_items, parent, false)
@@ -18,7 +18,7 @@ class UPIAdapter(private val items: List<ListIcon>, val circleShape: Int, val ca
 
 
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding: UpiLayoutBinding = UpiLayoutBinding.inflate(layoutInflater, parent, false)
+        val binding: RechargeLayoutBinding = RechargeLayoutBinding.inflate(layoutInflater, parent, false)
         return MyViewHolder(binding)
     }
 
@@ -35,21 +35,23 @@ class UPIAdapter(private val items: List<ListIcon>, val circleShape: Int, val ca
 
 
 
-    inner class MyViewHolder(val binding: UpiLayoutBinding) :
+    inner class MyViewHolder(val binding: RechargeLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ListIcon, position: Int) {
-            ///*if (position!=items.size-1) {
+           // if (position!=items.size-1) {
                 binding.imgIcon.setBackgroundResource(circleShape)
-            //}*/
-            item.title?.let {item->
-                binding.tvTitle.text = item
-                binding.llContainer.setOnClickListener{
-                    callback.getValue(item)
+           // }
+            item.title?.let { title->
+                binding.tvTitle.text = title
+                binding.llItem.setOnClickListener{
+                    listner.getValue(title)
                 }
             }
             item.image?.let {image->
                 binding.imgIcon.setImageResource(image)
             }
+
+
 
 
         }
