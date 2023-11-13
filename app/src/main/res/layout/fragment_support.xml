@@ -83,7 +83,7 @@
                             android:fontFamily="@font/open_sans_medium"
                             android:gravity="center"
                             android:paddingHorizontal="@dimen/_10sdp"
-                            android:text="@string/contact_details"
+                            android:text="@string/contect_center"
                             android:textColor="@color/white"
                             android:textSize="@dimen/_12ssp"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -123,15 +123,84 @@
                                         />
 
                                     <TextView
+                                        android:id="@+id/tv_navigation"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Office Address"
+                                        android:text="EB-473108, Rajdanga main roa, kasba, kolkata-07"
                                         android:textColor="@color/logo_color"
+                                        android:fontFamily="@font/montserrat_regular_400"
+                                        android:textSize="@dimen/_12ssp"
+                                        android:drawableEnd="@drawable/navigation"
+                                        />
+
+
+
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Website"
+                                        android:layout_marginTop="@dimen/_12sdp"
+                                        android:textColor="@color/black"
                                         android:fontFamily="@font/montserrat_regular_400"
                                         android:textSize="@dimen/_12ssp"
                                         />
 
+                                    <TextView
+                                        android:id="@+id/tv_website"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="big9.co.in"
+                                        android:textColor="@color/logo_color"
+                                        android:fontFamily="@font/montserrat_regular_400"
+                                        android:textSize="@dimen/_12ssp"
+                                        android:drawableEnd="@drawable/website_icon"
+                                        />
 
+
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Email"
+                                        android:layout_marginTop="@dimen/_12sdp"
+                                        android:textColor="@color/black"
+                                        android:fontFamily="@font/montserrat_regular_400"
+                                        android:textSize="@dimen/_12ssp"
+                                        />
+
+                                    <TextView
+                                        android:id="@+id/tv_email"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="big9.co.in"
+                                        android:textColor="@color/logo_color"
+                                        android:fontFamily="@font/montserrat_regular_400"
+                                        android:textSize="@dimen/_12ssp"
+                                        android:drawableEnd="@drawable/email_1_svgrepo_com"
+                                        />
+
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Mobile Number"
+                                        android:layout_marginTop="@dimen/_12sdp"
+                                        android:textColor="@color/black"
+                                        android:fontFamily="@font/montserrat_regular_400"
+                                        android:textSize="@dimen/_12ssp"
+                                        />
+
+                                    <TextView
+                                        android:id="@+id/tv_mobile"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="2222222222"
+                                        android:textColor="@color/logo_color"
+                                        android:fontFamily="@font/montserrat_regular_400"
+                                        android:textSize="@dimen/_12ssp"
+                                        android:drawableEnd="@drawable/baseline_call_24"
+                                        />
                                 </LinearLayout>
 
                             </androidx.core.widget.NestedScrollView>

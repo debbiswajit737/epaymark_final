@@ -432,7 +432,8 @@ class RegFragment : BaseFragment() {
             })
 
         }
-    }fun dialogAllFileAccessPermissionAbove30() {
+    }
+    fun dialogAllFileAccessPermissionAbove30() {
         createAlertDialog(
             binding.root.context,
             "All file permissions",

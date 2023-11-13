@@ -1,26 +1,26 @@
 package com.epaymark.epay.ui.fragment
 
 
-import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.epaymark.epay.R
-import com.epaymark.epay.adapter.ReportDetailsAdapter
 import com.epaymark.epay.adapter.UserDetailsAdapter
-import com.epaymark.epay.data.model.ReportModel
-import com.epaymark.epay.data.model.Reportdetails
 import com.epaymark.epay.data.model.UserDetails
 import com.epaymark.epay.data.viewMovel.MyViewModel
-import com.epaymark.epay.databinding.FragmentReportDetailsBinding
 import com.epaymark.epay.databinding.FragmentUserDetailsBinding
 import com.epaymark.epay.ui.base.BaseFragment
-import org.json.JSONObject
+import com.epaymark.epay.utils.*
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.WriterException
+import com.google.zxing.common.BitMatrix
+import com.google.zxing.qrcode.QRCodeWriter
+
 
 class UserDetailsFragment : BaseFragment() {
     lateinit var binding: FragmentUserDetailsBinding
@@ -55,6 +55,12 @@ class UserDetailsFragment : BaseFragment() {
 
     fun initView() {
         binding.recycleViewUserdetails.apply {
+            try {
+                val bitmap = encodeAsBitmap("HELLO")
+                binding.imgQrcode.setImageBitmap(bitmap)
+            } catch (ex: WriterException) {
+                ex.printStackTrace()
+            }
             userDetailsList.add(UserDetails("Name","Test User"))
             userDetailsList.add(UserDetails("Business Name","Test Business Name"))
             userDetailsList.add(UserDetails("Registered Mobile Number","9999999999"))
@@ -74,5 +80,22 @@ class UserDetailsFragment : BaseFragment() {
 
         }
 
+    }
+
+    @Throws(WriterException::class)
+    fun encodeAsBitmap(str: String): Bitmap? {
+        val writer = QRCodeWriter()
+        val bitMatrix: BitMatrix = writer.encode(str, BarcodeFormat.QR_CODE, 400, 400)
+        val w: Int = bitMatrix.getWidth()
+        val h: Int = bitMatrix.getHeight()
+        val pixels = IntArray(w * h)
+        for (y in 0 until h) {
+            for (x in 0 until w) {
+                pixels[y * w + x] = if (bitMatrix.get(x, y)) Color.BLACK else Color.WHITE
+            }
+        }
+        val bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
+        bitmap.setPixels(pixels, 0, w, 0, 0, w, h)
+        return bitmap
     }
 }

@@ -167,6 +167,9 @@ dependencies {
     //implementation ("com.github.poovamraj:PinEditTextField:1.2.6")
 
     implementation ("com.google.android.gms:play-services-vision:20.1.3")
+
+
+    implementation ("com.google.zxing:core:3.4.1")
 }
 
 kapt {
