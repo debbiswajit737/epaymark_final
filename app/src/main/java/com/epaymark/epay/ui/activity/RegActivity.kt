@@ -55,7 +55,14 @@ class RegActivity : AppCompatActivity() {
 
     }
     fun init(){
-        setdata()
+        if (intent.getBooleanExtra("isAlreadyLogin",false)==true){
+            setSecondAnimation()
+            binding.navHostFragment.visibility = View.VISIBLE
+        }
+        else {
+            binding.navHostFragment.visibility = View.GONE
+            setdata()
+        }
     }
     private fun setdata() {
 

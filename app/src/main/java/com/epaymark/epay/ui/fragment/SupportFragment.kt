@@ -50,9 +50,9 @@ class SupportFragment : BaseFragment() {
               val gmmIntentUri = Uri.parse("geo:$latitude,$longitude")
               val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
               mapIntent.setPackage("com.google.android.apps.maps")
-              mapIntent.resolveActivity(binding.root.context.packageManager)?.let {
+              //mapIntent.resolveActivity(binding.root.context.packageManager)?.let {
                   startActivity(mapIntent)
-              }
+              //}
           }
             tvWebsite.setOnClickListener {
                 val url="https://big9.co.in/"
@@ -100,9 +100,9 @@ class SupportFragment : BaseFragment() {
         intent.putExtra(Intent.EXTRA_EMAIL, addresses)
         intent.putExtra(Intent.EXTRA_SUBJECT, subject)
 
-        if (intent.resolveActivity(binding.root.context.packageManager) != null) {
+        //if (intent.resolveActivity(binding.root.context.packageManager) != null) {
             startActivity(intent)
-        }
+        //}
     }
 
     private fun makePhoneCall(phoneNumber: String) {

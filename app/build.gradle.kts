@@ -170,6 +170,8 @@ dependencies {
 
 
     implementation ("com.google.zxing:core:3.4.1")
+
+    implementation ("com.itextpdf:itext7-core:7.1.15")
 }
 
 kapt {

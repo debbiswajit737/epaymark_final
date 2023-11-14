@@ -13,6 +13,7 @@ import android.view.Window
 import android.widget.TextView
 import com.epaymark.epay.R
 import com.epaymark.epay.ui.activity.AuthActivity
+import com.epaymark.epay.ui.activity.RegActivity
 import com.epaymark.epay.ui.activity.SplashActivity
 import com.epaymark.epay.ui.activity.SplashActivity_GeneratedInjector
 import com.epaymark.epay.utils.helpers.SharedPreff
@@ -72,7 +73,8 @@ object MethodClass {
     }
     fun Context.userLogout() {
         SharedPreff(this).clearUserData()
-        val intent = Intent(this, SplashActivity::class.java)
+        val intent = Intent(this, RegActivity::class.java)
+        intent.putExtra("isAlreadyLogin",true)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         this.startActivity(intent)
         // Toast.makeText(this, "Logout", Toast.LENGTH_LONG).show()

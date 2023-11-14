@@ -31,6 +31,7 @@ import com.epaymark.epay.databinding.FragmentHomeBinding
 
 import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.ui.popup.CustomPopup.showBalencePopup
+import com.epaymark.epay.utils.common.MethodClass.userLogout
 import com.epaymark.epay.utils.`interface`.CallBack
 
 
@@ -461,6 +462,7 @@ class HomeFragment : BaseFragment() {
 
 
             recycleMostUses.apply {
+                requestFocus()
                 iconList12.clear()
                 iconList12.add(ListIcon(getString(R.string.electric), R.drawable.electric))
 
@@ -613,6 +615,7 @@ class HomeFragment : BaseFragment() {
             }
 
             recycleAccount.apply {
+
                 iconList9.clear()
                 iconList9.add(ListIcon(getString(R.string.myaccount), R.drawable.myaccount))
                 iconList9.add(ListIcon(getString(R.string.support), R.drawable.baseline_notifications_24))
@@ -636,8 +639,14 @@ class HomeFragment : BaseFragment() {
                            getString(R.string.likeus)->{}
                            getString(R.string.usage_terms)->{}
                            getString(R.string.password)->{}
-                           getString(R.string.certificate)->{}
-                           getString(R.string.logout)->{}
+                           getString(R.string.certificate)->{
+                               findNavController().navigate(R.id.action_homeFragment2_to_certificateFragment)
+                           }
+                           getString(R.string.logout)->{
+                               context?.let { ctx->
+                                   ctx.userLogout()
+                               }
+                           }
                         }
                     }
 

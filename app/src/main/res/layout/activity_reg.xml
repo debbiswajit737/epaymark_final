@@ -41,9 +41,9 @@
             app:layout_constraintTop_toTopOf="parent"
             app:lottie_autoPlay="true"
             app:lottie_loop="false"
-            app:lottie_rawRes="@raw/bg_login"
-            tools:ignore="MissingConstraints" />
 
+            tools:ignore="MissingConstraints" />
+       <!-- app:lottie_rawRes="@raw/bg_login"-->
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie_confetti_anim"
