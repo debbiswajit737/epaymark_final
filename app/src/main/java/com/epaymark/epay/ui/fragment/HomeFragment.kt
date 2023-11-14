@@ -640,7 +640,9 @@ class HomeFragment : BaseFragment() {
                            getString(R.string.usage_terms)->{
                                findNavController().navigate(R.id.action_homeFragment2_to_termsAndConditionFragment)
                            }
-                           getString(R.string.password)->{}
+                           getString(R.string.password)->{
+                               findNavController().navigate(R.id.action_homeFragment2_to_changePasswordFragment)
+                           }
                            getString(R.string.certificate)->{
                                findNavController().navigate(R.id.action_homeFragment2_to_certificateFragment)
                            }

@@ -172,6 +172,8 @@ dependencies {
     implementation ("com.google.zxing:core:3.4.1")
 
     implementation ("com.itextpdf:itext7-core:7.1.15")
+
+    implementation ("androidx.viewpager2:viewpager2:1.0.0")
 }
 
 kapt {
