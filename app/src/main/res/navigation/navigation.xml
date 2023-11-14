@@ -41,6 +41,9 @@
         <action
             android:id="@+id/action_homeFragment2_to_certificateFragment"
             app:destination="@id/certificateFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_termsAndConditionFragment"
+            app:destination="@id/termsAndConditionFragment" />
     </fragment>
     <fragment
         android:id="@+id/mobileRechargeFragment"
@@ -121,4 +124,8 @@
         android:id="@+id/certificateFragment"
         android:name="com.epaymark.epay.ui.fragment.CertificateFragment"
         android:label="CertificateFragment" />
+    <fragment
+        android:id="@+id/termsAndConditionFragment"
+        android:name="com.epaymark.epay.ui.fragment.TermsAndConditionFragment"
+        android:label="TermsAndConditionFragment" />
 </navigation>
