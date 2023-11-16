@@ -43,7 +43,7 @@ class ResetTPinFragment : BaseFragment() {
 
         binding.apply {
 
-          imgBack.back()
+
 
           }
         }

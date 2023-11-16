@@ -162,4 +162,18 @@
     <string name="change_password">Change Password</string>
     <string name="submit">SUBMIT</string>
     <string name="reset_tpin">Reset TPIN</string>
+    <string name="old_login_pin">Old Login PIN</string>
+    <string name="new_login_pin">New Login PIN</string>
+    <string name="confirm_login_pin">Confirm Login PIN</string>
+    <string name="pancard_no_without_star">Pan Card Number</string>
+    <string name="i_confirm">I CONFIRM</string>
+    <string name="i_hereby_authorize_the_company_to_use_my_kyc_data_for_onboarding_on_aeps">\u25CF I hereby authorize the company to use my KYC data for onboarding on AEPS</string>
+    <string name="selected_bank">Selected Bank</string>
+    <string name="particulars">Particulars<font color='#FF0000'>*</font></string>
+    <string name="particulars_hint">Particulars</string>
+    <string name="enter_deposite_date">Enter Deposite Date<font color='#FF0000'>*</font></string>
+    <string name="enter_deposite_date_hint">Enter Deposite Date</string>
+    <string name="payment_amount">Payment Amount<font color='#FF0000'>*</font></string>
+    <string name="payment_amount_hint">Payment Amount</string>
+    <string name="bank_transaction_id">Bank Transaction ID</string>
 </resources>

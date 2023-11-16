@@ -45,7 +45,9 @@ class ChangePasswordFragment : BaseFragment() {
 
     private fun onViewClick() {
 
-        binding.apply { }
+        binding.apply {
+            imgBack.back()
+        }
         }
 
 

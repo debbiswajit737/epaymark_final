@@ -8,7 +8,7 @@ import com.epaymark.epay.databinding.AepsLayoutBinding
 import com.epaymark.epay.utils.`interface`.CallBack
 
 
-class AEPSAdapter(private val items: List<ListIcon>, val circleShape: Int, param: CallBack) : RecyclerView.Adapter<AEPSAdapter.MyViewHolder>() {
+class AEPSAdapter(private val items: List<ListIcon>, val circleShape: Int, val callBack: CallBack) : RecyclerView.Adapter<AEPSAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         /*val view = LayoutInflater.from(parent.context).inflate(R.layout.banner_items, parent, false)
@@ -41,12 +41,16 @@ class AEPSAdapter(private val items: List<ListIcon>, val circleShape: Int, param
             ///*if (position!=items.size-1) {
                 binding.imgIcon.setBackgroundResource(circleShape)
             //}*/
-            item.title.let {
-                binding.tvTitle.text = it
+            item.title?.let {title->
+                binding.tvTitle.text = title
+                binding.llContent.setOnClickListener{
+                    callBack.getValue(title)
+                }
             }
             item.image?.let {image->
                 binding.imgIcon.setImageResource(image)
             }
+
         }
     }
 

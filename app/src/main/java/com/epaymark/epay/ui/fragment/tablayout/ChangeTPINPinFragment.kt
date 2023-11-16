@@ -42,9 +42,9 @@ class ChangeTPINPinFragment : BaseFragment() {
     private fun onViewClick() {
 
         binding.apply {
-
-          imgBack.back()
-
+            btnSubmit.setOnClickListener{
+                viewModel?.changeLoginTPinValidation()
+            }
           }
         }
 

@@ -2,6 +2,7 @@ package com.epaymark.epay.ui.fragment
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -56,6 +57,7 @@ class HomeFragment : BaseFragment() {
     lateinit var binding: FragmentHomeBinding
     private lateinit var autoScrollHandler: AutoScrollHandler
     private val viewModel: MyViewModel by activityViewModels()
+    var deviceHeight:Int=0
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -65,10 +67,23 @@ class HomeFragment : BaseFragment() {
         binding.lifecycleOwner = this*/
 
         binding = FragmentHomeBinding.inflate(layoutInflater)
+        getDeviceWIDTHandHeight()
         val view = binding.root
         init()
         viewOnClick()
+
         return view
+    }
+
+    private fun getDeviceWIDTHandHeight() {
+        val displayMetrics = DisplayMetrics()
+        requireActivity().windowManager?.defaultDisplay?.getMetrics(displayMetrics)
+
+        //var width = displayMetrics.widthPixels
+        deviceHeight = displayMetrics.heightPixels
+
+        Log.d("TAG_deviceHeight", "getDeviceWIDTHandHeight: $deviceHeight")
+
     }
 
     private fun viewOnClick() {
@@ -360,9 +375,11 @@ class HomeFragment : BaseFragment() {
                         Log.d("TAG_mobile_recharge", "getValue: $s")
                         when(s){
                             getString(R.string.prepaid)->{
+                                viewModel.prepaitOrPostPaid.value="Prepaid"
                                 findNavController().navigate(R.id.action_homeFragment2_to_mobileRechargeFragment)
                             }
                             getString(R.string.postpaid)->{
+                                viewModel.prepaitOrPostPaid.value="Postpaid"
                                 findNavController().navigate(R.id.action_homeFragment2_to_mobileRechargeFragment)
                             }
 
@@ -533,6 +550,12 @@ class HomeFragment : BaseFragment() {
                             getString(R.string.balance) -> {
                                 showBalencePopup(binding.root.context)
                             }
+
+                            getString(R.string.cash_withdraw) -> {
+                                findNavController().navigate(R.id.action_homeFragment2_to_cashWithdrawFragment)
+                            }
+
+
                         }
                     }
                 })
@@ -552,6 +575,16 @@ class HomeFragment : BaseFragment() {
                         getString(R.string.scan)->{
                             findNavController().navigate(R.id.action_homeFragment2_to_QRCodeFragment)
                         }
+
+                        getString(R.string.ePotly)->{
+                            findNavController().navigate(R.id.action_homeFragment2_to_epotlyFragment)
+                        }
+
+                        getString(R.string.payment_request)->{
+                            findNavController().navigate(R.id.action_homeFragment2_to_paymentRequestFragment)
+                        }
+
+
                     }
                     }
 

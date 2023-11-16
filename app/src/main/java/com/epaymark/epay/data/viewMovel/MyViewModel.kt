@@ -17,6 +17,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRepository) : ViewModel() {
+
+    val selectedBank = MutableLiveData<String>("")
+    val selectedBankMode = MutableLiveData<String>("")
+    val prepaitOrPostPaid = MutableLiveData<String>("")
     val reportType = MutableLiveData<String>("")
     val startDate = MutableLiveData<String>("")
     val enddate = MutableLiveData<String>("")
@@ -48,6 +52,17 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
 
     val consumerId = MutableLiveData<String>()
     val consumerIdPrice = MutableLiveData<String>()
+    val oldPin = MutableLiveData<String>()
+    val newPin = MutableLiveData<String>()
+    val confirmPin = MutableLiveData<String>()
+
+    val oldTPin = MutableLiveData<String>()
+    val newTPin = MutableLiveData<String>()
+    val confirmTPin = MutableLiveData<String>()
+    val epotly_mobile = MutableLiveData<String>()
+    val epotly_amt = MutableLiveData<String>()
+    val cash_withdraw_pin_code = MutableLiveData<String>()
+    val cash_withdraw_pan = MutableLiveData<String>()
 
 
     val mobileError = MutableLiveData<String>()
@@ -56,9 +71,20 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val subIdError = MutableLiveData<String>()
     val dthError = MutableLiveData<String>()
     val dthAmtError = MutableLiveData<String>()
+    val epotly_amt_Error = MutableLiveData<String>()
 
     val consumerIdError = MutableLiveData<String>()
     val consumerIdPriceError = MutableLiveData<String>()
+    val oldPinError = MutableLiveData<String>()
+    val newPinError = MutableLiveData<String>()
+    val confirmPinError = MutableLiveData<String>()
+
+    val oldTPinError = MutableLiveData<String>()
+    val newTPinError = MutableLiveData<String>()
+    val confirmTPinError = MutableLiveData<String>()
+    val epotly_mobileError = MutableLiveData<String>()
+    val cash_withdraw_pin_codeError = MutableLiveData<String>()
+    val cash_withdraw_pan_codeError = MutableLiveData<String>()
 
 
     val mobileErrorVisible = MutableLiveData<Boolean>()
@@ -70,6 +96,17 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
 
     val consumerIdErrorVisible = MutableLiveData<Boolean>()
     val consumerIdPriceErrorVisible = MutableLiveData<Boolean>()
+    val oldPinErrorVisible = MutableLiveData<Boolean>()
+    val newPinErrorVisible = MutableLiveData<Boolean>()
+    val confirmPinErrorVisible = MutableLiveData<Boolean>()
+
+    val oldTPinErrorVisible = MutableLiveData<Boolean>()
+    val newTPinErrorVisible = MutableLiveData<Boolean>()
+    val confirmTPinErrorVisible = MutableLiveData<Boolean>()
+    val epotly_mobileErrorVisible = MutableLiveData<Boolean>()
+    val epotly_amt_ErrorVisible = MutableLiveData<Boolean>()
+    val cash_withdraw_pin_codeErrorVisible = MutableLiveData<Boolean>()
+    val cash_withdraw_pan_codeErrorVisible = MutableLiveData<Boolean>()
 
 
 
@@ -115,6 +152,8 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
 
         return isValid
     }
+
+
 
     fun dthValidation(): Boolean {
 
@@ -193,6 +232,164 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
 
 
 
+    fun changeLoginPinValidation(): Boolean {
+        invisibleErrorTexts()
+
+        var isValid = true
+
+        // Validate Old Password
+        if (oldPin.value?.trim().isNullOrBlank()) {
+            oldPinError.value = "Please enter the Old PIN"
+            oldPinErrorVisible.value = true
+            isValid = false
+        } else {
+            oldPinErrorVisible.value = false
+        }
+
+        // Validate New Password
+        if (newPin.value?.trim().isNullOrBlank()) {
+            newPinError.value = "Please enter the New PIN"
+            newPinErrorVisible.value = true
+            isValid = false
+        } else {
+            newPinErrorVisible.value = false
+        }
+
+        // Validate Confirm Password
+        if (confirmPin.value?.trim().isNullOrBlank()) {
+            confirmPinError.value = "Please enter the Confirm PIN"
+            confirmPinErrorVisible.value = true
+            isValid = false
+        } else if (confirmPin.value != newPin.value) {
+            confirmPinError.value = "PINs do not match"
+            confirmPinErrorVisible.value = true
+            isValid = false
+        } else {
+            confirmPinErrorVisible.value = false
+        }
+
+        return isValid
+    }
+
+    fun changeLoginTPinValidation(): Boolean {
+        invisibleErrorTexts()
+
+        var isValid = true
+
+        // Validate Old Password
+        if (oldTPin.value?.trim().isNullOrBlank()) {
+            oldTPinError.value = "Please enter the Old TPIN"
+            oldTPinErrorVisible.value = true
+            isValid = false
+        } else {
+            oldTPinErrorVisible.value = false
+        }
+
+        // Validate New Password
+        if (newTPin.value?.trim().isNullOrBlank()) {
+            newTPinError.value = "Please enter the New TPIN"
+            newTPinErrorVisible.value = true
+            isValid = false
+        } else {
+            newTPinErrorVisible.value = false
+        }
+
+        // Validate Confirm Password
+        if (confirmTPin.value?.trim().isNullOrBlank()) {
+            confirmTPinError.value = "Please enter the Confirm TPIN"
+            confirmTPinErrorVisible.value = true
+            isValid = false
+        } else if (confirmTPin.value != newTPin.value) {
+            confirmTPinError.value = "TPIN do not match"
+            confirmTPinErrorVisible.value = true
+            isValid = false
+        } else {
+            confirmTPinErrorVisible.value = false
+        }
+
+        return isValid
+    }
+
+
+    fun epotlyValidation(): Boolean {
+
+        invisibleErrorTexts()
+
+        var isValid = true
+        if (epotly_mobile.value?.trim().isNullOrBlank()) {
+            epotly_mobileError.value = "Mobile number is required"
+            epotly_mobileErrorVisible.value = true
+            isValid = false
+        } else {
+            if (mobile.value?.trim()?.validate("mobile") == false) {
+                epotly_mobileError.value = "Mobile number is not valid"
+                epotly_mobileErrorVisible.value = true
+                isValid = false
+            } else {
+                epotly_mobileError.value = ""
+                epotly_mobileErrorVisible.value = false
+            }
+        }
+
+        if (epotly_amt.value?.trim().isNullOrBlank()) {
+            epotly_amt_Error.value = "Please enter amount"
+            epotly_amt_ErrorVisible.value = true
+            isValid = false
+        } else {
+            epotly_amt_Error.value = ""
+            epotly_amt_ErrorVisible.value = false
+        }
+
+
+
+        return isValid
+    }
+
+
+    fun cashWithdrawValidation(): Boolean {
+
+        invisibleErrorTexts()
+
+        var isValid = true
+        if (cash_withdraw_pin_code.value?.trim().isNullOrBlank()) {
+            cash_withdraw_pin_codeError.value = "Pin code is required"
+            cash_withdraw_pin_codeErrorVisible.value = true
+            isValid = false
+        } else {
+            if (cash_withdraw_pin_code.value?.trim()?.validate("pincode")==false) {
+                cash_withdraw_pin_codeError.value = "PIN code is not valid"
+                cash_withdraw_pin_codeErrorVisible.value = true
+                isValid = false
+            } else {
+                cash_withdraw_pin_codeError.value = ""
+                cash_withdraw_pin_codeErrorVisible.value = false
+            }
+        }
+
+
+
+        if (cash_withdraw_pan.value?.trim().isNullOrBlank()) {
+            cash_withdraw_pan_codeError.value = "Pan card number is required"
+            cash_withdraw_pan_codeErrorVisible.value = true
+            isValid = false
+        } else {
+            if (cash_withdraw_pan.value?.trim()?.validate("pan")==false) {
+                cash_withdraw_pan_codeError.value = "Pan card number is required"
+                cash_withdraw_pan_codeErrorVisible.value = true
+                isValid = false
+            } else {
+                cash_withdraw_pan_codeError.value = ""
+                cash_withdraw_pan_codeErrorVisible.value = false
+            }
+        }
+
+
+
+
+
+
+        return isValid
+    }
 
 
 
@@ -208,5 +405,15 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
 
          consumerIdErrorVisible.value = false
          consumerIdPriceErrorVisible.value = false
+
+
+        oldPinErrorVisible.value = false
+        newPinErrorVisible.value = false
+        confirmPinErrorVisible.value = false
+
+        oldTPinErrorVisible.value = false
+        newTPinErrorVisible.value = false
+        confirmTPinErrorVisible.value = false
+
     }
 }

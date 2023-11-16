@@ -11,10 +11,7 @@ import com.epaymark.epay.utils.`interface`.CallBack
 class BankingAdapter(private val items: List<ListIcon>, val circleShape: Int, val callback: CallBack) : RecyclerView.Adapter<BankingAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        /*val view = LayoutInflater.from(parent.context).inflate(R.layout.banner_items, parent, false)
-        return MyViewHolder(view)*/
-       /* val binding = BannerItemsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MyViewHolder(binding.root)*/
+
 
 
         val layoutInflater = LayoutInflater.from(parent.context)
