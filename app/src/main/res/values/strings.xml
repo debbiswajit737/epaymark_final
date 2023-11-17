@@ -176,4 +176,13 @@
     <string name="payment_amount">Payment Amount<font color='#FF0000'>*</font></string>
     <string name="payment_amount_hint">Payment Amount</string>
     <string name="bank_transaction_id">Bank Transaction ID</string>
+    <string name="upload_slip">Upload Slip</string>
+    <string name="amount">Amount</string>
+    <string name="settle_to_payabhi">Settle to payabhi</string>
+    <string name="aeps_settlement">Aeps Settlement</string>
+    <string name="move_to_bank_nclick_on_the_approved_account_to_proceed">Move to Bank\nClick on the approved account to proceed</string>
+    <string name="settle_imps">Settle IMPS</string>
+    <string name="settlement_amount">Settlement Amount</string>
+    <string name="settle_neft">Settle NEFT</string>
+    <string name="sender_details">Sender Details</string>
 </resources>

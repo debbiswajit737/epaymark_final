@@ -81,7 +81,11 @@ class TpinBottomSheetDialog(val callBack: CallBack) :BaseBottomSheetFragment() {
                             if (this.length!=6) {
                                 val tPin="${this}$item"
                                 myViewModel.tPin.value= tPin
-                                callBack.getValue(tPin)
+                                if(tPin.length==6){
+                                    callBack.getValue(tPin)
+                                    dismiss()
+                                }
+
                             }
                         }
 

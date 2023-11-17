@@ -1,5 +1,6 @@
 package com.epaymark.epay.ui.base
 
+import android.animation.ObjectAnimator
 import android.app.DatePickerDialog
 import android.content.ContentResolver
 import android.content.Context
@@ -11,9 +12,11 @@ import android.util.Base64
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.epaymark.epay.utils.helpers.Constants.INPUT_FILTER_MAX_VALUE
 import com.epaymark.epay.utils.helpers.Constants.INPUT_FILTER_POINTER_LENGTH
 import com.epaymark.epay.utils.helpers.DecimalDigitsInputFilter
@@ -165,7 +168,17 @@ open class BaseFragment: Fragment(){
     }
 
 
+    fun ImageView.setImage(uri: Uri) {
+        Glide.with(this.context)
+            .load(uri)
+            .into(this)
+    }
 
+    fun rotateView(view: View, degrees: Float) {
+        val rotation = ObjectAnimator.ofFloat(view, "rotation", degrees)
+        rotation.duration = 500 // Adjust the duration as needed
+        rotation.start()
+    }
 }
 
 

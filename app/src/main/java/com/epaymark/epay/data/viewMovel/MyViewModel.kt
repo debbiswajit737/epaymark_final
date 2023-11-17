@@ -1,5 +1,6 @@
 package com.epaymark.epay.data.viewMovel
 
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,7 +18,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRepository) : ViewModel() {
-
+    var sendMoneyVisibility: MutableLiveData<Boolean> = MutableLiveData(false)
+    var filePath: MutableLiveData<Uri> = MutableLiveData()
     val selectedBank = MutableLiveData<String>("")
     val selectedBankMode = MutableLiveData<String>("")
     val prepaitOrPostPaid = MutableLiveData<String>("")
@@ -40,6 +42,11 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
 
     val prepaitIsActive = MutableLiveData<Boolean>()
     val postpaitIsActive = MutableLiveData<Boolean>()
+
+    val IMPSIsActive = MutableLiveData<Boolean>()
+    val NEFTIsActive = MutableLiveData<Boolean>()
+
+
     val operatorName = MutableLiveData<String>()
 
 
@@ -63,6 +70,14 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val epotly_amt = MutableLiveData<String>()
     val cash_withdraw_pin_code = MutableLiveData<String>()
     val cash_withdraw_pan = MutableLiveData<String>()
+    val paymentAmt = MutableLiveData<String>()
+    val particular = MutableLiveData<String>()
+    val amtMoveToWallet = MutableLiveData<String>()
+    val amtMoveToPayabhi = MutableLiveData<String>()
+
+    val amtMoveToBank = MutableLiveData<String>()
+    val mobileSendMoney = MutableLiveData<String>()
+    val nameSendMoney = MutableLiveData<String>()
 
 
     val mobileError = MutableLiveData<String>()
@@ -71,6 +86,7 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val subIdError = MutableLiveData<String>()
     val dthError = MutableLiveData<String>()
     val dthAmtError = MutableLiveData<String>()
+
     val epotly_amt_Error = MutableLiveData<String>()
 
     val consumerIdError = MutableLiveData<String>()
@@ -85,6 +101,17 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val epotly_mobileError = MutableLiveData<String>()
     val cash_withdraw_pin_codeError = MutableLiveData<String>()
     val cash_withdraw_pan_codeError = MutableLiveData<String>()
+
+    val paymentAmtError = MutableLiveData<String>()
+    val depositeDate = MutableLiveData<String>()
+    val depositeDateError = MutableLiveData<String>()
+    val particularError = MutableLiveData<String>()
+    val amtMoveToWalletError = MutableLiveData<String>()
+    val amtMoveToPayabhiError = MutableLiveData<String>()
+    val amtMoveToBankError = MutableLiveData<String>()
+    val amtMoveToBankModeError = MutableLiveData<String>()
+    val mobileSendMoneyError = MutableLiveData<String>()
+    val nameSendMoneyError = MutableLiveData<String>()
 
 
     val mobileErrorVisible = MutableLiveData<Boolean>()
@@ -107,6 +134,16 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val epotly_amt_ErrorVisible = MutableLiveData<Boolean>()
     val cash_withdraw_pin_codeErrorVisible = MutableLiveData<Boolean>()
     val cash_withdraw_pan_codeErrorVisible = MutableLiveData<Boolean>()
+
+    val paymentAmtErrorVisible = MutableLiveData<Boolean>()
+    val depositeDateErrorVisible = MutableLiveData<Boolean>()
+    val particularErrorVisible = MutableLiveData<Boolean>()
+    val amtMoveToWalletErrorVisible = MutableLiveData<Boolean>()
+    val amtMoveToPayabhiErrorVisible = MutableLiveData<Boolean>()
+    val amtMoveToBankErrorVisible = MutableLiveData<Boolean>()
+    val bankModeMoveToBankErrorVisible = MutableLiveData<Boolean>()
+    val mobileSendMoneyErrorVisible = MutableLiveData<Boolean>()
+    val nameSendMoneyErrorVisible = MutableLiveData<Boolean>()
 
 
 
@@ -382,14 +419,180 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
                 cash_withdraw_pan_codeErrorVisible.value = false
             }
         }
+        return isValid
+    }
+
+
+    fun PaymentrequestValidation(): Boolean {
+
+        invisibleErrorTexts()
+
+        var isValid = true
+        if (paymentAmt.value?.trim().isNullOrBlank()) {
+            paymentAmtError.value = "This field is required"
+            paymentAmtErrorVisible.value = true
+            isValid = false
+        } else {
+            paymentAmtError.value = ""
+            paymentAmtErrorVisible.value = false
+        }
 
 
 
+
+        if (depositeDate.value?.trim().isNullOrBlank()) {
+            depositeDateError.value = "This field is required"
+            depositeDateErrorVisible.value = true
+            isValid = false
+        } else {
+            depositeDateError.value = ""
+            depositeDateErrorVisible.value = false
+        }
+
+        if (particular.value?.trim().isNullOrBlank()) {
+            particularError.value = "This field is required"
+            particularErrorVisible.value = true
+            isValid = false
+        } else {
+            particularError.value = ""
+            particularErrorVisible.value = false
+        }
+
+        return isValid
+    }
+    fun settleWalletValidation(): Boolean {
+
+        invisibleErrorTexts()
+
+        var isValid = true
+        if (amtMoveToWallet.value?.trim().isNullOrBlank()) {
+            amtMoveToWalletError.value = "This field is required"
+            amtMoveToWalletErrorVisible.value = true
+            isValid = false
+        } else {
+            amtMoveToWalletError.value = ""
+            amtMoveToWalletErrorVisible.value = false
+        }
+
+
+        return isValid
+    }
+    fun payabhiValidation(): Boolean {
+
+        invisibleErrorTexts()
+
+        var isValid = true
+        if (amtMoveToPayabhi.value?.trim().isNullOrBlank()) {
+            amtMoveToPayabhiError.value = "This field is required"
+            amtMoveToPayabhiErrorVisible.value = true
+            isValid = false
+        } else {
+            amtMoveToPayabhiError.value = ""
+            amtMoveToPayabhiErrorVisible.value = false
+        }
+
+
+        return isValid
+    }
+
+
+    fun MoveToBankValidation(): Boolean {
+
+        invisibleErrorTexts()
+
+        var isValid = true
+        if (amtMoveToBank.value?.trim().isNullOrBlank()) {
+            amtMoveToBankError.value = "This field is required"
+            amtMoveToBankErrorVisible.value = true
+            isValid = false
+        } else {
+            amtMoveToBankError.value = ""
+            amtMoveToBankErrorVisible.value = false
+        }
+
+        if (IMPSIsActive?.value==false && NEFTIsActive?.value==false){
+            isValid = false
+            amtMoveToBankModeError.value="Please select a valid bank transaction mode."
+            bankModeMoveToBankErrorVisible.value=true
+        }
+        else{
+
+            amtMoveToBankModeError.value=""
+            bankModeMoveToBankErrorVisible.value=false
+        }
+
+
+        return isValid
+    }
+
+    fun MoneyTranspherValidation(): Boolean {
+
+        invisibleErrorTexts()
+
+        var isValid = true
+
+
+        if (mobileSendMoney.value?.trim().isNullOrBlank()) {
+            mobileSendMoneyError.value = "Mobile number is required"
+            mobileSendMoneyErrorVisible.value = true
+            isValid = false
+        } else {
+            if (mobile.value?.trim()?.validate("mobile") == false) {
+                mobileSendMoneyError.value = "Mobile number is not valid"
+                mobileSendMoneyErrorVisible.value = true
+                isValid = false
+            } else {
+                mobileSendMoneyError.value = ""
+                mobileSendMoneyErrorVisible.value = false
+            }
+        }
+
+        if (nameSendMoney.value?.trim().isNullOrBlank()) {
+            nameSendMoneyError.value = "Name is required"
+            nameSendMoneyErrorVisible.value = true
+            isValid = false
+        } else {
+            if (nameSendMoney.value?.trim()?.validate("name")==false) {
+                nameSendMoneyError.value = "Name is not valid"
+                nameSendMoneyErrorVisible.value = true
+                isValid = false
+            } else {
+                nameSendMoneyError.value = ""
+                nameSendMoneyErrorVisible.value = false
+            }
+        }
+
+        return isValid
+    }
+
+
+    fun mobileNumberValidation(): Boolean {
+
+        invisibleErrorTexts()
+
+        var isValid = true
+
+
+        if (mobileSendMoney.value?.trim().isNullOrBlank()) {
+
+            isValid = false
+        } else {
+            if (mobile.value?.trim()?.validate("mobile") == false) {
+
+                isValid = false
+            } else {
+
+            }
+        }
 
 
 
         return isValid
     }
+
+
+
+
 
 
 

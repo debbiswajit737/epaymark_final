@@ -71,6 +71,7 @@ class CameraFragment : BaseFragment() {
 
     lateinit var binding: FragmentCameraBinding
     private val authViewModel: AuthViewModel by activityViewModels()
+
     private var imageCapture: ImageCapture? = null
     private var videoCapture: VideoCapture<Recorder>? = null
     private var recording: Recording? = null

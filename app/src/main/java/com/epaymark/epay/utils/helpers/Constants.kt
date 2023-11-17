@@ -16,6 +16,7 @@ object Constants {
     const val TEST = "TEST"
     var isDthOperator=false
     var isVideo=false
+    var isIsPaySlip=false
     var isPdf=false
     var isBackCamera=true
     var isGallary=false

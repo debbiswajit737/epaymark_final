@@ -58,3 +58,15 @@ fun setImage(view: ImageView, imageInt: Int) {
         view.setImageResource(R.drawable.default_1)
     }
 }
+
+@BindingAdapter("app:setApprovedImage")
+fun setApprovedImage(view: ImageView, isApproved: Boolean) {
+    if (isApproved) {
+        view.setImageResource(R.drawable.right_tick)
+    }
+    else{
+        view.setImageResource(R.drawable.close_icon)
+    }
+}
+
+

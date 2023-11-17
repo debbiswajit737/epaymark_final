@@ -230,15 +230,15 @@
                             android:textSize="@dimen/text_size" />
 
                         <EditText
-
+                            android:id="@+id/et_amt"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_marginTop="@dimen/edit_text_margin_top"
                             android:background="@drawable/field_bg"
                             android:hint="@string/payment_amount_hint"
-                            android:text="@={viewModel.subId}"
-                            app:requestFocus="@{viewModel.subIdErrorVisible}"
-                            android:inputType="number"
+                            android:text="@={viewModel.paymentAmt}"
+                            app:requestFocus="@{viewModel.paymentAmtErrorVisible}"
+                            android:inputType="numberDecimal"
                             android:longClickable="false"
                             android:maxLength="10"
                             android:padding="@dimen/_5sdp"
@@ -254,8 +254,8 @@
                             android:fontFamily="@font/montserrat_regular_400"
                             android:textColor="@color/pink2"
                             android:textSize="@dimen/_9ssp"
-                            android:text="@{viewModel.subIdError}"
-                            app:hideErrorTextView="@{viewModel.subIdErrorVisible}"
+                            android:text="@{viewModel.paymentAmtError}"
+                            app:hideErrorTextView="@{viewModel.paymentAmtErrorVisible}"
                             />
 
 
@@ -278,7 +278,7 @@
                             android:hint="@string/bank_transaction_id"
                             android:text="@={viewModel.subId}"
                             app:requestFocus="@{viewModel.subIdErrorVisible}"
-                            android:inputType="number"
+                            android:inputType="text"
                             android:longClickable="false"
                             android:maxLength="10"
 
@@ -309,15 +309,15 @@
                             android:textColor="@color/black"
                             android:textSize="@dimen/text_size" />
 
-                        <EditText
-
+                        <TextView
+                            android:id="@+id/tv_date"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_marginTop="@dimen/edit_text_margin_top"
                             android:background="@drawable/field_bg"
                             android:hint="@string/enter_deposite_date_hint"
-                            android:text="@={viewModel.subId}"
-                            app:requestFocus="@{viewModel.subIdErrorVisible}"
+                            android:text="@{viewModel.depositeDate}"
+
                             android:inputType="number"
                             android:longClickable="false"
                             android:maxLength="10"
@@ -334,8 +334,8 @@
                             android:fontFamily="@font/montserrat_regular_400"
                             android:textColor="@color/pink2"
                             android:textSize="@dimen/_9ssp"
-                            android:text="@{viewModel.subIdError}"
-                            app:hideErrorTextView="@{viewModel.subIdErrorVisible}"
+                            android:text="@{viewModel.depositeDateError}"
+                            app:hideErrorTextView="@{viewModel.depositeDateErrorVisible}"
                             />
 
 
@@ -355,9 +355,9 @@
                             android:layout_marginTop="@dimen/edit_text_margin_top"
                             android:background="@drawable/field_bg"
                             android:hint="@string/particulars_hint"
-                            android:text="@={viewModel.subId}"
-                            app:requestFocus="@{viewModel.subIdErrorVisible}"
-                            android:inputType="number"
+                            android:text="@={viewModel.particular}"
+                            app:requestFocus="@{viewModel.particularErrorVisible}"
+                            android:inputType="text"
                             android:longClickable="false"
                             android:maxLength="10"
                             android:padding="@dimen/_5sdp"
@@ -373,10 +373,26 @@
                             android:fontFamily="@font/montserrat_regular_400"
                             android:textColor="@color/pink2"
                             android:textSize="@dimen/_9ssp"
-                            android:text="@{viewModel.subIdError}"
-                            app:hideErrorTextView="@{viewModel.subIdErrorVisible}"
+                            android:text="@{viewModel.particularError}"
+                            app:hideErrorTextView="@{viewModel.particularErrorVisible}"
                             />
-
+                        <ImageView
+                            android:id="@+id/img_play_slip"
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/payslip"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerCrop"
+                            />
+                        <TextView
+                            android:id="@+id/tv_upload_payslip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/_5sdp"
+                            android:drawableEnd="@drawable/photo_camera_icon"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/open_sans_medium"
+                            android:text="@string/upload_slip"/>
 
                     </LinearLayout>
 
@@ -390,15 +406,21 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="end"
-                    android:layout_marginVertical="@dimen/_5sdp"
+                    app:layout_goneMarginTop="@dimen/_5sdp"
                     android:layout_marginTop="24dp"
                     android:background="@drawable/btn_bg"
                     android:padding="@dimen/_5sdp"
                     android:text="@string/submit"
+
                     app:layout_constraintEnd_toEndOf="@+id/cardView3"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/cardView3"
                     app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_10sdp"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_submit"
+                    />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>

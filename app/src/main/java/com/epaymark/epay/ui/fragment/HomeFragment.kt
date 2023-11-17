@@ -421,6 +421,10 @@ class HomeFragment : BaseFragment() {
                             getString(R.string.dth_recharge)->{
                                 findNavController().navigate(R.id.action_homeFragment2_to_DTHRechargeFragment)
                             }
+                            getString(R.string.money_transfer)->{
+                                findNavController().navigate(R.id.action_homeFragment2_to_moneyTranspherFragment)
+                            }
+
 
                             getString(R.string.electric)->{
                                 activity?.let {act->
@@ -555,6 +559,22 @@ class HomeFragment : BaseFragment() {
                                 findNavController().navigate(R.id.action_homeFragment2_to_cashWithdrawFragment)
                             }
 
+                            getString(R.string.cash_withdraw) -> {
+                                findNavController().navigate(R.id.action_homeFragment2_to_cashWithdrawFragment)
+                            }
+
+                            getString(R.string.mini_statement) -> {
+                                viewModel.reportType.value=getString(R.string.dmt)
+                                findNavController().navigate(R.id.action_homeFragment2_to_reportFragment)
+                               // findNavController().navigate(R.id.action_homeFragment2_to_cashWithdrawFragment)
+                            }
+
+                            getString(R.string.aadhar_pay) -> {
+                                findNavController().navigate(R.id.action_homeFragment2_to_cashWithdrawFragment)
+                            }
+
+
+
 
                         }
                     }
@@ -583,6 +603,13 @@ class HomeFragment : BaseFragment() {
                         getString(R.string.payment_request)->{
                             findNavController().navigate(R.id.action_homeFragment2_to_paymentRequestFragment)
                         }
+                        getString(R.string.move_to_wallet)->{
+                            findNavController().navigate(R.id.action_homeFragment2_to_moveToWalletFragment)
+                        }
+                        getString(R.string.move_to_bank)->{
+                            findNavController().navigate(R.id.action_homeFragment2_to_moveToBankFragment)
+                        }
+
 
 
                     }
@@ -693,11 +720,11 @@ class HomeFragment : BaseFragment() {
         }
     }
 
-    private fun rotateView(view: View, degrees: Float) {
+    /*private fun rotateView(view: View, degrees: Float) {
         val rotation = ObjectAnimator.ofFloat(view, "rotation", degrees)
         rotation.duration = 500 // Adjust the duration as needed
         rotation.start()
-    }
+    }*/
 
     fun init() {
         //sharedPreff.setTestData("Abcd")

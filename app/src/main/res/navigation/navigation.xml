@@ -56,6 +56,15 @@
         <action
             android:id="@+id/action_homeFragment2_to_paymentRequestFragment"
             app:destination="@id/paymentRequestFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_moveToWalletFragment"
+            app:destination="@id/moveToWalletFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_moveToBankFragment"
+            app:destination="@id/moveToBankFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_moneyTranspherFragment"
+            app:destination="@id/moneyTranspherFragment" />
     </fragment>
     <fragment
         android:id="@+id/mobileRechargeFragment"
@@ -159,6 +168,7 @@
         <action
             android:id="@+id/action_paymentRequestFragment_to_paymentRequestModeFragment"
             app:destination="@id/paymentRequestModeFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/paymentRequestModeFragment"
@@ -171,5 +181,25 @@
     <fragment
         android:id="@+id/paymentRequestImformationFragment"
         android:name="com.epaymark.epay.ui.fragment.paymentRequest.PaymentRequestImformationFragment"
-        android:label="PaymentRequestImformationFragment" />
+        android:label="PaymentRequestImformationFragment" >
+        <action
+            android:id="@+id/action_paymentRequestImformationFragment_to_cameraFragment2"
+            app:destination="@id/cameraFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/cameraFragment2"
+        android:name="com.epaymark.epay.ui.fragment.regandkyc.CameraFragment"
+        android:label="CameraFragment" />
+    <fragment
+        android:id="@+id/moveToWalletFragment"
+        android:name="com.epaymark.epay.ui.fragment.MoveToWalletFragment"
+        android:label="MoveToWalletFragment" />
+    <fragment
+        android:id="@+id/moveToBankFragment"
+        android:name="com.epaymark.epay.ui.fragment.MoveToBankFragment"
+        android:label="MoveToBankFragment" />
+    <fragment
+        android:id="@+id/moneyTranspherFragment"
+        android:name="com.epaymark.epay.ui.fragment.MoneyTranspherFragment"
+        android:label="MoneyTranspherFragment" />
 </navigation>

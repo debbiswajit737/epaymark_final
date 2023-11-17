@@ -41,7 +41,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:cursorVisible="true"
-            android:hint="Hint."
+            android:hint=""
+            android:focusable="false"
+            android:clickable="false"
             android:inputType="numberPassword"
             android:itemBackground="@drawable/white_bg_phonepad_1"
 
