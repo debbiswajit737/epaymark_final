@@ -65,6 +65,9 @@
         <action
             android:id="@+id/action_homeFragment2_to_moneyTranspherFragment"
             app:destination="@id/moneyTranspherFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_creditCardPaymentFragment"
+            app:destination="@id/creditCardPaymentFragment" />
     </fragment>
     <fragment
         android:id="@+id/mobileRechargeFragment"
@@ -202,4 +205,8 @@
         android:id="@+id/moneyTranspherFragment"
         android:name="com.epaymark.epay.ui.fragment.MoneyTranspherFragment"
         android:label="MoneyTranspherFragment" />
+    <fragment
+        android:id="@+id/creditCardPaymentFragment"
+        android:name="com.epaymark.epay.ui.fragment.CreditCardPaymentFragment"
+        android:label="CreditCardPaymentFragment" />
 </navigation>

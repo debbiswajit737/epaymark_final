@@ -79,6 +79,12 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val mobileSendMoney = MutableLiveData<String>()
     val nameSendMoney = MutableLiveData<String>()
 
+    val credit_card = MutableLiveData<String>()
+    val credit_holder_name = MutableLiveData<String>()
+    val credit_remarks = MutableLiveData<String>()
+    val credit_mobile = MutableLiveData<String>()
+    val credit_amt = MutableLiveData<String>()
+
 
     val mobileError = MutableLiveData<String>()
     val operatorError = MutableLiveData<String>()
@@ -113,6 +119,12 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val mobileSendMoneyError = MutableLiveData<String>()
     val nameSendMoneyError = MutableLiveData<String>()
 
+    val credit_cardError = MutableLiveData<String>()
+    val credit_holder_name_Error = MutableLiveData<String>()
+    val credit_remarks_Error = MutableLiveData<String>()
+    val credit_mobile_Error = MutableLiveData<String>()
+    val credit_amt_Error = MutableLiveData<String>()
+
 
     val mobileErrorVisible = MutableLiveData<Boolean>()
     val operatorErrorVisible = MutableLiveData<Boolean>()
@@ -144,6 +156,12 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val bankModeMoveToBankErrorVisible = MutableLiveData<Boolean>()
     val mobileSendMoneyErrorVisible = MutableLiveData<Boolean>()
     val nameSendMoneyErrorVisible = MutableLiveData<Boolean>()
+
+    val credit_cardErrorVisible = MutableLiveData<Boolean>()
+    val credit_holder_name_ErrorVisible = MutableLiveData<Boolean>()
+    val credit_remarks_ErrorVisible = MutableLiveData<Boolean>()
+    val credit_mobileErrorVisible = MutableLiveData<Boolean>()
+    val credit_amt_ErrorVisible = MutableLiveData<Boolean>()
 
 
 
@@ -591,7 +609,85 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
 
 
 
+    fun creditValidation(): Boolean {
 
+        invisibleErrorTexts()
+
+        var isValid = true
+
+
+        if (credit_card.value?.trim().isNullOrBlank()) {
+            credit_cardError.value = "Please enter Credit card number"
+            credit_cardErrorVisible.value = true
+            isValid = false
+        } else {
+            if (credit_card.value?.trim()?.length!=16){
+                credit_cardError.value = "Credit card number is not valid."
+                credit_cardErrorVisible.value = true
+            }
+            else{
+                credit_cardError.value = ""
+                credit_cardErrorVisible.value = false
+            }
+
+        }
+
+
+
+        if (credit_holder_name.value?.trim().isNullOrBlank()) {
+            credit_holder_name_Error.value = "Name is required"
+            credit_holder_name_ErrorVisible.value = true
+            isValid = false
+        } else {
+            if (credit_holder_name.value?.trim()?.validate("name")==false) {
+                credit_holder_name_Error.value = "Name is not valid"
+                credit_holder_name_ErrorVisible.value = true
+                isValid = false
+            } else {
+                credit_holder_name_Error.value = ""
+                credit_holder_name_ErrorVisible.value = false
+            }
+        }
+
+
+        if (credit_mobile.value?.trim().isNullOrBlank()) {
+            credit_mobile_Error.value = "Mobile number is required"
+            credit_mobileErrorVisible.value = true
+            isValid = false
+        } else {
+            if (mobile.value?.trim()?.validate("mobile") == false) {
+                credit_mobile_Error.value = "Mobile number is not valid"
+                credit_mobileErrorVisible.value = true
+                isValid = false
+            } else {
+                credit_mobile_Error.value = ""
+                credit_mobileErrorVisible.value = false
+            }
+        }
+
+        if (credit_amt.value?.trim().isNullOrBlank()) {
+            credit_amt_Error.value = "Please enter amount"
+            credit_amt_ErrorVisible.value = true
+            isValid = false
+        } else {
+            credit_amt_Error.value = ""
+            credit_amt_ErrorVisible.value = false
+        }
+
+
+        if (credit_remarks.value?.trim().isNullOrBlank()) {
+            credit_remarks_Error.value = "Please enter a relevant message."
+            credit_remarks_ErrorVisible.value = true
+            isValid = false
+        } else {
+            credit_remarks_Error.value = ""
+            credit_remarks_ErrorVisible.value = false
+        }
+
+
+
+        return isValid
+    }
 
 
 
@@ -616,6 +712,13 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
         oldTPinErrorVisible.value = false
         newTPinErrorVisible.value = false
         confirmTPinErrorVisible.value = false
+
+
+        credit_amt_ErrorVisible.value = false
+        credit_mobileErrorVisible.value = false
+        credit_remarks_ErrorVisible.value = false
+        credit_holder_name_ErrorVisible.value = false
+        credit_cardErrorVisible.value = false
 
     }
 }

@@ -424,6 +424,10 @@ class HomeFragment : BaseFragment() {
                             getString(R.string.money_transfer)->{
                                 findNavController().navigate(R.id.action_homeFragment2_to_moneyTranspherFragment)
                             }
+                            getString(R.string.credit_card)->{
+                                findNavController().navigate(R.id.action_homeFragment2_to_creditCardPaymentFragment)
+                            }
+
 
 
                             getString(R.string.electric)->{

@@ -9,17 +9,13 @@ import android.view.inputmethod.EditorInfo
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.RecyclerView
 import com.epaymark.epay.R
-import com.epaymark.epay.adapter.PhonePadAdapter
 import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.MoveToBottomsheetLayoutBinding
-import com.epaymark.epay.databinding.TpinBottomsheetLayoutBinding
 import com.epaymark.epay.ui.base.BaseBottomSheetFragment
 import com.epaymark.epay.utils.`interface`.CallBack
-import com.epaymark.epay.utils.`interface`.KeyPadOnClickListner
 
-class MoveToBankBottomSheetDialog(val callBack: CallBack) :BaseBottomSheetFragment() {
+class SelectTransactionTypeBottomSheetDialog(val callBack: CallBack) :BaseBottomSheetFragment() {
     lateinit var binding: MoveToBottomsheetLayoutBinding
     private val myViewModel: MyViewModel by activityViewModels()
 

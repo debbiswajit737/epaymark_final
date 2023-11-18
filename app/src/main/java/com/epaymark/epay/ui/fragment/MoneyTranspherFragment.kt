@@ -51,15 +51,31 @@ class MoneyTranspherFragment : BaseFragment() {
             activity?.let {act->
                 btnSubmit.setOnClickListener{
                     if (viewModel?.MoneyTranspherValidation() == true) {
-                        val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
-                            override fun getValue(s: String) {
-                                Toast.makeText(requireActivity(), "$s", Toast.LENGTH_SHORT).show()
-                            }
-                        })
-                        tpinBottomSheetDialog.show(
-                            act.supportFragmentManager,
-                            tpinBottomSheetDialog.tag
-                        )
+
+                        activity?.let {act->
+                            val selectTransactionTypeBottomSheetDialog = SelectTransactionTypeBottomSheetDialog(object : CallBack {
+                                override fun getValue(s: String) {
+
+                                    val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
+                                        override fun getValue(s: String) {
+                                            Toast.makeText(requireActivity(), "$s", Toast.LENGTH_SHORT).show()
+                                        }
+                                    })
+                                    tpinBottomSheetDialog.show(
+                                        act.supportFragmentManager,
+                                        tpinBottomSheetDialog.tag
+                                    )
+
+
+                                }
+                            })
+                            selectTransactionTypeBottomSheetDialog.show(
+                                act.supportFragmentManager,
+                                selectTransactionTypeBottomSheetDialog.tag
+                            )
+                        }
+
+
 
                     }
                 }

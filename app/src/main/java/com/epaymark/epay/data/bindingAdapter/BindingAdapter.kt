@@ -11,6 +11,7 @@ import androidx.databinding.InverseBindingListener
 import androidx.lifecycle.ViewModel
 import com.epaymark.epay.R
 import com.epaymark.epay.data.viewMovel.AuthViewModel
+import com.epaymark.epay.data.viewMovel.MyViewModel
 
 
 @BindingAdapter("app:hideErrorTextView")
@@ -40,6 +41,7 @@ fun addTextChangeListener(view: EditText, viewModel: ViewModel) {
         override fun afterTextChanged(s: Editable?) {
             when (viewModel) {
                 is AuthViewModel -> viewModel.invisibleErrorTexts()
+                is MyViewModel -> viewModel.invisibleErrorTexts()
 
             }
         }

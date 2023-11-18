@@ -22,6 +22,7 @@
             android:src="@drawable/close_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+        <!--@string/settlement_amount-->
         <TextView
             android:id="@+id/tv_biller_name"
             android:layout_width="wrap_content"
@@ -31,14 +32,14 @@
             android:fontFamily="@font/open_sans_medium"
             android:gravity="center"
             android:paddingHorizontal="@dimen/_10sdp"
-            android:text="@string/settlement_amount"
+            android:text="@string/choosing_the_right_path_neft_or_imps_selecting_your_ideal_transaction_type"
             android:textColor="@color/white"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintEnd_toEndOf="parent"
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/settlement_amount" />
+            tools:text="@string/choosing_the_right_path_neft_or_imps_selecting_your_ideal_transaction_type" />
 
         <LinearLayout
 

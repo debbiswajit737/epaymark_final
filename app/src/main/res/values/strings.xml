@@ -185,4 +185,9 @@
     <string name="settlement_amount">Settlement Amount</string>
     <string name="settle_neft">Settle NEFT</string>
     <string name="sender_details">Sender Details</string>
+    <string name="choosing_the_right_path_neft_or_imps_selecting_your_ideal_transaction_type">Choosing the Right Path: NEFT or IMPS - Selecting Your Ideal Transaction Type</string>
+    <string name="enter_amount_rs">Enter amount(Rs.)</string>
+    <string name="_16_digit_card_number">16 digit card number</string>
+    <string name="card_holder_name">Card Holder Name</string>
+    <string name="remarks">Remarks</string>
 </resources>

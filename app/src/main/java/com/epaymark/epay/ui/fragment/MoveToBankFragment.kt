@@ -62,7 +62,7 @@ class MoveToBankFragment : BaseFragment() {
             adapter= AccountDetailsAdapter(accountDetailsList,object:CallBack{
                 override fun getValue(s: String) {
                     activity?.let {act->
-                        val moveToBankBottomSheetDialog = MoveToBankBottomSheetDialog(object : CallBack {
+                        val selectTransactionTypeBottomSheetDialog = SelectTransactionTypeBottomSheetDialog(object : CallBack {
                             override fun getValue(s: String) {
 
                                     val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
@@ -78,9 +78,9 @@ class MoveToBankFragment : BaseFragment() {
 
                             }
                         })
-                        moveToBankBottomSheetDialog.show(
+                        selectTransactionTypeBottomSheetDialog.show(
                             act.supportFragmentManager,
-                            moveToBankBottomSheetDialog.tag
+                            selectTransactionTypeBottomSheetDialog.tag
                         )
                     }
 
