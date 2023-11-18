@@ -16,6 +16,7 @@ import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentPaymentRequestBinding
 import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.utils.`interface`.CallBack
+import com.epaymark.epay.utils.`interface`.CallBack4
 
 class PaymentRequestFragment : BaseFragment() {
     lateinit var binding: FragmentPaymentRequestBinding
@@ -63,11 +64,13 @@ class PaymentRequestFragment : BaseFragment() {
                 bankList.add(BankListModel(R.drawable.axix_bank_logo,"AXIX BANK","A/C:91022112121212","IFSC:UTIB0000669"))
                 bankList.add(BankListModel(R.drawable.axix_bank_logo,"AXIX BANK","A/C:91022112121212","IFSC:UTIB0000669"))
                 bankList.add(BankListModel(R.drawable.axix_bank_logo,"AXIX BANK","A/C:91022112121212","IFSC:UTIB0000669"))
-                adapter= BankListAdapter(bankList, object : CallBack {
-                    override fun getValue(s: String) {
-                        viewModel?.selectedBank?.value=s
+                adapter= BankListAdapter(bankList, object : CallBack4 {
+                    override fun getValue4(s1: String, s2: String, s3: String, s4: String) {
+                        viewModel?.selectedBank?.value=s1
                         findNavController().navigate(R.id.action_paymentRequestFragment_to_paymentRequestModeFragment)
                     }
+
+
 
                 })
             }

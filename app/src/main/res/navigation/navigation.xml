@@ -204,9 +204,34 @@
     <fragment
         android:id="@+id/moneyTranspherFragment"
         android:name="com.epaymark.epay.ui.fragment.MoneyTranspherFragment"
-        android:label="MoneyTranspherFragment" />
+        android:label="MoneyTranspherFragment" >
+
+        <action
+            android:id="@+id/action_moneyTranspherFragment_to_beneficiaryFragment"
+            app:destination="@id/beneficiaryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/creditCardPaymentFragment"
         android:name="com.epaymark.epay.ui.fragment.CreditCardPaymentFragment"
-        android:label="CreditCardPaymentFragment" />
+        android:label="CreditCardPaymentFragment" >
+        <action
+            android:id="@+id/action_creditCardPaymentFragment_to_transactionOtpFragment"
+            app:destination="@id/transactionOtpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/transactionOtpFragment"
+        android:name="com.epaymark.epay.ui.fragment.TransactionOtpFragment"
+        android:label="TransactionOtpFragment" />
+    <fragment
+        android:id="@+id/addBeneficiaryFragment"
+        android:name="com.epaymark.epay.ui.fragment.AddBeneficiaryFragment"
+        android:label="AddBeneficiaryFragment" />
+    <fragment
+        android:id="@+id/beneficiaryFragment"
+        android:name="com.epaymark.epay.ui.fragment.BeneficiaryFragment"
+        android:label="BeneficiaryFragment" >
+        <action
+            android:id="@+id/action_beneficiaryFragment_to_addBeneficiaryFragment"
+            app:destination="@id/addBeneficiaryFragment" />
+    </fragment>
 </navigation>

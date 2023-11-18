@@ -18,6 +18,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRepository) : ViewModel() {
+    val otp: MutableLiveData<String> = MutableLiveData("")
+    var otpMobile=MutableLiveData<String>("")
     var sendMoneyVisibility: MutableLiveData<Boolean> = MutableLiveData(false)
     var filePath: MutableLiveData<Uri> = MutableLiveData()
     val selectedBank = MutableLiveData<String>("")
@@ -86,6 +88,12 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val credit_amt = MutableLiveData<String>()
 
 
+    val beneficiary_bank_name = MutableLiveData<String>()
+    val beneficiary_ifsc = MutableLiveData<String>()
+    val beneficiary_acc = MutableLiveData<String>()
+    val beneficiary_name = MutableLiveData<String>()
+
+
     val mobileError = MutableLiveData<String>()
     val operatorError = MutableLiveData<String>()
     val amtError = MutableLiveData<String>()
@@ -125,6 +133,11 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val credit_mobile_Error = MutableLiveData<String>()
     val credit_amt_Error = MutableLiveData<String>()
 
+    val beneficiary_bank_name_Error = MutableLiveData<String>()
+    val beneficiary_ifsc_Error = MutableLiveData<String>()
+    val beneficiary_accError = MutableLiveData<String>()
+    val beneficiary_nameError = MutableLiveData<String>()
+
 
     val mobileErrorVisible = MutableLiveData<Boolean>()
     val operatorErrorVisible = MutableLiveData<Boolean>()
@@ -162,6 +175,11 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val credit_remarks_ErrorVisible = MutableLiveData<Boolean>()
     val credit_mobileErrorVisible = MutableLiveData<Boolean>()
     val credit_amt_ErrorVisible = MutableLiveData<Boolean>()
+
+    val beneficiary_bank_name_ErrorVisible = MutableLiveData<Boolean>()
+    val beneficiary_ifsc_ErrorVisible = MutableLiveData<Boolean>()
+    val beneficiary_accErrorVisible = MutableLiveData<Boolean>()
+    val beneficiary_nameErrorVisible = MutableLiveData<Boolean>()
 
 
 
@@ -655,7 +673,7 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
             credit_mobileErrorVisible.value = true
             isValid = false
         } else {
-            if (mobile.value?.trim()?.validate("mobile") == false) {
+            if (credit_mobile.value?.trim()?.validate("mobile") == false) {
                 credit_mobile_Error.value = "Mobile number is not valid"
                 credit_mobileErrorVisible.value = true
                 isValid = false
@@ -689,6 +707,95 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
         return isValid
     }
 
+    fun beneficiaryValidation(): Boolean {
+
+        invisibleErrorTexts()
+
+        var isValid = true
+
+
+        if (beneficiary_bank_name.value?.trim().isNullOrBlank()) {
+            beneficiary_bank_name_Error.value = "This field is required"
+            beneficiary_bank_name_ErrorVisible.value = true
+            isValid = false
+        } else {
+            beneficiary_bank_name_Error.value = ""
+            beneficiary_bank_name_ErrorVisible.value = false
+
+        }
+
+
+
+        if (beneficiary_ifsc.value?.trim().isNullOrBlank()) {
+            beneficiary_ifsc_Error.value = "This field is required"
+            beneficiary_ifsc_ErrorVisible.value = true
+            isValid = false
+        } else {
+            beneficiary_ifsc_Error.value = ""
+            beneficiary_ifsc_ErrorVisible.value = false
+        }
+
+
+        if (beneficiary_acc.value?.trim().isNullOrBlank()) {
+            beneficiary_accError.value = "This field is required"
+            beneficiary_accErrorVisible.value = true
+            isValid = false
+        } else {
+            beneficiary_accError.value = ""
+            beneficiary_accErrorVisible.value = false
+        }
+
+        if (beneficiary_name.value?.trim().isNullOrBlank()) {
+            beneficiary_nameError.value = "This field is required"
+            beneficiary_nameErrorVisible.value = true
+            isValid = false
+        } else {
+            beneficiary_nameError.value = ""
+            beneficiary_nameErrorVisible.value = false
+        }
+        return isValid
+    }
+    fun beneficiaryVerifyValidation(): Boolean {
+
+        invisibleErrorTexts()
+
+        var isValid = true
+
+
+        if (beneficiary_bank_name.value?.trim().isNullOrBlank()) {
+            beneficiary_bank_name_Error.value = "This field is required"
+            beneficiary_bank_name_ErrorVisible.value = true
+            isValid = false
+        } else {
+            beneficiary_bank_name_Error.value = ""
+            beneficiary_bank_name_ErrorVisible.value = false
+
+        }
+
+
+
+        if (beneficiary_ifsc.value?.trim().isNullOrBlank()) {
+            beneficiary_ifsc_Error.value = "This field is required"
+            beneficiary_ifsc_ErrorVisible.value = true
+            isValid = false
+        } else {
+            beneficiary_ifsc_Error.value = ""
+            beneficiary_ifsc_ErrorVisible.value = false
+        }
+
+
+        if (beneficiary_acc.value?.trim().isNullOrBlank()) {
+            beneficiary_accError.value = "This field is required"
+            beneficiary_accErrorVisible.value = true
+            isValid = false
+        } else {
+            beneficiary_accError.value = ""
+            beneficiary_accErrorVisible.value = false
+        }
+
+
+        return isValid
+    }
 
 
     fun invisibleErrorTexts() {

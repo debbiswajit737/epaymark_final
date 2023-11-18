@@ -20,6 +20,7 @@
     <string name="you_ll_receive_a_6_digit_otp_to_verify_next">You\'ll receive a 6 digit code \nto verify next</string>
     <string name="don_t_receive_code">Don\'t receive code</string>
     <string name="resend_otp">Resend OTP in <font color='#72110A'>%dS</font></string>
+    <string name="resend_otp_title">Resend OTP</string>
     <string name="verify">Verify</string>
     <string name="name">Name<font color='#FF0000'>*</font></string>
     <string name="basic_information">Basic Information</string>
@@ -190,4 +191,8 @@
     <string name="_16_digit_card_number">16 digit card number</string>
     <string name="card_holder_name">Card Holder Name</string>
     <string name="remarks">Remarks</string>
+    <string name="select_bank">Select Bank</string>
+    <string name="bank_list">Bank List</string>
+    <string name="beneficiary_list">Beneficiary List</string>
+    <string name="add_beneficiary">Add Beneficiary</string>
 </resources>

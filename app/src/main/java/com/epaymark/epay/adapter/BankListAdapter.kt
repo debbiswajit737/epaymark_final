@@ -6,9 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.epaymark.epay.data.model.BankListModel
 import com.epaymark.epay.databinding.BankListLayoutBinding
 import com.epaymark.epay.utils.`interface`.CallBack
+import com.epaymark.epay.utils.`interface`.CallBack2
+import com.epaymark.epay.utils.`interface`.CallBack4
 
 
-class BankListAdapter(private val items: List<BankListModel>, val callback: CallBack) : RecyclerView.Adapter<BankListAdapter.MyViewHolder>() {
+class BankListAdapter(private val items: List<BankListModel>, val callback: CallBack4) : RecyclerView.Adapter<BankListAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
@@ -41,7 +43,7 @@ class BankListAdapter(private val items: List<BankListModel>, val callback: Call
             item.bankName?.let {bankName->
                 binding.tvBankName.text = bankName
                 binding.llContainer.setOnClickListener{
-                    callback.getValue(bankName)
+                    callback.getValue4(bankName,binding.tvIfsc.text.toString(),"","")
                 }
             }
             item.bankAc?.let {bankAc->

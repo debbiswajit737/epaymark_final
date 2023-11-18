@@ -51,8 +51,8 @@ class MoneyTranspherFragment : BaseFragment() {
             activity?.let {act->
                 btnSubmit.setOnClickListener{
                     if (viewModel?.MoneyTranspherValidation() == true) {
-
-                        activity?.let {act->
+                        findNavController().navigate(R.id.action_moneyTranspherFragment_to_beneficiaryFragment)
+                        /*activity?.let {act->
                             val selectTransactionTypeBottomSheetDialog = SelectTransactionTypeBottomSheetDialog(object : CallBack {
                                 override fun getValue(s: String) {
 
@@ -75,7 +75,7 @@ class MoneyTranspherFragment : BaseFragment() {
                             )
                         }
 
-
+*/
 
                     }
                 }

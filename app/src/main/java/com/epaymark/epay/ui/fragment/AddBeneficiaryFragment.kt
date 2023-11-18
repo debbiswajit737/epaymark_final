@@ -11,22 +11,19 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.R
 import com.epaymark.epay.data.viewMovel.MyViewModel
+import com.epaymark.epay.databinding.FragmentAddBeneficiaryBinding
 import com.epaymark.epay.databinding.FragmentCreditCardPaymentBinding
-import com.epaymark.epay.databinding.FragmentEpotlyBinding
-import com.epaymark.epay.databinding.FragmentMobileRechargeBinding
 import com.epaymark.epay.ui.base.BaseFragment
-import com.epaymark.epay.utils.helpers.Constants
-import com.epaymark.epay.utils.helpers.Constants.isDthOperator
 import com.epaymark.epay.utils.`interface`.CallBack
 
-class CreditCardPaymentFragment : BaseFragment() {
-    lateinit var binding: FragmentCreditCardPaymentBinding
+class AddBeneficiaryFragment : BaseFragment() {
+    lateinit var binding: FragmentAddBeneficiaryBinding
     private val viewModel: MyViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_credit_card_payment, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_beneficiary, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         return binding.root
@@ -49,12 +46,35 @@ class CreditCardPaymentFragment : BaseFragment() {
 
             btnSubmit.setOnClickListener{
                 activity?.let {act->
-                    if (viewModel?.creditValidation() == true){
-                        findNavController().navigate(R.id.transactionOtpFragment)
+                    if (viewModel?.beneficiaryValidation() == true){
+                    findNavController().popBackStack()
                     }
                 }
 
             }
+            tvVerify.setOnClickListener{
+                if (viewModel?.beneficiaryVerifyValidation() == true){
+                    // API call
+                }
+            }
+
+            etBeneficiaryBankName.setOnClickListener{
+                activity?.let {act->
+                    val bankListBottomSheetDialog = BankListBottomSheetDialog(object : CallBack {
+                        override fun getValue(s: String) {
+                            Toast.makeText(requireActivity(), "$s", Toast.LENGTH_SHORT).show()
+                        }
+                    })
+                    bankListBottomSheetDialog.show(
+                        act.supportFragmentManager,
+                        bankListBottomSheetDialog.tag
+                    )
+                }
+
+            }
+
+
+
 
         }
 
@@ -64,7 +84,7 @@ class CreditCardPaymentFragment : BaseFragment() {
 
     fun initView() {
         binding.apply {
-            etAmt.setupAmount()
+
         }
     }
 
