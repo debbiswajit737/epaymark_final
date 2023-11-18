@@ -79,13 +79,8 @@ class MoneyTranspherFragment : BaseFragment() {
     fun setObserver() {
         binding?.apply {
             viewModel?.mobileSendMoney?.observe(viewLifecycleOwner){
-                if (viewModel?.mobileNumberValidation() == true){
-                    viewModel?.sendMoneyVisibility?.value =true
-                }
-                else{
-                    viewModel?.sendMoneyVisibility?.value =false
-                }
-
+                viewModel?.sendMoneyVisibility?.value = it.length==10
+                // need to check from api
             }
         }
 

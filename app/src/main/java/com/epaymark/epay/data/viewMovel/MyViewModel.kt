@@ -576,13 +576,12 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
         if (mobileSendMoney.value?.trim().isNullOrBlank()) {
 
             isValid = false
-        } else {
-            if (mobile.value?.trim()?.validate("mobile") == false) {
+        }
 
-                isValid = false
-            } else {
 
-            }
+        else {
+
+            isValid = mobile.value?.trim()?.length == 10
         }
 
 
