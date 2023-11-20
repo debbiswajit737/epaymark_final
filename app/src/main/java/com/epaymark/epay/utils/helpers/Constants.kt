@@ -3,6 +3,7 @@ package com.epaymark.epay.utils.helpers
 import android.content.ContentValues
 import android.net.Uri
 import androidx.lifecycle.MutableLiveData
+import com.epaymark.epay.data.model.ListIcon
 
 object Constants {
     const val INPUT_FILTER_MAX_VALUE:Long = 9999999999999
@@ -21,5 +22,8 @@ object Constants {
     var isBackCamera=true
     var isGallary=false
     var contentValues: ContentValues? =null
-
+    var isCashWithdraw=true
+    var searchList = ArrayList<ListIcon>()
+    var isFromSearchPage = false
+    var searchValue = ""
 }

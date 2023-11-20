@@ -2,15 +2,22 @@ package com.epaymark.epay.ui.fragment
 
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.R
+import com.epaymark.epay.adapter.AdminBankListAdapter
+import com.epaymark.epay.adapter.BankListAdapter
 import com.epaymark.epay.adapter.UserDetailsAdapter
+import com.epaymark.epay.data.model.AdminBankListModel
+import com.epaymark.epay.data.model.BankListModel
 import com.epaymark.epay.data.model.UserDetails
 import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentCashWithdrawBinding
@@ -18,14 +25,18 @@ import com.epaymark.epay.databinding.FragmentEpotlyBinding
 import com.epaymark.epay.databinding.FragmentMobileRechargeBinding
 import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.utils.helpers.Constants
+import com.epaymark.epay.utils.helpers.Constants.isCashWithdraw
 import com.epaymark.epay.utils.helpers.Constants.isDthOperator
 import com.epaymark.epay.utils.`interface`.CallBack
+import com.epaymark.epay.utils.`interface`.CallBack4
 import com.google.zxing.WriterException
 
 class CashWithdrawFragment : BaseFragment() {
     lateinit var binding: FragmentCashWithdrawBinding
     private val viewModel: MyViewModel by activityViewModels()
     var userDetailsList = ArrayList<UserDetails>()
+    var bankList = ArrayList<AdminBankListModel>()
+    var adminBankListAdapter:AdminBankListAdapter?=null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,7 +58,7 @@ class CashWithdrawFragment : BaseFragment() {
         binding.apply {
 
             imgBack.back()
-
+            etProvidedAmount.setupAmount()
 
 
 
@@ -78,8 +89,8 @@ class CashWithdrawFragment : BaseFragment() {
         binding.apply {
             etAmt.setupAmount()
 
-
-
+            group1.isVisible= isCashWithdraw
+            group2.isVisible=!group1.isVisible
             binding.recycleViewUserdetails.apply {
                 userDetailsList.clear()
                 userDetailsList.add(UserDetails("Name","Test User"))
@@ -90,11 +101,53 @@ class CashWithdrawFragment : BaseFragment() {
 
                 adapter= UserDetailsAdapter(userDetailsList)
             }
+
+            binding.recycleViewBankList.apply {
+                bankList.add(AdminBankListModel(R.drawable.axix_bank_logo,"AXIX Bank"))
+                bankList.add(AdminBankListModel(R.drawable.icici,"ICICI Bank"))
+
+
+                adminBankListAdapter= AdminBankListAdapter(bankList, object : CallBack4 {
+                    override fun getValue4(s1: String, s2: String, s3: String, s4: String) {
+                        if (viewModel?.cashWithdrawalValidation()==true){
+                            activity?.let {act->
+                                val aadharAuthBottomSheetDialog = AadharAuthBottomSheetDialog(object : CallBack {
+                                    override fun getValue(s: String) {
+
+                                    }
+                                })
+                                aadharAuthBottomSheetDialog.show(
+                                    act.supportFragmentManager,
+                                    aadharAuthBottomSheetDialog.tag
+                                )
+                            }
+
+
+                        }
+                    }
+
+
+
+                })
+                adapter=adminBankListAdapter
+            }
+
+
         }
     }
 
     fun setObserver() {
+        binding.etSearch.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                adminBankListAdapter?.filter?.filter(s)
+            }
 
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+        })
     }
 
 

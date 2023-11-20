@@ -33,6 +33,11 @@ import com.epaymark.epay.databinding.FragmentHomeBinding
 import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.ui.popup.CustomPopup.showBalencePopup
 import com.epaymark.epay.utils.common.MethodClass.userLogout
+import com.epaymark.epay.utils.helpers.Constants
+import com.epaymark.epay.utils.helpers.Constants.isCashWithdraw
+import com.epaymark.epay.utils.helpers.Constants.isFromSearchPage
+import com.epaymark.epay.utils.helpers.Constants.searchList
+import com.epaymark.epay.utils.helpers.Constants.searchValue
 import com.epaymark.epay.utils.`interface`.CallBack
 
 
@@ -86,11 +91,177 @@ class HomeFragment : BaseFragment() {
 
     }
 
+    private fun serviceNavigation(s: String) {
+        when(s){
+            //recycleViewEpayBanking
+            getString(R.string.scan)->{
+                findNavController().navigate(R.id.action_homeFragment2_to_QRCodeFragment)
+            }
+
+            getString(R.string.ePotly)->{
+                findNavController().navigate(R.id.action_homeFragment2_to_epotlyFragment)
+            }
+
+            getString(R.string.payment_request)->{
+                findNavController().navigate(R.id.action_homeFragment2_to_paymentRequestFragment)
+            }
+            getString(R.string.move_to_wallet)->{
+                findNavController().navigate(R.id.action_homeFragment2_to_moveToWalletFragment)
+            }
+            getString(R.string.move_to_bank)->{
+                findNavController().navigate(R.id.action_homeFragment2_to_moveToBankFragment)
+            }
+
+
+            //recycleAccount
+
+            getString(R.string.myaccount)->{
+                findNavController().navigate(R.id.action_homeFragment2_to_userDetailsFragment)
+            }
+            getString(R.string.support)->{
+                findNavController().navigate(R.id.action_homeFragment2_to_supportFragment)
+            }
+            getString(R.string.likeus)->{}
+            getString(R.string.usage_terms)->{
+                findNavController().navigate(R.id.action_homeFragment2_to_termsAndConditionFragment)
+            }
+            getString(R.string.password)->{
+                findNavController().navigate(R.id.action_homeFragment2_to_changePasswordFragment)
+            }
+            getString(R.string.certificate)->{
+                findNavController().navigate(R.id.action_homeFragment2_to_certificateFragment)
+            }
+            getString(R.string.logout)->{
+                context?.let { ctx->
+                    ctx.userLogout()
+                }
+            }
+
+
+
+            //recycleViewEpayBanking
+
+            getString(R.string.balance) -> {
+                showBalencePopup(binding.root.context)
+            }
+
+            getString(R.string.cash_withdraw) -> {
+                isCashWithdraw=true
+                findNavController().navigate(R.id.action_homeFragment2_to_cashWithdrawFragment)
+            }
+
+
+            getString(R.string.mini_statement) -> {
+                viewModel.reportType.value=getString(R.string.dmt)
+                findNavController().navigate(R.id.action_homeFragment2_to_miniStatementFragment)
+                // findNavController().navigate(R.id.action_homeFragment2_to_cashWithdrawFragment)
+            }
+
+            getString(R.string.aadhar_pay) -> {
+                isCashWithdraw=false
+                findNavController().navigate(R.id.action_homeFragment2_to_cashWithdrawFragment)
+            }
+
+
+
+            //recycleEssential
+            getString(R.string.prepaid)->{
+                viewModel.prepaitOrPostPaid.value="Prepaid"
+                findNavController().navigate(R.id.action_homeFragment2_to_mobileRechargeFragment)
+            }
+            getString(R.string.postpaid)->{
+                viewModel.prepaitOrPostPaid.value="Postpaid"
+                findNavController().navigate(R.id.action_homeFragment2_to_mobileRechargeFragment)
+            }
+
+            getString(R.string.dth_recharge)->{
+                findNavController().navigate(R.id.action_homeFragment2_to_DTHRechargeFragment)
+            }
+
+
+            //recycleUtility
+
+            getString(R.string.electric)->{
+                activity?.let {act->
+                    val stateListDialog = StateListDialog(object : CallBack {
+                        override fun getValue(s: String) {
+                            viewModel?.state?.value=s
+                            findNavController().navigate(R.id.action_homeFragment2_to_electricRechargeFragment)
+                        }
+
+                    })
+                    stateListDialog.show(act.supportFragmentManager, stateListDialog.tag)
+
+                }
+            }
+            getString(R.string.view_more)->{}
+
+            //recycleFinancial
+
+
+
+            getString(R.string.prepaid)->{
+                findNavController().navigate(R.id.action_homeFragment2_to_mobileRechargeFragment)
+            }
+            getString(R.string.postpaid)->{
+                findNavController().navigate(R.id.action_homeFragment2_to_mobileRechargeFragment)
+            }
+
+            getString(R.string.dth_recharge)->{
+                findNavController().navigate(R.id.action_homeFragment2_to_DTHRechargeFragment)
+            }
+            getString(R.string.money_transfer)->{
+                findNavController().navigate(R.id.action_homeFragment2_to_moneyTranspherFragment)
+            }
+            getString(R.string.credit_card)->{
+                findNavController().navigate(R.id.action_homeFragment2_to_creditCardPaymentFragment)
+            }
+
+
+
+            getString(R.string.electric)->{
+                activity?.let {act->
+                    val stateListDialog = StateListDialog(object : CallBack {
+                        override fun getValue(s: String) {
+                            viewModel?.state?.value=s
+                            findNavController().navigate(R.id.action_homeFragment2_to_electricRechargeFragment)
+                        }
+
+                    })
+                    stateListDialog.show(act.supportFragmentManager, stateListDialog.tag)
+
+                }
+            }
+
+
+
+        }
+
+
+    }
+
     private fun viewOnClick() {
         binding.apply {
             imgBalance.setOnClickListener{
                 showBalencePopup(binding.root.context)
             }
+            imgSearch.setOnClickListener{
+                        searchList.clear()
+                        //searchList.addAll(iconList)
+                        //searchList.addAll(iconList2)
+                        searchList.addAll(iconList3)
+                        //searchList.addAll(iconList4)
+                        searchList.addAll(iconList5)
+                        searchList.addAll(iconList6)
+                        searchList.addAll(iconList7)
+                        //searchList.addAll(iconList8)
+                        searchList.addAll(iconList9)
+                        searchList.addAll(iconList10)
+                        searchList.addAll(iconList11)
+                        searchList.addAll(iconList12)
+                findNavController().navigate(R.id.action_homeFragment2_to_searchFragment)
+            }
+
             rotateView(arrowImageView, 0f)
             val collapseAnimation: Animation =
                 AnimationUtils.loadAnimation(requireActivity(), R.anim.collapse_animation)
@@ -372,8 +543,8 @@ class HomeFragment : BaseFragment() {
                 iconList3.add(ListIcon("View More", R.drawable.view_more))*/
                 adapter= EssentialAdapter(iconList3,R.drawable.circle_shape2, object : CallBack {
                     override fun getValue(s: String) {
-                        Log.d("TAG_mobile_recharge", "getValue: $s")
-                        when(s){
+                        serviceNavigation(s)
+                        /*when(s){
                             getString(R.string.prepaid)->{
                                 viewModel.prepaitOrPostPaid.value="Prepaid"
                                 findNavController().navigate(R.id.action_homeFragment2_to_mobileRechargeFragment)
@@ -390,7 +561,7 @@ class HomeFragment : BaseFragment() {
 
 
 
-                        }
+                        }*/
                     }
 
                 })
@@ -409,8 +580,8 @@ class HomeFragment : BaseFragment() {
                 iconList3.add(ListIcon("View More", R.drawable.view_more))*/
                 adapter= FinancialAdapter(iconList11,R.drawable.circle_shape2, object : CallBack {
                     override fun getValue(s: String) {
-                        Log.d("TAG_mobile_recharge", "getValue: $s")
-                        when(s){
+                        serviceNavigation(s)
+                        /*when(s){
                             getString(R.string.prepaid)->{
                                 findNavController().navigate(R.id.action_homeFragment2_to_mobileRechargeFragment)
                             }
@@ -445,7 +616,7 @@ class HomeFragment : BaseFragment() {
                             }
 
 
-                        }
+                        }*/
                     }
 
                 })
@@ -460,7 +631,8 @@ class HomeFragment : BaseFragment() {
                 iconList10.add(ListIcon(getString(R.string.view_more), R.drawable.view_more))
                 adapter= UtilityAdapter(iconList10,R.drawable.circle_shape2, object : CallBack {
                     override fun getValue(s: String) {
-                        when(s){
+                        serviceNavigation(s)
+                        /*when(s){
 
                             getString(R.string.electric)->{
                                 activity?.let {act->
@@ -477,7 +649,7 @@ class HomeFragment : BaseFragment() {
                             }
                             getString(R.string.view_more)->{}
 
-                        }
+                        }*/
                     }
 
                 })
@@ -554,33 +726,33 @@ class HomeFragment : BaseFragment() {
 
                 adapter= AEPSAdapter(iconList5,R.drawable.circle_shape2,object : CallBack {
                     override fun getValue(s: String) {
-                        when(s) {
+                        serviceNavigation(s)
+                       /* when(s) {
                             getString(R.string.balance) -> {
                                 showBalencePopup(binding.root.context)
                             }
 
                             getString(R.string.cash_withdraw) -> {
+                                isCashWithdraw=true
                                 findNavController().navigate(R.id.action_homeFragment2_to_cashWithdrawFragment)
                             }
 
-                            getString(R.string.cash_withdraw) -> {
-                                findNavController().navigate(R.id.action_homeFragment2_to_cashWithdrawFragment)
-                            }
 
                             getString(R.string.mini_statement) -> {
                                 viewModel.reportType.value=getString(R.string.dmt)
-                                findNavController().navigate(R.id.action_homeFragment2_to_reportFragment)
+                                findNavController().navigate(R.id.action_homeFragment2_to_miniStatementFragment)
                                // findNavController().navigate(R.id.action_homeFragment2_to_cashWithdrawFragment)
                             }
 
                             getString(R.string.aadhar_pay) -> {
+                                isCashWithdraw=false
                                 findNavController().navigate(R.id.action_homeFragment2_to_cashWithdrawFragment)
                             }
 
 
 
 
-                        }
+                        }*/
                     }
                 })
 
@@ -595,28 +767,7 @@ class HomeFragment : BaseFragment() {
                 //circle_shape
                 adapter= BankingAdapter(iconList6,R.drawable.circle_shape2, object : CallBack {
                     override fun getValue(s: String) {
-                    when(s){
-                        getString(R.string.scan)->{
-                            findNavController().navigate(R.id.action_homeFragment2_to_QRCodeFragment)
-                        }
-
-                        getString(R.string.ePotly)->{
-                            findNavController().navigate(R.id.action_homeFragment2_to_epotlyFragment)
-                        }
-
-                        getString(R.string.payment_request)->{
-                            findNavController().navigate(R.id.action_homeFragment2_to_paymentRequestFragment)
-                        }
-                        getString(R.string.move_to_wallet)->{
-                            findNavController().navigate(R.id.action_homeFragment2_to_moveToWalletFragment)
-                        }
-                        getString(R.string.move_to_bank)->{
-                            findNavController().navigate(R.id.action_homeFragment2_to_moveToBankFragment)
-                        }
-
-
-
-                    }
+                        serviceNavigation(s)
                     }
 
                 })
@@ -630,7 +781,7 @@ class HomeFragment : BaseFragment() {
 
                 adapter= TravelAdapter(iconList7, R.drawable.circle_shape2, object : CallBack {
                     override fun getValue(s: String) {
-
+                        serviceNavigation(s)
                     }
 
                 })
@@ -693,7 +844,8 @@ class HomeFragment : BaseFragment() {
 
                 adapter= ReportAdapter(iconList9,R.drawable.circle_shape2,object : CallBack {
                     override fun getValue(s: String) {
-                        when(s){
+                        serviceNavigation(s)
+                       /* when(s){
                            getString(R.string.myaccount)->{
                             findNavController().navigate(R.id.action_homeFragment2_to_userDetailsFragment)
                            }
@@ -715,7 +867,7 @@ class HomeFragment : BaseFragment() {
                                    ctx.userLogout()
                                }
                            }
-                        }
+                        }*/
                     }
 
                 })
@@ -834,6 +986,13 @@ class HomeFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
+        if(isFromSearchPage){
+            if (searchValue.isNotEmpty()){
+                serviceNavigation(searchValue)
+                searchValue=""
+            }
+            isFromSearchPage=false
+        }
         autoScrollHandler.startAutoScroll()
     }
 

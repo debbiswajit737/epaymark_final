@@ -94,6 +94,13 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val beneficiary_name = MutableLiveData<String>()
 
 
+    val provided_amt = MutableLiveData<String>()
+    val provided_aadhar_number = MutableLiveData<String>()
+    val provided_customer_number = MutableLiveData<String>()
+
+
+
+
     val mobileError = MutableLiveData<String>()
     val operatorError = MutableLiveData<String>()
     val amtError = MutableLiveData<String>()
@@ -138,6 +145,10 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val beneficiary_accError = MutableLiveData<String>()
     val beneficiary_nameError = MutableLiveData<String>()
 
+    val provided_amt_Error = MutableLiveData<String>()
+    val provided_aadhar_numberError = MutableLiveData<String>()
+    val provided_customer_numberError = MutableLiveData<String>()
+
 
     val mobileErrorVisible = MutableLiveData<Boolean>()
     val operatorErrorVisible = MutableLiveData<Boolean>()
@@ -180,6 +191,10 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val beneficiary_ifsc_ErrorVisible = MutableLiveData<Boolean>()
     val beneficiary_accErrorVisible = MutableLiveData<Boolean>()
     val beneficiary_nameErrorVisible = MutableLiveData<Boolean>()
+
+    val provided_amt_ErrorVisible = MutableLiveData<Boolean>()
+    val provided_aadhar_numberErrorVisible = MutableLiveData<Boolean>()
+    val provided_customer_numberErrorVisible = MutableLiveData<Boolean>()
 
 
 
@@ -792,6 +807,59 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
             beneficiary_accError.value = ""
             beneficiary_accErrorVisible.value = false
         }
+
+
+        return isValid
+    }
+
+    fun cashWithdrawalValidation(): Boolean {
+
+        invisibleErrorTexts()
+
+        var isValid = true
+
+
+        if (provided_amt.value?.trim().isNullOrBlank()) {
+            provided_amt_Error.value = "This field is required"
+            provided_amt_ErrorVisible.value = true
+            isValid = false
+        } else {
+            provided_amt_Error.value = ""
+            provided_amt_ErrorVisible.value = false
+
+        }
+
+
+
+        if (provided_aadhar_number.value?.trim().isNullOrBlank()) {
+            provided_aadhar_numberError.value = "Aadhar number is required"
+            provided_aadhar_numberErrorVisible.value = true
+            isValid = false
+        } else {
+            if (provided_aadhar_number.value?.trim()?.validate("aadhar")==false) {
+                provided_aadhar_numberError.value = "Aadhar number is not valid"
+                provided_aadhar_numberErrorVisible.value = true
+                isValid = false
+            } else {
+                provided_aadhar_numberError.value = ""
+                provided_aadhar_numberErrorVisible.value = false
+            }
+        }
+
+
+        if (provided_customer_number.value?.trim().isNullOrBlank()) {
+            provided_customer_numberError.value = "This field is required"
+            provided_customer_numberErrorVisible.value = true
+            isValid = false
+        } else {
+            provided_customer_numberError.value = ""
+            provided_customer_numberErrorVisible.value = false
+        }
+
+
+
+
+
 
 
         return isValid

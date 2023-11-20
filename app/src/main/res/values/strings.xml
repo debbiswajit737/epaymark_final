@@ -195,4 +195,12 @@
     <string name="bank_list">Bank List</string>
     <string name="beneficiary_list">Beneficiary List</string>
     <string name="add_beneficiary">Add Beneficiary</string>
+    <string name="provided_amount">Proview Amount</string>
+    <string name="provide_aadhar_number">Provide Aadhar Number</string>
+    <string name="provided_customer_number">Provided Customer Number</string>
+    <string name="cash_withdrawal">Cash withdrawal</string>
+    <string name="most_used_bank">Most uses bank</string>
+    <string name="aeps_1">AEPS 1</string>
+    <string name="search_by_bank_name">Search by bank name</string>
+    <string name="no_service_found">No Service found</string>
 </resources>

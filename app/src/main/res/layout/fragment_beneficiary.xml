@@ -129,9 +129,38 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:orientation="vertical">
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="@dimen/edit_text_height"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="@dimen/_10sdp"
 
+                                        android:background="@drawable/field_bg_search_bg">
+
+                                        <EditText
+                                            android:id="@+id/et_search"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:background="@null"
+
+                                            android:fontFamily="@font/montserrat_regular_400"
+
+                                            android:hint="Search by bank name/Beneficiary name/ IFSC code/ A/C number"
+                                            android:paddingHorizontal="@dimen/_10sdp"
+                                            android:textColor="@color/black"
+                                            android:textColorHint="@color/gray"
+                                            android:textSize="@dimen/_10ssp" />
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentEnd="true"
+                                            android:layout_centerVertical="true"
+                                            android:layout_margin="@dimen/_5sdp"
+                                            android:src="@drawable/baseline_search_24" />
+                                    </RelativeLayout>
                                     <androidx.recyclerview.widget.RecyclerView
-                                        android:id="@+id/recycleViewUserdetails"
+                                        android:id="@+id/recycleView_beneficiary"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

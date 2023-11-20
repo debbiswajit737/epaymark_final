@@ -67,6 +67,7 @@ class SelectTransactionTypeBottomSheetDialog(val callBack: CallBack) :BaseBottom
 
     private fun initView() {
         binding.apply {
+            viewModel?.tPin?.value=""
             etAmtBankTranspher.setupAmount()
             viewModel?.IMPSIsActive?.value=false
             viewModel?.NEFTIsActive?.value=false

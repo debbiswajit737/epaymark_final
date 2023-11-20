@@ -68,6 +68,12 @@
         <action
             android:id="@+id/action_homeFragment2_to_creditCardPaymentFragment"
             app:destination="@id/creditCardPaymentFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_miniStatementFragment"
+            app:destination="@id/miniStatementFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/mobileRechargeFragment"
@@ -234,4 +240,12 @@
             android:id="@+id/action_beneficiaryFragment_to_addBeneficiaryFragment"
             app:destination="@id/addBeneficiaryFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/miniStatementFragment"
+        android:name="com.epaymark.epay.ui.fragment.MiniStatementFragment"
+        android:label="MiniStatementFragment" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.epaymark.epay.ui.fragment.SearchFragment"
+        android:label="SearchFragment" />
 </navigation>
