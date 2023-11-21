@@ -120,6 +120,12 @@ object helper {
 
                 return panPattern.matches(this)
             }
+            "vehicle" -> {
+
+                val panPattern = "[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}".toRegex()
+                return panPattern.matches(this)
+            }
+
 
             "aadhar" -> {
                 val regexPattern = Regex("^[0-9]{12}$")

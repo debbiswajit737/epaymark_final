@@ -20,10 +20,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_medium"
-        android:text="@string/bank_list"
+        android:text="@string/fastag_banks_list"
         android:textColor="@color/logo_color"
         android:textSize="@dimen/_12ssp"
-        android:background="@color/white"
+        android:background="@color/logo_second_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

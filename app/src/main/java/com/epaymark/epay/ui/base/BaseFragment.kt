@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator
 import android.app.DatePickerDialog
 import android.content.ContentResolver
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -11,6 +12,9 @@ import android.text.InputFilter
 import android.util.Base64
 import android.util.Log
 import android.view.View
+import android.webkit.WebResourceRequest
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
@@ -178,6 +182,26 @@ open class BaseFragment: Fragment(){
         val rotation = ObjectAnimator.ofFloat(view, "rotation", degrees)
         rotation.duration = 500 // Adjust the duration as needed
         rotation.start()
+    }
+
+    fun WebView.set(url:String,postData:String){
+        this.webViewClient = MyWebViewClient()
+        //val url = "https://www.gibl.in/wallet/validate2/"
+        //val postData = "ret_data=eyJ1cmMiOiI5MzkxMTU1OTEwIiwidW1jIjoiNTE1ODM5IiwiYWsiOiI2NTA0MjA2MWQ4MTRhIiwiZm5hbWUiOiJzb3VteWEiLCJsbmFtZSI6InNvdW15YSIsImVtYWlsIjoiYmlnOWl0QGdtYWlsLmNvbSIsInBobm8iOiI5MjMxMTA5ODI5IiwicGluIjoiODg4ODg4In0="
+        this.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                startActivity(intent)
+                return true
+            }
+        }
+        this.postUrl(url, postData.toByteArray())
+    }
+
+    private inner class MyWebViewClient : WebViewClient() {
+        override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
+            return false
+        }
     }
 }
 

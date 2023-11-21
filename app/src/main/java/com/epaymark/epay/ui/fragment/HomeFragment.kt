@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.webkit.WebView
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
@@ -178,6 +180,13 @@ class HomeFragment : BaseFragment() {
                 findNavController().navigate(R.id.action_homeFragment2_to_DTHRechargeFragment)
             }
 
+            getString(R.string.insurance)->{
+               WebView(binding.root.context).set("https://www.gibl.in/wallet/validate2/","ret_data=eyJ1cmMiOiI5MzkxMTU1OTEwIiwidW1jIjoiNTE1ODM5IiwiYWsiOiI2NTA0MjA2MWQ4MTRhIiwiZm5hbWUiOiJzb3VteWEiLCJsbmFtZSI6InNvdW15YSIsImVtYWlsIjoiYmlnOWl0QGdtYWlsLmNvbSIsInBobm8iOiI5MjMxMTA5ODI5IiwicGluIjoiODg4ODg4In0=")
+
+            }
+
+
+
 
             //recycleUtility
 
@@ -217,6 +226,54 @@ class HomeFragment : BaseFragment() {
                 findNavController().navigate(R.id.action_homeFragment2_to_creditCardPaymentFragment)
             }
 
+            getString(R.string.matm)->{
+                activity?.let {act->
+                    val microATMBottomSheetDialog = MicroATMBottomSheetDialog(object : CallBack {
+                        override fun getValue(microAtmTitle: String) {
+
+
+                                    val selectTransactionTypeBottomSheetDialog = SelectTransactionTypeBottomSheetDialog(object : CallBack {
+                                    override fun getValue(s: String) {
+
+                                        val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
+                                            override fun getValue(s: String) {
+                                                when(microAtmTitle) {
+                                                    "balence_enquery"->{
+                                                        Toast.makeText(requireActivity(), "$s "+"balence_enquery", Toast.LENGTH_SHORT).show()
+                                                    }
+                                                    "balence_withdraw"->{
+                                                        Toast.makeText(requireActivity(), "$s "+"balence_withdraw", Toast.LENGTH_SHORT).show()
+                                                    }
+                                                }
+
+                                            }
+                                        })
+                                        tpinBottomSheetDialog.show(
+                                            act.supportFragmentManager,
+                                            tpinBottomSheetDialog.tag
+                                        )
+
+
+                                    }
+                                })
+
+                            selectTransactionTypeBottomSheetDialog.show(
+                                act.supportFragmentManager,
+                                selectTransactionTypeBottomSheetDialog.tag
+                            )
+
+                        }
+                    })
+                    microATMBottomSheetDialog.show(
+                        act.supportFragmentManager,
+                        microATMBottomSheetDialog.tag
+                    )
+                }
+            }
+
+
+
+
 
 
             getString(R.string.electric)->{
@@ -233,7 +290,10 @@ class HomeFragment : BaseFragment() {
                 }
             }
 
-
+            //recycleUtility
+            getString(R.string.fast_tag)->{
+                findNavController().navigate(R.id.action_homeFragment2_to_fastTagFragment)
+            }
 
         }
 

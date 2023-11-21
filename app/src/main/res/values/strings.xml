@@ -203,4 +203,13 @@
     <string name="aeps_1">AEPS 1</string>
     <string name="search_by_bank_name">Search by bank name</string>
     <string name="no_service_found">No Service found</string>
+    <string name="fastag_recharge">FASTag Recharge</string>
+    <string name="vehicle_registration_number">Vehicle Registration Number</string>
+    <string name="fastag_banks_list">FASTag Banks List</string>
+    <string name="fastag_operator_list">FASTag operator list</string>
+    <string name="m_atm_transaction">M-ATM TRANSACTION</string>
+    <string name="vm30">VM30</string>
+    <string name="select_device_model">Select Device Model</string>
+    <string name="balance_enquery">Balance Enquery</string>
+    <string name="cash_withdrawal_matm">Cash Withdrawal</string>
 </resources>

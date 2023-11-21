@@ -9,6 +9,7 @@ import android.view.inputmethod.EditorInfo
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.epaymark.epay.R
 import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.MoveToBottomsheetLayoutBinding
@@ -38,6 +39,11 @@ class SelectTransactionTypeBottomSheetDialog(val callBack: CallBack) :BaseBottom
         initView()
         setObserver()
         onViewClick()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        myViewModel?.amtMoveToBank?.value=""
     }
 
     private fun onViewClick() {

@@ -74,6 +74,9 @@
         <action
             android:id="@+id/action_homeFragment2_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_fastTagFragment"
+            app:destination="@id/fastTagFragment" />
     </fragment>
     <fragment
         android:id="@+id/mobileRechargeFragment"
@@ -248,4 +251,8 @@
         android:id="@+id/searchFragment"
         android:name="com.epaymark.epay.ui.fragment.SearchFragment"
         android:label="SearchFragment" />
+    <fragment
+        android:id="@+id/fastTagFragment"
+        android:name="com.epaymark.epay.ui.fragment.FastTagFragment"
+        android:label="FastTagFragment" />
 </navigation>

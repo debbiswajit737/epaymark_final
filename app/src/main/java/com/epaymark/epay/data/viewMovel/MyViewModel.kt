@@ -98,6 +98,10 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val provided_aadhar_number = MutableLiveData<String>()
     val provided_customer_number = MutableLiveData<String>()
 
+    val vehicleRegId = MutableLiveData<String>()
+    val fastTagOperator = MutableLiveData<String>()
+    val fastTagAmt = MutableLiveData<String>()
+
 
 
 
@@ -149,6 +153,10 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val provided_aadhar_numberError = MutableLiveData<String>()
     val provided_customer_numberError = MutableLiveData<String>()
 
+    val fastTagOperatorError = MutableLiveData<String>()
+    val vehicleRegIdError = MutableLiveData<String>()
+    val fastTagAmtError = MutableLiveData<String>()
+
 
     val mobileErrorVisible = MutableLiveData<Boolean>()
     val operatorErrorVisible = MutableLiveData<Boolean>()
@@ -195,6 +203,10 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val provided_amt_ErrorVisible = MutableLiveData<Boolean>()
     val provided_aadhar_numberErrorVisible = MutableLiveData<Boolean>()
     val provided_customer_numberErrorVisible = MutableLiveData<Boolean>()
+
+    val vehicleRegIdErrorVisible = MutableLiveData<Boolean>()
+    val fastTagOperatorErrorVisible = MutableLiveData<Boolean>()
+    val fastTagAmtErrorVisible = MutableLiveData<Boolean>()
 
 
 
@@ -279,6 +291,7 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
 
         return isValid
     }
+
 
 
     fun electricValidation(): Boolean {
@@ -865,6 +878,50 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
         return isValid
     }
 
+    fun fastTagValidation(): Boolean {
+
+        invisibleErrorTexts()
+
+        var isValid = true
+        if (vehicleRegId.value?.trim().isNullOrBlank()) {
+            vehicleRegIdError.value = "Registration Number"
+            vehicleRegIdErrorVisible.value = true
+            isValid = false
+        } else {
+
+
+            if (vehicleRegId.value?.trim()?.validate("vehicle")==false) {
+                vehicleRegIdError.value = "Invalid Registration Number"
+                vehicleRegIdErrorVisible.value = true
+                isValid = false
+            } else {
+                vehicleRegIdError.value = ""
+                vehicleRegIdErrorVisible.value = false
+            }
+        }
+
+        if (fastTagOperator.value?.trim().isNullOrBlank()) {
+            fastTagOperatorError.value = "Please select an operator"
+            fastTagOperatorErrorVisible.value = true
+            isValid = false
+        } else {
+            fastTagOperatorError.value = ""
+            fastTagOperatorErrorVisible.value = false
+        }
+
+        if (fastTagAmt.value?.trim().isNullOrBlank()) {
+            fastTagAmtError.value = "Please enter a valid amount."
+            fastTagAmtErrorVisible.value = true
+            isValid = false
+        } else {
+            fastTagAmtError.value = ""
+            fastTagAmtErrorVisible.value = false
+        }
+
+
+
+        return isValid
+    }
 
     fun invisibleErrorTexts() {
         mobileErrorVisible.value = false
