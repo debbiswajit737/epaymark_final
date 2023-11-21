@@ -5,9 +5,13 @@ import android.app.DatePickerDialog
 import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
+import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.os.Build
+import android.provider.DocumentsContract
+import android.provider.MediaStore
 import android.text.InputFilter
 import android.util.Base64
 import android.util.Log
@@ -202,6 +206,83 @@ open class BaseFragment: Fragment(){
         override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
             return false
         }
+    }
+
+
+    fun Uri.getFileNameFromUri(): String? {
+        var fileName: String? = null
+        context?.let { ctx ->
+            when {
+                "content".equals(this.scheme, ignoreCase = true) -> {
+                    // If the URI scheme is "content"
+                    val cursor: Cursor? = ctx.contentResolver.query(this, null, null, null, null)
+                    cursor?.use {
+                        if (it.moveToFirst()) {
+                            val displayNameIndex: Int =
+                                it.getColumnIndex(MediaStore.MediaColumns.DISPLAY_NAME)
+                            if (displayNameIndex != -1) {
+                                fileName = it.getString(displayNameIndex)
+                            }
+                        }
+                    }
+                }
+
+                "file".equals(this.scheme, ignoreCase = true) -> {
+                    // If the URI scheme is "file"
+                    fileName = this.lastPathSegment
+                }
+
+                else -> {
+
+                        // For other URI schemes
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT &&
+                            DocumentsContract.isDocumentUri(ctx, this)
+                        ) {
+                            // If it's a DocumentsProvider URI
+                            val docId: String = DocumentsContract.getDocumentId(this)
+                            val split: List<String> = docId.split(":")
+                            if (split.size > 1) {
+                                val contentUri: Uri = when (split[0]) {
+                                    "image" -> MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+                                    "video" -> MediaStore.Video.Media.EXTERNAL_CONTENT_URI
+                                    "audio" -> MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
+                                    else -> throw IllegalArgumentException("Unsupported URI scheme")
+                                }
+                                val selection: String = "_id=?"
+                                val selectionArgs: Array<String> = arrayOf(split[1])
+                                val projection: Array<String> =
+                                    arrayOf(MediaStore.MediaColumns.DISPLAY_NAME)
+                                val cursor: Cursor? =
+                                    ctx.contentResolver.query(
+                                        contentUri,
+                                        projection,
+                                        selection,
+                                        selectionArgs,
+                                        null
+                                    )
+                                cursor?.use {
+                                    if (it.moveToFirst()) {
+                                        val displayNameIndex: Int =
+                                            it.getColumnIndex(MediaStore.MediaColumns.DISPLAY_NAME)
+                                        if (displayNameIndex != -1) {
+                                            fileName = it.getString(displayNameIndex)
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+                                fileName=this.toString()
+                            }
+                        }
+                    else{
+                            fileName=this.toString()
+                        }
+
+
+                }
+            }
+        }
+        return fileName
     }
 }
 

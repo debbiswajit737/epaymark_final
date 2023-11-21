@@ -73,6 +73,8 @@ class BankDetailsFragment : BaseFragment() {
                 setSpinner(object : CallBack {
                     override fun getValue(s: String) {
                         authViewModel.bankName.value=s
+                        viewModel?.bankNameErrorVisible?.value = s.equals("Select Bank")
+
                         // Toast.makeText(binding.root.context, "$s", Toast.LENGTH_SHORT).show()
                     }
                 },bankArray)
@@ -82,9 +84,9 @@ class BankDetailsFragment : BaseFragment() {
     }
 
     fun setObserver() {
-        authViewModel.filePath.observe(viewLifecycleOwner){
-         authViewModel.pancardImage3.value=it.toString()
-         Log.d("TAG_file", "true setObserver: "+it.uriToBase64(binding.root.context.contentResolver))
+        authViewModel?.filePath?.observe(viewLifecycleOwner){
+         authViewModel.pancardImage3.value=it.getFileNameFromUri()
+         //Log.d("TAG_file", "true setObserver: "+it.uriToBase64(binding.root.context.contentResolver))
         }
     }
 

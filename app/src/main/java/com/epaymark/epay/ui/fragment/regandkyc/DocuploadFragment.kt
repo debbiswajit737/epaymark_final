@@ -68,7 +68,7 @@ class DocuploadFragment : BaseFragment() {
             loader?.let {
                 it.show()
                 Handler(Looper.getMainLooper()).postDelayed({
-                    authViewModel.videokyc.value=authViewModel.videoFilePath.value.toString()
+                    authViewModel.videokyc.value=authViewModel.videoFilePath.value?.getFileNameFromUri()
                     it.dismiss()
                     isVideo=false
                 },15000)
@@ -247,7 +247,7 @@ class DocuploadFragment : BaseFragment() {
                                     .toString()
 
                             authViewModel.videoFilePath.value?.let {uri->
-                                Log.d("TAG_videofilebbbbb", "onViewClick: "+uriToBase64(binding.tvPancardVideoKycImage.context,uri))
+                                //Log.d("TAG_videofilebbbbb", "onViewClick: "+uriToBase64(binding.tvPancardVideoKycImage.context,uri))
                             }
                         if (authViewModel.docValidation()){
                         startActivity(Intent(requireActivity(),DashboardActivity::class.java))
@@ -295,8 +295,13 @@ class DocuploadFragment : BaseFragment() {
             "g"->{
                 isVideo=false
                 isGallary=true
-                pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-                //findNavController().navigate(R.id.action_docuploadFragment_to_cameraFragment)
+                if (!isPdf) {
+                    pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+                }
+                else{
+                    findNavController().navigate(R.id.action_docuploadFragment_to_cameraFragment)
+                }
+                //
             }
             "t"->{
                 isVideo=false
@@ -317,40 +322,40 @@ class DocuploadFragment : BaseFragment() {
         authViewModel.filePath.observe(viewLifecycleOwner){
             when(type){
                 "pan"->{
-                    authViewModel.panPath.value=it.toString()
+                    authViewModel.panPath.value=it?.getFileNameFromUri()
                 }
                 "cpan"->{
-                    authViewModel.cpanPath.value=it.toString()
+                    authViewModel.cpanPath.value=it?.getFileNameFromUri()
                 }
                 "paadhar"->{
-                    authViewModel.paadhar.value=it.toString()
+                    authViewModel.paadhar.value=it?.getFileNameFromUri()
                 }
                 "PartnerAadharBack"->{
-                    authViewModel.PartnerAadharBack.value=it.toString()
+                    authViewModel.PartnerAadharBack.value=it?.getFileNameFromUri()
                 }
                 "llGst"->{
-                authViewModel.llGst.value=it.toString()
+                authViewModel.llGst.value=it?.getFileNameFromUri()
                 }
                 "llCertificateOfIncorporation"->{
-                authViewModel.llCertificateOfIncorporation.value=it.toString()
+                authViewModel.llCertificateOfIncorporation.value=it?.getFileNameFromUri()
                 }
                 "llBoardResolution"->{
-                authViewModel.llBoardResolution.value=it.toString()
+                authViewModel.llBoardResolution.value=it?.getFileNameFromUri()
                 }
                 "llTrade"->{
-                authViewModel.llTrade.value=it.toString()
+                authViewModel.llTrade.value=it?.getFileNameFromUri()
                 }
                 "llUserSelfi"->{
-                authViewModel.llUserSelfi.value=it.toString()
+                authViewModel.llUserSelfi.value=it?.getFileNameFromUri()
                 }
                 "llCselfi"->{
-                authViewModel.llCselfi.value=it.toString()
+                authViewModel.llCselfi.value=it?.getFileNameFromUri()
                 }
 
 
             }
 
-            Log.d("TAG_file", "true setObserver: "+it.uriToBase64(binding.root.context.contentResolver))
+            //Log.d("TAG_file", "true setObserver: "+it.uriToBase64(binding.root.context.contentResolver))
         }
     }
 

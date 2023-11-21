@@ -268,11 +268,14 @@
 
                         android:fontFamily="@font/montserrat_regular_400"
 
-
+                        app:hideErrorTextView="@{viewModel.bankNameErrorVisible}"
                         android:textColor="@color/pink2"
                         android:textSize="@dimen/_9ssp"
-                        android:text="@{viewModel.bankNameError}"
-                        app:hideErrorTextView="@{viewModel.bankNameErrorVisible}" />
+                        android:text="Select Bank"
+                         />
+
+                    <!--@{viewModel.bankNameError}-->
+                    <!--app:hideErrorTextView="@{viewModel.bankNameErrorVisible}"-->
                     <!--Gender End-->
                     <!--name start-->
                     <TextView

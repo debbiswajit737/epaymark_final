@@ -428,6 +428,12 @@ class AuthViewModel @Inject constructor(private val repository: DeliveryOptionsR
             beneficiaryNameErrorVisible.value = false
         }
 
+
+
+
+
+
+
         if (accountNumber.value?.trim().isNullOrBlank()) {
             accountNumberError.value = "Account Number is required"
             accountNumberErrorVisible.value = true
@@ -450,13 +456,13 @@ class AuthViewModel @Inject constructor(private val repository: DeliveryOptionsR
             confirmAccountNumberErrorVisible.value = false
         }
 
-        if (bankName.value?.trim().isNullOrBlank()) {
-            bankNameError.value = "Bank Name is required"
-            bankNameErrorVisible.value = true
+        if (bankName.value?.trim()=="Select Bank") {
+           // bankNameError.value = "Bank Name is required"
+          //  bankNameErrorVisible.value = true
             isValid = false
         } else {
-            bankNameError.value = ""
-            bankNameErrorVisible.value = false
+           // bankNameError.value = ""
+          //  bankNameErrorVisible.value = false
         }
 
         if (ifscCode.value?.trim().isNullOrBlank()) {

@@ -591,8 +591,8 @@
                         android:textColorHint="@color/gray"
                         android:textSize="@dimen/edit_text_size"
                         app:addTextChangeListener="@{viewModel}"
-                        app:requestFocus="@{viewModel.aadharErrorVisible}" />
-
+                        />
+                    <!--app:requestFocus="@{viewModel.aadharErrorVisible}"-->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

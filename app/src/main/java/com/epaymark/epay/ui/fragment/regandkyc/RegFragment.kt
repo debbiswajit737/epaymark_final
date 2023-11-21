@@ -386,19 +386,19 @@ class RegFragment : BaseFragment() {
         authViewModel?.filePath?.observe(viewLifecycleOwner){
             when(type){
                 "llPan"->{
-                    authViewModel.llPan.value=it.toString()
+                    authViewModel.llPan.value=it.getFileNameFromUri()
                 }
                 "llCpan"->{
-                    authViewModel.llCpan.value=it.toString()
+                    authViewModel.llCpan.value=it.getFileNameFromUri()
                 }
                 "llBpan"->{
-                    authViewModel.llBpan.value=it.toString()
+                    authViewModel.llBpan.value=it.getFileNameFromUri()
                 }
 
 
             }
 
-            Log.d("TAG_file", "true setObserver: "+it.uriToBase64(binding.root.context.contentResolver))
+            //Log.d("TAG_file", "true setObserver: "+it.uriToBase64(binding.root.context.contentResolver))
         }
 
     }
