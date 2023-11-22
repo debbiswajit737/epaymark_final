@@ -42,6 +42,7 @@ import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.ui.fragment.CameraDialog
 import com.epaymark.epay.utils.*
 import com.epaymark.epay.utils.helpers.Constants
+import com.epaymark.epay.utils.helpers.Constants.isBackCamera
 import com.epaymark.epay.utils.helpers.PermissionUtils
 import com.epaymark.epay.utils.helpers.PermissionUtils.createAlertDialog
 import com.epaymark.epay.utils.`interface`.CallBack
@@ -68,6 +69,10 @@ class RegFragment : BaseFragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+
+    }
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -120,7 +125,10 @@ class RegFragment : BaseFragment() {
                 }
 
                 llCpan.setOnClickListener{
-                    Constants.isBackCamera =true
+                    llCpan.requestFocus()
+                    hideKeyBoard(binding.etPan)
+                    authViewModel.lastView=llCpan
+                    isBackCamera =true
                     type="llCpan"
                     Constants.isPdf =false
                     val cameraDialog = CameraDialog(object : CallBack {
@@ -134,7 +142,13 @@ class RegFragment : BaseFragment() {
                 }
 
                 llBpan.setOnClickListener{
-                    Constants.isBackCamera =true
+
+                        llBpan.requestFocus()
+                        hideKeyBoard(binding.etPan)
+
+
+                    authViewModel.lastView=llBpan
+                    isBackCamera =true
                     type="llBpan"
                     Constants.isPdf =false
                     val cameraDialog = CameraDialog(object : CallBack {

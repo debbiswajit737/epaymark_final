@@ -616,6 +616,7 @@
                         android:textSize="@dimen/text_size" />
 
                     <EditText
+                        android:id="@+id/et_pan"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"
                         android:layout_marginTop="@dimen/edit_text_margin_top"
@@ -630,8 +631,8 @@
                         android:textColorHint="@color/gray"
                         android:textSize="@dimen/edit_text_size"
                         app:addTextChangeListener="@{viewModel}"
-                        app:requestFocus="@{viewModel.panCardNoErrorVisible}" />
-
+                         />
+                    <!--app:requestFocus="@{viewModel.panCardNoErrorVisible}"-->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -684,7 +685,8 @@
                             android:text="@{viewModel.llPan}"
                             android:textColor="@color/black"
                             android:textColorHint="@color/gray"
-                            android:textSize="@dimen/edit_text_size" />
+                            android:textSize="@dimen/edit_text_size"
+                            />
 
 
                     </LinearLayout>

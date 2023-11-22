@@ -85,7 +85,7 @@ class DocuploadFragment : BaseFragment() {
                 llVideoKyc.setOnClickListener{
                     isGallary=false
                     isVideo=true
-                    isBackCamera=true
+                    isBackCamera=false
                     /*val intent = Intent(MediaStore.ACTION_VIDEO_CAPTURE)
 
                     // Set the maximum video duration in seconds (30 minutes = 30 * 60 seconds)
