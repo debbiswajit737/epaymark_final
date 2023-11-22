@@ -11,6 +11,8 @@ import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.epaymark.epay.R
 import com.epaymark.epay.adapter.PhonePadAdapter
@@ -26,7 +28,8 @@ import kotlinx.coroutines.launch
 class RegActivity : AppCompatActivity() {
     lateinit var binding: ActivityRegBinding
     private lateinit var authViewModel: AuthViewModel
-    var keyPad = ArrayList<Int>()
+    private var navController: NavController? = null
+    val  bundle=Bundle()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_reg)
@@ -55,10 +58,24 @@ class RegActivity : AppCompatActivity() {
 
     }
     fun init(){
-        if (intent.getBooleanExtra("isAlreadyLogin",false)==true){
+        bundle.putBoolean("isForgotPin",false)
+        val navHostFragment: NavHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.navController
+
+
+
+        if (intent.getBooleanExtra("isAlreadyLogin",false)){
             setSecondAnimation()
             binding.navHostFragment.visibility = View.VISIBLE
         }
+        if (intent.getBooleanExtra("isForgotPin",false)){
+            setSecondAnimation()
+            binding.navHostFragment.visibility = View.VISIBLE
+            bundle.putBoolean("isForgotPin",true)
+            navController?.navigate(R.id.action_loginMobileFragment_to_otpMobileFragment,bundle)
+        }
+
         else {
             binding.navHostFragment.visibility = View.GONE
             setdata()

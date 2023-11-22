@@ -19,6 +19,7 @@ import com.epaymark.epay.adapter.PhonePadAdapter
 import com.epaymark.epay.data.viewMovel.AuthViewModel
 import com.epaymark.epay.databinding.FragmentOtpMobileBinding
 import com.epaymark.epay.ui.activity.AuthenticationActivity
+import com.epaymark.epay.ui.activity.DashboardActivity
 import com.epaymark.epay.ui.activity.RegActivity
 import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.utils.*
@@ -31,6 +32,7 @@ class OtpMobileFragment : BaseFragment() {
     lateinit var binding: FragmentOtpMobileBinding
     var keyPad = ArrayList<Int>()
     private val authViewModel: AuthViewModel by activityViewModels()
+    var isForgotPinPage=false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,6 +48,7 @@ class OtpMobileFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         setKeyPad(binding.recyclePhonePad2)
         onViewClick()
+        isForgotPinPage= arguments?.getBoolean("isForgotPin") == true
     }
 
     private fun onViewClick() {
@@ -80,7 +83,16 @@ class OtpMobileFragment : BaseFragment() {
                                 if(authViewModel.otp.value=="123456"){
                                     //binding.lottieTickAnim.visibility=View.VISIBLE
                                     binding.lottieConfettiAnim.visibility=View.VISIBLE
-                                    setdata2()
+                                    if (!isForgotPinPage) {
+                                        setdata2()
+                                    }
+                                    else{
+                                        activity?.let {act->
+                                            val intent = Intent(act, DashboardActivity::class.java)
+                                            startActivity(intent)
+                                            act.finish()
+                                        }
+                                    }
                                     //findNavController().navigate(R.id.action_otpFragment_to_congratulationFragment)
                                     // Toast.makeText(requireContext(), "match", Toast.LENGTH_SHORT).show()
                                 }
@@ -123,8 +135,6 @@ class OtpMobileFragment : BaseFragment() {
                             startActivity(Intent(requireActivity(), AuthenticationActivity::class.java))
                             it.finish()
                         }
-
-
                     }
                 }
 
@@ -132,11 +142,6 @@ class OtpMobileFragment : BaseFragment() {
                 override fun onAnimationRepeat(animation: Animator) {}
             })
     }
-
-
-
-
-
     }
 
 

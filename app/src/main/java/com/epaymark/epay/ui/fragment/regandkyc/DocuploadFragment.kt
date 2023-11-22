@@ -34,9 +34,11 @@ import com.epaymark.epay.utils.helpers.Constants.isBackCamera
 import com.epaymark.epay.utils.helpers.Constants.isGallary
 import com.epaymark.epay.utils.helpers.Constants.isPdf
 import com.epaymark.epay.utils.helpers.Constants.isVideo
+import com.epaymark.epay.utils.helpers.SharedPreff
 import com.epaymark.epay.utils.`interface`.CallBack
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
+import javax.inject.Inject
 
 class DocuploadFragment : BaseFragment() {
     lateinit var binding: FragmentDocuploadBinding
@@ -45,6 +47,8 @@ class DocuploadFragment : BaseFragment() {
     private val VIDEO_CAPTURE = 101
     var textView: TextView?=null
     var type=""
+    @Inject
+    override lateinit var sharedPreff: SharedPreff
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -230,17 +234,9 @@ class DocuploadFragment : BaseFragment() {
                     cameraDialog.show(act.supportFragmentManager, cameraDialog.tag)
                 }
 
-
-
-
-
-
                 btnNext.setOnClickListener {
 
                     try {
-
-
-
                             binding.tvPancardVideoKycImage.setText(authViewModel.filePath.toString())
                             authViewModel.videoFile.value?.file=
                                 authViewModel.filePath.value?.toString()?.videoToBase64(binding.root.context)
@@ -250,6 +246,7 @@ class DocuploadFragment : BaseFragment() {
                                 //Log.d("TAG_videofilebbbbb", "onViewClick: "+uriToBase64(binding.tvPancardVideoKycImage.context,uri))
                             }
                         if (authViewModel.docValidation()){
+                            sharedPreff?.setLoginData()
                         startActivity(Intent(requireActivity(),DashboardActivity::class.java))
                         //Toast.makeText(binding.root.context, "Ok", Toast.LENGTH_SHORT).show()
                         }
@@ -314,6 +311,7 @@ class DocuploadFragment : BaseFragment() {
 
     fun initView() {
         binding.root.context?.let {
+            sharedPreff = SharedPreff(context)
             loader = MethodClass.custom_loader(it, getString(R.string.please_wait))
         }
     }

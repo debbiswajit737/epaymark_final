@@ -15,6 +15,7 @@ object Constants {
     const val SECRET_KEY = "AES"
     const val EPAY_SHAREDFREFFRENCE = "EPAY_SHAREDFREFFRENCE"
     const val TEST = "TEST"
+    const val ISLogin = "isLogin"
     var isDthOperator=false
     var isVideo=false
     var isIsPaySlip=false

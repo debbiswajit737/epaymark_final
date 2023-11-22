@@ -16,6 +16,7 @@ import android.text.InputFilter
 import android.util.Base64
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -43,7 +44,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 open class BaseFragment: Fragment(){
     @Inject
-    lateinit var sharedPreff: SharedPreff
+    open lateinit var sharedPreff: SharedPreff
 
 
 
@@ -283,6 +284,19 @@ open class BaseFragment: Fragment(){
             }
         }
         return fileName
+    }
+
+    fun Fragment.hideKeyBoard(view:View){
+        activity?.let {act->
+            val inputMethodManager = act.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+
+            val focusedView: View? = view
+
+            focusedView?.let {
+                inputMethodManager.hideSoftInputFromWindow(it.windowToken, 0)
+            }
+        }
+
     }
 }
 

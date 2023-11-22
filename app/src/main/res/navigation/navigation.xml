@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/homeFragment2">
-
+    app:startDestination="@id/loginPinfragment">
+    <!--homeFragment2-->
     <fragment
         android:id="@+id/dashBoardFragment"
         android:name="com.epaymark.epay.ui.fragment.DashBoardFragment"
@@ -255,4 +255,12 @@
         android:id="@+id/fastTagFragment"
         android:name="com.epaymark.epay.ui.fragment.FastTagFragment"
         android:label="FastTagFragment" />
+    <fragment
+        android:id="@+id/loginPinfragment"
+        android:name="com.epaymark.epay.ui.fragment.LoginPinfragment"
+        android:label="LoginPinfragment" >
+        <action
+            android:id="@+id/action_loginPinfragment_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
+    </fragment>
 </navigation>

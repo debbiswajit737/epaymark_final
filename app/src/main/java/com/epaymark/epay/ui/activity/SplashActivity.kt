@@ -10,11 +10,15 @@ import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import com.epaymark.epay.R
 import com.epaymark.epay.databinding.ActivitySplashBinding
+import com.epaymark.epay.utils.helpers.SharedPreff
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
     lateinit var binding:ActivitySplashBinding
+    @Inject
+    lateinit var sharedPreff: SharedPreff
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(
@@ -27,10 +31,17 @@ class SplashActivity : AppCompatActivity() {
 
 
         Handler(Looper.getMainLooper()).postDelayed({
-            //val intent = Intent(this, AuthActivity::class.java)
-            val intent = Intent(this, RegActivity::class.java)
+
+            val intent = if (sharedPreff.checkIsLogin()==true){
+                Intent(this, DashboardActivity::class.java)
+            }
+            else{
+                Intent(this, RegActivity::class.java)
+            }
             startActivity(intent)
             finish()
+            //val intent = Intent(this, AuthActivity::class.java)
+
         }, 3000)
     }
 

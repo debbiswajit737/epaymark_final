@@ -212,4 +212,5 @@
     <string name="select_device_model">Select Device Model</string>
     <string name="balance_enquery">Balance Enquery</string>
     <string name="cash_withdrawal_matm">Cash Withdrawal</string>
+    <string name="switch_account">Switch Account</string>
 </resources>

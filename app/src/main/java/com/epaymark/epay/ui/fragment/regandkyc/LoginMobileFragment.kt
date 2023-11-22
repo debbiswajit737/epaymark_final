@@ -77,7 +77,9 @@ class LoginMobileFragment : BaseFragment() {
             btnConfirmLocation.setOnClickListener {
                 authViewModel.mobError.value=""
                 if (viewModel?.keyPadValue?.value?.length==10){
-                    findNavController().navigate(R.id.action_loginMobileFragment_to_otpMobileFragment)
+                    val bundle=Bundle()
+                    bundle.putBoolean("isForgotPin",false)
+                    findNavController().navigate(R.id.action_loginMobileFragment_to_otpMobileFragment,bundle)
                 }
                 else{
                     authViewModel.mobError.value="Please enter a valid mobile number."

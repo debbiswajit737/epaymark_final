@@ -11,6 +11,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.webkit.WebView
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
@@ -1053,12 +1054,15 @@ class HomeFragment : BaseFragment() {
             isFromSearchPage=false
         }
         autoScrollHandler.startAutoScroll()
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner) {}
     }
 
     override fun onPause() {
         super.onPause()
         autoScrollHandler.stopAutoScroll()
     }
+
+
 
 
 }
