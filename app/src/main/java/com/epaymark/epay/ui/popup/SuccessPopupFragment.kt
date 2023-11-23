@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.epaymark.epay.R
 import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentSuccessPopupBinding
@@ -22,12 +24,13 @@ class SuccessPopupFragment(val callBack4:  CallBack4) : PopUpFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setStyle(STYLE_NORMAL, R.style.TransparentDialog)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_success_popup, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         return binding.root
     }
-
+//success_img
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
@@ -40,6 +43,7 @@ class SuccessPopupFragment(val callBack4:  CallBack4) : PopUpFragment() {
         binding.apply {
             buttonDismiss.setOnClickListener{
                 callBack4.getValue4("","","","")
+                dismiss()
             }
 
           }
@@ -47,7 +51,17 @@ class SuccessPopupFragment(val callBack4:  CallBack4) : PopUpFragment() {
 
 
     fun initView() {
-
+        /*Glide.with(this)
+            .asGif()
+            .load(R.drawable.success_img)
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(binding.imgSuccess)*/
+        Glide.with(this)
+            .asGif()
+            .load(R.drawable.success_img)
+            .error(R.drawable.ic_success) // Set the default image resource
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(binding.imgSuccess)
         dialog?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 

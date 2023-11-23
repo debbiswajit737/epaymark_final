@@ -77,6 +77,9 @@
         <action
             android:id="@+id/action_homeFragment2_to_fastTagFragment"
             app:destination="@id/fastTagFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_balenceAEPSFragment"
+            app:destination="@id/balenceAEPSFragment" />
     </fragment>
     <fragment
         android:id="@+id/mobileRechargeFragment"
@@ -275,4 +278,8 @@
             android:id="@+id/action_addBankFragment_to_cameraFragment2"
             app:destination="@id/cameraFragment2" />
     </fragment>
+    <fragment
+        android:id="@+id/balenceAEPSFragment"
+        android:name="com.epaymark.epay.ui.fragment.BalenceAEPSFragment"
+        android:label="BalenceAEPSFragment" />
 </navigation>

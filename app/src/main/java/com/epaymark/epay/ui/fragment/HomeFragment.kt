@@ -145,7 +145,8 @@ class HomeFragment : BaseFragment() {
             //recycleViewEpayBanking
 
             getString(R.string.balance) -> {
-                showBalencePopup(binding.root.context)
+              //  showBalencePopup(binding.root.context)
+                findNavController().navigate(R.id.action_homeFragment2_to_balenceAEPSFragment)
             }
 
             getString(R.string.cash_withdraw) -> {
