@@ -19,6 +19,7 @@ object Constants {
     var isDthOperator=false
     var isVideo=false
     var isIsPaySlip=false
+    var isIsCheck=false
     var isPdf=false
     var isBackCamera=true
     var isGallary=false

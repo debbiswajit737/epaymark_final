@@ -209,7 +209,11 @@
     <fragment
         android:id="@+id/moveToBankFragment"
         android:name="com.epaymark.epay.ui.fragment.MoveToBankFragment"
-        android:label="MoveToBankFragment" />
+        android:label="MoveToBankFragment" >
+        <action
+            android:id="@+id/action_moveToBankFragment_to_addBankFragment"
+            app:destination="@id/addBankFragment" />
+    </fragment>
     <fragment
         android:id="@+id/moneyTranspherFragment"
         android:name="com.epaymark.epay.ui.fragment.MoneyTranspherFragment"
@@ -262,5 +266,13 @@
         <action
             android:id="@+id/action_loginPinfragment_to_homeFragment2"
             app:destination="@id/homeFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/addBankFragment"
+        android:name="com.epaymark.epay.ui.fragment.AddBankFragment"
+        android:label="AddBankFragment" >
+        <action
+            android:id="@+id/action_addBankFragment_to_cameraFragment2"
+            app:destination="@id/cameraFragment2" />
     </fragment>
 </navigation>

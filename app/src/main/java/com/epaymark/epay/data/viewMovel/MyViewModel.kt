@@ -209,6 +209,8 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val fastTagOperatorErrorVisible = MutableLiveData<Boolean>()
     val fastTagAmtErrorVisible = MutableLiveData<Boolean>()
 
+    val bank_check_ErrorVisible = MutableLiveData<Boolean>()
+
 
 
     fun regValidation(): Boolean {

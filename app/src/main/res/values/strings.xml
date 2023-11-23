@@ -213,4 +213,5 @@
     <string name="balance_enquery">Balance Enquery</string>
     <string name="cash_withdrawal_matm">Cash Withdrawal</string>
     <string name="switch_account">Switch Account</string>
+    <string name="add_bank_message"><![CDATA[ \u25CF DISCLAIMER-The company doesnt hold any liability for incorrect transfers, Please verify and add the account correctly.\n\n\u25CF Account verification charges shall be applicable for the account verification. By clicking on PROCEED you agree to the payment and also indemnify the Company against any wrong settlements due to invalid information of account shared in this registration process]]></string>
 </resources>

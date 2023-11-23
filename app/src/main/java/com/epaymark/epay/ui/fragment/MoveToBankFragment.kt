@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.R
 import com.epaymark.epay.adapter.AccountDetailsAdapter
 import com.epaymark.epay.data.model.AccountDetailsModel
@@ -43,22 +44,24 @@ class MoveToBankFragment : BaseFragment() {
 
         binding.apply {
           imgBack.back()
-
+            fabAddBank.setOnClickListener{
+                findNavController().navigate(R.id.action_moveToBankFragment_to_addBankFragment)
+            }
           }
         }
 
 
     fun initView() {
         binding.recycleViewBankDetails.apply {
-
+            accountDetailsList.clear()
             accountDetailsList.add(AccountDetailsModel("Test User",true,"0087200100008770","PUNB00389600"))
             accountDetailsList.add(AccountDetailsModel("Test User",false,"0087200100008770","PUNB00389600"))
+            /*accountDetailsList.add(AccountDetailsModel("Test User",true,"0087200100008770","PUNB00389600"))
             accountDetailsList.add(AccountDetailsModel("Test User",true,"0087200100008770","PUNB00389600"))
             accountDetailsList.add(AccountDetailsModel("Test User",true,"0087200100008770","PUNB00389600"))
             accountDetailsList.add(AccountDetailsModel("Test User",true,"0087200100008770","PUNB00389600"))
             accountDetailsList.add(AccountDetailsModel("Test User",true,"0087200100008770","PUNB00389600"))
-            accountDetailsList.add(AccountDetailsModel("Test User",true,"0087200100008770","PUNB00389600"))
-            accountDetailsList.add(AccountDetailsModel("Test User",true,"0087200100008770","PUNB00389600"))
+            accountDetailsList.add(AccountDetailsModel("Test User",true,"0087200100008770","PUNB00389600"))*/
             adapter= AccountDetailsAdapter(accountDetailsList,object:CallBack{
                 override fun getValue(s: String) {
                     activity?.let {act->
