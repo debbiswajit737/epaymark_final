@@ -7,12 +7,8 @@ import android.widget.ImageView
 import androidx.fragment.app.DialogFragment
 
 
-open class BaseCenterSheetFragment: DialogFragment() {
+open class PopUpFragment: DialogFragment() {
 
-
-    override fun getTheme(): Int {
-        return R.style.Theme_NoTitleBar_Fullscreen
-    }
     fun ImageView.back(){
         this.setOnClickListener{
             dismiss()

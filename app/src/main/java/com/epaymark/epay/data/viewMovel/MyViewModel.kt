@@ -18,6 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRepository) : ViewModel() {
+    val receiveStatus = MutableLiveData<String>("")
     val loginPin = MutableLiveData<String>("")
     val otp: MutableLiveData<String> = MutableLiveData("")
     var otpMobile=MutableLiveData<String>("")

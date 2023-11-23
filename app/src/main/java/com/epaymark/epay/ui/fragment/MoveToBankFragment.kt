@@ -52,6 +52,7 @@ class MoveToBankFragment : BaseFragment() {
 
 
     fun initView() {
+
         binding.recycleViewBankDetails.apply {
             accountDetailsList.clear()
             accountDetailsList.add(AccountDetailsModel("Test User",true,"0087200100008770","PUNB00389600"))
@@ -70,7 +71,10 @@ class MoveToBankFragment : BaseFragment() {
 
                                     val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
                                         override fun getValue(s: String) {
-                                            Toast.makeText(requireActivity(), "$s", Toast.LENGTH_SHORT).show()
+                                            viewModel.receiveStatus.value="Failed"
+                                            val dialogFragment = ReceptDialogFragment()
+                                            dialogFragment.show(childFragmentManager, dialogFragment.tag)
+                                            //Toast.makeText(requireActivity(), "$s", Toast.LENGTH_SHORT).show()
                                         }
                                     })
                                     tpinBottomSheetDialog.show(

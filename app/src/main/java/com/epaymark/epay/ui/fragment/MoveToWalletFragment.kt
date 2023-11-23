@@ -123,7 +123,10 @@ class MoveToWalletFragment : BaseFragment() {
                     if (viewModel?.settleWalletValidation() == true) {
                         val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
                             override fun getValue(s: String) {
-                                Toast.makeText(requireActivity(), "$s", Toast.LENGTH_SHORT).show()
+                                viewModel?.receiveStatus?.value="Failed"
+                                val dialogFragment = ReceptDialogFragment()
+                                dialogFragment.show(childFragmentManager, dialogFragment.tag)
+                                //Toast.makeText(requireActivity(), "$s", Toast.LENGTH_SHORT).show()
                             }
                         })
                         tpinBottomSheetDialog.show(
@@ -140,6 +143,9 @@ class MoveToWalletFragment : BaseFragment() {
                     if (viewModel?.payabhiValidation() == true) {
                         val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
                             override fun getValue(s: String) {
+                                viewModel?.receiveStatus?.value="Success"
+                                val dialogFragment = ReceptDialogFragment()
+                                dialogFragment.show(childFragmentManager, dialogFragment.tag)
                                 Toast.makeText(requireActivity(), "$s", Toast.LENGTH_SHORT).show()
                             }
                         })

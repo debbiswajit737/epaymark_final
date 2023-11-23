@@ -1,13 +1,14 @@
 package com.epaymark.epay.data.bindingAdapter
 
+import android.annotation.SuppressLint
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
-import androidx.databinding.InverseBindingListener
 import androidx.lifecycle.ViewModel
 import com.epaymark.epay.R
 import com.epaymark.epay.data.viewMovel.AuthViewModel
@@ -70,5 +71,31 @@ fun setApprovedImage(view: ImageView, isApproved: Boolean) {
         view.setImageResource(R.drawable.close_icon)
     }
 }
+
+
+@BindingAdapter("app:textColorBasedOnStatus")
+fun textColorBasedOnStatus(textView: TextView, statusString: String) {
+    if (statusString.lowercase().trim()=="failed" || statusString.lowercase().trim().contains("fail")) {
+        textView.setColor(R.color.white,R.drawable.btn_red_bg)
+
+    }
+
+    else if (statusString.lowercase().trim()=="success") {
+        textView.setColor(R.color.white,R.drawable.btn_green_bg)
+    }
+    else{
+        textView.setColor(R.color.white,R.drawable.btn_bg)
+    }
+}
+
+
+fun TextView.setColor(textColor: Int, bgColor: Int) {
+    this.setBackgroundResource(bgColor)
+    val textColor = ContextCompat.getColor(this.context, textColor)
+    this.setTextColor(textColor)
+}
+
+
+
 
 

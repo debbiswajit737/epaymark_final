@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -18,6 +19,8 @@ import com.epaymark.epay.databinding.FragmentLoginBinding
 import com.epaymark.epay.databinding.FragmentLoginPinBinding
 import com.epaymark.epay.ui.activity.RegActivity
 import com.epaymark.epay.ui.base.BaseFragment
+import com.epaymark.epay.ui.popup.SuccessPopupFragment
+import com.epaymark.epay.utils.`interface`.CallBack4
 import com.epaymark.epay.utils.`interface`.KeyPadOnClickListner
 
 class LoginPinfragment : BaseFragment() {
@@ -70,6 +73,7 @@ class LoginPinfragment : BaseFragment() {
     }
 
     fun setObserver() {
+
 
     }
 

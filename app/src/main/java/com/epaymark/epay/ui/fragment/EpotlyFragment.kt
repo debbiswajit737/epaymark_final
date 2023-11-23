@@ -8,15 +8,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.R
 import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentEpotlyBinding
-import com.epaymark.epay.databinding.FragmentMobileRechargeBinding
 import com.epaymark.epay.ui.base.BaseFragment
-import com.epaymark.epay.utils.helpers.Constants
-import com.epaymark.epay.utils.helpers.Constants.isDthOperator
+import com.epaymark.epay.ui.popup.SuccessPopupFragment
 import com.epaymark.epay.utils.`interface`.CallBack
+import com.epaymark.epay.utils.`interface`.CallBack4
 
 class EpotlyFragment : BaseFragment() {
     lateinit var binding: FragmentEpotlyBinding
@@ -52,7 +50,23 @@ class EpotlyFragment : BaseFragment() {
                         val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
                             override fun getValue(s: String) {
                                 if (s=="123456"){
-                                    Toast.makeText(requireActivity(), "ok", Toast.LENGTH_SHORT).show()
+                                    val successPopupFragment = SuccessPopupFragment(object :
+                                        CallBack4 {
+                                        override fun getValue4(
+                                            s1: String,
+                                            s2: String,
+                                            s3: String,
+                                            s4: String
+                                        ) {
+                                            viewModel?.receiveStatus?.value="Success"
+                                            val dialogFragment = ReceptDialogFragment()
+                                            dialogFragment.show(childFragmentManager, dialogFragment.tag)
+                                        }
+
+                                    })
+                                    successPopupFragment.show(childFragmentManager, successPopupFragment.tag)
+
+
                                 }
                             }
                         })
