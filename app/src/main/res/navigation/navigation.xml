@@ -80,6 +80,9 @@
         <action
             android:id="@+id/action_homeFragment2_to_balenceAEPSFragment"
             app:destination="@id/balenceAEPSFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_miniStatementFormFragment"
+            app:destination="@id/miniStatementFormFragment" />
     </fragment>
     <fragment
         android:id="@+id/mobileRechargeFragment"
@@ -232,7 +235,13 @@
         android:label="CreditCardPaymentFragment" >
         <action
             android:id="@+id/action_creditCardPaymentFragment_to_transactionOtpFragment"
-            app:destination="@id/transactionOtpFragment" />
+            app:destination="@id/transactionOtpFragment"
+
+
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/main_nav_graph"
+            app:popUpToInclusive="true"
+            />
     </fragment>
     <fragment
         android:id="@+id/transactionOtpFragment"
@@ -282,4 +291,12 @@
         android:id="@+id/balenceAEPSFragment"
         android:name="com.epaymark.epay.ui.fragment.BalenceAEPSFragment"
         android:label="BalenceAEPSFragment" />
+    <fragment
+        android:id="@+id/miniStatementFormFragment"
+        android:name="com.epaymark.epay.ui.fragment.MiniStatementFormFragment"
+        android:label="MiniStatementFormFragment" >
+        <action
+            android:id="@+id/action_miniStatementFormFragment_to_miniStatementFragment"
+            app:destination="@id/miniStatementFragment" />
+    </fragment>
 </navigation>

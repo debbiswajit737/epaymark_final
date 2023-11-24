@@ -6,21 +6,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.epaymark.epay.R
-import com.epaymark.epay.adapter.PhonePadAdapter
 import com.epaymark.epay.adapter.PhonePadAdapter2
 import com.epaymark.epay.data.viewMovel.MyViewModel
-import com.epaymark.epay.databinding.FragmentLoginBinding
 import com.epaymark.epay.databinding.FragmentLoginPinBinding
 import com.epaymark.epay.ui.activity.RegActivity
 import com.epaymark.epay.ui.base.BaseFragment
-import com.epaymark.epay.ui.popup.SuccessPopupFragment
-import com.epaymark.epay.utils.`interface`.CallBack4
 import com.epaymark.epay.utils.`interface`.KeyPadOnClickListner
 
 class LoginPinfragment : BaseFragment() {

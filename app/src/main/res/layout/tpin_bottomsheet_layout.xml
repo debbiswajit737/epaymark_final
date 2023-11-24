@@ -16,7 +16,7 @@
         tools:context=".ui.activity.DashBoardActivity">
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/img_aadhar"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
 

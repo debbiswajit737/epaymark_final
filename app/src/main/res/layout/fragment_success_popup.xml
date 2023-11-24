@@ -20,12 +20,12 @@
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_50sdp"
             android:background="@drawable/bg_gradian_success"
             android:orientation="vertical"
             android:padding="16dp"
-            android:layout_marginTop="@dimen/_50sdp"
             android:paddingBottom="@dimen/_10sdp"
-            app:layout_constraintBottom_toBottomOf="@+id/buttonDismiss"
+            app:layout_constraintBottom_toBottomOf="@+id/view5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -51,24 +51,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Success!"
+            android:text="@{viewModel.popup_message}"
             android:textColor="@color/logo_color"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="@+id/linearLayout10"
             app:layout_constraintStart_toStartOf="@+id/linearLayout10"
             app:layout_constraintTop_toBottomOf="@+id/img_success" />
 
-        <Button
+        <TextView
             android:id="@+id/buttonDismiss"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_20sdp"
             android:layout_gravity="center"
-            android:backgroundTint="@color/logo_color"
-            android:text="Ok"
             android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/btn_bg"
+            android:gravity="center"
+            android:text="Ok"
             android:textColor="@android:color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout10"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout10"
             app:layout_constraintTop_toBottomOf="@+id/textMessage" />
+
+        <View
+            android:id="@+id/view5"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_10sdp"
+            app:layout_constraintTop_toBottomOf="@+id/buttonDismiss" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

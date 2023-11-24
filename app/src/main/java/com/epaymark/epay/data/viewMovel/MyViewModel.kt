@@ -18,6 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRepository) : ViewModel() {
+    val popup_message = MutableLiveData<String>("Success!")
     val receiveStatus = MutableLiveData<String>("")
     val loginPin = MutableLiveData<String>("")
     val otp: MutableLiveData<String> = MutableLiveData("")
@@ -104,6 +105,9 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val fastTagOperator = MutableLiveData<String>()
     val fastTagAmt = MutableLiveData<String>()
 
+    val balence_enquary_aadhar_number = MutableLiveData<String>()
+    val balence_enquary_customer_number = MutableLiveData<String>()
+
 
 
 
@@ -159,6 +163,9 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val vehicleRegIdError = MutableLiveData<String>()
     val fastTagAmtError = MutableLiveData<String>()
 
+    val balence_enquary_aadhar_numberError = MutableLiveData<String>()
+    val balence_enquary_customer_numberError = MutableLiveData<String>()
+
 
     val mobileErrorVisible = MutableLiveData<Boolean>()
     val operatorErrorVisible = MutableLiveData<Boolean>()
@@ -211,6 +218,10 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val fastTagAmtErrorVisible = MutableLiveData<Boolean>()
 
     val bank_check_ErrorVisible = MutableLiveData<Boolean>()
+
+
+    val balence_enquary_aadhar_numberErrorVisible = MutableLiveData<Boolean>()
+    val balence_enquary_customer_numberErrorVisible = MutableLiveData<Boolean>()
 
 
 
@@ -921,11 +932,41 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
             fastTagAmtError.value = ""
             fastTagAmtErrorVisible.value = false
         }
-
-
-
         return isValid
     }
+
+     fun balenceValidation(): Boolean {
+         invisibleErrorTexts()
+
+         var isValid = true
+         if (balence_enquary_aadhar_number.value?.trim().isNullOrBlank()) {
+             balence_enquary_aadhar_numberError.value = "Aadhar number is required"
+             balence_enquary_aadhar_numberErrorVisible.value = true
+             isValid = false
+         } else {
+             if (balence_enquary_aadhar_number.value?.trim()?.validate("aadhar")==false) {
+                 balence_enquary_aadhar_numberError.value = "Aadhar number is not valid"
+                 balence_enquary_aadhar_numberErrorVisible.value = true
+                 isValid = false
+             } else {
+                 balence_enquary_aadhar_numberError.value = ""
+                 balence_enquary_aadhar_numberErrorVisible.value = false
+             }
+         }
+
+
+         if (balence_enquary_customer_number.value?.trim().isNullOrBlank()) {
+             balence_enquary_customer_numberError.value = "This field is required"
+             balence_enquary_customer_numberErrorVisible.value = true
+             isValid = false
+         } else {
+             balence_enquary_customer_numberError.value = ""
+             balence_enquary_customer_numberErrorVisible.value = false
+         }
+         return isValid
+    }
+
+
 
     fun invisibleErrorTexts() {
         mobileErrorVisible.value = false

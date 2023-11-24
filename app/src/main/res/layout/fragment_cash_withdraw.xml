@@ -357,7 +357,22 @@
                             app:hideErrorTextView="@{viewModel.provided_customer_numberErrorVisible}"
 
                             />
-
+                        <TextView
+                            android:id="@+id/btn_cash_withdraw"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:background="@drawable/teal_button_bg"
+                            android:fontFamily="@font/montserrat_medium_500"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:text="@string/cash_withdrawal"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/td_resend_otp" />
                     </LinearLayout>
 
 
@@ -417,15 +432,40 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:orientation="vertical"
                     >
-                    <TextView
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_10ssp"
-                        android:fontFamily="@font/open_sans_medium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/most_used_bank"/>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginHorizontal="@dimen/_10sdp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+
+
+                            android:fontFamily="@font/open_sans_medium"
+                            android:text="@string/statistics"
+                            android:textColor="@color/yellow"
+                            android:textSize="@dimen/_10ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                             />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans_medium"
+                            android:text="@string/most_used_bank"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10ssp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                             />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"

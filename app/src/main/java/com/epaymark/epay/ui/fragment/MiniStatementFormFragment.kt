@@ -8,41 +8,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.R
 import com.epaymark.epay.adapter.AdminBankListAdapter
-import com.epaymark.epay.adapter.BankListAdapter
-import com.epaymark.epay.adapter.UserDetailsAdapter
 import com.epaymark.epay.data.model.AdminBankListModel
-import com.epaymark.epay.data.model.BankListModel
 import com.epaymark.epay.data.model.UserDetails
 import com.epaymark.epay.data.viewMovel.MyViewModel
-import com.epaymark.epay.databinding.FragmentCashWithdrawBinding
-import com.epaymark.epay.databinding.FragmentEpotlyBinding
-import com.epaymark.epay.databinding.FragmentMobileRechargeBinding
+import com.epaymark.epay.databinding.FragmentBalenceEnquaryBinding
+import com.epaymark.epay.databinding.FragmentMinistatementFormBinding
 import com.epaymark.epay.ui.base.BaseFragment
-import com.epaymark.epay.utils.helpers.Constants
-import com.epaymark.epay.utils.helpers.Constants.isCashWithdraw
-import com.epaymark.epay.utils.helpers.Constants.isDthOperator
 import com.epaymark.epay.utils.`interface`.CallBack
 import com.epaymark.epay.utils.`interface`.CallBack4
-import com.google.zxing.WriterException
 
-class CashWithdrawFragment : BaseFragment() {
-    lateinit var binding: FragmentCashWithdrawBinding
+class MiniStatementFormFragment : BaseFragment() {
+    lateinit var binding: FragmentMinistatementFormBinding
     private val viewModel: MyViewModel by activityViewModels()
     var userDetailsList = ArrayList<UserDetails>()
     var bankList = ArrayList<AdminBankListModel>()
     var adminBankListAdapter:AdminBankListAdapter?=null
-    var selectBank=""
+    var selectedBank:String=""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_cash_withdraw, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_ministatement_form, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         return binding.root
@@ -57,38 +48,15 @@ class CashWithdrawFragment : BaseFragment() {
 
     private fun onViewClick() {
         binding.apply {
-
             imgBack.back()
-            etProvidedAmount.setupAmount()
-
-
-
-            btnSubmit.setOnClickListener{
-                activity?.let {act->
-                    if (viewModel?.cashWithdrawValidation() == true){
-                        val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
-                            override fun getValue(s: String) {
-                                if (s=="123456"){
-                                    Toast.makeText(requireActivity(), "ok", Toast.LENGTH_SHORT).show()
-                                }
-                            }
-                        })
-                        tpinBottomSheetDialog.show(act.supportFragmentManager, tpinBottomSheetDialog.tag)
-
-                    }
-                }
-
-            }
-            btnCashWithdraw.setOnClickListener {
-
-
-                if (viewModel?.cashWithdrawalValidation()==true){
-                    if (selectBank.isNotEmpty()) {
+            btnBalenceEnquary.setOnClickListener {
+                if (viewModel?.balenceValidation() == true){
+                    if (selectedBank.isNotEmpty()) {
                         activity?.let { act ->
                             val aadharAuthBottomSheetDialog =
                                 AadharAuthBottomSheetDialog(object : CallBack {
                                     override fun getValue(s: String) {
-
+                                        findNavController().navigate(R.id.action_miniStatementFormFragment_to_miniStatementFragment)
                                     }
                                 })
                             aadharAuthBottomSheetDialog.show(
@@ -100,45 +68,22 @@ class CashWithdrawFragment : BaseFragment() {
                     else{
                         Toast.makeText(requireActivity(), "Select Bank", Toast.LENGTH_SHORT).show()
                     }
+
                 }
             }
 
-
         }
-
-
-
     }
 
     fun initView() {
         binding.apply {
-            etAmt.setupAmount()
-
-            group1.isVisible= isCashWithdraw
-            group2.isVisible=!group1.isVisible
-            binding.recycleViewUserdetails.apply {
-                userDetailsList.clear()
-                userDetailsList.add(UserDetails("Name","Test User"))
-                userDetailsList.add(UserDetails("Outlet Name","Test Outlet Name"))
-                userDetailsList.add(UserDetails("Mobile Number","9999999999"))
-                userDetailsList.add(UserDetails("Email Id","test@test.com"))
-                userDetailsList.add(UserDetails("Address","123, Park Street,Kolkata - 700001,West Bengal, India"))
-
-                adapter= UserDetailsAdapter(userDetailsList)
-            }
-
             binding.recycleViewBankList.apply {
                 bankList.add(AdminBankListModel(R.drawable.axix_bank_logo,"AXIX Bank",false))
                 bankList.add(AdminBankListModel(R.drawable.icici,"ICICI Bank",false))
-
-
                 adminBankListAdapter= AdminBankListAdapter(bankList, object : CallBack4 {
                     override fun getValue4(s1: String, s2: String, s3: String, s4: String) {
-                        selectBank=s1
+                        selectedBank=s1
                     }
-
-
-
                 })
                 adapter=adminBankListAdapter
             }

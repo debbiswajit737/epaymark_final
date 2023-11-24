@@ -150,14 +150,15 @@ class HomeFragment : BaseFragment() {
             }
 
             getString(R.string.cash_withdraw) -> {
-                isCashWithdraw=true
+                isCashWithdraw=false
                 findNavController().navigate(R.id.action_homeFragment2_to_cashWithdrawFragment)
             }
 
 
             getString(R.string.mini_statement) -> {
                 viewModel.reportType.value=getString(R.string.dmt)
-                findNavController().navigate(R.id.action_homeFragment2_to_miniStatementFragment)
+                findNavController().navigate(R.id.action_homeFragment2_to_miniStatementFormFragment)
+                //findNavController().navigate(R.id.action_homeFragment2_to_miniStatementFragment)
                 // findNavController().navigate(R.id.action_homeFragment2_to_cashWithdrawFragment)
             }
 

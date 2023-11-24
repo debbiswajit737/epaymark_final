@@ -44,7 +44,12 @@ class AadharAuthBottomSheetDialog(val callBack: CallBack) :BaseBottomSheetFragme
     }
 
     private fun onViewClick() {
-        binding.apply {}
+        binding.apply {
+            imgAadhar.setOnClickListener{
+                callBack.getValue("ok")
+                dismiss()
+            }
+        }
 
     }
 

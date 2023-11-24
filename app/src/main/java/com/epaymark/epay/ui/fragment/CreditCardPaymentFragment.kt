@@ -69,7 +69,9 @@ class CreditCardPaymentFragment : BaseFragment() {
     }
 
     fun setObserver() {
-
+        binding.apply {
+            etRemarks.oem(btnSubmit)
+        }
     }
 
 

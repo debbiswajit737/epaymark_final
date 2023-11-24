@@ -195,9 +195,9 @@
     <string name="bank_list">Bank List</string>
     <string name="beneficiary_list">Beneficiary List</string>
     <string name="add_beneficiary">Add Beneficiary</string>
-    <string name="provided_amount">Proview Amount</string>
+    <string name="provided_amount">Amount</string>
     <string name="provide_aadhar_number">Provide Aadhar Number</string>
-    <string name="provided_customer_number">Provided Customer Number</string>
+    <string name="provided_customer_number">Customer Number</string>
     <string name="cash_withdrawal">Cash withdrawal</string>
     <string name="most_used_bank">Most uses bank</string>
     <string name="aeps_1">AEPS 1</string>
@@ -214,4 +214,8 @@
     <string name="cash_withdrawal_matm">Cash Withdrawal</string>
     <string name="switch_account">Switch Account</string>
     <string name="add_bank_message"><![CDATA[ \u25CF DISCLAIMER-The company doesnt hold any liability for incorrect transfers, Please verify and add the account correctly.\n\n\u25CF Account verification charges shall be applicable for the account verification. By clicking on PROCEED you agree to the payment and also indemnify the Company against any wrong settlements due to invalid information of account shared in this registration process]]></string>
+    <string name="statistics">Statistics</string>
+    <string name="balence">Balence</string>
+    <string name="aadhar_number">Aadhar Number</string>
+    <string name="balance_enquiry">Balance enquiry</string>
 </resources>

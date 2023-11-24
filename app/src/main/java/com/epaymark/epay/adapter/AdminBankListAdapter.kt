@@ -38,12 +38,19 @@ class AdminBankListAdapter(
             item.bankName?.let { bankName ->
                 binding.tvBankName.text = bankName
                 binding.llContainer.setOnClickListener {
+                   for (bankList in items){
+                       bankList.isClick=false
+                   }
+                    item.isClick=true
+                    notifyDataSetChanged()
                     callback.getValue4(bankName, "", "", "")
                 }
             }
             item.bankLogo?.let { bankLogo ->
                 binding.imageView7.setImageResource(bankLogo)
             }
+            binding.model=item
+            binding.executePendingBindings()
         }
     }
 
