@@ -1,12 +1,17 @@
 package com.epaymark.epay.ui.base
 
 import android.R
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.util.DisplayMetrics
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.ui.activity.DashboardActivity
+import java.io.File
+import java.io.FileOutputStream
 
 
 open class BaseCenterSheetFragment: DialogFragment() {
@@ -23,11 +28,41 @@ open class BaseCenterSheetFragment: DialogFragment() {
 
     fun ImageView.backToHome(){
         this.setOnClickListener{
-            (activity as? DashboardActivity)?.navigate()
+            //(activity as? DashboardActivity)?.navigate()
 
-            //findNavController().popBackStack(com.epaymark.epay.R.id.homeFragment2,false)
+            findNavController().popBackStack(com.epaymark.epay.R.id.homeFragment2,false)
         }
     }
+    fun View.takeScreenshot(): Bitmap {
+        // Create a Bitmap with the same dimensions as the View
+        val bitmap = Bitmap.createBitmap(this.width, this.height, Bitmap.Config.ARGB_8888)
 
+        // Create a Canvas to draw the View onto the Bitmap
+        val canvas = Canvas(bitmap)
+
+        // Draw the View onto the Canvas
+        this.draw(canvas)
+
+        return bitmap
+    }
+
+    // Function to save the screenshot to a file
+    fun saveScreenshot(bitmap: Bitmap, file: File): Boolean {
+        try {
+            // Create a FileOutputStream to write the Bitmap to the file
+            val outputStream = FileOutputStream(file)
+
+            // Compress the Bitmap and write it to the file
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+
+            // Close the FileOutputStream
+            outputStream.close()
+
+            return true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return false
+        }
+    }
 
 }
