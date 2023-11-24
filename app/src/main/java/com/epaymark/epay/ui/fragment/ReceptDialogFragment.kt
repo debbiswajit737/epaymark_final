@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.R
 import com.epaymark.epay.adapter.ReceiptAdapter
 import com.epaymark.epay.data.model.ReceiptModel
@@ -47,7 +48,7 @@ class ReceptDialogFragment : BaseCenterSheetFragment() {
 
         binding.apply {
             imgBack.back()
-
+            imgHome.backToHome()
           }
         }
 

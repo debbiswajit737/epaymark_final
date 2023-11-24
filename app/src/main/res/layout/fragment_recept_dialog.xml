@@ -16,6 +16,7 @@
         android:background="@color/gray"
         tools:context=".ui.activity.DashBoardActivity">
 
+
         <LinearLayout
             android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
@@ -131,5 +132,15 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
+        <ImageView
+            android:id="@+id/img_home"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/home_icon_50"
+            app:tint="@color/logo_color"
+            android:layout_marginEnd="@dimen/_20sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout3"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

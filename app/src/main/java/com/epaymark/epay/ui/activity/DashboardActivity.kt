@@ -91,5 +91,7 @@ class DashboardActivity  : BaseActivity() {
         }
     }
 
-
+    fun navigate(){
+        navController?.navigate(R.id.homeFragment2)
+    }
 }

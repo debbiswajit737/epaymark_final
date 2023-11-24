@@ -5,6 +5,8 @@ import android.util.DisplayMetrics
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.DialogFragment
+import androidx.navigation.fragment.findNavController
+import com.epaymark.epay.ui.activity.DashboardActivity
 
 
 open class BaseCenterSheetFragment: DialogFragment() {
@@ -18,4 +20,14 @@ open class BaseCenterSheetFragment: DialogFragment() {
             dismiss()
         }
     }
+
+    fun ImageView.backToHome(){
+        this.setOnClickListener{
+            (activity as? DashboardActivity)?.navigate()
+
+            //findNavController().popBackStack(com.epaymark.epay.R.id.homeFragment2,false)
+        }
+    }
+
+
 }
