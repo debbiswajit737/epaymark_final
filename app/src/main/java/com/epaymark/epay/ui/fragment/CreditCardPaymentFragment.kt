@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
@@ -50,6 +51,7 @@ class CreditCardPaymentFragment : BaseFragment() {
             btnSubmit.setOnClickListener{
                 activity?.let {act->
                     if (viewModel?.creditValidation() == true){
+
                         findNavController().navigate(R.id.transactionOtpFragment)
                     }
                 }
@@ -71,6 +73,8 @@ class CreditCardPaymentFragment : BaseFragment() {
     fun setObserver() {
         binding.apply {
             etRemarks.oem(btnSubmit)
+
+
         }
     }
 

@@ -1,10 +1,13 @@
 package com.epaymark.epay.data.viewMovel
 
 import android.net.Uri
+import android.util.Log
+import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.epaymark.epay.R
 import com.epaymark.epay.data.genericmodel.BaseResponse
 import com.epaymark.epay.data.model.sample.Test
 import com.epaymark.epay.network.ResponseState
@@ -18,6 +21,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRepository) : ViewModel() {
+
+
+    val selectedButton = MutableLiveData<Int>()
+
+
+
+
     val popup_message = MutableLiveData<String>("Success!")
     val receiveStatus = MutableLiveData<String>("")
     val loginPin = MutableLiveData<String>("")
@@ -87,6 +97,7 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val credit_card = MutableLiveData<String>()
     val credit_holder_name = MutableLiveData<String>()
     val credit_remarks = MutableLiveData<String>()
+    val select_card_type = MutableLiveData<String>()
     val credit_mobile = MutableLiveData<String>()
     val credit_amt = MutableLiveData<String>()
 
@@ -201,6 +212,7 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val credit_cardErrorVisible = MutableLiveData<Boolean>()
     val credit_holder_name_ErrorVisible = MutableLiveData<Boolean>()
     val credit_remarks_ErrorVisible = MutableLiveData<Boolean>()
+    var select_card_type_ErrorVisible = MutableLiveData<Boolean>()
     val credit_mobileErrorVisible = MutableLiveData<Boolean>()
     val credit_amt_ErrorVisible = MutableLiveData<Boolean>()
 
@@ -744,7 +756,19 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
             credit_remarks_Error.value = ""
             credit_remarks_ErrorVisible.value = false
         }
+        if(selectedButton.value==0){
+            isValid=false
+            select_card_type_ErrorVisible.value=true
+        }
+        else{
+            select_card_type_ErrorVisible.value=false
+            select_card_type.value=when(selectedButton.value){
+               R.id.radioVisa->{"visa"}
+               R.id.radioMasterCard->{"mastercard"}
+                else -> {"amex"}
+            }
 
+        }
 
 
         return isValid
@@ -998,4 +1022,10 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
         credit_cardErrorVisible.value = false
 
     }
+
+
+
+
+
+
 }

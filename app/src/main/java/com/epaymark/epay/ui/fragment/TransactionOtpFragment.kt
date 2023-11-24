@@ -121,7 +121,8 @@ class TransactionOtpFragment : BaseFragment() {
                                          s3: String,
                                          s4: String
                                          ) {
-                                         findNavController().popBackStack()
+                                         findNavController().popBackStack(R.id.homeFragment2,false)
+                                         //findNavController().popBackStack()
                                          }
 
                                          })

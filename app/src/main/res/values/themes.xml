@@ -73,4 +73,9 @@
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
+
+    <style name="MyRadioButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/logo_color</item>
+        <item name="colorControlActivated">@color/logo_second_color</item>
+    </style>
 </resources>

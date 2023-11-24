@@ -325,12 +325,57 @@
                             android:textSize="@dimen/_9ssp"
 
                             />
-                        <!--mobile End-->
+                        <RadioGroup
+                        android:id="@+id/radioGroup"
+                        android:checkedButton="@={viewModel.selectedButton}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/radioVisa"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.1"
+                            android:drawableStart="@drawable/visa_logo"
+                            android:layout_marginEnd="16dp"
+
+                            android:theme="@style/MyRadioButton"
+                            android:text=""/>
+
+                            <RadioButton
+                                android:id="@+id/radioMasterCard"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.1"
+
+                                android:theme="@style/MyRadioButton"
+                                android:drawableStart="@drawable/mastercard_logo"
+                                android:layout_marginEnd="16dp"
+                                android:text=""/>
+                            <RadioButton
+                                android:id="@+id/radioAmex"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.1"
+
+                                android:theme="@style/MyRadioButton"
+                                android:drawableStart="@drawable/amex"
+                                android:layout_marginEnd="16dp"
+                                android:text=""/>
 
 
-
-                        <!--START CARD HOLDER NAME-->
-
+                    </RadioGroup>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_regular_400"
+                            android:textColor="@color/pink2"
+                            android:textSize="@dimen/_9ssp"
+                            android:visibility="gone"
+                            android:text="Select card type"
+                            app:hideErrorTextView="@{viewModel.select_card_type_ErrorVisible}"
+                            />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
