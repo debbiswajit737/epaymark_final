@@ -13,6 +13,7 @@ import com.epaymark.epay.R
 import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentMobileRechargeBinding
 import com.epaymark.epay.ui.base.BaseFragment
+import com.epaymark.epay.ui.receipt.MobileReceptDialogFragment
 import com.epaymark.epay.utils.helpers.Constants
 import com.epaymark.epay.utils.helpers.Constants.isDthOperator
 import com.epaymark.epay.utils.`interface`.CallBack
@@ -82,7 +83,8 @@ class MobileRechargeFragment : BaseFragment() {
                     if (viewModel?.regValidation() == true){
                         val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
                             override fun getValue(s: String) {
-
+                                val dialogFragment = MobileReceptDialogFragment()
+                                dialogFragment.show(childFragmentManager, dialogFragment.tag)
                             }
                         })
                         tpinBottomSheetDialog.show(act.supportFragmentManager, tpinBottomSheetDialog.tag)

@@ -1,5 +1,7 @@
 package com.epaymark.epay.ui.activity
 
+import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -16,6 +18,7 @@ import com.epaymark.epay.ui.base.BaseActivity
 import com.epaymark.epay.ui.popup.ErrorPopUp
 import com.epaymark.epay.ui.popup.LoadingPopup
 import com.epaymark.epay.utils.helpers.RequestBodyHelper
+import com.epaymark.epay.utils.helpers.ScreenshotUtils.Companion.takeScreenshot
 import com.epaymark.epay.utils.helpers.SharedPreff
 import com.epaymark.epay.utils.helpers.helper.decryptData
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,7 +31,7 @@ class DashboardActivity  : BaseActivity() {
     private var navController: NavController? = null
     @Inject
     lateinit var requestBodyHelper: RequestBodyHelper
-
+    private val REQUEST_MEDIA_PROJECTION=1
     @Inject
     lateinit var sharedPreff: SharedPreff
 
@@ -94,4 +97,17 @@ class DashboardActivity  : BaseActivity() {
     fun navigate(){
         navController?.navigate(R.id.homeFragment2)
     }
+
+    fun shareImage(screenshotBitmap: Bitmap) {
+        takeScreenshot(this,screenshotBitmap)
+       /* val mediaProjectionManager =
+            getSystemService(MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
+        startActivityForResult(
+            mediaProjectionManager.createScreenCaptureIntent(),
+            REQUEST_MEDIA_PROJECTION
+        )*/
+    }
+
+
+
 }

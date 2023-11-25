@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import com.epaymark.epay.data.model.ListIcon
+import com.epaymark.epay.data.model.ReceiptModel
 
 object Constants {
     const val INPUT_FILTER_MAX_VALUE:Long = 9999999999999
@@ -28,4 +29,5 @@ object Constants {
     var searchList = ArrayList<ListIcon>()
     var isFromSearchPage = false
     var searchValue = ""
+    var recycleViewReceiptList = ArrayList<ReceiptModel>()
 }

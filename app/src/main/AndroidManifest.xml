@@ -86,14 +86,15 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.epaymark.epay.fileprovider"
+            android:authorities="com.epaymark.epay.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
+                android:resource="@xml/file_paths"/>
         </provider>
-
+       <!-- <service android:name=".utils.service.ScreenCaptureService"
+            android:exported="false"/>-->
     </application>
 
 </manifest>

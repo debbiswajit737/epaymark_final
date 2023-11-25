@@ -1,7 +1,12 @@
 package com.epaymark.epay.ui.fragment
 
 import android.animation.ObjectAnimator
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.provider.Settings
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +17,7 @@ import android.view.animation.AnimationUtils
 import android.webkit.WebView
 import android.widget.Toast
 import androidx.activity.addCallback
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
@@ -41,7 +47,9 @@ import com.epaymark.epay.utils.helpers.Constants.isCashWithdraw
 import com.epaymark.epay.utils.helpers.Constants.isFromSearchPage
 import com.epaymark.epay.utils.helpers.Constants.searchList
 import com.epaymark.epay.utils.helpers.Constants.searchValue
+import com.epaymark.epay.utils.helpers.PermissionUtils
 import com.epaymark.epay.utils.`interface`.CallBack
+import com.epaymark.epay.utils.`interface`.PermissionsCallback
 
 
 class HomeFragment : BaseFragment() {
@@ -66,6 +74,8 @@ class HomeFragment : BaseFragment() {
     private lateinit var autoScrollHandler: AutoScrollHandler
     private val viewModel: MyViewModel by activityViewModels()
     var deviceHeight:Int=0
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -944,7 +954,9 @@ class HomeFragment : BaseFragment() {
         rotation.start()
     }*/
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     fun init() {
+        checkPermission()
         //sharedPreff.setTestData("Abcd")
         //Toast.makeText(requireActivity(), ""+sharedPreff.getTestData(), Toast.LENGTH_SHORT).show()
         iconList.add(ListIcon("Card", R.drawable.bb1))
@@ -1065,6 +1077,63 @@ class HomeFragment : BaseFragment() {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    fun checkPermission() {
+        if (!PermissionUtils.hasVideoRecordingPermissions(binding.root.context)) {
 
+
+            PermissionUtils.requestVideoRecordingPermission(binding.root.context, object :
+                PermissionsCallback {
+                override fun onPermissionRequest(granted: Boolean) {
+                    if (!granted) {
+                        dialogRecordingPermission()
+
+                    } else {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                            if (!Environment.isExternalStorageManager()) {
+                                dialogAllFileAccessPermissionAbove30()
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            })
+
+        }
+    }
+
+    private fun dialogRecordingPermission() {
+        PermissionUtils.createAlertDialog(
+            binding.root.context,
+            "Permission Denied!",
+            "Go to setting and enable recording permission",
+            "OK", ""
+        ) { value ->
+            if (value) {
+                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                val uri = Uri.fromParts("package", requireActivity().packageName, null)
+                intent.data = uri
+                startActivity(intent)
+            }
+        }
+    }
+
+    fun dialogAllFileAccessPermissionAbove30() {
+        PermissionUtils.createAlertDialog(
+            binding.root.context,
+            "All file permissions",
+            "Go to setting and enable all files permission",
+            "OK", ""
+        ) { value ->
+            if (value) {
+                val getpermission = Intent()
+                getpermission.action = Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION
+                startActivity(getpermission)
+            }
+        }
+    }
 
 }

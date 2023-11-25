@@ -8,7 +8,7 @@
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -18,26 +18,39 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginTop="5dp"
-            tools:text="Id"
+            android:fontFamily="@font/open_sans_medium"
+            android:layout_marginEnd="@dimen/_20sdp"
+
             android:gravity="center_vertical"
             android:textColor="@color/black"
-            android:textSize="14sp" />
-        <View
-            android:layout_width="@dimen/_10sdp"
-            android:layout_height="20dp"/>
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Id"
+
+            android:shadowColor="@color/logo_second_color"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="5"
+            />
+
         <TextView
             android:id="@+id/tv_property_value"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginTop="5dp"
-            tools:text="100"
-            android:gravity="center_vertical"
 
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:fontFamily="@font/montserrat_regular_400"
+            android:fontFamily="@font/open_sans_medium"
+
+
+            android:gravity="end"
+
             android:textColor="@color/logo_color"
-            android:textSize="14sp" />
-    </LinearLayout>
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/tv_property"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="100" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

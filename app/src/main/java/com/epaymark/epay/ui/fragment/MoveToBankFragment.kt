@@ -12,9 +12,12 @@ import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.R
 import com.epaymark.epay.adapter.AccountDetailsAdapter
 import com.epaymark.epay.data.model.AccountDetailsModel
+import com.epaymark.epay.data.model.ReceiptModel
 import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentMoveToBankBinding
 import com.epaymark.epay.ui.base.BaseFragment
+import com.epaymark.epay.utils.helpers.Constants
+import com.epaymark.epay.utils.helpers.Constants.recycleViewReceiptList
 import com.epaymark.epay.utils.`interface`.CallBack
 
 
@@ -72,6 +75,14 @@ class MoveToBankFragment : BaseFragment() {
                                     val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
                                         override fun getValue(s: String) {
                                             viewModel.receiveStatus.value="Failed"
+                                            recycleViewReceiptList.clear()
+                                            recycleViewReceiptList.add(ReceiptModel("Transaction Id","300000025", type = 4))
+                                            recycleViewReceiptList.add(ReceiptModel("Subscriber/ Customer Number","8583863153", type = 1))
+                                            recycleViewReceiptList.add(ReceiptModel("Transaction Amount","₹10.00", type = 2))
+                                            recycleViewReceiptList.add(ReceiptModel("Running Balance","₹200.22", type = 3))
+                                            recycleViewReceiptList.add(ReceiptModel("Operator","AIRTEL", type = 4))
+                                            recycleViewReceiptList.add(ReceiptModel("Operator ID","N/A", type = 1))
+                                            //ReceiptModel(val property:String, val reportValue:String, val title:String="", val price:String="", val transactionMessage:String="", val transactionId:String="", val userName:String="", val rrnId:String="", val type:Int=1)
                                             val dialogFragment = ReceptDialogFragment()
                                             dialogFragment.show(childFragmentManager, dialogFragment.tag)
                                             //Toast.makeText(requireActivity(), "$s", Toast.LENGTH_SHORT).show()

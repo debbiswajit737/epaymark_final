@@ -4,7 +4,6 @@ package com.epaymark.epay.ui.fragment
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
@@ -18,12 +17,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.epaymark.epay.R
 import com.epaymark.epay.adapter.ReceiptAdapter
-import com.epaymark.epay.data.model.ReceiptModel
 import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentReceptDialogBinding
+import com.epaymark.epay.ui.activity.DashboardActivity
 import com.epaymark.epay.ui.base.BaseCenterSheetFragment
 import com.epaymark.epay.utils.*
-import com.epaymark.epay.utils.helpers.ScreenshotHelper
+import com.epaymark.epay.utils.helpers.Constants.recycleViewReceiptList
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
 import com.google.zxing.common.BitMatrix
@@ -36,7 +35,7 @@ import java.io.IOException
 class ReceptDialogFragment : BaseCenterSheetFragment() {
     lateinit var binding: FragmentReceptDialogBinding
     private val viewModel: MyViewModel by activityViewModels()
-    var recycleViewReceiptList = ArrayList<ReceiptModel>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -66,26 +65,28 @@ class ReceptDialogFragment : BaseCenterSheetFragment() {
         }
 
     private fun shareImage() {
+
         activity?.let {
             binding.apply {
-                val screenshotHelper = ScreenshotHelper(binding.root.context)
+               // val screenshotHelper = ScreenshotHelper(binding.root.context)
 
 // Get the root view of the activity or the view you want to capture
-                val rootView = it.window.decorView.rootView
+               // val rootView = it.window.decorView.rootView
 
 // Take a screenshot
-                val screenshotFile = screenshotHelper.takeScreenshot(rootView)
+               // val screenshotFile = screenshotHelper.takeScreenshot(rootView)
 
 // Check if the screenshot file is not null
-                screenshotFile?.let {
+                /*screenshotFile?.let {
                     // Share the screenshot
                     screenshotHelper.shareScreenshot(it)
-                }
+                }*/
 
 
-                /* var screenshotBitmap =cardView2.takeScreenshot()
-                 val screenshotFile = File(cardView2.context.getExternalFilesDir(null), "screenshot.png")
-                 saveScreenshot(screenshotBitmap, screenshotFile)*/
+                 var screenshotBitmap =cardView2.takeScreenshot()
+                (activity as? DashboardActivity)?.shareImage(screenshotBitmap)
+                // val screenshotFile = File(cardView2.context.getExternalFilesDir(null), "screenshot.png")
+                // saveScreenshot(screenshotBitmap, screenshotFile)
                 //val bitmap = Bitmap.createBitmap(cardView2.width, cardView2.height, Bitmap.Config.ARGB_8888)
 
                 //val canvas = Canvas(bitmap)
@@ -143,16 +144,28 @@ class ReceptDialogFragment : BaseCenterSheetFragment() {
 
 
     fun initView() {
-
+        setCrdViewMinHeight()
         binding.recycleViewReceiptDetails.apply {
-            recycleViewReceiptList.add(ReceiptModel("Transaction Id","300000025", type = 1))
-            recycleViewReceiptList.add(ReceiptModel("Subscriber/ Customer Number","8583863153", type = 1))
-            recycleViewReceiptList.add(ReceiptModel("Transaction Amount","₹10.00", type = 1))
-            recycleViewReceiptList.add(ReceiptModel("Running Balance","₹200.22", type = 1))
-            recycleViewReceiptList.add(ReceiptModel("Operator","AIRTEL", type = 1))
-            recycleViewReceiptList.add(ReceiptModel("Operator ID","N/A", type = 1))
+
             adapter= ReceiptAdapter(recycleViewReceiptList)
         }
+    }
+
+    private fun setCrdViewMinHeight() {
+
+        binding.cardView2.apply {
+            // Get the screen height
+            val screenHeight = resources.displayMetrics.heightPixels
+
+            // Calculate 50% of the screen height
+            val minHeight = (screenHeight * 0.7).toInt()
+
+
+            var layoutParams1 = layoutParams
+            layoutParams1.height = minHeight
+            //layoutParams = layoutParams
+        }
+
     }
 
     fun setObserver() {

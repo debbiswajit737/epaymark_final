@@ -30,6 +30,7 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
 
     val popup_message = MutableLiveData<String>("Success!")
     val receiveStatus = MutableLiveData<String>("")
+    val receiveReceptMessahe = MutableLiveData<String>("")
     val loginPin = MutableLiveData<String>("")
     val otp: MutableLiveData<String> = MutableLiveData("")
     var otpMobile=MutableLiveData<String>("")

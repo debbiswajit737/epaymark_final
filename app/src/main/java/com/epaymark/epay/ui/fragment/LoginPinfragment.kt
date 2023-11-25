@@ -2,21 +2,30 @@ package com.epaymark.epay.ui.fragment
 
 
 import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.epaymark.epay.R
 import com.epaymark.epay.adapter.PhonePadAdapter2
+import com.epaymark.epay.data.model.ReceiptModel
 import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentLoginPinBinding
 import com.epaymark.epay.ui.activity.RegActivity
 import com.epaymark.epay.ui.base.BaseFragment
+import com.epaymark.epay.utils.helpers.Constants
+import com.epaymark.epay.utils.helpers.PermissionUtils
 import com.epaymark.epay.utils.`interface`.KeyPadOnClickListner
+import com.epaymark.epay.utils.`interface`.PermissionsCallback
 
 class LoginPinfragment : BaseFragment() {
     lateinit var binding: FragmentLoginPinBinding
@@ -32,6 +41,7 @@ class LoginPinfragment : BaseFragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
@@ -58,12 +68,46 @@ class LoginPinfragment : BaseFragment() {
         super.onResume()
 
     }
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     fun initView() {
+        checkPermission()
         setKeyPad(binding.recyclePhonePad)
         binding.apply {
             recyclePhonePad.requestFocus()
             hideKeyBoard(firstPinView)
         }
+
+        //transition slip
+        myViewModel.receiveStatus.value=""
+        myViewModel.receiveReceptMessahe.value=getString(R.string.transaction_slip)
+        Constants.recycleViewReceiptList.clear()
+
+        Constants.recycleViewReceiptList.add(ReceiptModel(type = 4))
+        Constants.recycleViewReceiptList.add(ReceiptModel(type = 1, property = "ACCOUNT NUMBER", reportValue ="300000025" ))
+        Constants.recycleViewReceiptList.add(ReceiptModel(type = 1, property = "BANK NAME", reportValue ="AXIS BANK" ))
+        Constants.recycleViewReceiptList.add(ReceiptModel(type = 1, property = "BENEFICIARY NAME", reportValue ="test value" ))
+        Constants.recycleViewReceiptList.add(ReceiptModel(type = 1, property = "SENDER NUMBER", reportValue ="9234268887" ))
+        Constants.recycleViewReceiptList.add(ReceiptModel(type = 2, title = "TRANSACTION DATE: 2023-09-09 14:44:26" ))
+
+        Constants.recycleViewReceiptList.add(ReceiptModel(type = 3, transactionId = "300000085", rrnId = "325220891591", price = "100" , transactionMessage = "Refund", userName = "Test User"))
+
+        Constants.recycleViewReceiptList.add(ReceiptModel(type = 3, transactionId = "300000085", rrnId = "325220891591", price = "100" , transactionMessage = "Refund", userName = "Test User"))
+
+        Constants.recycleViewReceiptList.add(ReceiptModel(type = 3, transactionId = "300000085", rrnId = "325220891591", price = "100" , transactionMessage = "Refund", userName = "Test User"))
+
+        Constants.recycleViewReceiptList.add(ReceiptModel(type = 3, transactionId = "300000085", rrnId = "325220891591", price = "100" , transactionMessage = "Refund", userName = "Test User"))
+
+
+
+        //Constants.recycleViewReceiptList.add(ReceiptModel("Transaction Id","300000025", type = 1))
+        /*Constants.recycleViewReceiptList.add(ReceiptModel("Subscriber/ Customer Number","8583863153", type = 1))
+        Constants.recycleViewReceiptList.add(ReceiptModel("Transaction Amount","₹10.00", type = 2))
+        Constants.recycleViewReceiptList.add(ReceiptModel("Running Balance","₹200.22", type = 3))
+        Constants.recycleViewReceiptList.add(ReceiptModel("Operator","AIRTEL", type = 4))
+        Constants.recycleViewReceiptList.add(ReceiptModel("Operator ID","N/A", type = 1))*/
+
+        /*val dialogFragment = ReceptDialogFragment()
+        dialogFragment.show(childFragmentManager, dialogFragment.tag)*/
 
     }
 
@@ -117,6 +161,65 @@ class LoginPinfragment : BaseFragment() {
 
             })
             isNestedScrollingEnabled=false
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    fun checkPermission() {
+        if (!PermissionUtils.hasVideoRecordingPermissions(binding.root.context)) {
+
+
+            PermissionUtils.requestVideoRecordingPermission(binding.root.context, object :
+                PermissionsCallback {
+                override fun onPermissionRequest(granted: Boolean) {
+                    if (!granted) {
+                        dialogRecordingPermission()
+
+                    } else {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                            if (!Environment.isExternalStorageManager()) {
+                                dialogAllFileAccessPermissionAbove30()
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            })
+
+        }
+    }
+
+    private fun dialogRecordingPermission() {
+        PermissionUtils.createAlertDialog(
+            binding.root.context,
+            "Permission Denied!",
+            "Go to setting and enable recording permission",
+            "OK", ""
+        ) { value ->
+            if (value) {
+                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                val uri = Uri.fromParts("package", requireActivity().packageName, null)
+                intent.data = uri
+                startActivity(intent)
+            }
+        }
+    }
+
+    fun dialogAllFileAccessPermissionAbove30() {
+        PermissionUtils.createAlertDialog(
+            binding.root.context,
+            "All file permissions",
+            "Go to setting and enable all files permission",
+            "OK", ""
+        ) { value ->
+            if (value) {
+                val getpermission = Intent()
+                getpermission.action = Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION
+                startActivity(getpermission)
+            }
         }
     }
 }
