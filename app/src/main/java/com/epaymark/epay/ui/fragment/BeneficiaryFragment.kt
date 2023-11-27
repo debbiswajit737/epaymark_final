@@ -77,11 +77,12 @@ class BeneficiaryFragment : BaseFragment() {
                         val selectTransactionTypeBottomSheetDialog = SelectTransactionTypeBottomSheetDialog(object :
                             CallBack {
                             override fun getValue(s: String) {
-
                                 val tpinBottomSheetDialog = TpinBottomSheetDialog(object :
                                     CallBack {
                                     override fun getValue(s: String) {
-                                        Toast.makeText(requireActivity(), "$s", Toast.LENGTH_SHORT).show()
+                                        viewModel?.receiveStatus?.value="Success"
+                                        val dialogFragment = ReceptDialogFragment()
+                                        dialogFragment.show(childFragmentManager, dialogFragment.tag)
                                     }
                                 })
                                 tpinBottomSheetDialog.show(
@@ -95,7 +96,6 @@ class BeneficiaryFragment : BaseFragment() {
                             selectTransactionTypeBottomSheetDialog.tag
                         )
                     }
-
                 }
             })
             adapter=beneficiaryListAdapter

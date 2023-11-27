@@ -71,6 +71,7 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val amt = MutableLiveData<String>()
     val subId = MutableLiveData<String>()
     val dthOperator = MutableLiveData<String>()
+    val selectrdOperator = MutableLiveData<String>()
     val dthAmt = MutableLiveData<String>()
 
     val consumerId = MutableLiveData<String>()

@@ -15,8 +15,12 @@ import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentDthRechargeBinding
 import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.ui.popup.CustomPopup.showBindingPopup
+import com.epaymark.epay.ui.receipt.DthReceptDialogFragment
+import com.epaymark.epay.ui.receipt.MobileReceptDialogFragment
 import com.epaymark.epay.utils.helpers.Constants
 import com.epaymark.epay.utils.helpers.Constants.isDthOperator
+import com.epaymark.epay.utils.`interface`.CallBack
+import java.util.Objects
 
 class DTHRechargeFragment : BaseFragment() {
     lateinit var binding: FragmentDthRechargeBinding
@@ -56,7 +60,21 @@ class DTHRechargeFragment : BaseFragment() {
 
             btnSubmit.setOnClickListener{
                 if (viewModel?.dthValidation() == true){
-                    Toast.makeText(btnSubmit.context, "ok", Toast.LENGTH_SHORT).show()
+                    val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
+                        override fun getValue(s: String) {
+                            val dialogFragment = DthReceptDialogFragment(object: CallBack {
+                                override fun getValue(s: String) {
+                                    if (Objects.equals(s,"back")) {
+                                        findNavController().popBackStack()
+                                    }
+                                }
+                            })
+                            dialogFragment.show(childFragmentManager, dialogFragment.tag)
+                        }
+                    })
+                    activity?.let {act->
+                        tpinBottomSheetDialog.show(act.supportFragmentManager, tpinBottomSheetDialog.tag)
+                    }
                 }
             }
             etOperator.setOnClickListener {

@@ -28,6 +28,7 @@ object Constants {
     var isCashWithdraw=true
     var searchList = ArrayList<ListIcon>()
     var isFromSearchPage = false
+    var isRecept = "isRecept"
     var searchValue = ""
     var recycleViewReceiptList = ArrayList<ReceiptModel>()
 }

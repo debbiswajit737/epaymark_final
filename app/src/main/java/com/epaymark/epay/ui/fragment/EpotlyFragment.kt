@@ -8,13 +8,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.R
 import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentEpotlyBinding
 import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.ui.popup.SuccessPopupFragment
+import com.epaymark.epay.ui.receipt.DthReceptDialogFragment
+import com.epaymark.epay.ui.receipt.EPotlyReceptDialogFragment
+import com.epaymark.epay.ui.receipt.MoveWalletToWalletReceptDialogFragment
 import com.epaymark.epay.utils.`interface`.CallBack
 import com.epaymark.epay.utils.`interface`.CallBack4
+import java.util.Objects
 
 class EpotlyFragment : BaseFragment() {
     lateinit var binding: FragmentEpotlyBinding
@@ -58,9 +63,17 @@ class EpotlyFragment : BaseFragment() {
                                             s3: String,
                                             s4: String
                                         ) {
-                                            viewModel?.receiveStatus?.value="Success"
-                                            val dialogFragment = ReceptDialogFragment()
-                                            dialogFragment.show(childFragmentManager, dialogFragment.tag)
+
+
+                                                    val dialogFragment = EPotlyReceptDialogFragment(object: CallBack {
+                                                        override fun getValue(s: String) {
+                                                            if (Objects.equals(s,"back")) {
+                                                                findNavController().popBackStack()
+                                                            }
+                                                        }
+                                                    })
+                                                    dialogFragment.show(childFragmentManager, dialogFragment.tag)
+
                                         }
 
                                     })

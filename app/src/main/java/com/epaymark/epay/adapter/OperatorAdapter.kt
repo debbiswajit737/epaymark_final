@@ -7,8 +7,9 @@ import com.bumptech.glide.Glide
 import com.epaymark.epay.data.model.OperatorModel
 import com.epaymark.epay.databinding.OperatorListBinding
 import com.epaymark.epay.utils.`interface`.CallBack
+import com.epaymark.epay.utils.`interface`.CallBack4
 
-class OperatorAdapter(private val operatorList: ArrayList<OperatorModel>, val listner: CallBack) : RecyclerView.Adapter<OperatorAdapter.MyViewHolder>() {
+class OperatorAdapter(private val operatorList: ArrayList<OperatorModel>, val listner: CallBack4) : RecyclerView.Adapter<OperatorAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
@@ -47,7 +48,7 @@ class OperatorAdapter(private val operatorList: ArrayList<OperatorModel>, val li
             }
             binding.clHeader.setOnClickListener{
                 item.title.let {
-                    listner.getValue(it)
+                    listner.getValue4(it,item.image.toString(),"","")
                 }
 
             }

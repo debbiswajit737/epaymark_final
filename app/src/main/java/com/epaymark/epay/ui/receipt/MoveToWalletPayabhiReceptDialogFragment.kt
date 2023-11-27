@@ -10,22 +10,26 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.epaymark.epay.R
 import com.epaymark.epay.data.viewMovel.MyViewModel
+import com.epaymark.epay.databinding.FragmentDthReceptDialogBinding
 import com.epaymark.epay.databinding.FragmentMobileReceptDialogBinding
+import com.epaymark.epay.databinding.FragmentMoveBankToWalletPayabhiReceptDialogBinding
+import com.epaymark.epay.databinding.FragmentMoveBankToWalletReceptDialogBinding
+import com.epaymark.epay.databinding.FragmentMoveToBankReceptDialogBinding
 import com.epaymark.epay.ui.activity.DashboardActivity
 import com.epaymark.epay.ui.base.BaseCenterSheetFragment
 import com.epaymark.epay.utils.helpers.Constants.isRecept
 import com.epaymark.epay.utils.`interface`.CallBack
 
 
-class MobileReceptDialogFragment(val callBack: CallBack) : BaseCenterSheetFragment() {
-    lateinit var binding: FragmentMobileReceptDialogBinding
+class MoveToWalletPayabhiReceptDialogFragment(val callBack: CallBack) : BaseCenterSheetFragment() {
+    lateinit var binding: FragmentMoveBankToWalletPayabhiReceptDialogBinding
     private val viewModel: MyViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_mobile_recept_dialog, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_move_bank_to_wallet_payabhi_recept_dialog, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         return binding.root

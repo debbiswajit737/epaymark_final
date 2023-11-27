@@ -10,6 +10,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.epaymark.epay.R
 import com.epaymark.epay.data.viewMovel.MyViewModel
+import com.epaymark.epay.databinding.FragmentDthReceptDialogBinding
+import com.epaymark.epay.databinding.FragmentElectricReceptDialogBinding
 import com.epaymark.epay.databinding.FragmentMobileReceptDialogBinding
 import com.epaymark.epay.ui.activity.DashboardActivity
 import com.epaymark.epay.ui.base.BaseCenterSheetFragment
@@ -17,15 +19,15 @@ import com.epaymark.epay.utils.helpers.Constants.isRecept
 import com.epaymark.epay.utils.`interface`.CallBack
 
 
-class MobileReceptDialogFragment(val callBack: CallBack) : BaseCenterSheetFragment() {
-    lateinit var binding: FragmentMobileReceptDialogBinding
+class ElectricReceptDialogFragment(val callBack: CallBack) : BaseCenterSheetFragment() {
+    lateinit var binding: FragmentElectricReceptDialogBinding
     private val viewModel: MyViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_mobile_recept_dialog, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_electric_recept_dialog, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         return binding.root
@@ -39,7 +41,6 @@ class MobileReceptDialogFragment(val callBack: CallBack) : BaseCenterSheetFragme
     }
 
     private fun onViewClick() {
-
         binding.apply {
             imgBack.back()
             imgHome.backToHome()
@@ -54,20 +55,13 @@ class MobileReceptDialogFragment(val callBack: CallBack) : BaseCenterSheetFragme
             }
           }
         }
-
-
-
     private fun shareImage() {
-
         activity?.let {
             binding.apply {
-
                 var screenshotBitmap =cardView2.takeScreenshot()
                 (activity as? DashboardActivity)?.shareImage(screenshotBitmap)
             }
         }
-
-
     }
 
     fun initView() {

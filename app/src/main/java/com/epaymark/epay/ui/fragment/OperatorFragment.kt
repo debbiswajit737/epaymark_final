@@ -18,6 +18,7 @@ import com.epaymark.epay.databinding.OperatorFragmentLayoutBinding
 import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.utils.helpers.Constants.isDthOperator
 import com.epaymark.epay.utils.`interface`.CallBack
+import com.epaymark.epay.utils.`interface`.CallBack4
 
 class OperatorFragment : BaseFragment() {
     lateinit var binding: OperatorFragmentLayoutBinding
@@ -75,16 +76,19 @@ class OperatorFragment : BaseFragment() {
 
 
 
-            adapter= OperatorAdapter(operator, object : CallBack {
-                override fun getValue(s: String) {
+            adapter= OperatorAdapter(operator, object : CallBack4 {
+                override fun getValue4(s1: String, s2: String, s3: String, s4: String) {
                     viewModel?.apply {
-                        operator.value=s
-                        dthOperator.value =s
+                        operator.value=s1
+                        dthOperator.value =s1
+                        selectrdOperator.value=s2
                     }
 
                    // callBack.getValue(s)
                     findNavController().popBackStack()
                 }
+
+
 
             })
         }

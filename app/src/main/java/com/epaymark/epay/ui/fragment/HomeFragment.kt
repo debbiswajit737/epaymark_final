@@ -182,14 +182,23 @@ class HomeFragment : BaseFragment() {
             //recycleEssential
             getString(R.string.prepaid)->{
                 viewModel.prepaitOrPostPaid.value="Prepaid"
+                viewModel.mobile.value=""
+                viewModel.operator.value=""
+                viewModel.amt.value=""
                 findNavController().navigate(R.id.action_homeFragment2_to_mobileRechargeFragment)
             }
             getString(R.string.postpaid)->{
                 viewModel.prepaitOrPostPaid.value="Postpaid"
+                viewModel.mobile.value=""
+                viewModel.operator.value=""
+                viewModel.amt.value=""
                 findNavController().navigate(R.id.action_homeFragment2_to_mobileRechargeFragment)
             }
 
             getString(R.string.dth_recharge)->{
+                viewModel.subId.value=""
+                viewModel.dthOperator.value=""
+                viewModel.dthAmt.value=""
                 findNavController().navigate(R.id.action_homeFragment2_to_DTHRechargeFragment)
             }
 

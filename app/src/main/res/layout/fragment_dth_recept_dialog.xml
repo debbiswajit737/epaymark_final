@@ -83,7 +83,7 @@
                         android:layout_marginStart="@dimen/_10sdp"
                         android:fontFamily="@font/open_sans_medium"
                         android:padding="@dimen/_5sdp"
-                        android:text="@string/mobile_recharged"
+                        android:text="@string/dth_recharged"
                         android:textColor="@color/logo_color"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/imageView9" />
@@ -189,7 +189,7 @@
                         android:textSize="@dimen/_8ssp"
                         app:layout_constraintStart_toStartOf="@+id/tv_payment_details_tag"
                         app:layout_constraintTop_toBottomOf="@+id/tv_payment_details_tag" />
-                        />
+                    />
 
 
                     <TextView
@@ -203,7 +203,7 @@
                         android:textSize="@dimen/_8ssp"
                         app:layout_constraintEnd_toEndOf="@+id/tv_price"
                         app:layout_constraintTop_toBottomOf="@+id/tv_payment_details_tag" />
-                        />
+                    />
 
                     <View
                         android:id="@+id/view2"

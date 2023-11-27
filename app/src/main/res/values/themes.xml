@@ -78,4 +78,22 @@
         <item name="colorControlNormal">@color/logo_color</item>
         <item name="colorControlActivated">@color/logo_second_color</item>
     </style>
+
+
+    <style name="HeaderStyle">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="DetailTextStyle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginTop">8dp</item>
+    </style>
+
+    <style name="AmountStyle">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#28a745</item>
+        <item name="android:layout_marginTop">16dp</item>
+    </style>
 </resources>

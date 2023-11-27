@@ -17,6 +17,7 @@ import com.epaymark.epay.network.RetrofitHelper.handleApiError
 import com.epaymark.epay.ui.base.BaseActivity
 import com.epaymark.epay.ui.popup.ErrorPopUp
 import com.epaymark.epay.ui.popup.LoadingPopup
+import com.epaymark.epay.utils.helpers.Constants.isRecept
 import com.epaymark.epay.utils.helpers.RequestBodyHelper
 import com.epaymark.epay.utils.helpers.ScreenshotUtils.Companion.takeScreenshot
 import com.epaymark.epay.utils.helpers.SharedPreff
@@ -57,7 +58,12 @@ class DashboardActivity  : BaseActivity() {
         val navHostFragment: NavHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
+        intent?.let {intentData->
+            val isReceptBooleanValue=intentData.getBooleanExtra(isRecept,false)
+            if (isReceptBooleanValue){
 
+            }
+        }
 
         var currentFragmentId = navController?.currentDestination?.id
         if (currentFragmentId==R.id.homeFragment){

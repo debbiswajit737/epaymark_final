@@ -15,6 +15,7 @@ import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.ui.receipt.MobileReceptDialogFragment
 import com.epaymark.epay.utils.helpers.Constants.isDthOperator
 import com.epaymark.epay.utils.`interface`.CallBack
+import java.util.Objects
 
 class MobileRechargeFragment : BaseFragment() {
     lateinit var binding: FragmentMobileRechargeBinding
@@ -35,6 +36,7 @@ class MobileRechargeFragment : BaseFragment() {
         setObserver()
         onViewClick()
     }
+
 
     private fun onViewClick() {
         binding.apply {
@@ -81,7 +83,13 @@ class MobileRechargeFragment : BaseFragment() {
                     if (viewModel?.regValidation() == true){
                         val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
                             override fun getValue(s: String) {
-                                val dialogFragment = MobileReceptDialogFragment()
+                                val dialogFragment = MobileReceptDialogFragment(object:CallBack{
+                                    override fun getValue(s: String) {
+                                        if (Objects.equals(s,"back")) {
+                                            findNavController().popBackStack()
+                                        }
+                                    }
+                                })
                                 dialogFragment.show(childFragmentManager, dialogFragment.tag)
                             }
                         })

@@ -42,6 +42,10 @@ class TpinBottomSheetDialog(val callBack: CallBack) :BaseBottomSheetFragment() {
         onViewClick()
     }
 
+    override fun onResume() {
+        super.onResume()
+        myViewModel.tPin.value=""
+    }
     private fun onViewClick() {
         binding.apply {}
 

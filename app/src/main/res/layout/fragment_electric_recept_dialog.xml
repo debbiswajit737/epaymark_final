@@ -83,9 +83,10 @@
                         android:layout_marginStart="@dimen/_10sdp"
                         android:fontFamily="@font/open_sans_medium"
                         android:padding="@dimen/_5sdp"
-                        android:text="@string/mobile_recharged"
+                        android:text="@string/payment_receipt"
                         android:textColor="@color/logo_color"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/imageView9"
+                        app:layout_constraintStart_toStartOf="@+id/imageView9"
                         app:layout_constraintTop_toBottomOf="@+id/imageView9" />
 
                     <ImageView
@@ -97,7 +98,7 @@
                         android:src="@drawable/right_tick"
                         app:layout_constraintBottom_toBottomOf="@+id/textView24"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/textView24" />
+                        app:layout_constraintTop_toTopOf="@+id/textView25" />
 
                     <ImageView
                         android:id="@+id/img_close_status"
@@ -110,16 +111,17 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/textView24" />
+
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/img_operator"
-
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/jio"
-                        app:civ_border_color="#FF000000"
+                        android:layout_marginStart="@dimen/_10sdp"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        app:layout_constraintStart_toStartOf="@+id/textView24"
-                        app:layout_constraintTop_toBottomOf="@+id/textView24"/>
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/wbsedcl"
+                        app:civ_border_color="#FF000000"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
 
                     <TextView
@@ -127,7 +129,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_10sdp"
-                        android:text="Jio Prepaid"
+                        android:text="User Name"
                         android:fontFamily="@font/open_sans_medium"
                         android:textColor="@color/logo_second_color"
                         app:layout_constraintStart_toEndOf="@+id/img_operator"
@@ -138,7 +140,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_10sdp"
-                        android:text="9999999999"
+                        android:text="Consumer Id: 123456789"
                         android:fontFamily="@font/open_sans_medium"
                         android:textColor="@color/black"
                         app:layout_constraintStart_toEndOf="@+id/img_operator"
@@ -149,9 +151,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans_medium"
-                        android:text="₹100"
+                        android:text=""
                         android:textColor="@color/black"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView25"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView26"
                         app:layout_constraintEnd_toEndOf="@+id/img_write_tick"
                         app:layout_constraintTop_toTopOf="@+id/textView25" />
 
@@ -184,12 +186,51 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:fontFamily="@font/open_sans_medium"
-                        android:text="Recharge Amount"
+                        android:text="Received Amount"
                         android:textColor="@color/logo_color"
                         android:textSize="@dimen/_8ssp"
                         app:layout_constraintStart_toStartOf="@+id/tv_payment_details_tag"
                         app:layout_constraintTop_toBottomOf="@+id/tv_payment_details_tag" />
-                        />
+                    />
+
+                    <TextView
+                        android:id="@+id/tv_pay_month"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_medium"
+                        android:text="Bill Paid For"
+                        android:textColor="@color/logo_color"
+                        android:textSize="@dimen/_8ssp"
+                        app:layout_constraintStart_toStartOf="@+id/tv_payment_details_tag"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_pay_month_for" />
+                    />
+
+                    <TextView
+                        android:id="@+id/tv_pay_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_medium"
+                        android:text="Date"
+                        android:textColor="@color/logo_color"
+                        android:textSize="@dimen/_8ssp"
+                        app:layout_constraintStart_toStartOf="@+id/tv_payment_details_tag"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_pay_month" />
+                    />
+
+                    <TextView
+                        android:id="@+id/tv_pay_mode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_medium"
+                        android:text="Bill Paid Mode"
+                        android:textColor="@color/logo_color"
+                        android:textSize="@dimen/_8ssp"
+                        app:layout_constraintStart_toStartOf="@+id/tv_payment_details_tag"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_pay_date" />
+                    />
+
+
+
 
 
                     <TextView
@@ -203,7 +244,43 @@
                         android:textSize="@dimen/_8ssp"
                         app:layout_constraintEnd_toEndOf="@+id/tv_price"
                         app:layout_constraintTop_toBottomOf="@+id/tv_payment_details_tag" />
-                        />
+                    />
+
+                    <TextView
+                        android:id="@+id/tv_bill_paid_nonth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_medium"
+                        android:text="NOV 2023"
+                        android:textColor="@color/logo_color"
+                        android:textSize="@dimen/_8ssp"
+                        app:layout_constraintEnd_toEndOf="@+id/tv_price"
+                        app:layout_constraintTop_toBottomOf="@+id/textView29" />
+                    />
+
+                    <TextView
+                        android:id="@+id/tv_bill_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_medium"
+                        android:text="10-10-2023"
+                        android:textColor="@color/logo_color"
+                        android:textSize="@dimen/_8ssp"
+                        app:layout_constraintEnd_toEndOf="@+id/tv_price"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_bill_paid_nonth" />
+                    />
+
+                    <TextView
+                        android:id="@+id/tv_bill_pay_mode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_medium"
+                        android:text="online"
+                        android:textColor="@color/logo_color"
+                        android:textSize="@dimen/_8ssp"
+                        app:layout_constraintEnd_toEndOf="@+id/tv_price"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_bill_date" />
+                    />
 
                     <View
                         android:id="@+id/view2"
@@ -213,7 +290,7 @@
                         android:background="@color/gray"
                         app:layout_constraintEnd_toEndOf="@+id/tv_price"
                         app:layout_constraintStart_toStartOf="@+id/img_operator"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_pay_month_for" />
+                        app:layout_constraintTop_toBottomOf="@+id/tv_pay_mode" />
 
                     <TextView
                         android:id="@+id/tv_total"
@@ -265,12 +342,25 @@
                     />
 
                     <TextView
-                        android:id="@+id/tv_transaction_id"
+                        android:id="@+id/tv_invoice_tag"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans_medium"
-                        android:text="458555556522"
+                        android:text="Invoice Number"
+                        android:layout_marginTop="@dimen/_30sdp"
+                        android:textColor="@color/black2"
+                        android:textSize="@dimen/_8ssp"
+                        app:layout_constraintStart_toStartOf="@+id/tv_payment_details_tag"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_transaction_id" />
+                    />
+
+                    <TextView
+                        android:id="@+id/tv_transaction_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/open_sans_medium"
+                        android:text="458555556522"
                         android:textColor="@color/logo_color"
                         android:textSize="@dimen/_9ssp"
                         app:layout_constraintStart_toStartOf="@+id/tv_payment_details_tag"
@@ -278,51 +368,53 @@
                         app:layout_goneMarginTop="@dimen/_10sdp" />
                     />
 
-                    <ImageView
-                        android:id="@+id/img_bank"
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp"
+                    <TextView
+                        android:id="@+id/tv_invoice_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_medium"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/icici"
-                        app:layout_constraintStart_toStartOf="@+id/textView24"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_transaction_id" />
-                    <TextView
-                        android:id="@+id/tv_bank"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:text="******1234"
-                        android:fontFamily="@font/open_sans_medium"
-                        android:textColor="@color/black"
-                        app:layout_constraintStart_toEndOf="@+id/img_operator"
-                        app:layout_constraintTop_toTopOf="@+id/img_bank" />
+                        android:text="456012345678"
+                        android:textColor="@color/logo_color"
+                        android:textSize="@dimen/_9ssp"
+                        app:layout_constraintStart_toStartOf="@+id/tv_payment_details_tag"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_invoice_tag"
+                        app:layout_goneMarginTop="@dimen/_10sdp" />
+                    />
 
                     <TextView
-                        android:id="@+id/tv_bank_price"
+                        android:id="@+id/tv_office_tag"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans_medium"
-                        android:text="₹100"
-                        android:textColor="@color/black"
-                        app:layout_constraintEnd_toEndOf="@+id/textView30"
-                        app:layout_constraintTop_toTopOf="@+id/img_bank" />
+                        android:text="Billing Office"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:textColor="@color/black2"
+                        android:textSize="@dimen/_8ssp"
+                        app:layout_constraintStart_toStartOf="@+id/tv_payment_details_tag"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_invoice_value" />
+                    />
 
                     <TextView
-                        android:id="@+id/tv_utr"
+                        android:id="@+id/tv_office"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_10sdp"
                         android:fontFamily="@font/open_sans_medium"
-                        android:text="UTR 36985555555"
-                        android:textColor="@color/black"
-                        app:layout_constraintStart_toEndOf="@+id/img_operator"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_bank" />
+                        android:text="Abc Road, Kolkata"
+                        android:textColor="@color/logo_color"
+                        android:textSize="@dimen/_9ssp"
+                        app:layout_constraintStart_toStartOf="@+id/tv_payment_details_tag"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_office_tag"
+                        app:layout_goneMarginTop="@dimen/_10sdp" />
+                    />
+
+
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_20sdp"
-                        app:layout_constraintTop_toBottomOf="@+id/img_bank" />
+                        app:layout_constraintTop_toBottomOf="@+id/tv_office"
+                        tools:layout_editor_absoluteX="13dp" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>

@@ -15,7 +15,10 @@ import com.epaymark.epay.R
 import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentUtilityBillPaymentBinding
 import com.epaymark.epay.ui.base.BaseFragment
+import com.epaymark.epay.ui.receipt.DthReceptDialogFragment
+import com.epaymark.epay.ui.receipt.ElectricReceptDialogFragment
 import com.epaymark.epay.utils.`interface`.CallBack
+import java.util.Objects
 
 class UtilityBillPaymentFragment : BaseFragment() {
     lateinit var binding: FragmentUtilityBillPaymentBinding
@@ -60,7 +63,21 @@ class UtilityBillPaymentFragment : BaseFragment() {
 
             btnSubmit.setOnClickListener{
                 if (viewModel?.electricValidation() == true){
-                    Toast.makeText(btnSubmit.context, "ok", Toast.LENGTH_SHORT).show()
+                    val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
+                        override fun getValue(s: String) {
+                            val dialogFragment = ElectricReceptDialogFragment(object: CallBack {
+                                override fun getValue(s: String) {
+                                    if (Objects.equals(s,"back")) {
+                                        findNavController().popBackStack()
+                                    }
+                                }
+                            })
+                            dialogFragment.show(childFragmentManager, dialogFragment.tag)
+                        }
+                    })
+                    activity?.let {act->
+                        tpinBottomSheetDialog.show(act.supportFragmentManager, tpinBottomSheetDialog.tag)
+                    }
                 }
             }
 

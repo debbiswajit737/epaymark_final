@@ -12,13 +12,18 @@ import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.R
 import com.epaymark.epay.data.model.ContactModel
 import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentMoveToWalletBinding
 import com.epaymark.epay.databinding.FragmentSupportBinding
 import com.epaymark.epay.ui.base.BaseFragment
+import com.epaymark.epay.ui.receipt.MoveToBankReceptDialogFragment
+import com.epaymark.epay.ui.receipt.MoveToWalletPayabhiReceptDialogFragment
+import com.epaymark.epay.ui.receipt.MoveToWalletReceptDialogFragment
 import com.epaymark.epay.utils.`interface`.CallBack
+import java.util.Objects
 
 
 class MoveToWalletFragment : BaseFragment() {
@@ -123,6 +128,21 @@ class MoveToWalletFragment : BaseFragment() {
                     if (viewModel?.settleWalletValidation() == true) {
                         val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
                             override fun getValue(s: String) {
+                                val dialogFragment = MoveToWalletReceptDialogFragment(object: CallBack {
+                                    override fun getValue(s: String) {
+                                        if (Objects.equals(s,"back")) {
+                                            findNavController().popBackStack()
+                                        }
+                                    }
+                                })
+                                dialogFragment.show(childFragmentManager, dialogFragment.tag)
+                            }
+                        })
+                        activity?.let {act->
+                            tpinBottomSheetDialog.show(act.supportFragmentManager, tpinBottomSheetDialog.tag)
+                        }
+                        /*val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
+                            override fun getValue(s: String) {
                                 viewModel?.receiveStatus?.value="Failed"
                                 val dialogFragment = ReceptDialogFragment()
                                 dialogFragment.show(childFragmentManager, dialogFragment.tag)
@@ -132,7 +152,7 @@ class MoveToWalletFragment : BaseFragment() {
                         tpinBottomSheetDialog.show(
                             act.supportFragmentManager,
                             tpinBottomSheetDialog.tag
-                        )
+                        )*/
 
                     }
 
@@ -143,16 +163,32 @@ class MoveToWalletFragment : BaseFragment() {
                     if (viewModel?.payabhiValidation() == true) {
                         val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
                             override fun getValue(s: String) {
-                                viewModel?.receiveStatus?.value="Success"
-                                val dialogFragment = ReceptDialogFragment()
+                                val dialogFragment = MoveToWalletPayabhiReceptDialogFragment(object: CallBack {
+                                    override fun getValue(s: String) {
+                                        if (Objects.equals(s,"back")) {
+                                            findNavController().popBackStack()
+                                        }
+                                    }
+                                })
                                 dialogFragment.show(childFragmentManager, dialogFragment.tag)
-                                Toast.makeText(requireActivity(), "$s", Toast.LENGTH_SHORT).show()
+                            }
+                        })
+                        activity?.let {act->
+                            tpinBottomSheetDialog.show(act.supportFragmentManager, tpinBottomSheetDialog.tag)
+                        }
+                        /*val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
+                            override fun getValue(s: String) {
+                                viewModel?.receiveStatus?.value="Success"
+
+                                *//*val dialogFragment = ReceptDialogFragment()
+                                dialogFragment.show(childFragmentManager, dialogFragment.tag)
+                                Toast.makeText(requireActivity(), "$s", Toast.LENGTH_SHORT).show()*//*
                             }
                         })
                         tpinBottomSheetDialog.show(
                             act.supportFragmentManager,
                             tpinBottomSheetDialog.tag
-                        )
+                        )*/
 
                     }
                 }
