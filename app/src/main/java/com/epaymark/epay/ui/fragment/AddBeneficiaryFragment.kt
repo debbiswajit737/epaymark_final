@@ -12,8 +12,8 @@ import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.R
 import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentAddBeneficiaryBinding
-import com.epaymark.epay.databinding.FragmentCreditCardPaymentBinding
 import com.epaymark.epay.ui.base.BaseFragment
+import com.epaymark.epay.ui.popup.CustomPopup.showDebitPopup
 import com.epaymark.epay.utils.`interface`.CallBack
 
 class AddBeneficiaryFragment : BaseFragment() {
@@ -54,7 +54,13 @@ class AddBeneficiaryFragment : BaseFragment() {
             }
             tvVerify.setOnClickListener{
                 if (viewModel?.beneficiaryVerifyValidation() == true){
-                    // API call
+                    showDebitPopup(tvVerify.context,object:CallBack{
+                        override fun getValue(s: String) {
+                            // API call
+                            viewModel?.beneficiary_name?.value="Sample Beneficiary Name"
+                        }
+                    })
+
                 }
             }
 

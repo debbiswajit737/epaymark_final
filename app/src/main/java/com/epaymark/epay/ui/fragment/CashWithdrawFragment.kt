@@ -24,12 +24,15 @@ import com.epaymark.epay.databinding.FragmentCashWithdrawBinding
 import com.epaymark.epay.databinding.FragmentEpotlyBinding
 import com.epaymark.epay.databinding.FragmentMobileRechargeBinding
 import com.epaymark.epay.ui.base.BaseFragment
+import com.epaymark.epay.ui.receipt.BalenceEnquaryReceptDialogFragment
+import com.epaymark.epay.ui.receipt.CashWithdrawReceptDialogFragment
 import com.epaymark.epay.utils.helpers.Constants
 import com.epaymark.epay.utils.helpers.Constants.isCashWithdraw
 import com.epaymark.epay.utils.helpers.Constants.isDthOperator
 import com.epaymark.epay.utils.`interface`.CallBack
 import com.epaymark.epay.utils.`interface`.CallBack4
 import com.google.zxing.WriterException
+import java.util.Objects
 
 class CashWithdrawFragment : BaseFragment() {
     lateinit var binding: FragmentCashWithdrawBinding
@@ -66,7 +69,7 @@ class CashWithdrawFragment : BaseFragment() {
             btnSubmit.setOnClickListener{
                 activity?.let {act->
                     if (viewModel?.cashWithdrawValidation() == true){
-                        val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
+                        /*val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
                             override fun getValue(s: String) {
                                 if (s=="123456"){
                                     Toast.makeText(requireActivity(), "ok", Toast.LENGTH_SHORT).show()
@@ -74,7 +77,22 @@ class CashWithdrawFragment : BaseFragment() {
                             }
                         })
                         tpinBottomSheetDialog.show(act.supportFragmentManager, tpinBottomSheetDialog.tag)
-
+                        */
+                        val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
+                            override fun getValue(s: String) {
+                                val dialogFragment = CashWithdrawReceptDialogFragment(object: CallBack {
+                                    override fun getValue(s: String) {
+                                        if (Objects.equals(s,"back")) {
+                                            findNavController().popBackStack()
+                                        }
+                                    }
+                                })
+                                dialogFragment.show(childFragmentManager, dialogFragment.tag)
+                            }
+                        })
+                        activity?.let {act->
+                            tpinBottomSheetDialog.show(act.supportFragmentManager, tpinBottomSheetDialog.tag)
+                        }
                     }
                 }
 

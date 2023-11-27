@@ -227,4 +227,6 @@
     <string name="total">Total</string>
     <string name="transaction_id">Transaction id</string>
     <string name="payment_receipt">Payment Receipt</string>
+    <string name="balance_enquiry_tag">Balance Enquiry</string>
+    <string name="details">Details</string>
 </resources>

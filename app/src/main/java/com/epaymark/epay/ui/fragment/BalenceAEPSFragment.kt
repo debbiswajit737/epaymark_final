@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.R
 import com.epaymark.epay.adapter.AdminBankListAdapter
 import com.epaymark.epay.data.model.AdminBankListModel
@@ -17,8 +18,11 @@ import com.epaymark.epay.data.model.UserDetails
 import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentBalenceEnquaryBinding
 import com.epaymark.epay.ui.base.BaseFragment
+import com.epaymark.epay.ui.receipt.BalenceEnquaryReceptDialogFragment
+import com.epaymark.epay.ui.receipt.DthReceptDialogFragment
 import com.epaymark.epay.utils.`interface`.CallBack
 import com.epaymark.epay.utils.`interface`.CallBack4
+import java.util.Objects
 
 class BalenceAEPSFragment : BaseFragment() {
     lateinit var binding: FragmentBalenceEnquaryBinding
@@ -54,7 +58,21 @@ class BalenceAEPSFragment : BaseFragment() {
                             val aadharAuthBottomSheetDialog =
                                 AadharAuthBottomSheetDialog(object : CallBack {
                                     override fun getValue(s: String) {
-
+                                        val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
+                                            override fun getValue(s: String) {
+                                                val dialogFragment = BalenceEnquaryReceptDialogFragment(object: CallBack {
+                                                    override fun getValue(s: String) {
+                                                        if (Objects.equals(s,"back")) {
+                                                            findNavController().popBackStack()
+                                                        }
+                                                    }
+                                                })
+                                                dialogFragment.show(childFragmentManager, dialogFragment.tag)
+                                            }
+                                        })
+                                        activity?.let {act->
+                                            tpinBottomSheetDialog.show(act.supportFragmentManager, tpinBottomSheetDialog.tag)
+                                        }
                                     }
                                 })
                             aadharAuthBottomSheetDialog.show(

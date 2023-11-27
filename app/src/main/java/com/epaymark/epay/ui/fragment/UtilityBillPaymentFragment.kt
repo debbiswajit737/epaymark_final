@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -15,7 +14,6 @@ import com.epaymark.epay.R
 import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentUtilityBillPaymentBinding
 import com.epaymark.epay.ui.base.BaseFragment
-import com.epaymark.epay.ui.receipt.DthReceptDialogFragment
 import com.epaymark.epay.ui.receipt.ElectricReceptDialogFragment
 import com.epaymark.epay.utils.`interface`.CallBack
 import java.util.Objects
