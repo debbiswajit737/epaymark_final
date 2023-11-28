@@ -66,8 +66,9 @@ class RegActivity : AppCompatActivity() {
 
 
         if (intent.getBooleanExtra("isAlreadyLogin",false)){
-            setSecondAnimation()
+
             binding.navHostFragment.visibility = View.VISIBLE
+           // setSecondAnimation()
         }
         if (intent.getBooleanExtra("isForgotPin",false)){
             setSecondAnimation()
