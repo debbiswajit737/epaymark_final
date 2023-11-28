@@ -69,30 +69,14 @@ class CashWithdrawFragment : BaseFragment() {
             btnSubmit.setOnClickListener{
                 activity?.let {act->
                     if (viewModel?.cashWithdrawValidation() == true){
-                        /*val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
+                        val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
                             override fun getValue(s: String) {
                                 if (s=="123456"){
                                     Toast.makeText(requireActivity(), "ok", Toast.LENGTH_SHORT).show()
                                 }
                             }
                         })
-                        tpinBottomSheetDialog.show(act.supportFragmentManager, tpinBottomSheetDialog.tag)
-                        */
-                        val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
-                            override fun getValue(s: String) {
-                                val dialogFragment = CashWithdrawReceptDialogFragment(object: CallBack {
-                                    override fun getValue(s: String) {
-                                        if (Objects.equals(s,"back")) {
-                                            findNavController().popBackStack()
-                                        }
-                                    }
-                                })
-                                dialogFragment.show(childFragmentManager, dialogFragment.tag)
-                            }
-                        })
-                        activity?.let {act->
-                            tpinBottomSheetDialog.show(act.supportFragmentManager, tpinBottomSheetDialog.tag)
-                        }
+
                     }
                 }
 
@@ -106,6 +90,25 @@ class CashWithdrawFragment : BaseFragment() {
                             val aadharAuthBottomSheetDialog =
                                 AadharAuthBottomSheetDialog(object : CallBack {
                                     override fun getValue(s: String) {
+
+
+                                        val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
+                                            override fun getValue(s: String) {
+                                                val dialogFragment = CashWithdrawReceptDialogFragment(object: CallBack {
+                                                    override fun getValue(s: String) {
+                                                        if (Objects.equals(s,"back")) {
+                                                            findNavController().popBackStack()
+                                                        }
+                                                    }
+                                                })
+                                                dialogFragment.show(childFragmentManager, dialogFragment.tag)
+                                            }
+                                        })
+                                        activity?.let {act->
+                                            tpinBottomSheetDialog.show(act.supportFragmentManager, tpinBottomSheetDialog.tag)
+                                        }
+
+
 
                                     }
                                 })

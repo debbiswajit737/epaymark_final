@@ -83,7 +83,7 @@
                         android:layout_marginStart="@dimen/_10sdp"
                         android:fontFamily="@font/open_sans_medium"
                         android:padding="@dimen/_5sdp"
-                        android:text="@string/cash_withdrawal_tag"
+                        android:text="@string/aadhar_pay_tag"
                         android:textColor="@color/logo_color"
                         app:layout_constraintEnd_toEndOf="@+id/imageView9"
                         app:layout_constraintStart_toStartOf="@+id/imageView9"

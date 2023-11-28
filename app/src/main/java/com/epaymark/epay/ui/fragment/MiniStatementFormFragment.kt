@@ -19,8 +19,11 @@ import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentBalenceEnquaryBinding
 import com.epaymark.epay.databinding.FragmentMinistatementFormBinding
 import com.epaymark.epay.ui.base.BaseFragment
+import com.epaymark.epay.ui.receipt.CashWithdrawReceptDialogFragment
+import com.epaymark.epay.ui.receipt.MiniStatementReceptDialogFragment
 import com.epaymark.epay.utils.`interface`.CallBack
 import com.epaymark.epay.utils.`interface`.CallBack4
+import java.util.Objects
 
 class MiniStatementFormFragment : BaseFragment() {
     lateinit var binding: FragmentMinistatementFormBinding
@@ -56,7 +59,22 @@ class MiniStatementFormFragment : BaseFragment() {
                             val aadharAuthBottomSheetDialog =
                                 AadharAuthBottomSheetDialog(object : CallBack {
                                     override fun getValue(s: String) {
-                                        findNavController().navigate(R.id.action_miniStatementFormFragment_to_miniStatementFragment)
+                                        //findNavController().navigate(R.id.action_miniStatementFormFragment_to_miniStatementFragment)
+                                        val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
+                                            override fun getValue(s: String) {
+                                                val dialogFragment = MiniStatementReceptDialogFragment(object: CallBack {
+                                                    override fun getValue(s: String) {
+                                                        if (Objects.equals(s,"back")) {
+                                                            findNavController().popBackStack()
+                                                        }
+                                                    }
+                                                })
+                                                dialogFragment.show(childFragmentManager, dialogFragment.tag)
+                                            }
+                                        })
+                                        activity?.let {act->
+                                            tpinBottomSheetDialog.show(act.supportFragmentManager, tpinBottomSheetDialog.tag)
+                                        }
                                     }
                                 })
                             aadharAuthBottomSheetDialog.show(
@@ -78,6 +96,7 @@ class MiniStatementFormFragment : BaseFragment() {
     fun initView() {
         binding.apply {
             binding.recycleViewBankList.apply {
+                bankList.clear()
                 bankList.add(AdminBankListModel(R.drawable.axix_bank_logo,"AXIX Bank",false))
                 bankList.add(AdminBankListModel(R.drawable.icici,"ICICI Bank",false))
                 adminBankListAdapter= AdminBankListAdapter(bankList, object : CallBack4 {

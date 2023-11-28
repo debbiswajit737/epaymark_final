@@ -11,6 +11,7 @@ import com.epaymark.epay.ui.activity.NetworkActivity
 import com.epaymark.epay.utils.common.MethodClass
 import com.epaymark.epay.utils.helpers.NoNetworkReceiver
 import com.epaymark.epay.utils.`interface`.NetworkConnectionListener
+import com.epaymark.epay.utils.interfaces.NetworkCallBack
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -19,13 +20,26 @@ open class BaseActivity: AppCompatActivity()/*, NetworkConnectionListener */{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        nonetwork = NoNetworkReceiver(object :NetworkConnectionListener{
+        /*nonetwork = NoNetworkReceiver(object :NetworkConnectionListener{
             override fun onNetworkConnection(connectionStatus: Boolean) {
-                if (!MethodClass.check_networkconnection(this@BaseActivity))
+                *//*if (!MethodClass.check_networkconnection(this@BaseActivity)){
                     startActivity(Intent(this@BaseActivity, NetworkActivity::class.java))
+                }*//*
+                if(connectionStatus){
+                    startActivity(Intent(this@BaseActivity, NetworkActivity::class.java))
+                }
 
             }
 
+        })*/
+
+        nonetwork = NoNetworkReceiver(object : NetworkCallBack {
+            override fun hasNetwork(hasnetwork: Boolean) {
+                if(!hasnetwork){
+                   startActivity(Intent(this@BaseActivity, NetworkActivity::class.java))
+
+                }
+            }
         })
      }
 

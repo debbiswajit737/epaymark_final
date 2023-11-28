@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -17,6 +18,7 @@ import com.epaymark.epay.databinding.ActivityNetworkBinding
 import com.epaymark.epay.utils.common.MethodClass
 import com.epaymark.epay.utils.helpers.NoNetworkReceiver
 import com.epaymark.epay.utils.`interface`.NetworkConnectionListener
+import com.epaymark.epay.utils.interfaces.NetworkCallBack
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,12 +30,21 @@ class NetworkActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityNetworkBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        nonetwork = NoNetworkReceiver(object : NetworkConnectionListener {
+        //binding = ActivityNetworkBinding.inflate(layoutInflater)
+        //setContentView(binding.root)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_network)
+        /*nonetwork = NoNetworkReceiver(object : NetworkConnectionListener {
             override fun onNetworkConnection(connectionStatus: Boolean) {
                 if (connectionStatus) {
                     finish()
+                }
+            }
+
+        })*/
+        nonetwork=NoNetworkReceiver(object : NetworkCallBack{
+            override fun hasNetwork(hasnetwork: Boolean) {
+                if(hasnetwork){
+                   finish()
                 }
             }
 

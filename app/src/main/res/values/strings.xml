@@ -229,4 +229,7 @@
     <string name="payment_receipt">Payment Receipt</string>
     <string name="balance_enquiry_tag">Balance Enquiry</string>
     <string name="details">Details</string>
+    <string name="cash_withdrawal_tag">Cash Withdrawal</string>
+    <string name="aadhar_pay_tag">Aadhar Pay</string>
+    <string name="mini_statement_tag">Mini Statement</string>
 </resources>

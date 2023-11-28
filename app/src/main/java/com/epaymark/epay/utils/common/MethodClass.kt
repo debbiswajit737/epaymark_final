@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.os.Build
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
@@ -70,6 +71,31 @@ object MethodClass {
 
         return isConnected
 
+    }
+
+    fun checkNetworkConnection(context: Context?): Boolean {
+        var isConnected = false
+
+        context?.let {
+            val connectivityManager =
+                it.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                val network = connectivityManager?.activeNetwork
+                val networkCapabilities = connectivityManager?.getNetworkCapabilities(network)
+
+                isConnected = networkCapabilities?.run {
+                    hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
+                            hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
+                            hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
+                } ?: false
+            } else {
+                val activeNetworkInfo = connectivityManager?.activeNetworkInfo
+                isConnected = activeNetworkInfo?.isConnectedOrConnecting == true
+            }
+        }
+
+        return isConnected
     }
     fun Context.userLogout() {
         SharedPreff(this).clearUserData()
