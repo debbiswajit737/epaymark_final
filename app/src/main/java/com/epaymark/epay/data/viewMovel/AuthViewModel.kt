@@ -85,7 +85,7 @@ class AuthViewModel @Inject constructor(private val repository: DeliveryOptionsR
     val pancardImage3 = MutableLiveData<String>()
     val cancleCheck = MutableLiveData<String>()
 
-
+    val cancleCheckBase64 = MutableLiveData<String>()
 
     // Error messages for fields
     val nameError = MutableLiveData<String>()

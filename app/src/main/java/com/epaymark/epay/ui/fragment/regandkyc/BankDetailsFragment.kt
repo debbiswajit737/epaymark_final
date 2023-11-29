@@ -16,12 +16,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.R
+import com.epaymark.epay.data.model.onBoading.BankDetails
 import com.epaymark.epay.data.viewMovel.AuthViewModel
 import com.epaymark.epay.databinding.BankDetailsFragmentBinding
 import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.ui.fragment.CameraDialog
 import com.epaymark.epay.utils.helpers.Constants
 import com.epaymark.epay.utils.`interface`.CallBack
+import com.google.gson.Gson
 
 class BankDetailsFragment : BaseFragment() {
     lateinit var binding: BankDetailsFragmentBinding
@@ -46,6 +48,19 @@ class BankDetailsFragment : BaseFragment() {
     private fun onViewClick() {
         binding.btnSaveContinue.setOnClickListener {
             if (authViewModel.bankDetailsValidation()) {
+                val bankDetails = BankDetails(
+                    beneficiaryName= authViewModel?.beneficiaryName?.value,
+                    accountNumber= authViewModel?.accountNumber?.value,
+                    confirmAccountNumber= authViewModel?.confirmAccountNumber?.value,
+                    ifscCode= authViewModel?.ifscCode?.value,
+                    employeeCode= authViewModel?.employeeCode?.value,
+                    cancleCheckBase64= authViewModel?.cancleCheckBase64?.value,
+                    bankName= authViewModel?.bankName?.value
+                )
+
+                val gson = Gson()
+                val json = gson.toJson(bankDetails)
+                json.toString().testDataFile()
                 findNavController().navigate(R.id.action_bankDetailsFragment_to_docuploadFragment)
              }
             }
@@ -84,9 +99,13 @@ class BankDetailsFragment : BaseFragment() {
     }
 
     fun setObserver() {
-        authViewModel?.filePath?.observe(viewLifecycleOwner){
-         authViewModel.pancardImage3.value=it.getFileNameFromUri()
-         //Log.d("TAG_file", "true setObserver: "+it.uriToBase64(binding.root.context.contentResolver))
+        authViewModel?.cancleCheck?.observe(viewLifecycleOwner){
+            it?.let {uti->
+                //authViewModel?.cancleCheck?.value = uti
+                authViewModel.cancleCheckBase64.value= Uri.parse(uti).uriToBase64(binding.root.context.contentResolver)
+                //authViewModel.pancardImage3.value=it.getFileNameFromUri()
+                //Log.d("TAG_file", "true setObserver: "+it.uriToBase64(binding.root.context.contentResolver))
+            }
         }
     }
 
