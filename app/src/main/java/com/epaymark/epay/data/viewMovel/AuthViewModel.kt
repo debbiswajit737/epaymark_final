@@ -70,6 +70,13 @@ class AuthViewModel @Inject constructor(private val repository: DeliveryOptionsR
     val llBpan = MutableLiveData<String>()
 
 
+    val genderReg = MutableLiveData<String>()
+
+    val llPanBase64 = MutableLiveData<String>()
+    val llCpanBase64 = MutableLiveData<String>()
+    val llBpanBase64 = MutableLiveData<String>()
+
+
     val pancardImage3 = MutableLiveData<String>()
     val cancleCheck = MutableLiveData<String>()
 
