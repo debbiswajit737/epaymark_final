@@ -2,7 +2,6 @@ package com.epaymark.epay.ui.fragment.regandkyc
 
 
 
-import android.app.DatePickerDialog
 import android.content.ComponentName
 import android.content.Intent
 import android.net.Uri
@@ -21,19 +20,16 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Spinner
-import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.window.layout.WindowMetricsCalculator
-import com.epaymark.big9.data.model.sendData.onBoading.regForm
+import com.epaymark.epay.data.model.onBoading.regForm
 import com.epaymark.epay.R
 import com.epaymark.epay.adapter.StateListAdapter
 import com.epaymark.epay.data.model.StateCityModel
@@ -50,7 +46,6 @@ import com.epaymark.epay.utils.`interface`.CallBack
 import com.epaymark.epay.utils.`interface`.PermissionsCallback
 import com.google.gson.Gson
 import java.net.URLEncoder
-import java.util.Calendar
 
 
 class RegFragment : BaseFragment() {

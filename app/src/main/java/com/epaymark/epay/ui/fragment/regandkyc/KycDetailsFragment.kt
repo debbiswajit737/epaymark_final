@@ -13,10 +13,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.R
+import com.epaymark.epay.data.model.onBoading.KycDetails
 import com.epaymark.epay.data.viewMovel.AuthViewModel
 import com.epaymark.epay.databinding.KycDetailsFragmentBinding
 import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.utils.`interface`.CallBack
+import com.google.gson.Gson
 
 class KycDetailsFragment : BaseFragment() {
     lateinit var binding: KycDetailsFragmentBinding
@@ -41,7 +43,28 @@ class KycDetailsFragment : BaseFragment() {
     private fun onViewClick() {
         binding.btnSaveContinue.setOnClickListener {
             if (authViewModel.kycValidation()) {
-                findNavController().navigate(R.id.action_kycDetailsFragment_to_bankDetailsFragment)
+                authViewModel.apply {
+                    val regModel = KycDetails(
+                        businessType=businessType.value,
+                        businessCategory=businessCategory.value,
+                        partnerNameName=partnerNameName.value,
+                        businessName=businessName.value,
+                        businessAddress=businessAddress.value,
+                        companyPanCardNumber=companyPanCardNumber.value,
+                        kycAadharNumber=kycAadharNumber.value,
+                        kycGSTNumber=kycGSTNumber.value,
+                        partnerPanCardNumber=partnerPanCardNumber.value
+                    )
+
+                    val gson = Gson()
+                    val json = gson.toJson(regModel)
+                    json.toString().testDataFile()
+                    findNavController().navigate(R.id.action_kycDetailsFragment_to_bankDetailsFragment)
+                }
+
+
+
+
             }
         }
 
