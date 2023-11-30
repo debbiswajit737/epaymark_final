@@ -124,7 +124,7 @@ class RegFragment : BaseFragment() {
 
                         val gson = Gson()
                         val json = gson.toJson(regModel)
-                        json.toString().testDataFile()
+                        //json.toString().testDataFile()
 
 
 
