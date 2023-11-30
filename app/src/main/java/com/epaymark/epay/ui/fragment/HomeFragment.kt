@@ -45,8 +45,10 @@ import com.epaymark.epay.utils.common.MethodClass.userLogout
 import com.epaymark.epay.utils.helpers.Constants
 import com.epaymark.epay.utils.helpers.Constants.isCashWithdraw
 import com.epaymark.epay.utils.helpers.Constants.isFromSearchPage
+import com.epaymark.epay.utils.helpers.Constants.isFromUtilityPage
 import com.epaymark.epay.utils.helpers.Constants.searchList
 import com.epaymark.epay.utils.helpers.Constants.searchValue
+import com.epaymark.epay.utils.helpers.Constants.utilityValue
 import com.epaymark.epay.utils.helpers.PermissionUtils
 import com.epaymark.epay.utils.`interface`.CallBack
 import com.epaymark.epay.utils.`interface`.PermissionsCallback
@@ -224,7 +226,9 @@ class HomeFragment : BaseFragment() {
 
                 }
             }
-            getString(R.string.view_more)->{}
+            getString(R.string.view_more)->{
+                findNavController().navigate(R.id.action_homeFragment2_to_viewMoreFragment)
+            }
 
             //recycleFinancial
 
@@ -1069,13 +1073,29 @@ class HomeFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
+        Log.d("TAG_searchValue", "$isFromSearchPage onResume: "+searchValue)
+        Log.d("TAG_searchValue", "onResume:utilityValue "+utilityValue)
         if(isFromSearchPage){
             if (searchValue.isNotEmpty()){
                 serviceNavigation(searchValue)
+
                 searchValue=""
+
             }
+
             isFromSearchPage=false
         }
+
+        if(isFromUtilityPage){
+            if (utilityValue.isNotEmpty()){
+                serviceNavigation(utilityValue)
+
+                utilityValue=""
+            }
+            isFromUtilityPage=false
+        }
+
+
         autoScrollHandler.startAutoScroll()
         activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner) {}
     }

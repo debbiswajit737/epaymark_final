@@ -232,4 +232,9 @@
     <string name="cash_withdrawal_tag">Cash Withdrawal</string>
     <string name="aadhar_pay_tag">Aadhar Pay</string>
     <string name="mini_statement_tag">Mini Statement</string>
+    <string name="recharge_amp_bill_pay"><![CDATA[Recharge & Bill pay]]></string>
+    <string name="education_fees">Education Fees</string>
+    <string name="broadband">Broadband</string>
+    <string name="gas_booking">gas_booking</string>
+    <string name="loan_payment">Loan Payment</string>
 </resources>

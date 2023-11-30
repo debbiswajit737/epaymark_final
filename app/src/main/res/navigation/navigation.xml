@@ -83,6 +83,9 @@
         <action
             android:id="@+id/action_homeFragment2_to_miniStatementFormFragment"
             app:destination="@id/miniStatementFormFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_viewMoreFragment"
+            app:destination="@id/viewMoreFragment" />
     </fragment>
     <fragment
         android:id="@+id/mobileRechargeFragment"
@@ -307,4 +310,8 @@
         android:name="com.epaymark.epay.ui.fragment.ForgotPasswordOtpFragment"
         android:label="ForgotPasswordOtpFragment" >
         </fragment>
+    <fragment
+        android:id="@+id/viewMoreFragment"
+        android:name="com.epaymark.epay.ui.fragment.ViewMoreFragment"
+        android:label="ViewMoreFragment" />
 </navigation>

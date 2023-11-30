@@ -21,6 +21,7 @@ import com.epaymark.epay.utils.helpers.Constants
 import com.epaymark.epay.utils.helpers.Constants.isFromSearchPage
 import com.epaymark.epay.utils.helpers.Constants.searchList
 import com.epaymark.epay.utils.helpers.Constants.searchValue
+import com.epaymark.epay.utils.helpers.Constants.utilityValue
 import com.epaymark.epay.utils.`interface`.CallBack
 
 class SearchFragment : BaseFragment() {
@@ -49,7 +50,7 @@ class SearchFragment : BaseFragment() {
             recycleViewSearchService?.apply {
                 searchAdapter= SearchAdapter(searchList,R.drawable.circle_shape2,object : CallBack {
                 override fun getValue(s: String) {
-                    searchValue=s
+                    utilityValue=s
                     findNavController().popBackStack()
                 }
 
