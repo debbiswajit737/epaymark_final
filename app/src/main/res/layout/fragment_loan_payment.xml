@@ -134,7 +134,7 @@
                             android:textSize="@dimen/text_size" />
 
                         <RelativeLayout
-                            android:id="@+id/rl_operator"
+                            android:id="@+id/rl_institute"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
@@ -144,7 +144,7 @@
                             android:orientation="horizontal">
 
                             <EditText
-                                android:id="@+id/et_operator"
+                                android:id="@+id/et_institute"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"

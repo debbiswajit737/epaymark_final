@@ -7,14 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.R
+
 import com.epaymark.epay.data.viewMovel.MyViewModel
-import com.epaymark.epay.databinding.FragmentDthRechargeBinding
 import com.epaymark.epay.databinding.FragmentEducationFeeBinding
+
+
 import com.epaymark.epay.ui.base.BaseFragment
+import com.epaymark.epay.ui.fragment.fragmentDialog.InstituteListDialogFragment
+import com.epaymark.epay.ui.fragment.fragmentDialog.OperatorListDialogFragment
 import com.epaymark.epay.ui.popup.CustomPopup.showBindingPopup
 import com.epaymark.epay.ui.receipt.DthReceptDialogFragment
 import com.epaymark.epay.ui.receipt.MobileReceptDialogFragment
@@ -47,7 +52,19 @@ class EducationFeesFragment : BaseFragment() {
         binding.apply {
 
             imgBack.back()
+            rlBank.setOnClickListener{
+                activity?.let {act->
+                    val bankListBottomSheetDialog = BankListBottomSheetDialog(object : CallBack {
+                        override fun getValue(s: String) {
 
+                        }
+                    })
+                    bankListBottomSheetDialog.show(
+                        act.supportFragmentManager,
+                        bankListBottomSheetDialog.tag
+                    )
+                }
+            }
             btnCustomerInfo.setOnClickListener{
                 context?.let {ctx->
                     viewModel?.userName?.value = "Sample user"
@@ -78,15 +95,33 @@ class EducationFeesFragment : BaseFragment() {
                     }
                 }
             }
-            etOperator.setOnClickListener {
+            /*etOperator.setOnClickListener {
                 rlOperator.performClick()
             }
-            rlOperator.setOnClickListener{
+            rl_instititute.setOnClickListener{
                 activity?.let {act->
                     isDthOperator=true
                     findNavController().navigate(R.id.action_DTHRechargeFragment_to_operatorFragment)
                 }
 
+            }
+
+            */
+            etInstitute.setOnClickListener {
+                rlInstitute.performClick()
+            }
+            rlInstitute.setOnClickListener{
+                activity?.let {act->
+                    val instituteListDialogFragment = InstituteListDialogFragment(object : CallBack {
+                        override fun getValue(s: String) {
+                            // Toast.makeText(requireActivity(), "$s", Toast.LENGTH_SHORT).show()
+                        }
+                    })
+                    instituteListDialogFragment.show(
+                        act.supportFragmentManager,
+                        instituteListDialogFragment.tag
+                    )
+                }
             }
         }
 

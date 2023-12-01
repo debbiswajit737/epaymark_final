@@ -87,12 +87,12 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/edit_text_title_margin_top"
                             android:fontFamily="@font/montserrat_medium_500"
-                            android:text="@string/subscriber_id"
+                            android:text="Institute Name"
                             android:textColor="@color/black"
                             android:textSize="@dimen/text_size" />
 
                         <EditText
-                            android:id="@+id/et_old_pin"
+                            android:id="@+id/et_institutetype"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_marginTop="@dimen/edit_text_margin_top"
@@ -130,12 +130,12 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/edit_text_title_margin_top"
                             android:fontFamily="@font/montserrat_medium_500"
-                            android:text="@string/select_operator"
+                            android:text="@string/institute_type"
                             android:textColor="@color/black"
                             android:textSize="@dimen/text_size" />
 
                         <RelativeLayout
-                            android:id="@+id/rl_operator"
+                            android:id="@+id/rl_institute"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
@@ -145,8 +145,8 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/et_operator"
-                                android:layout_width="wrap_content"
+                                android:id="@+id/et_institute"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
                                 android:layout_centerVertical="true"
@@ -159,7 +159,7 @@
                                 android:background="@null"
                                 android:drawableTint="@color/logo_color"
                                 android:drawablePadding="@dimen/_5sdp"
-                                android:hint="@string/select_operator"
+                                android:hint="@string/institute_type"
                                 android:inputType="numberDecimal"
                                 android:longClickable="false"
                                 android:textColor="@color/black"
@@ -169,7 +169,7 @@
                             <TextView
                                 android:id="@+id/btn_customer_info"
                                 android:layout_width="wrap_content"
-
+                                android:visibility="gone"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
                                 android:layout_centerVertical="true"
@@ -181,7 +181,49 @@
                                 android:text="@string/customer_info" />
                         </RelativeLayout>
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/edit_text_title_margin_top"
+                            android:fontFamily="@font/montserrat_medium_500"
+                            android:text="Select Bank"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size" />
 
+                        <RelativeLayout
+                            android:id="@+id/rl_bank"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginTop="@dimen/edit_text_margin_top"
+                            android:background="@drawable/field_bg"
+
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/et_bank"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:drawableStart="@drawable/operator_select"
+                                android:text="@{viewModel.dthOperator}"
+                                android:layout_marginBottom="@dimen/_5sdp"
+                                android:background="@null"
+                                android:drawableTint="@color/logo_color"
+                                android:drawablePadding="@dimen/_5sdp"
+                                android:hint="Select Bank"
+                                android:inputType="numberDecimal"
+                                android:longClickable="false"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/gray"
+                                android:textSize="@dimen/edit_text_size" />
+
+
+                        </RelativeLayout>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

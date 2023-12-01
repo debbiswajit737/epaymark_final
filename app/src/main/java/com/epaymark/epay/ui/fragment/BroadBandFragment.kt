@@ -69,7 +69,7 @@ class BroadBandFragment : BaseFragment() {
                 if (viewModel?.operatorValidation() == true){
 
 
-                    val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
+                  val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
                                 override fun getValue(s: String) {
                                     val successPopupFragment = SuccessPopupFragment(object :
                                         CallBack4 {
