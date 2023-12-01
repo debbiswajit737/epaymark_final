@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -21,8 +23,10 @@ import com.epaymark.epay.databinding.FragmentUserDetailsBinding
 import com.epaymark.epay.databinding.FragmentViewMoreBinding
 import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.utils.*
+import com.epaymark.epay.utils.common.MethodClass.userLogout
 import com.epaymark.epay.utils.helpers.Constants
 import com.epaymark.epay.utils.helpers.Constants.isFromUtilityPage
+import com.epaymark.epay.utils.helpers.Constants.searchValue
 import com.epaymark.epay.utils.`interface`.CallBack
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
@@ -67,6 +71,7 @@ class ViewMoreFragment : BaseFragment() {
 
 
     fun initView() {
+
             binding.recycleUtility.apply {
             utilityBillList.clear()
             utilityBillList.add(ListIcon(getString(R.string.education_fees), R.drawable.education_fee))
@@ -77,8 +82,11 @@ class ViewMoreFragment : BaseFragment() {
             //utilityBillList.add(ListIcon(getString(R.string.view_more), R.drawable.view_more))
             adapter= ViewMoreAdapter(utilityBillList,R.drawable.circle_shape2, object : CallBack {
                 override fun getValue(s: String) {
-                    Constants.searchValue =s
-                    findNavController().popBackStack()
+                    searchValue =s
+                    viewModel.from_page_message.value="view_more"
+                    serviceNavigation(s)
+                    //findNavController().popBackStack()
+
                     /*when(s){
 
                         getString(R.string.electric)->{
@@ -110,20 +118,29 @@ class ViewMoreFragment : BaseFragment() {
 
     }
 
-    @Throws(WriterException::class)
-    fun encodeAsBitmap(str: String): Bitmap? {
-        val writer = QRCodeWriter()
-        val bitMatrix: BitMatrix = writer.encode(str, BarcodeFormat.QR_CODE, 400, 400)
-        val w: Int = bitMatrix.getWidth()
-        val h: Int = bitMatrix.getHeight()
-        val pixels = IntArray(w * h)
-        for (y in 0 until h) {
-            for (x in 0 until w) {
-                pixels[y * w + x] = if (bitMatrix.get(x, y)) Color.BLACK else Color.WHITE
+    private fun serviceNavigation(s: String) {
+        when(s){
+            //findNavController().navigate(R.id.action_viewMoreFragment_to_formFragment)
+            getString(R.string.education_fees)->{
+                findNavController().navigate(R.id.action_viewMoreFragment_to_educationFeesFragment)
             }
+
+            getString(R.string.broadband)->{
+                findNavController().navigate(R.id.action_viewMoreFragment_to_broadBandFragment)
+            }
+
+            getString(R.string.gas_booking)->{
+                findNavController().navigate(R.id.action_viewMoreFragment_to_gasBookingFragment)
+            }
+
+            getString(R.string.loan_payment)->{
+                findNavController().navigate(R.id.action_viewMoreFragment_to_loanPaymentFragment)
+            }
+
+
+
         }
-        val bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
-        bitmap.setPixels(pixels, 0, w, 0, 0, w, h)
-        return bitmap
+
+
     }
 }

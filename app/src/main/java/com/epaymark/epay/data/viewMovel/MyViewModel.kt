@@ -28,6 +28,7 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
 
 
 
+    val from_page_message = MutableLiveData<String>()
     val popup_message = MutableLiveData<String>("Success!")
     val receiveStatus = MutableLiveData<String>("")
     val receiveReceptMessahe = MutableLiveData<String>("")
@@ -72,6 +73,7 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val subId = MutableLiveData<String>()
     val dthOperator = MutableLiveData<String>()
     val selectrdOperator = MutableLiveData<String>()
+    val selectrdBroadbandOperator = MutableLiveData<String>()
     val dthAmt = MutableLiveData<String>()
 
     val consumerId = MutableLiveData<String>()
@@ -121,6 +123,14 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val balence_enquary_aadhar_number = MutableLiveData<String>()
     val balence_enquary_customer_number = MutableLiveData<String>()
 
+    val selectBank = MutableLiveData<String>()
+    val loanAccountNumber = MutableLiveData<String>()
+
+    val selectOperator = MutableLiveData<String>()
+    val selectImage = MutableLiveData<Int>()
+
+    val operatorSubId = MutableLiveData<String>()
+    val operatordthAmt = MutableLiveData<String>()
 
 
 
@@ -179,6 +189,17 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val balence_enquary_aadhar_numberError = MutableLiveData<String>()
     val balence_enquary_customer_numberError = MutableLiveData<String>()
 
+    val selectBankError = MutableLiveData<String>()
+    val loanAccountNumberError = MutableLiveData<String>()
+    val loanAmountError = MutableLiveData<String>()
+    val loanAmount = MutableLiveData<String>()
+
+
+    val selectOperatorError = MutableLiveData<String>()
+    val operatorSubIdError = MutableLiveData<String>()
+    val operatordthAmtError = MutableLiveData<String>()
+
+
 
     val mobileErrorVisible = MutableLiveData<Boolean>()
     val operatorErrorVisible = MutableLiveData<Boolean>()
@@ -236,6 +257,14 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
 
     val balence_enquary_aadhar_numberErrorVisible = MutableLiveData<Boolean>()
     val balence_enquary_customer_numberErrorVisible = MutableLiveData<Boolean>()
+
+    val selectBankErrorVisible = MutableLiveData<Boolean>()
+    val loanAccountNumberErrorVisible = MutableLiveData<Boolean>()
+    val loanAmountErrorVisible = MutableLiveData<Boolean>()
+
+    val selectOperatorErrorVisible = MutableLiveData<Boolean>()
+    val operatorSubIdErrorVisible = MutableLiveData<Boolean>()
+    val operatordthAmtErrorVisible = MutableLiveData<Boolean>()
 
 
 
@@ -992,7 +1021,78 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
          return isValid
     }
 
+    fun loanValidation(): Boolean {
+        invisibleErrorTexts()
 
+        var isValid = true
+        if (selectBank.value?.trim().isNullOrBlank()) {
+            selectBankError.value = "Please select bank"
+            selectBankErrorVisible.value = true
+            isValid = false
+        } else {
+            selectBankError.value = ""
+            selectBankErrorVisible.value = false
+        }
+
+        if (loanAccountNumber.value?.trim().isNullOrBlank()) {
+            loanAccountNumberError.value = "Please enter loan account number"
+            loanAccountNumberErrorVisible.value = true
+            isValid = false
+        } else {
+            loanAccountNumberError.value = ""
+            loanAccountNumberErrorVisible.value = false
+        }
+
+        if (loanAmount.value?.trim().isNullOrBlank()) {
+            loanAmountError.value = "Please enter a loan amount."
+            loanAmountErrorVisible.value = true
+            isValid = false
+        } else {
+            loanAmountError.value = ""
+            loanAmountErrorVisible.value = false
+        }
+
+
+
+        return isValid
+    }
+
+    fun operatorValidation(): Boolean {
+
+        invisibleErrorTexts()
+
+        var isValid = true
+        if (operatorSubId.value?.trim().isNullOrBlank()) {
+            operatorSubIdError.value = "This field is required"
+            operatorSubIdErrorVisible.value = true
+            isValid = false
+        } else {
+            operatorSubIdError.value = ""
+            operatorSubIdErrorVisible.value = false
+        }
+
+        if (selectOperator.value?.trim().isNullOrBlank()) {
+            selectOperatorError.value = "Please select an operator"
+            selectOperatorErrorVisible.value = true
+            isValid = false
+        } else {
+            selectOperatorError.value = ""
+            selectOperatorErrorVisible.value = false
+        }
+
+        if (operatordthAmt.value?.trim().isNullOrBlank()) {
+            operatordthAmtError.value = "Please enter a valid amount."
+            operatordthAmtErrorVisible.value = true
+            isValid = false
+        } else {
+            operatordthAmtError.value = ""
+            operatordthAmtErrorVisible.value = false
+        }
+
+
+
+        return isValid
+    }
 
     fun invisibleErrorTexts() {
         mobileErrorVisible.value = false

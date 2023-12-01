@@ -91,8 +91,29 @@ class HomeFragment : BaseFragment() {
         val view = binding.root
         init()
         viewOnClick()
-
+        observer()
         return view
+    }
+
+    private fun observer() {
+        viewModel.from_page_message.observe(viewLifecycleOwner) {
+            if(isFromSearchPage){
+                if (searchValue.isNotEmpty()){
+                    serviceNavigation(searchValue)
+                    searchValue=""
+                }
+
+                isFromSearchPage=false
+            }
+
+            /*if(isFromUtilityPage){
+                if (utilityValue.isNotEmpty()){
+                    serviceNavigation(utilityValue)
+                    utilityValue=""
+                }
+                isFromUtilityPage=false
+            }*/
+        }
     }
 
     private fun getDeviceWIDTHandHeight() {
@@ -969,6 +990,7 @@ class HomeFragment : BaseFragment() {
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     fun init() {
+        viewModel.from_page_message.value="home"
         checkPermission()
         //sharedPreff.setTestData("Abcd")
         //Toast.makeText(requireActivity(), ""+sharedPreff.getTestData(), Toast.LENGTH_SHORT).show()
@@ -1075,25 +1097,7 @@ class HomeFragment : BaseFragment() {
         super.onResume()
         Log.d("TAG_searchValue", "$isFromSearchPage onResume: "+searchValue)
         Log.d("TAG_searchValue", "onResume:utilityValue "+utilityValue)
-        if(isFromSearchPage){
-            if (searchValue.isNotEmpty()){
-                serviceNavigation(searchValue)
 
-                searchValue=""
-
-            }
-
-            isFromSearchPage=false
-        }
-
-        if(isFromUtilityPage){
-            if (utilityValue.isNotEmpty()){
-                serviceNavigation(utilityValue)
-
-                utilityValue=""
-            }
-            isFromUtilityPage=false
-        }
 
 
         autoScrollHandler.startAutoScroll()

@@ -9,11 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.R
 import com.epaymark.epay.adapter.ReportAdapter
 import com.epaymark.epay.adapter.SearchAdapter
 import com.epaymark.epay.data.model.ListIcon
+import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentSearchBinding
 import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.utils.common.MethodClass.userLogout
@@ -27,6 +29,7 @@ import com.epaymark.epay.utils.`interface`.CallBack
 class SearchFragment : BaseFragment() {
     lateinit var binding: FragmentSearchBinding
     var searchAdapter:SearchAdapter?=null
+    private val viewModel: MyViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,6 +40,7 @@ class SearchFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
+
         isFromSearchPage=true
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,6 +55,7 @@ class SearchFragment : BaseFragment() {
                 searchAdapter= SearchAdapter(searchList,R.drawable.circle_shape2,object : CallBack {
                 override fun getValue(s: String) {
                     utilityValue=s
+                    viewModel.from_page_message.value="search"
                     findNavController().popBackStack()
                 }
 
