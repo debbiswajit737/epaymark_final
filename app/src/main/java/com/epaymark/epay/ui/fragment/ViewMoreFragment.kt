@@ -22,6 +22,7 @@ import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentUserDetailsBinding
 import com.epaymark.epay.databinding.FragmentViewMoreBinding
 import com.epaymark.epay.ui.base.BaseFragment
+import com.epaymark.epay.ui.fragment.fragmentDialog.GasBillerListDialog
 import com.epaymark.epay.utils.*
 import com.epaymark.epay.utils.common.MethodClass.userLogout
 import com.epaymark.epay.utils.helpers.Constants
@@ -130,7 +131,18 @@ class ViewMoreFragment : BaseFragment() {
             }
 
             getString(R.string.gas_booking)->{
-                findNavController().navigate(R.id.action_viewMoreFragment_to_gasBookingFragment)
+                activity?.let {act->
+                    val gasBillerListDialog = GasBillerListDialog(object : CallBack {
+                        override fun getValue(s: String) {
+                            viewModel?.gasBiller?.value=s
+                            findNavController().navigate(R.id.action_viewMoreFragment_to_gasBookingFragment)
+                        }
+
+                    })
+                    gasBillerListDialog.show(act.supportFragmentManager, gasBillerListDialog.tag)
+
+                }
+
             }
 
             getString(R.string.loan_payment)->{

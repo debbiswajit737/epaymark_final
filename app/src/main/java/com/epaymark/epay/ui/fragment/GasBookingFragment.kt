@@ -15,6 +15,7 @@ import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentDthRechargeBinding
 import com.epaymark.epay.databinding.FragmentGasBookingBinding
 import com.epaymark.epay.ui.base.BaseFragment
+import com.epaymark.epay.ui.fragment.fragmentDialog.GasBillerListDialog
 import com.epaymark.epay.ui.popup.CustomPopup.showBindingPopup
 import com.epaymark.epay.ui.receipt.DthReceptDialogFragment
 import com.epaymark.epay.ui.receipt.MobileReceptDialogFragment
@@ -60,7 +61,7 @@ class GasBookingFragment : BaseFragment() {
             }
 
             btnSubmit.setOnClickListener{
-                if (viewModel?.dthValidation() == true){
+                /*if (viewModel?.dthValidation() == true){
                     val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
                         override fun getValue(s: String) {
                             val dialogFragment = DthReceptDialogFragment(object: CallBack {
@@ -70,21 +71,27 @@ class GasBookingFragment : BaseFragment() {
                                     }
                                 }
                             })
-                            dialogFragment.show(childFragmentManager, dialogFragment.tag)
+                          //  dialogFragment.show(childFragmentManager, dialogFragment.tag)
                         }
                     })
                     activity?.let {act->
                         tpinBottomSheetDialog.show(act.supportFragmentManager, tpinBottomSheetDialog.tag)
                     }
-                }
+                }*/
             }
             etOperator.setOnClickListener {
                 rlOperator.performClick()
             }
             rlOperator.setOnClickListener{
                 activity?.let {act->
-                    isDthOperator=true
-                    findNavController().navigate(R.id.action_DTHRechargeFragment_to_operatorFragment)
+                    val gasBillerListDialog = GasBillerListDialog(object : CallBack {
+                        override fun getValue(s: String) {
+                            viewModel?.gasBiller?.value=s
+                        }
+
+                    })
+                    gasBillerListDialog.show(act.supportFragmentManager, gasBillerListDialog.tag)
+
                 }
 
             }

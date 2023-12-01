@@ -63,10 +63,8 @@ class InstituteListDialogFragment(val callBack: CallBack) : BaseCenterSheetFragm
             operatorListModel.add(OperatorListModel(R.drawable.institute_type,"Vocational/Trade Schools"))
             adapter= OperatorListAdapter(operatorListModel, object : CallBack4 {
                 override fun getValue4(s1: String, s2: String, s3: String, s4: String) {
-                    viewModel?.selectOperator?.value=s1
-                    try {
-                        viewModel?.selectImage?.value=s2.toInt()
-                    }catch (e:Exception){}
+                    viewModel?.selectInstitute?.value=s1
+
 
 
                     dismiss()

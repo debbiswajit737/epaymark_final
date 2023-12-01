@@ -97,10 +97,10 @@
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_marginTop="@dimen/edit_text_margin_top"
                             android:background="@drawable/field_bg"
-                            android:hint="@string/subscriber_id"
-                            android:text="@={viewModel.subId}"
-                            app:requestFocus="@{viewModel.subIdErrorVisible}"
-                            android:inputType="number"
+                            android:hint="Institute Name"
+                            android:text="@={viewModel.instituteName}"
+                            app:requestFocus="@{viewModel.instituteNameErrorVisible}"
+                            android:inputType="text"
                             android:longClickable="false"
                             android:maxLength="10"
                             android:padding="@dimen/_5sdp"
@@ -114,11 +114,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/montserrat_regular_400"
+                            android:text="@{viewModel.instituteNameError}"
                             android:textColor="@color/pink2"
                             android:textSize="@dimen/_9ssp"
-                            android:text="@{viewModel.subIdError}"
-                            app:hideErrorTextView="@{viewModel.subIdErrorVisible}"
-                            />
+                            app:hideErrorTextView="@{viewModel.instituteNameErrorVisible}" />
                         <!--mobile End-->
 
 
@@ -154,7 +153,7 @@
                                 android:layout_marginTop="@dimen/_5sdp"
                                 android:layout_marginEnd="@dimen/_5sdp"
                                 android:drawableStart="@drawable/operator_select"
-                                android:text="@{viewModel.dthOperator}"
+                                android:text="@{viewModel.selectInstitute}"
                                 android:layout_marginBottom="@dimen/_5sdp"
                                 android:background="@null"
                                 android:drawableTint="@color/logo_color"
@@ -180,7 +179,14 @@
                                 android:paddingVertical="@dimen/_2sdp"
                                 android:text="@string/customer_info" />
                         </RelativeLayout>
-
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_regular_400"
+                            android:text="@{viewModel.selectInstituteError}"
+                            android:textColor="@color/pink2"
+                            android:textSize="@dimen/_9ssp"
+                            app:hideErrorTextView="@{viewModel.selectInstituteErrorVisible}" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -210,7 +216,7 @@
                                 android:layout_marginTop="@dimen/_5sdp"
                                 android:layout_marginEnd="@dimen/_5sdp"
                                 android:drawableStart="@drawable/operator_select"
-                                android:text="@{viewModel.dthOperator}"
+                                android:text="@{viewModel.education_bank_name}"
                                 android:layout_marginBottom="@dimen/_5sdp"
                                 android:background="@null"
                                 android:drawableTint="@color/logo_color"
@@ -228,8 +234,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/montserrat_regular_400"
-                            android:text="@{viewModel.dthError}"
-                            app:hideErrorTextView="@{viewModel.dthErrorErrorVisible}"
+                            android:text="@{viewModel.education_bank_nameError}"
+                            app:hideErrorTextView="@{viewModel.education_bank_nameErrorVisible}"
                             android:textColor="@color/pink2"
                             android:textSize="@dimen/_9ssp"
 
@@ -253,8 +259,8 @@
                             android:layout_marginTop="@dimen/edit_text_margin_top"
                             android:background="@drawable/field_bg"
                             android:hint="@string/enter_amount"
-                            android:text="@={viewModel.dthAmt}"
-                            app:requestFocus="@{viewModel.dthAmtErrorVisible}"
+                            android:text="@={viewModel.educationAmt}"
+                            app:requestFocus="@{viewModel.educationAmtErrorVisible}"
                             android:inputType="numberDecimal"
                             android:longClickable="false"
                             android:maxLength="10"
@@ -271,8 +277,8 @@
                             android:fontFamily="@font/montserrat_regular_400"
                             android:textColor="@color/pink2"
                             android:textSize="@dimen/_9ssp"
-                            android:text="@{viewModel.dthAmtError}"
-                            app:hideErrorTextView="@{viewModel.dthAmtErrorVisible}"
+                            android:text="@{viewModel.educationAmtError}"
+                            app:hideErrorTextView="@{viewModel.educationAmtErrorVisible}"
                             />
                     </LinearLayout>
 

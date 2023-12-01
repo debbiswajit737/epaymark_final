@@ -87,7 +87,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/edit_text_title_margin_top"
                             android:fontFamily="@font/montserrat_medium_500"
-                            android:text="@string/subscriber_id"
+                            android:text="consumer no./mobile/LPG ID"
                             android:textColor="@color/black"
                             android:textSize="@dimen/text_size" />
 
@@ -97,7 +97,7 @@
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_marginTop="@dimen/edit_text_margin_top"
                             android:background="@drawable/field_bg"
-                            android:hint="@string/subscriber_id"
+                            android:hint="consumer no./mobile/LPG ID"
                             android:text="@={viewModel.subId}"
                             app:requestFocus="@{viewModel.subIdErrorVisible}"
                             android:inputType="number"
@@ -146,21 +146,22 @@
 
                             <TextView
                                 android:id="@+id/et_operator"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:paddingEnd="@dimen/_5sdp"
                                 android:layout_alignParentStart="true"
                                 android:layout_centerVertical="true"
                                 android:layout_marginStart="@dimen/_5sdp"
                                 android:layout_marginTop="@dimen/_5sdp"
                                 android:layout_marginEnd="@dimen/_5sdp"
                                 android:drawableStart="@drawable/operator_select"
-                                android:text="@{viewModel.dthOperator}"
+                                android:text="@{viewModel.gasBiller}"
                                 android:layout_marginBottom="@dimen/_5sdp"
                                 android:background="@null"
                                 android:drawableTint="@color/logo_color"
                                 android:drawablePadding="@dimen/_5sdp"
                                 android:hint="@string/select_operator"
-                                android:inputType="numberDecimal"
+                                android:inputType="text"
                                 android:longClickable="false"
                                 android:textColor="@color/black"
                                 android:textColorHint="@color/gray"
@@ -169,7 +170,7 @@
                             <TextView
                                 android:id="@+id/btn_customer_info"
                                 android:layout_width="wrap_content"
-
+                                android:visibility="gone"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
                                 android:layout_centerVertical="true"

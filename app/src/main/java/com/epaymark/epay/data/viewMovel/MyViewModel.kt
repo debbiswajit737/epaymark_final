@@ -1,8 +1,6 @@
 package com.epaymark.epay.data.viewMovel
 
 import android.net.Uri
-import android.util.Log
-import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,6 +26,7 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
 
 
 
+
     val from_page_message = MutableLiveData<String>()
     val popup_message = MutableLiveData<String>("Success!")
     val receiveStatus = MutableLiveData<String>("")
@@ -48,6 +47,7 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
 
     val tPin = MutableLiveData<String>("")
     val state = MutableLiveData<String>()
+    val gasBiller = MutableLiveData<String>()
     val billerAddress = MutableLiveData<String>()
 
     val userName = MutableLiveData<String>()
@@ -132,6 +132,13 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val operatorSubId = MutableLiveData<String>()
     val operatordthAmt = MutableLiveData<String>()
 
+    val instituteName = MutableLiveData<String>()
+    val selectInstitute = MutableLiveData<String>()
+    val educationAmt = MutableLiveData<String>()
+    val loanAmount = MutableLiveData<String>()
+    val education_bank_name = MutableLiveData<String>()
+    val education_bank_ifsc = MutableLiveData<String>()
+
 
 
     val mobileError = MutableLiveData<String>()
@@ -192,12 +199,17 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val selectBankError = MutableLiveData<String>()
     val loanAccountNumberError = MutableLiveData<String>()
     val loanAmountError = MutableLiveData<String>()
-    val loanAmount = MutableLiveData<String>()
+
 
 
     val selectOperatorError = MutableLiveData<String>()
     val operatorSubIdError = MutableLiveData<String>()
     val operatordthAmtError = MutableLiveData<String>()
+
+    val instituteNameError = MutableLiveData<String>()
+    val selectInstituteError = MutableLiveData<String>()
+    val education_bank_nameError = MutableLiveData<String>()
+    val educationAmtError = MutableLiveData<String>()
 
 
 
@@ -265,6 +277,11 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val selectOperatorErrorVisible = MutableLiveData<Boolean>()
     val operatorSubIdErrorVisible = MutableLiveData<Boolean>()
     val operatordthAmtErrorVisible = MutableLiveData<Boolean>()
+
+    val instituteNameErrorVisible = MutableLiveData<Boolean>()
+    val education_bank_nameErrorVisible = MutableLiveData<Boolean>()
+    val selectInstituteErrorVisible = MutableLiveData<Boolean>()
+    val educationAmtErrorVisible = MutableLiveData<Boolean>()
 
 
 
@@ -1093,6 +1110,49 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
 
         return isValid
     }
+
+    fun educationValidation(): Boolean {
+
+        invisibleErrorTexts()
+
+        var isValid = true
+        if (instituteName.value?.trim().isNullOrBlank()) {
+            instituteNameError.value = "This field is required"
+            instituteNameErrorVisible.value = true
+            isValid = false
+        } else {
+            instituteNameError.value = ""
+            instituteNameErrorVisible.value = false
+        }
+
+        if (selectInstitute.value?.trim().isNullOrBlank()) {
+            selectInstituteError.value = "Please select institute type"
+            selectInstituteErrorVisible.value = true
+            isValid = false
+        } else {
+            selectInstituteError.value = ""
+            selectInstituteErrorVisible.value = false
+        }
+
+        if (education_bank_name.value?.trim().isNullOrBlank()) {
+            education_bank_nameError.value = "Select Bank"
+            education_bank_nameErrorVisible.value = true
+            isValid = false
+        } else {
+            education_bank_nameError.value = ""
+            education_bank_nameErrorVisible.value = false
+        }
+        if (educationAmt.value?.trim().isNullOrBlank()) {
+            educationAmtError.value = "Enter Amount"
+            educationAmtErrorVisible.value = true
+            isValid = false
+        } else {
+            educationAmtError.value = ""
+            educationAmtErrorVisible.value = false
+        }
+        return isValid
+    }
+
 
     fun invisibleErrorTexts() {
         mobileErrorVisible.value = false

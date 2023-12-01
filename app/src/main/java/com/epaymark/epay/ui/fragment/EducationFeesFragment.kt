@@ -18,10 +18,12 @@ import com.epaymark.epay.databinding.FragmentEducationFeeBinding
 
 
 import com.epaymark.epay.ui.base.BaseFragment
+import com.epaymark.epay.ui.fragment.fragmentDialog.BankListWithAddBankBottomSheetDialog
 import com.epaymark.epay.ui.fragment.fragmentDialog.InstituteListDialogFragment
 import com.epaymark.epay.ui.fragment.fragmentDialog.OperatorListDialogFragment
 import com.epaymark.epay.ui.popup.CustomPopup.showBindingPopup
 import com.epaymark.epay.ui.receipt.DthReceptDialogFragment
+import com.epaymark.epay.ui.receipt.InstituteReceptDialogFragment
 import com.epaymark.epay.ui.receipt.MobileReceptDialogFragment
 import com.epaymark.epay.utils.helpers.Constants
 import com.epaymark.epay.utils.helpers.Constants.isDthOperator
@@ -52,16 +54,19 @@ class EducationFeesFragment : BaseFragment() {
         binding.apply {
 
             imgBack.back()
+            etBank.setOnClickListener {
+                rlBank.performClick()
+            }
             rlBank.setOnClickListener{
                 activity?.let {act->
-                    val bankListBottomSheetDialog = BankListBottomSheetDialog(object : CallBack {
+                    val bankListWithAddBankBottomSheetDialog = BankListWithAddBankBottomSheetDialog(object : CallBack {
                         override fun getValue(s: String) {
 
                         }
                     })
-                    bankListBottomSheetDialog.show(
+                    bankListWithAddBankBottomSheetDialog.show(
                         act.supportFragmentManager,
-                        bankListBottomSheetDialog.tag
+                        bankListWithAddBankBottomSheetDialog.tag
                     )
                 }
             }
@@ -77,10 +82,10 @@ class EducationFeesFragment : BaseFragment() {
             }
 
             btnSubmit.setOnClickListener{
-                if (viewModel?.dthValidation() == true){
+                if (viewModel?.educationValidation() == true){
                     val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
                         override fun getValue(s: String) {
-                            val dialogFragment = DthReceptDialogFragment(object: CallBack {
+                            val dialogFragment = InstituteReceptDialogFragment(object: CallBack {
                                 override fun getValue(s: String) {
                                     if (Objects.equals(s,"back")) {
                                         findNavController().popBackStack()
