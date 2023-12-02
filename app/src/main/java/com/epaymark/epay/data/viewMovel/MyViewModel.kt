@@ -47,7 +47,7 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
 
     val tPin = MutableLiveData<String>("")
     val state = MutableLiveData<String>()
-    val gasBiller = MutableLiveData<String>()
+
     val billerAddress = MutableLiveData<String>()
 
     val userName = MutableLiveData<String>()
@@ -140,6 +140,11 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val education_bank_ifsc = MutableLiveData<String>()
 
 
+    val gasbookingNumber = MutableLiveData<String>()
+    val gasBiller = MutableLiveData<String>()
+    val gasBookingAmt = MutableLiveData<String>()
+
+
 
     val mobileError = MutableLiveData<String>()
     val operatorError = MutableLiveData<String>()
@@ -213,6 +218,11 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
 
 
 
+    val gasbookingNumberError = MutableLiveData<String>()
+    val gasBillerError = MutableLiveData<String>()
+    val gasBookingAmtError = MutableLiveData<String>()
+
+
     val mobileErrorVisible = MutableLiveData<Boolean>()
     val operatorErrorVisible = MutableLiveData<Boolean>()
     val amtErrorErrorVisible = MutableLiveData<Boolean>()
@@ -284,6 +294,9 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
     val educationAmtErrorVisible = MutableLiveData<Boolean>()
 
 
+    val gasbookingNumberErrorVisible = MutableLiveData<Boolean>()
+    val gasBillerErrorVisible = MutableLiveData<Boolean>()
+    val gasBookingAmtErrorVisible = MutableLiveData<Boolean>()
 
     fun regValidation(): Boolean {
 
@@ -1152,6 +1165,43 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
         }
         return isValid
     }
+
+    fun bookACylinderValidation(): Boolean {
+
+        invisibleErrorTexts()
+
+        var isValid = true
+        if (gasbookingNumber.value?.trim().isNullOrBlank()) {
+            gasbookingNumberError.value = "This field is required"
+            gasbookingNumberErrorVisible.value = true
+            isValid = false
+        } else {
+            gasbookingNumberError.value = ""
+            gasbookingNumberErrorVisible.value = false
+        }
+
+        if (gasBiller.value?.trim().isNullOrBlank()) {
+            gasBillerError.value = "Please select institute type"
+            gasBillerErrorVisible.value = true
+            isValid = false
+        } else {
+            gasBillerError.value = ""
+            gasBillerErrorVisible.value = false
+        }
+
+
+        if (gasBookingAmt.value?.trim().isNullOrBlank()) {
+            gasBookingAmtError.value = "Enter Amount"
+            gasBookingAmtErrorVisible.value = true
+            isValid = false
+        } else {
+            gasBookingAmtError.value = ""
+            gasBookingAmtErrorVisible.value = false
+        }
+        return isValid
+    }
+
+
 
 
     fun invisibleErrorTexts() {

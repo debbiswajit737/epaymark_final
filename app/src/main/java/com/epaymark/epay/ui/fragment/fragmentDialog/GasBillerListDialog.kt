@@ -20,7 +20,7 @@ class GasBillerListDialog(val callBack: CallBack) :BaseBottomSheetFragment() {
     lateinit var binding: GasBillerBottomsheetLayoutBinding
     private val viewModel: MyViewModel by activityViewModels()
 
-    var bottomSheetGasBillerListModel = ArrayList<BottomSheetGasBillerListModel>()
+    private var bottomSheetGasBillerListModel = ArrayList<BottomSheetGasBillerListModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,7 +60,7 @@ class GasBillerListDialog(val callBack: CallBack) :BaseBottomSheetFragment() {
             bottomSheetGasBillerListModel.add(BottomSheetGasBillerListModel(R.drawable.bharat_gas,"Bharat Gas", false));
             bottomSheetGasBillerListModel.add(BottomSheetGasBillerListModel(R.drawable.bharat_gas_commercial,"Bharat Gas Commercial", false));
             bottomSheetGasBillerListModel.add(BottomSheetGasBillerListModel(R.drawable.hp_gas,"HP Gas", false));
-            bottomSheetGasBillerListModel.add(BottomSheetGasBillerListModel(R.drawable.indian_oil,"Indane Gas(Indian Oil)", false));
+            bottomSheetGasBillerListModel.add(BottomSheetGasBillerListModel(R.drawable.indian_oil_logo,"Indane Gas(Indian Oil)", false));
 
 
             adapter= BottomGasBillerListAdapter(bottomSheetGasBillerListModel, object : CallBack {

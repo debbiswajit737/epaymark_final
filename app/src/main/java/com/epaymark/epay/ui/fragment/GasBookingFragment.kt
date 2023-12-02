@@ -18,6 +18,7 @@ import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.ui.fragment.fragmentDialog.GasBillerListDialog
 import com.epaymark.epay.ui.popup.CustomPopup.showBindingPopup
 import com.epaymark.epay.ui.receipt.DthReceptDialogFragment
+import com.epaymark.epay.ui.receipt.GasBookingReceptDialogFragment
 import com.epaymark.epay.ui.receipt.MobileReceptDialogFragment
 import com.epaymark.epay.utils.helpers.Constants
 import com.epaymark.epay.utils.helpers.Constants.isDthOperator
@@ -61,23 +62,23 @@ class GasBookingFragment : BaseFragment() {
             }
 
             btnSubmit.setOnClickListener{
-                /*if (viewModel?.dthValidation() == true){
+                if (viewModel?.bookACylinderValidation() == true){
                     val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
                         override fun getValue(s: String) {
-                            val dialogFragment = DthReceptDialogFragment(object: CallBack {
+                            val dialogFragment = GasBookingReceptDialogFragment(object: CallBack {
                                 override fun getValue(s: String) {
                                     if (Objects.equals(s,"back")) {
                                         findNavController().popBackStack()
                                     }
                                 }
                             })
-                          //  dialogFragment.show(childFragmentManager, dialogFragment.tag)
+                            dialogFragment.show(childFragmentManager, dialogFragment.tag)
                         }
                     })
                     activity?.let {act->
                         tpinBottomSheetDialog.show(act.supportFragmentManager, tpinBottomSheetDialog.tag)
                     }
-                }*/
+                }
             }
             etOperator.setOnClickListener {
                 rlOperator.performClick()

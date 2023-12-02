@@ -98,8 +98,8 @@
                             android:layout_marginTop="@dimen/edit_text_margin_top"
                             android:background="@drawable/field_bg"
                             android:hint="consumer no./mobile/LPG ID"
-                            android:text="@={viewModel.subId}"
-                            app:requestFocus="@{viewModel.subIdErrorVisible}"
+                            android:text="@={viewModel.gasbookingNumber}"
+                            app:requestFocus="@{viewModel.gasbookingNumberErrorVisible}"
                             android:inputType="number"
                             android:longClickable="false"
                             android:maxLength="10"
@@ -116,8 +116,8 @@
                             android:fontFamily="@font/montserrat_regular_400"
                             android:textColor="@color/pink2"
                             android:textSize="@dimen/_9ssp"
-                            android:text="@{viewModel.subIdError}"
-                            app:hideErrorTextView="@{viewModel.subIdErrorVisible}"
+                            android:text="@{viewModel.gasbookingNumberError}"
+                            app:hideErrorTextView="@{viewModel.gasbookingNumberErrorVisible}"
                             />
                         <!--mobile End-->
 
@@ -187,8 +187,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/montserrat_regular_400"
-                            android:text="@{viewModel.dthError}"
-                            app:hideErrorTextView="@{viewModel.dthErrorErrorVisible}"
+                            android:text="@{viewModel.gasBillerError}"
+                            app:hideErrorTextView="@{viewModel.gasBillerErrorVisible}"
                             android:textColor="@color/pink2"
                             android:textSize="@dimen/_9ssp"
 
@@ -212,8 +212,8 @@
                             android:layout_marginTop="@dimen/edit_text_margin_top"
                             android:background="@drawable/field_bg"
                             android:hint="@string/enter_amount"
-                            android:text="@={viewModel.dthAmt}"
-                            app:requestFocus="@{viewModel.dthAmtErrorVisible}"
+                            android:text="@={viewModel.gasBookingAmt}"
+                            app:requestFocus="@{viewModel.gasBookingAmtErrorVisible}"
                             android:inputType="numberDecimal"
                             android:longClickable="false"
                             android:maxLength="10"
@@ -230,8 +230,8 @@
                             android:fontFamily="@font/montserrat_regular_400"
                             android:textColor="@color/pink2"
                             android:textSize="@dimen/_9ssp"
-                            android:text="@{viewModel.dthAmtError}"
-                            app:hideErrorTextView="@{viewModel.dthAmtErrorVisible}"
+                            android:text="@{viewModel.gasBookingAmtError}"
+                            app:hideErrorTextView="@{viewModel.gasBookingAmtErrorVisible}"
                             />
                     </LinearLayout>
 

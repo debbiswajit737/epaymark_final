@@ -57,6 +57,21 @@
                 android:shadowRadius="@dimen/_8sdp"
                 tools:context=".ui.activity.DashBoardActivity">
 
+                <TextView
+                    android:id="@+id/tv_title_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_bg"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:gravity="center_horizontal"
+                    android:paddingHorizontal="10dp"
+                    android:text="@string/recharge_amp_bill_pay"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_adhar"
                     android:layout_width="match_parent"
@@ -64,29 +79,16 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:elevation="8dp"
+
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="12dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toBottomOf="@+id/tv_title_tag">
                     <!--android:background="@color/title_header2"-->
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/tv_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:fontFamily="@font/open_sans_bold"
-                            android:gravity="center_horizontal"
-                            android:paddingHorizontal="10dp"
-                            android:background="@color/logo_color"
-                            android:text="@string/recharge_amp_bill_pay"
-                            android:textColor="@color/white"
-                            android:textSize="16sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent" />
 
 
                         <!--android:background="@color/title_header2"-->
@@ -95,8 +97,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
-
-                            app:layout_constraintTop_toBottomOf="@+id/tv_title">
+                            >
                             <!--android:background="@color/title_header2"-->
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/recycleUtility"

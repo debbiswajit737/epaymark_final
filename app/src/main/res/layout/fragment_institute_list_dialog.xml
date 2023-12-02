@@ -70,7 +70,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans_medium"
                         android:padding="@dimen/_5sdp"
-                        android:text="@string/pay_broadband_landline_bill"
+                        android:text="Select Type of Fees"
                         android:textColor="@color/logo_color"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

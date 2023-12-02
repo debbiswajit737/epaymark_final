@@ -40,6 +40,7 @@ import com.epaymark.epay.databinding.FragmentHomeBinding
 
 
 import com.epaymark.epay.ui.base.BaseFragment
+import com.epaymark.epay.ui.fragment.fragmentDialog.GasBillerListDialog
 import com.epaymark.epay.ui.popup.CustomPopup.showBalencePopup
 import com.epaymark.epay.utils.common.MethodClass.userLogout
 import com.epaymark.epay.utils.helpers.Constants
@@ -247,6 +248,30 @@ class HomeFragment : BaseFragment() {
 
                 }
             }
+
+             getString(R.string.gas)->{
+                activity?.let {act->
+                    val stateListDialog = StateListDialog(object : CallBack {
+                        override fun getValue(s: String) {
+                            viewModel?.state?.value=s
+                            val gasBillerListDialog = GasBillerListDialog(object : CallBack {
+                                override fun getValue(s: String) {
+                                    viewModel?.gasBiller?.value=s
+                                    findNavController().navigate(R.id.action_homeFragment2_to_gasBookingFragment)
+                                }
+
+                            })
+                            gasBillerListDialog.show(act.supportFragmentManager, gasBillerListDialog.tag)
+
+                        }
+
+                    })
+                    stateListDialog.show(act.supportFragmentManager, stateListDialog.tag)
+
+                }
+            }
+
+
             getString(R.string.view_more)->{
                 findNavController().navigate(R.id.action_homeFragment2_to_viewMoreFragment)
             }

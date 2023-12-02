@@ -236,7 +236,7 @@
     <string name="recharge_amp_bill_pay"><![CDATA[Recharge & Bill pay]]></string>
     <string name="education_fees">Education Fees</string>
     <string name="broadband">Broadband</string>
-    <string name="gas_booking">gas_booking</string>
+    <string name="gas_booking">Book a Cylinder</string>
     <string name="loan_payment">Loan Payment</string>
     <string name="account_number_tag">Account Number</string>
     <string name="enter_loan_amount">Enter Loan Amount</string>
