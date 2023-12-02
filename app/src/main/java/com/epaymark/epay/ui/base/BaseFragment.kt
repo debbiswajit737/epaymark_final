@@ -409,6 +409,18 @@ open class BaseFragment: Fragment(){
 
         return false
     }
+    fun View.takeScreenshot2(): Bitmap {
+        // Create a Bitmap with the same dimensions as the View
+        val bitmap = Bitmap.createBitmap(this.width, this.height, Bitmap.Config.ARGB_8888)
+
+        // Create a Canvas to draw the View onto the Bitmap
+        val canvas = Canvas(bitmap)
+
+        // Draw the View onto the Canvas
+        this.draw(canvas)
+
+        return bitmap
+    }
 }
 
 

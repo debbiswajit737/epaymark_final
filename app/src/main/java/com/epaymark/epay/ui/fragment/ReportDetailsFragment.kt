@@ -16,6 +16,7 @@ import com.epaymark.epay.data.model.ReportModel
 import com.epaymark.epay.data.model.Reportdetails
 import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentReportDetailsBinding
+import com.epaymark.epay.ui.activity.DashboardActivity
 import com.epaymark.epay.ui.base.BaseFragment
 import org.json.JSONObject
 
@@ -88,12 +89,13 @@ class ReportDetailsFragment : BaseFragment() {
             }*/
             //Share data
             binding.imgBtnShare.setOnClickListener{
-                val sendIntent = Intent().apply {
+                shareImage()
+                /*val sendIntent = Intent().apply {
                     action = Intent.ACTION_SEND
                     putExtra(Intent.EXTRA_TEXT, jsonObject.toString())
                     type = "text/plain"
                 }
-                startActivity(Intent.createChooser(sendIntent, "Share using"))
+                startActivity(Intent.createChooser(sendIntent, "Share using"))*/
             }
         } catch (e: Exception) {
             // Handle any potential JSON parsing exceptions here
@@ -106,7 +108,14 @@ class ReportDetailsFragment : BaseFragment() {
         }
 
     }
-
+    private fun shareImage() {
+        activity?.let {
+            binding.apply {
+                var screenshotBitmap =cardView2.takeScreenshot2()
+                (activity as? DashboardActivity)?.shareImage(screenshotBitmap)
+            }
+        }
+    }
     fun setObserver() {
         binding.apply {
 

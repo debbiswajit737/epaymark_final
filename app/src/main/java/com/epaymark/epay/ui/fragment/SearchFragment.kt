@@ -54,7 +54,7 @@ class SearchFragment : BaseFragment() {
             recycleViewSearchService?.apply {
                 searchAdapter= SearchAdapter(searchList,R.drawable.circle_shape2,object : CallBack {
                 override fun getValue(s: String) {
-                    utilityValue=s
+                    searchValue =s
                     viewModel.from_page_message.value="search"
                     findNavController().popBackStack()
                 }

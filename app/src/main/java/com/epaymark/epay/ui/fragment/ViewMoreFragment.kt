@@ -28,6 +28,7 @@ import com.epaymark.epay.utils.common.MethodClass.userLogout
 import com.epaymark.epay.utils.helpers.Constants
 import com.epaymark.epay.utils.helpers.Constants.isFromUtilityPage
 import com.epaymark.epay.utils.helpers.Constants.searchValue
+import com.epaymark.epay.utils.helpers.Constants.utilityValue
 import com.epaymark.epay.utils.`interface`.CallBack
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
@@ -83,7 +84,7 @@ class ViewMoreFragment : BaseFragment() {
             //utilityBillList.add(ListIcon(getString(R.string.view_more), R.drawable.view_more))
             adapter= ViewMoreAdapter(utilityBillList,R.drawable.circle_shape2, object : CallBack {
                 override fun getValue(s: String) {
-                    searchValue =s
+                    utilityValue=s
                     viewModel.from_page_message.value="view_more"
                     serviceNavigation(s)
                     //findNavController().popBackStack()
