@@ -86,7 +86,8 @@ class CameraFragment : BaseFragment() {
     ): View {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_camera, container, false)
-
+        binding.viewModel = authViewModel
+        binding.lifecycleOwner = this
         return binding.root
     }
 
@@ -108,6 +109,7 @@ class CameraFragment : BaseFragment() {
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     fun init() {
+        binding.llUserDetails.visibility=View.GONE
         binding.btnGallaryImg.visibility=View.GONE
         if (isGallary) {
             binding.btnCaptureImg.visibility=View.GONE
@@ -165,10 +167,12 @@ class CameraFragment : BaseFragment() {
             }
             binding.tvTimer.visibility = View.GONE
             if (!isVideo && !isGallary) {
+                binding.llUserDetails.visibility=View.GONE
                 btnCaptureImg.visibility = View.VISIBLE
                // circularProgressBar.visibility = View.VISIBLE
               //  btnCaptureVideo.visibility = View.GONE
             } else {
+                binding.llUserDetails.visibility=View.VISIBLE
                 binding.tvTimer.visibility = View.VISIBLE
                 btnCaptureImg.visibility = View.GONE
               //  circularProgressBar.visibility = View.GONE

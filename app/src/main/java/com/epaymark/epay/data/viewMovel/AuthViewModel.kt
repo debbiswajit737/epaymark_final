@@ -7,12 +7,13 @@ import androidx.lifecycle.ViewModel
 import com.epaymark.epay.data.model.FileModel
 
 import com.epaymark.epay.repository.DeliveryOptionsRepository
+import com.epaymark.epay.repository.TranslateRepository
 import com.epaymark.epay.utils.helpers.helper.validate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class AuthViewModel @Inject constructor(private val repository: DeliveryOptionsRepository) : ViewModel() {
+class AuthViewModel @Inject constructor(private val repository: DeliveryOptionsRepository,private val translateRepository: TranslateRepository) : ViewModel() {
     var lastView: View?=null
     var filePath: MutableLiveData<Uri> = MutableLiveData()
     var videoFilePath: MutableLiveData<Uri> = MutableLiveData()
@@ -22,11 +23,16 @@ class AuthViewModel @Inject constructor(private val repository: DeliveryOptionsR
     //var otp = MutableLiveData(Editable)
     val otp: MutableLiveData<String> = MutableLiveData("")
 
+    //Video kyc user details
+    val videoKycUserName = MutableLiveData<String>("User Name")
+    val videoKycUserPancard = MutableLiveData<String>("ABCDE1234A")
+    val videoKycUserAadharCard = MutableLiveData<String>("1234567879012")
 
     val videoFile = MutableLiveData<FileModel>()
 
 
     // Fields
+
     val name = MutableLiveData<String>()
     val mobile = MutableLiveData<String>()
     val email = MutableLiveData<String>()

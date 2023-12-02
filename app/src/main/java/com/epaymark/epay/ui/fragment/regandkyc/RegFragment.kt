@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -35,6 +36,8 @@ import com.epaymark.epay.adapter.StateListAdapter
 import com.epaymark.epay.data.model.StateCityModel
 import com.epaymark.epay.data.viewMovel.AuthViewModel
 import com.epaymark.epay.databinding.FragmentRegBinding
+import com.epaymark.epay.network.ResponseState
+import com.epaymark.epay.network.RetrofitHelper.handleApiError
 import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.ui.fragment.CameraDialog
 import com.epaymark.epay.utils.*
@@ -42,6 +45,7 @@ import com.epaymark.epay.utils.helpers.Constants
 import com.epaymark.epay.utils.helpers.Constants.isBackCamera
 import com.epaymark.epay.utils.helpers.PermissionUtils
 import com.epaymark.epay.utils.helpers.PermissionUtils.createAlertDialog
+import com.epaymark.epay.utils.helpers.helper.decryptData
 import com.epaymark.epay.utils.`interface`.CallBack
 import com.epaymark.epay.utils.`interface`.PermissionsCallback
 import com.google.gson.Gson
@@ -641,6 +645,11 @@ class RegFragment : BaseFragment() {
 
             Log.d("PhotoPicker", "No media selected")
         }
+
+    }
+
+    fun observer(){
+
 
     }
 }

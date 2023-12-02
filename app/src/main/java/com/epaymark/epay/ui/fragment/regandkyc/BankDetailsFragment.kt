@@ -99,10 +99,10 @@ class BankDetailsFragment : BaseFragment() {
     }
 
     fun setObserver() {
-        authViewModel?.cancleCheck?.observe(viewLifecycleOwner){
+        authViewModel?.filePath?.observe(viewLifecycleOwner){
             it?.let {uti->
-                //authViewModel?.cancleCheck?.value = uti
-                authViewModel.cancleCheckBase64.value= Uri.parse(uti).uriToBase64(binding.root.context.contentResolver)
+                authViewModel?.cancleCheck?.value = uti.toString()
+                authViewModel.cancleCheckBase64.value= Uri.parse(uti.toString()).uriToBase64(binding.root.context.contentResolver)
                 //authViewModel.pancardImage3.value=it.getFileNameFromUri()
                 //Log.d("TAG_file", "true setObserver: "+it.uriToBase64(binding.root.context.contentResolver))
                  }
