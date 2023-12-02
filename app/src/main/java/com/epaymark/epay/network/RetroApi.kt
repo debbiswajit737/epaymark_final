@@ -5,17 +5,16 @@ import com.epaymark.epay.data.genericmodel.BaseResponse
 import com.google.gson.JsonObject
 import retrofit2.Response
 import retrofit2.http.Body
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
 import retrofit2.http.POST
-import retrofit2.http.Query
 
 interface RetroApi {
 
     /*{ "response": { "data": [ { "name":"Test User 1" }, { "name":"Test User 2" } ], "status": { "msg": "Sample message.", "action_status": false }, "publish": { "version": "Api.0.0.0", "developer": "bdas" } } }*/
     @POST("abcd.php")
     suspend fun login(@Body loginRequest: JsonObject): Response<BaseResponse<Test>>//ResponseState<Test>
+
+    @POST("form.php")
+    suspend fun formReg(@Body loginRequest: String): Response<BaseResponse<Test>>//ResponseState<Test>
 
 
 

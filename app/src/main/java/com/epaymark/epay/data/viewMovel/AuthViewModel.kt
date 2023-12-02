@@ -2,18 +2,23 @@ package com.epaymark.epay.data.viewMovel
 
 import android.net.Uri
 import android.view.View
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.epaymark.epay.data.genericmodel.BaseResponse
 import com.epaymark.epay.data.model.FileModel
+import com.epaymark.epay.data.model.sample.Test
+import com.epaymark.epay.network.ResponseState
 
-import com.epaymark.epay.repository.DeliveryOptionsRepository
-import com.epaymark.epay.repository.TranslateRepository
+import com.epaymark.epay.repository.AuthRepositoryRepository
 import com.epaymark.epay.utils.helpers.helper.validate
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AuthViewModel @Inject constructor(private val repository: DeliveryOptionsRepository,private val translateRepository: TranslateRepository) : ViewModel() {
+class AuthViewModel @Inject constructor(private val repository: AuthRepositoryRepository) : ViewModel() {
     var lastView: View?=null
     var filePath: MutableLiveData<Uri> = MutableLiveData()
     var videoFilePath: MutableLiveData<Uri> = MutableLiveData()
@@ -635,5 +640,16 @@ class AuthViewModel @Inject constructor(private val repository: DeliveryOptionsR
         businessNameErrorVisible.value = false
         businessAddressErrorVisible.value = false
 
+    }
+
+
+
+    //form reg validation
+    val formResponseLiveData: LiveData<ResponseState<BaseResponse<Test>>>
+        get() = repository.formResponseLiveData
+    fun formRegistration(requestBody: String) {
+        viewModelScope.launch {
+            repository.formReg(requestBody)
+        }
     }
 }
