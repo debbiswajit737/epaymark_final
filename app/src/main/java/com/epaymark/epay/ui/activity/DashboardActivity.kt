@@ -17,6 +17,7 @@ import com.epaymark.epay.network.RetrofitHelper.handleApiError
 import com.epaymark.epay.ui.base.BaseActivity
 import com.epaymark.epay.ui.popup.ErrorPopUp
 import com.epaymark.epay.ui.popup.LoadingPopup
+import com.epaymark.epay.utils.helpers.Constants.isAfterReg
 import com.epaymark.epay.utils.helpers.Constants.isRecept
 import com.epaymark.epay.utils.helpers.RequestBodyHelper
 import com.epaymark.epay.utils.helpers.ScreenshotUtils.Companion.takeScreenshot
@@ -60,8 +61,12 @@ class DashboardActivity  : BaseActivity() {
         navController = navHostFragment.navController
         intent?.let {intentData->
             val isReceptBooleanValue=intentData.getBooleanExtra(isRecept,false)
+            val isAfterRegVal=intentData.getBooleanExtra(isAfterReg,false)
             if (isReceptBooleanValue){
 
+            }
+            if (isAfterRegVal){
+                navController?.navigate(R.id.homeFragment2)
             }
         }
 

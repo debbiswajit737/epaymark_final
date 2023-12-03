@@ -19,10 +19,12 @@ import com.epaymark.epay.data.viewMovel.MyViewModel
 import com.epaymark.epay.databinding.FragmentMoveToWalletBinding
 import com.epaymark.epay.databinding.FragmentSupportBinding
 import com.epaymark.epay.ui.base.BaseFragment
+import com.epaymark.epay.ui.popup.SuccessPopupFragment
 import com.epaymark.epay.ui.receipt.MoveToBankReceptDialogFragment
 import com.epaymark.epay.ui.receipt.MoveToWalletPayabhiReceptDialogFragment
 import com.epaymark.epay.ui.receipt.MoveToWalletReceptDialogFragment
 import com.epaymark.epay.utils.`interface`.CallBack
+import com.epaymark.epay.utils.`interface`.CallBack4
 import java.util.Objects
 
 
@@ -128,14 +130,31 @@ class MoveToWalletFragment : BaseFragment() {
                     if (viewModel?.settleWalletValidation() == true) {
                         val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
                             override fun getValue(s: String) {
-                                val dialogFragment = MoveToWalletReceptDialogFragment(object: CallBack {
-                                    override fun getValue(s: String) {
-                                        if (Objects.equals(s,"back")) {
-                                            findNavController().popBackStack()
-                                        }
+                                val successPopupFragment = SuccessPopupFragment(object :
+                                    CallBack4 {
+                                    override fun getValue4(
+                                        s1: String,
+                                        s2: String,
+                                        s3: String,
+                                        s4: String
+                                    ) {
+                                        val dialogFragment = MoveToWalletReceptDialogFragment(object: CallBack {
+                                            override fun getValue(s: String) {
+                                                if (Objects.equals(s,"back")) {
+                                                    findNavController().popBackStack()
+                                                }
+                                            }
+                                        })
+                                        dialogFragment.show(childFragmentManager, dialogFragment.tag)
                                     }
+
                                 })
-                                dialogFragment.show(childFragmentManager, dialogFragment.tag)
+                                successPopupFragment.show(childFragmentManager, successPopupFragment.tag)
+
+
+
+
+
                             }
                         })
                         activity?.let {act->

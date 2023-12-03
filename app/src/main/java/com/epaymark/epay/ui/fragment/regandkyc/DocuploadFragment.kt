@@ -28,10 +28,13 @@ import com.epaymark.epay.data.model.onBoading.KycDetails
 import com.epaymark.epay.data.viewMovel.AuthViewModel
 import com.epaymark.epay.databinding.FragmentDocuploadBinding
 import com.epaymark.epay.ui.activity.DashboardActivity
+import com.epaymark.epay.ui.activity.RegActivity
 import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.ui.fragment.CameraDialog
 import com.epaymark.epay.utils.common.MethodClass
+import com.epaymark.epay.utils.common.MethodClass.userLogout
 import com.epaymark.epay.utils.helpers.Constants
+import com.epaymark.epay.utils.helpers.Constants.isAfterReg
 import com.epaymark.epay.utils.helpers.Constants.isBackCamera
 import com.epaymark.epay.utils.helpers.Constants.isGallary
 import com.epaymark.epay.utils.helpers.Constants.isPdf
@@ -291,7 +294,11 @@ class DocuploadFragment : BaseFragment() {
                             partnerAadharBackBase64
                              */
 
-                            startActivity(Intent(requireActivity(), DashboardActivity::class.java))
+                            //startActivity(Intent(requireActivity(), DashboardActivity::class.java))
+                            val intent = Intent(requireActivity(), DashboardActivity::class.java)
+                            intent.putExtra(isAfterReg,true)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                            requireActivity().startActivity(intent)
                             //Toast.makeText(binding.root.context, "Ok", Toast.LENGTH_SHORT).show()
                         }
                     } catch (e: Exception) {

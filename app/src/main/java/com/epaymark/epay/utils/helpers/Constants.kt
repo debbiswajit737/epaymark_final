@@ -30,6 +30,7 @@ object Constants {
     var isFromSearchPage = false
     var isFromUtilityPage = false
     var isRecept = "isRecept"
+    var isAfterReg = "isAfterReg"
     var searchValue = ""
     var utilityValue = ""
     var recycleViewReceiptList = ArrayList<ReceiptModel>()
