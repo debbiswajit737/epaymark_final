@@ -689,7 +689,7 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
             mobileSendMoneyErrorVisible.value = true
             isValid = false
         } else {
-            if (mobile.value?.trim()?.validate("mobile") == false) {
+            if (mobileSendMoney.value?.trim()?.validate("mobile") == false) {
                 mobileSendMoneyError.value = "Mobile number is not valid"
                 mobileSendMoneyErrorVisible.value = true
                 isValid = false
