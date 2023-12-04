@@ -33,9 +33,9 @@ object RetrofitHelper {
 
         //Okhttp Client
         val client = OkHttpClient.Builder().also { client ->
-            client.readTimeout(60, TimeUnit.SECONDS)
-            client.writeTimeout(60, TimeUnit.SECONDS)
-            client.connectTimeout(60, TimeUnit.SECONDS)
+            client.readTimeout(120, TimeUnit.SECONDS)
+            client.writeTimeout(120, TimeUnit.SECONDS)
+            client.connectTimeout(120, TimeUnit.SECONDS)
             client.addInterceptor(commonHeaderInterceptor)
            // if (BuildConfig.DEBUG) {
                 client.addInterceptor(interceptor)

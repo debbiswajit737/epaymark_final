@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.epaymark.epay.data.genericmodel.BaseResponse
+import com.epaymark.epay.data.model.onBoading.DocumentUploadModel
+import com.epaymark.epay.data.model.onBoading.RegForm
 import com.epaymark.epay.data.model.sample.Test
 import com.epaymark.epay.network.ResponseState
 import com.epaymark.epay.network.RetroApi
@@ -17,7 +19,7 @@ class AuthRepositoryRepository  @Inject constructor(private val api : RetroApi) 
 
 
 
-    suspend fun formReg(requestBody: String) {
+    suspend fun formReg(requestBody: RegForm) {
         _formResponseLiveData.postValue(ResponseState.Loading())
         try {
 
@@ -31,6 +33,31 @@ class AuthRepositoryRepository  @Inject constructor(private val api : RetroApi) 
         }
 
     }
+
+
+    //Doc upload
+
+    private val _docUploadResponseLiveData =
+            MutableLiveData< ResponseState<BaseResponse<Test>>>()
+        val docUploadResponseLiveData: LiveData<ResponseState<BaseResponse<Test>>>
+            get() = _docUploadResponseLiveData
+
+
+
+        suspend fun docUpload(requestBody: DocumentUploadModel) {
+            _docUploadResponseLiveData.postValue(ResponseState.Loading())
+            try {
+
+                val response = api.docUpload(requestBody)
+                _docUploadResponseLiveData.postValue(ResponseState.create(response,"aa"))
+                Log.e("TAG_error", "login:OK "+response)
+
+            } catch (throwable: Throwable) {
+                _docUploadResponseLiveData.postValue(ResponseState.create(throwable))
+                Log.e("TAG_error", "login: "+throwable.message)
+            }
+
+        }
 }
 
 

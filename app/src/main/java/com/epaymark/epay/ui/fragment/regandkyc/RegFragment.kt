@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -29,21 +30,27 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.window.layout.WindowMetricsCalculator
-import com.epaymark.epay.data.model.onBoading.regForm
+import com.epaymark.epay.data.model.onBoading.RegForm
 import com.epaymark.epay.R
 import com.epaymark.epay.adapter.StateListAdapter
 import com.epaymark.epay.data.model.StateCityModel
 import com.epaymark.epay.data.viewMovel.AuthViewModel
 import com.epaymark.epay.databinding.FragmentRegBinding
+import com.epaymark.epay.network.ResponseState
+import com.epaymark.epay.network.RetrofitHelper.handleApiError
 import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.ui.fragment.CameraDialog
+import com.epaymark.epay.ui.popup.ErrorPopUp
+import com.epaymark.epay.ui.popup.LoadingPopup
 import com.epaymark.epay.utils.helpers.Constants
 import com.epaymark.epay.utils.helpers.Constants.isBackCamera
 import com.epaymark.epay.utils.helpers.PermissionUtils
 import com.epaymark.epay.utils.helpers.PermissionUtils.createAlertDialog
+import com.epaymark.epay.utils.helpers.helper.decryptData
 import com.epaymark.epay.utils.`interface`.CallBack
 import com.epaymark.epay.utils.`interface`.PermissionsCallback
 import com.google.gson.Gson
+import com.google.gson.JsonObject
 import java.net.URLEncoder
 
 
@@ -54,6 +61,8 @@ class RegFragment : BaseFragment() {
     var stateListAdapter:StateListAdapter?=null
     var cityListAdapter:StateListAdapter?=null
     var type=""
+    var loadingPopup: LoadingPopup? = null
+    var errorPopUp: ErrorPopUp? = null
     private val authViewModel: AuthViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -102,7 +111,7 @@ class RegFragment : BaseFragment() {
             btnNext.setOnClickListener {
 
                 if (authViewModel?.regValidation()==true) {
-                        val regModel = regForm(
+                        val regModel = RegForm(
                             name = authViewModel.name.value,
                             mobile = authViewModel.mobile.value,
                             alternativeMobile = authViewModel.alternativeMobile.value,
@@ -121,21 +130,18 @@ class RegFragment : BaseFragment() {
                             gender=authViewModel.genderReg.value
                         )
 
-                        val gson = Gson()
-                        val json = gson.toJson(regModel)
-                        //viewModel?.formRegistration(json)
+                       // val gson = Gson()
+                       // val json: JsonObject = gson.toJsonTree(regModel).asJsonObject
+
+                       // viewModel?.formRegistration(regModel)
                         //json.toString().testDataFile()
-
-
-
-
                    findNavController().navigate(R.id.action_regFragment_to_kycDetailsFragment)
                 }
             }
 
             activity?.let {act->
                 llPan.setOnClickListener{
-                    Constants.isBackCamera =true
+                    isBackCamera =true
                     type="llPan"
                     Constants.isPdf =false
                     val cameraDialog = CameraDialog(object : CallBack {
@@ -438,6 +444,59 @@ class RegFragment : BaseFragment() {
 
             //Log.d("TAG_file", "true setObserver: "+it.uriToBase64(binding.root.context.contentResolver))
         }
+
+                  authViewModel.formResponseLiveData.observe(viewLifecycleOwner) {
+                              when (it) {
+                                  is ResponseState.Loading -> {
+                                      loadingPopup?.show()
+                                  }
+
+                                  is ResponseState.Success -> {
+                                      loadingPopup?.dismiss()
+                                      context?.let{ctx->
+                                          findNavController().navigate(R.id.action_regFragment_to_kycDetailsFragment)
+                                      }
+
+                                  }
+
+                                  is ResponseState.Error -> {
+                                      loadingPopup?.dismiss()
+                                      handleApiError(it.isNetworkError, it.errorCode, it.errorMessage)
+                                  }
+                              }
+                          }
+
+
+        /*authViewModel.formResponseLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                is ResponseState.Loading -> {
+                    loadingPopup?.show()
+                }
+
+                is ResponseState.Success -> {
+                    loadingPopup?.dismiss()
+                    context?.let{ctx->
+                        Toast.makeText(
+                            ctx,
+                            "" + it?.data?.response?.data?.get(0)?.name,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        //var a=it.data?.response?.data?.get(0)?.name?.encryptData("ttt")
+                        var a = it?.data?.response?.data?.get(0)?.name
+                        var b = a?.decryptData("ttt")
+                        Toast.makeText(ctx, "$b", Toast.LENGTH_SHORT).show()
+                        findNavController().navigate(R.id.action_regFragment_to_kycDetailsFragment)
+                    }
+
+                }
+
+                is ResponseState.Error -> {
+                    loadingPopup?.dismiss()
+                    handleApiError(it.isNetworkError, it.errorCode, it.errorMessage)
+                }
+            }
+        }*/
+
 
     }
 

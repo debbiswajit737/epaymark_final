@@ -4,6 +4,6 @@ object Config {
 
     //const val BASE_URL = "http://192.168.0.190/test/api/"
     //const val BASE_URL = "https://www.gibl.in/wallet/"
-    const val BASE_URL = "http://192.168.153.129/api/"
+    const val BASE_URL = "http://192.168.1.5/api/"
 
 }

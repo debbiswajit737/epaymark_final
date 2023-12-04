@@ -24,16 +24,12 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.R
 import com.epaymark.epay.data.model.onBoading.DocumentUploadModel
-import com.epaymark.epay.data.model.onBoading.KycDetails
 import com.epaymark.epay.data.viewMovel.AuthViewModel
 import com.epaymark.epay.databinding.FragmentDocuploadBinding
 import com.epaymark.epay.ui.activity.DashboardActivity
-import com.epaymark.epay.ui.activity.RegActivity
 import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.ui.fragment.CameraDialog
 import com.epaymark.epay.utils.common.MethodClass
-import com.epaymark.epay.utils.common.MethodClass.userLogout
-import com.epaymark.epay.utils.helpers.Constants
 import com.epaymark.epay.utils.helpers.Constants.isAfterReg
 import com.epaymark.epay.utils.helpers.Constants.isBackCamera
 import com.epaymark.epay.utils.helpers.Constants.isGallary
@@ -41,7 +37,6 @@ import com.epaymark.epay.utils.helpers.Constants.isPdf
 import com.epaymark.epay.utils.helpers.Constants.isVideo
 import com.epaymark.epay.utils.helpers.SharedPreff
 import com.epaymark.epay.utils.`interface`.CallBack
-import com.google.gson.Gson
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
 import javax.inject.Inject
@@ -259,7 +254,7 @@ class DocuploadFragment : BaseFragment() {
                         if (docValidation()) {
                             sharedPreff?.setLoginData()
 
-                            val json = Gson().toJson(DocumentUploadModel(
+                            val documentUploadModel = DocumentUploadModel(
                                 panPathBase64= panPathBase64.value,
                                 cpanPathBase64=cpanPathBase64.value,
                                 paadharBase64=paadharBase64.value,
@@ -271,8 +266,9 @@ class DocuploadFragment : BaseFragment() {
                                 llUserSelfiBase64=llUserSelfiBase64.value,
                                 llCselfiBase64=llCselfiBase64 . value,
                                 videokycBase64=videokycBase64.value,
-                            ))
-                            json.toString().testDataFile()
+                            )
+
+                            //json.toString().testDataFile()
                             /*val regModel = DocumentUploadModel(
                                 panPathBase64= panPathBase64.value,
                                 cpanPathBase64=cpanPathBase64.value,
@@ -299,6 +295,8 @@ class DocuploadFragment : BaseFragment() {
                             intent.putExtra(isAfterReg,true)
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                             requireActivity().startActivity(intent)
+                            // authViewModel.documentRegistration(documentUploadModel)
+
                             //Toast.makeText(binding.root.context, "Ok", Toast.LENGTH_SHORT).show()
                         }
                     } catch (e: Exception) {

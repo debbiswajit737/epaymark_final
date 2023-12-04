@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.epaymark.epay.data.genericmodel.BaseResponse
 import com.epaymark.epay.data.model.FileModel
+import com.epaymark.epay.data.model.onBoading.DocumentUploadModel
+import com.epaymark.epay.data.model.onBoading.RegForm
 import com.epaymark.epay.data.model.sample.Test
 import com.epaymark.epay.network.ResponseState
 
@@ -647,9 +649,21 @@ class AuthViewModel @Inject constructor(private val repository: AuthRepositoryRe
     //form reg validation
     val formResponseLiveData: LiveData<ResponseState<BaseResponse<Test>>>
         get() = repository.formResponseLiveData
-    fun formRegistration(requestBody: String) {
+    fun formRegistration(requestBody: RegForm) {
         viewModelScope.launch {
             repository.formReg(requestBody)
         }
     }
+
+   //Doc upload
+    val document: LiveData<ResponseState<BaseResponse<Test>>>
+    get() = repository.docUploadResponseLiveData
+    fun documentRegistration(requestBody: DocumentUploadModel) {
+        viewModelScope.launch {
+            repository.docUpload(requestBody)
+        }
+    }
+        
+        
+    
 }
