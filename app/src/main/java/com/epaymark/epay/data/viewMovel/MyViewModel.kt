@@ -719,25 +719,14 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
 
 
     fun mobileNumberValidation(): Boolean {
-
         invisibleErrorTexts()
-
         var isValid = true
-
-
         if (mobileSendMoney.value?.trim().isNullOrBlank()) {
-
             isValid = false
         }
-
-
         else {
-
             isValid = mobile.value?.trim()?.length == 10
         }
-
-
-
         return isValid
     }
 
@@ -748,8 +737,6 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
         invisibleErrorTexts()
 
         var isValid = true
-
-
         if (credit_card.value?.trim().isNullOrBlank()) {
             credit_cardError.value = "Please enter Credit card number"
             credit_cardErrorVisible.value = true
