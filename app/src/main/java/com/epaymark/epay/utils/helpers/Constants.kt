@@ -1,8 +1,7 @@
 package com.epaymark.epay.utils.helpers
 
 import android.content.ContentValues
-import android.net.Uri
-import androidx.lifecycle.MutableLiveData
+
 import com.epaymark.epay.data.model.ListIcon
 import com.epaymark.epay.data.model.ReceiptModel
 
@@ -34,4 +33,6 @@ object Constants {
     var searchValue = ""
     var utilityValue = ""
     var recycleViewReceiptList = ArrayList<ReceiptModel>()
+    var secretKey: String="a22786308b71488790be222216260e0a"
+    var iv: String="656dbf654a5dc"
 }

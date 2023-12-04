@@ -31,7 +31,27 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+           /* buildConfigField("String", "BASE_URL", "\"http://192.168.1.5/api/\"")
+            buildConfigField("String", "API_KEY", "\"677a05e769f1a888ddb86397eb45c57d2700bb7b83b4f3b7282bf6aba4266c7f\"")
+            buildConfigField("String", "CLIENT_ID", "\"big9_164604122023\"")
+            buildConfigField("String", "ENCRYPTION_KEY", "\"a22786308b71488790be222216260e0a\"")
+            buildConfigField("String", "ENCRYPTION_TYPE", "\"AES-256-CBC\"")
+            buildConfigField("String", "IV", "\"656dbf654a5dc\"")*/
         }
+
+       /* debug {
+            buildConfigField("String", "base_url", "\"http://192.168.1.5/api/\"")
+            buildConfigField("String", "API_KEY", "\"677a05e769f1a888ddb86397eb45c57d2700bb7b83b4f3b7282bf6aba4266c7f\"")
+            buildConfigField("String", "CLIENT_ID", "\"big9_164604122023\"")
+            buildConfigField("String", "ENCRYPTION_KEY", "\"a22786308b71488790be222216260e0a\"")
+            buildConfigField("String", "ENCRYPTION_TYPE", "\"AES-256-CBC\"")
+            buildConfigField("String", "IV", "\"656dbf654a5dc\"")
+        }*/
+        debug {
+            buildConfigField("String", "API_URL", "\"https://url/pre/\"")
+        }
+        
+
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

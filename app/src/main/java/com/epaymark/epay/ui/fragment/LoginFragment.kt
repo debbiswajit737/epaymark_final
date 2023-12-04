@@ -10,11 +10,13 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.R
 import com.epaymark.epay.adapter.PhonePadAdapter
+import com.epaymark.epay.data.model.login.LoginModel
 import com.epaymark.epay.data.viewMovel.AuthViewModel
 import com.epaymark.epay.databinding.FragmentLoginBinding
 
 import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.utils.`interface`.KeyPadOnClickListner
+import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -89,7 +91,15 @@ class LoginFragment : BaseFragment() {
                     authViewModel.mobError.value="Please enter a valid mobile number."
                 }
                 else{
+
                     authViewModel.mobError.value=""
+                    viewModel?.keyPadValue?.value?.let {
+                        val loginModel=LoginModel(authData=it)
+                        val gson= Gson()
+                        val jsonString = gson.toJson(loginModel)
+                        viewModel.authLoginRegistration(jsonString.encrypt())
+                    }
+
                     findNavController().navigate(R.id.action_loginFragment_to_otpFragment)
                 }
             }

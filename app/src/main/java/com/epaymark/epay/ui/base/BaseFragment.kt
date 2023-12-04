@@ -32,6 +32,8 @@ import com.bumptech.glide.Glide
 import com.epaymark.epay.R
 import com.epaymark.epay.utils.helpers.Constants.INPUT_FILTER_MAX_VALUE
 import com.epaymark.epay.utils.helpers.Constants.INPUT_FILTER_POINTER_LENGTH
+import com.epaymark.epay.utils.helpers.Constants.iv
+import com.epaymark.epay.utils.helpers.Constants.secretKey
 import com.epaymark.epay.utils.helpers.DecimalDigitsInputFilter
 import com.epaymark.epay.utils.helpers.SharedPreff
 import com.epaymark.epay.utils.`interface`.CallBack
@@ -44,6 +46,9 @@ import java.io.IOException
 import java.io.InputStream
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import javax.crypto.Cipher
+import javax.crypto.spec.IvParameterSpec
+import javax.crypto.spec.SecretKeySpec
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -420,6 +425,25 @@ open class BaseFragment: Fragment(){
         this.draw(canvas)
 
         return bitmap
+    }
+
+    fun String.encrypt(): String {
+        val cipher = Cipher.getInstance("AES-256-CBC")
+        val keySpec = SecretKeySpec(secretKey.toByteArray(), "AES")
+        val ivSpec = IvParameterSpec(iv.toByteArray())
+        cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivSpec)
+        val encryptedBytes = cipher.doFinal(this.toByteArray())
+        return Base64.encodeToString(encryptedBytes,Base64.DEFAULT)
+    }
+
+    fun String.decrypt(): String {
+        val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
+        val keySpec = SecretKeySpec(secretKey.toByteArray(), "AES")
+        val ivSpec = IvParameterSpec(iv.toByteArray())
+        cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec)
+        val encryptedBytes = Base64.decode(this,Base64.DEFAULT)
+        val decryptedBytes = cipher.doFinal(encryptedBytes)
+        return String(decryptedBytes)
     }
 }
 

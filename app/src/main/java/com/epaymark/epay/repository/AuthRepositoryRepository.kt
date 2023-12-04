@@ -50,14 +50,42 @@ class AuthRepositoryRepository  @Inject constructor(private val api : RetroApi) 
 
                 val response = api.docUpload(requestBody)
                 _docUploadResponseLiveData.postValue(ResponseState.create(response,"aa"))
-                Log.e("TAG_error", "login:OK "+response)
+                //Log.e("TAG_error", "login:OK "+response)
 
             } catch (throwable: Throwable) {
                 _docUploadResponseLiveData.postValue(ResponseState.create(throwable))
-                Log.e("TAG_error", "login: "+throwable.message)
+                //Log.e("TAG_error", "login: "+throwable.message)
             }
 
         }
+
+
+    //Login Model
+
+    private val _loginResponseLiveData =
+            MutableLiveData< ResponseState<BaseResponse<Test>>>()
+        val loginResponseLiveData: LiveData<ResponseState<BaseResponse<Test>>>
+            get() = _loginResponseLiveData
+
+
+
+        suspend fun userLogin(loginModel: String) {
+            _loginResponseLiveData.postValue(ResponseState.Loading())
+            try {
+
+                val response = api.epayLogin(loginModel)
+                _loginResponseLiveData.postValue(ResponseState.create(response,"aa"))
+                //Log.e("TAG_error", "login:OK "+response)
+
+            } catch (throwable: Throwable) {
+                _loginResponseLiveData.postValue(ResponseState.create(throwable))
+                //Log.e("TAG_error", "login: "+throwable.message)
+            }
+
+        }
+
+
+
 }
 
 

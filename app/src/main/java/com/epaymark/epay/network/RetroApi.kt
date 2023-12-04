@@ -17,9 +17,12 @@ interface RetroApi {
 
     @POST("form.php")
     suspend fun formReg(@Body regModel: RegForm): Response<BaseResponse<Test>>//ResponseState<Test>
-
+//
     @POST("form_doc.php")
         suspend fun docUpload(@Body documentUploadModel: DocumentUploadModel): Response<BaseResponse<Test>>
+
+        @POST("auth")
+        suspend fun epayLogin(@Body authData: String): Response<BaseResponse<Test>>
 
 
 }

@@ -255,17 +255,17 @@ class DocuploadFragment : BaseFragment() {
                             sharedPreff?.setLoginData()
 
                             val documentUploadModel = DocumentUploadModel(
-                                panPathBase64= panPathBase64.value,
-                                cpanPathBase64=cpanPathBase64.value,
-                                paadharBase64=paadharBase64.value,
-                                partnerAadharBackBase64=PartnerAadharBackBase64.value,
-                                llGstBase64=llGstBase64.value,
-                                llCertificateOfIncorporationBase64=llCertificateOfIncorporationBase64.value,
-                                llBoardResolutionBase64=llBoardResolutionBase64.value,
-                                llTradeBase64=llTradeBase64 . value,
-                                llUserSelfiBase64=llUserSelfiBase64.value,
-                                llCselfiBase64=llCselfiBase64 . value,
-                                videokycBase64=videokycBase64.value,
+                                panPathBase64= panPathBase64.value/*?.encrypt()*/,
+                                cpanPathBase64=cpanPathBase64.value/*?.encrypt()*/,
+                                paadharBase64=paadharBase64.value/*?.encrypt()*/,
+                                partnerAadharBackBase64=PartnerAadharBackBase64.value?.encrypt(),
+                                llGstBase64=llGstBase64.value/*?.encrypt()*/,
+                                llCertificateOfIncorporationBase64=llCertificateOfIncorporationBase64.value/*?.encrypt()*/,
+                                llBoardResolutionBase64=llBoardResolutionBase64.value/*?.encrypt()*/,
+                                llTradeBase64=llTradeBase64 . value/*?.encrypt()*/,
+                                llUserSelfiBase64=llUserSelfiBase64.value/*?.encrypt()*/,
+                                llCselfiBase64=llCselfiBase64 . value/*?.encrypt()*/,
+                                videokycBase64=videokycBase64.value/*?.encrypt()*/,
                             )
 
                             //json.toString().testDataFile()
@@ -295,7 +295,7 @@ class DocuploadFragment : BaseFragment() {
                             intent.putExtra(isAfterReg,true)
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                             requireActivity().startActivity(intent)
-                            // authViewModel.documentRegistration(documentUploadModel)
+                             //authViewModel.documentRegistration(documentUploadModel)
 
                             //Toast.makeText(binding.root.context, "Ok", Toast.LENGTH_SHORT).show()
                         }
