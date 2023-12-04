@@ -87,9 +87,9 @@ class CashWithdrawFragment : BaseFragment() {
                 if (viewModel?.cashWithdrawalValidation()==true){
                     if (selectBank.isNotEmpty()) {
                         activity?.let { act ->
-                            val aadharAuthBottomSheetDialog =
+                            /*val aadharAuthBottomSheetDialog =
                                 AadharAuthBottomSheetDialog(object : CallBack {
-                                    override fun getValue(s: String) {
+                                    override fun getValue(s: String) {*/
 
 
                                         val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
@@ -110,12 +110,12 @@ class CashWithdrawFragment : BaseFragment() {
 
 
 
-                                    }
+                                 /*   }
                                 })
                             aadharAuthBottomSheetDialog.show(
                                 act.supportFragmentManager,
                                 aadharAuthBottomSheetDialog.tag
-                            )
+                            )*/
                         }
                     }
                     else{

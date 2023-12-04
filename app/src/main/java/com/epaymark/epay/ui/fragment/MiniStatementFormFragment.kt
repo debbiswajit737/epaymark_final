@@ -56,9 +56,9 @@ class MiniStatementFormFragment : BaseFragment() {
                 if (viewModel?.balenceValidation() == true){
                     if (selectedBank.isNotEmpty()) {
                         activity?.let { act ->
-                            val aadharAuthBottomSheetDialog =
+                            /*val aadharAuthBottomSheetDialog =
                                 AadharAuthBottomSheetDialog(object : CallBack {
-                                    override fun getValue(s: String) {
+                                    override fun getValue(s: String) {*/
                                         //findNavController().navigate(R.id.action_miniStatementFormFragment_to_miniStatementFragment)
                                         val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
                                             override fun getValue(s: String) {
@@ -75,12 +75,12 @@ class MiniStatementFormFragment : BaseFragment() {
                                         activity?.let {act->
                                             tpinBottomSheetDialog.show(act.supportFragmentManager, tpinBottomSheetDialog.tag)
                                         }
-                                    }
+                                  /*  }
                                 })
                             aadharAuthBottomSheetDialog.show(
                                 act.supportFragmentManager,
                                 aadharAuthBottomSheetDialog.tag
-                            )
+                            )*/
                         }
                     }
                     else{

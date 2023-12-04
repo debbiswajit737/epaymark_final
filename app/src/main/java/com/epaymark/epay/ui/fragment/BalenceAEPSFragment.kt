@@ -55,9 +55,9 @@ class BalenceAEPSFragment : BaseFragment() {
                 if (viewModel?.balenceValidation() == true){
                     if (selectedBank.isNotEmpty()) {
                         activity?.let { act ->
-                            val aadharAuthBottomSheetDialog =
+                            /*val aadharAuthBottomSheetDialog =
                                 AadharAuthBottomSheetDialog(object : CallBack {
-                                    override fun getValue(s: String) {
+                                    override fun getValue(s: String) {*/
                                         val tpinBottomSheetDialog = TpinBottomSheetDialog(object : CallBack {
                                             override fun getValue(s: String) {
                                                 val dialogFragment = BalenceEnquaryReceptDialogFragment(object: CallBack {
@@ -73,12 +73,12 @@ class BalenceAEPSFragment : BaseFragment() {
                                         activity?.let {act->
                                             tpinBottomSheetDialog.show(act.supportFragmentManager, tpinBottomSheetDialog.tag)
                                         }
-                                    }
-                                })
-                            aadharAuthBottomSheetDialog.show(
+                                /*    }
+                                })*/
+                            /*aadharAuthBottomSheetDialog.show(
                                 act.supportFragmentManager,
                                 aadharAuthBottomSheetDialog.tag
-                            )
+                            )*/
                         }
                     }
                     else{

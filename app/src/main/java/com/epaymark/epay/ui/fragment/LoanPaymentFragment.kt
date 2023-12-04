@@ -5,26 +5,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import com.epaymark.epay.R
 import com.epaymark.epay.data.viewMovel.MyViewModel
-import com.epaymark.epay.databinding.FragmentDthRechargeBinding
 import com.epaymark.epay.databinding.FragmentLoanPaymentBinding
 import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.ui.fragment.fragmentDialog.BankListOnlyNameBottomSheetDialog
-import com.epaymark.epay.ui.popup.CustomPopup.showBindingPopup
 import com.epaymark.epay.ui.popup.SuccessPopupFragment
-import com.epaymark.epay.ui.receipt.DthReceptDialogFragment
-import com.epaymark.epay.ui.receipt.MobileReceptDialogFragment
-import com.epaymark.epay.utils.helpers.Constants
-import com.epaymark.epay.utils.helpers.Constants.isDthOperator
 import com.epaymark.epay.utils.`interface`.CallBack
 import com.epaymark.epay.utils.`interface`.CallBack4
-import java.util.Objects
 
 class LoanPaymentFragment : BaseFragment() {
     lateinit var binding: FragmentLoanPaymentBinding

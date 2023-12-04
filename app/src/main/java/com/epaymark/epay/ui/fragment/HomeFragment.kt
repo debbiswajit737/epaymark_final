@@ -180,25 +180,74 @@ class HomeFragment : BaseFragment() {
 
             getString(R.string.balance) -> {
               //  showBalencePopup(binding.root.context)
-                findNavController().navigate(R.id.action_homeFragment2_to_balenceAEPSFragment)
+                activity?.let {act->
+                    val aadharAuthBottomSheetDialog =
+                        AadharAuthBottomSheetDialog(object : CallBack {
+                            override fun getValue(s: String) {
+                                findNavController().navigate(R.id.action_homeFragment2_to_balenceAEPSFragment)
+                            }
+                        })
+                    aadharAuthBottomSheetDialog.show(
+                        act.supportFragmentManager,
+                        aadharAuthBottomSheetDialog.tag
+                    )
+                }
+
+
             }
 
             getString(R.string.cash_withdraw) -> {
                 isCashWithdraw=false
-                findNavController().navigate(R.id.action_homeFragment2_to_cashWithdrawFragment)
+                activity?.let {act->
+                    val aadharAuthBottomSheetDialog =
+                        AadharAuthBottomSheetDialog(object : CallBack {
+                            override fun getValue(s: String) {
+                                findNavController().navigate(R.id.action_homeFragment2_to_cashWithdrawFragment)
+                            }
+                        })
+                    aadharAuthBottomSheetDialog.show(
+                        act.supportFragmentManager,
+                        aadharAuthBottomSheetDialog.tag
+                    )
+                }
+
             }
 
 
             getString(R.string.mini_statement) -> {
                 viewModel.reportType.value=getString(R.string.dmt)
-                findNavController().navigate(R.id.action_homeFragment2_to_miniStatementFormFragment)
-                //findNavController().navigate(R.id.action_homeFragment2_to_miniStatementFragment)
-                // findNavController().navigate(R.id.action_homeFragment2_to_cashWithdrawFragment)
-            }
+                activity?.let {act->
+                    val aadharAuthBottomSheetDialog =
+                        AadharAuthBottomSheetDialog(object : CallBack {
+                            override fun getValue(s: String) {
+                                findNavController().navigate(R.id.action_homeFragment2_to_miniStatementFormFragment)
+                                //findNavController().navigate(R.id.action_homeFragment2_to_miniStatementFragment)
+                                // findNavController().navigate(R.id.action_homeFragment2_to_cashWithdrawFragment)
+
+                            }
+                        })
+                    aadharAuthBottomSheetDialog.show(
+                        act.supportFragmentManager,
+                        aadharAuthBottomSheetDialog.tag
+                    )
+                }
+                }
 
             getString(R.string.aadhar_pay) -> {
                 isCashWithdraw=false
-                findNavController().navigate(R.id.action_homeFragment2_to_cashWithdrawFragment)
+                activity?.let {act->
+                    val aadharAuthBottomSheetDialog =
+                        AadharAuthBottomSheetDialog(object : CallBack {
+                            override fun getValue(s: String) {
+                                findNavController().navigate(R.id.action_homeFragment2_to_cashWithdrawFragment)
+                            }
+                        })
+                    aadharAuthBottomSheetDialog.show(
+                        act.supportFragmentManager,
+                        aadharAuthBottomSheetDialog.tag
+                    )
+                }
+
             }
 
 
@@ -1120,9 +1169,6 @@ class HomeFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        Log.d("TAG_searchValue", "$isFromSearchPage onResume: "+searchValue)
-        Log.d("TAG_searchValue", "onResume:utilityValue "+utilityValue)
-
 
 
         autoScrollHandler.startAutoScroll()
