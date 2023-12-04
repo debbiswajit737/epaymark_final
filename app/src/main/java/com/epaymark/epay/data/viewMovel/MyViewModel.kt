@@ -510,7 +510,7 @@ class MyViewModel @Inject constructor(private val repository: DeliveryOptionsRep
             epotly_mobileErrorVisible.value = true
             isValid = false
         } else {
-            if (mobile.value?.trim()?.validate("mobile") == false) {
+            if (epotly_mobile.value?.trim()?.validate("mobile") == false) {
                 epotly_mobileError.value = "Mobile number is not valid"
                 epotly_mobileErrorVisible.value = true
                 isValid = false
