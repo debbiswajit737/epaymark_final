@@ -252,7 +252,7 @@ class DocuploadFragment : BaseFragment() {
 
 
                         if (docValidation()) {
-                            sharedPreff?.setLoginData()
+                          //  sharedPreff?.setLoginData()
 
                             val documentUploadModel = DocumentUploadModel(
                                 panPathBase64= panPathBase64.value/*?.encrypt()*/,

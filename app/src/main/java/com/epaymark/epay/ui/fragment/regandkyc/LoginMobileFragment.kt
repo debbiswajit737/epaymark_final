@@ -2,58 +2,42 @@ package com.epaymark.epay.ui.fragment.regandkyc
 
 
 
-import android.app.DatePickerDialog
-import android.content.ComponentName
 import android.content.Intent
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Environment
-import android.provider.Settings
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.Spinner
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import androidx.window.layout.WindowMetricsCalculator
 import com.epaymark.epay.R
 import com.epaymark.epay.adapter.PhonePadAdapter
-import com.epaymark.epay.adapter.StateListAdapter
-import com.epaymark.epay.data.model.StateCityModel
 import com.epaymark.epay.data.viewMovel.AuthViewModel
 import com.epaymark.epay.databinding.FragmentLoginMobileBinding
-import com.epaymark.epay.databinding.FragmentRegBinding
+import com.epaymark.epay.network.ResponseState
+import com.epaymark.epay.network.RetrofitHelper.handleApiError
+import com.epaymark.epay.ui.activity.AuthenticationActivity
+import com.epaymark.epay.ui.activity.DashboardActivity
 import com.epaymark.epay.ui.base.BaseFragment
-import com.epaymark.epay.ui.fragment.CameraDialog
-import com.epaymark.epay.utils.*
+import com.epaymark.epay.ui.popup.LoadingPopup
 import com.epaymark.epay.utils.helpers.Constants
-import com.epaymark.epay.utils.helpers.PermissionUtils
-import com.epaymark.epay.utils.helpers.PermissionUtils.createAlertDialog
-import com.epaymark.epay.utils.`interface`.CallBack
+import com.epaymark.epay.utils.helpers.Constants.API_KEY
+import com.epaymark.epay.utils.helpers.Constants.CLIENT_ID
 import com.epaymark.epay.utils.`interface`.KeyPadOnClickListner
-import com.epaymark.epay.utils.`interface`.PermissionsCallback
-import java.net.URLEncoder
-import java.util.Calendar
+
+import com.google.gson.Gson
+import kotlin.random.Random
 
 
 class LoginMobileFragment : BaseFragment() {
     lateinit var binding: FragmentLoginMobileBinding
     var keyPad = ArrayList<Int>()
+    var loadingPopup: LoadingPopup? = null
     private val authViewModel: AuthViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,6 +54,73 @@ class LoginMobileFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         setKeyPad(binding.recyclePhonePad)
         onViewClick()
+        setObserver()
+
+       /* var jsonString="G0nJq3v8G2BEzY/5KRWbqppwDkw3e/YvN3b3KxY6hhqHZq0z4cxOt8QWAe+rOxzs8uEI5vgZetmbz4R6G2wP+vWbeZ9dOWFWNWaX+FAm5KFd2sdAoAmoYeX+7K5goOHaPkX6LizHGQWLienTnY6GYM2powYi6um2615Ejs/lzrspKwDeAm0xfSVZjhABcYA5"
+
+        val key = "a22786308b71488790be222216260e0a"
+        val iv = "656dbf654a5dc"
+        val jsondata = jsonString*/
+
+// Encrypt
+        /*val encryptedText = AesEncryptionUtil.encrypt(jsondata, key, iv)
+        println("Encrypted Text: $encryptedText")*/
+
+// Decrypt
+        /*val decryptedText = AesEncryptionUtil.decrypt(jsondata, key, iv)
+        println("Decrypted Text: $decryptedText")*/
+    }
+
+    private fun setObserver() {
+        authViewModel?.authLogin?.observe(viewLifecycleOwner){
+            when (it) {
+                is ResponseState.Loading -> {
+                    loadingPopup?.show()
+                }
+
+                is ResponseState.Success -> {
+                  //  loadingPopup?.dismiss()
+                    val bundle=Bundle()
+                    bundle.putBoolean("isForgotPin",false)
+                    it?.data?.data?.let { logindata->sharedPreff?.setLoginData(logindata,true) }
+                    it?.data?.data?.let {loginResponse->
+                        try {
+                            loginResponse.beforeLogin?.let {
+                                if (it.toInt()>6){
+                                    findNavController().navigate(R.id.action_loginMobileFragment_to_otpMobileFragment,bundle)
+                                }
+                                else{
+                                    if (loginResponse.userStatus?.trim()=="INACTIVE"){
+                                        if (loginResponse.kycstep==null) {
+                                            startActivity(
+                                                Intent(
+                                                    requireActivity(),
+                                                    AuthenticationActivity::class.java
+                                                )
+                                            )
+                                        }
+                                    }
+                                    else if (loginResponse.userStatus?.trim()=="ACTIVE"){
+                                        startActivity(Intent(requireActivity(), DashboardActivity::class.java))
+                                    }
+                                }
+                            }
+
+
+                        }catch (e:Exception){
+
+                        }
+
+                    }
+
+                }
+
+                is ResponseState.Error -> {
+                 //   loadingPopup?.dismiss()
+                    handleApiError(it.isNetworkError, it.errorCode, it.errorMessage)
+                }
+            }
+        }
     }
 
     private fun onViewClick() {
@@ -77,9 +128,27 @@ class LoginMobileFragment : BaseFragment() {
             btnConfirmLocation.setOnClickListener {
                 authViewModel.mobError.value=""
                 if (viewModel?.keyPadValue?.value?.length==10){
-                    val bundle=Bundle()
-                    bundle.putBoolean("isForgotPin",false)
-                    findNavController().navigate(R.id.action_loginMobileFragment_to_otpMobileFragment,bundle)
+
+                    viewModel?.keyPadValue?.value?.let {
+                        loadingPopup?.show()
+
+
+                        val data = mapOf(
+                            "ClientID" to CLIENT_ID,
+                            "secretKey" to API_KEY,
+                            "Mobile" to "9356561988",
+                            "refid" to "big9"+generateRandomNumberInRange().toString()
+                        )
+                        val gson= Gson()
+                        var jsonString = gson.toJson(data)
+                        Log.d("TAG_data", "onViewClick: "+jsonString)
+
+                        Log.d("TAG_data", "onViewClick:E "+jsonString.encrypt())
+                        viewModel?.authLoginRegistration(jsonString.encrypt())
+                    }
+
+
+                   // findNavController().navigate(R.id.action_loginMobileFragment_to_otpMobileFragment,bundle)
                 }
                 else{
                     authViewModel.mobError.value="Please enter a valid mobile number."
@@ -131,6 +200,9 @@ class LoginMobileFragment : BaseFragment() {
             })
             isNestedScrollingEnabled=false
         }
+    }
+    fun generateRandomNumberInRange(): Int {
+        return Random.nextInt(1000, 9999)
     }
     }
 

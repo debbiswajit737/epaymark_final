@@ -1064,6 +1064,7 @@ class HomeFragment : BaseFragment() {
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     fun init() {
+        /**/
         viewModel.from_page_message.value="home"
         checkPermission()
         //sharedPreff.setTestData("Abcd")

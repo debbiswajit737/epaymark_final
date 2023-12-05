@@ -2,6 +2,7 @@ package com.epaymark.epay.ui.fragment
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,6 +44,12 @@ class LoginFragment : BaseFragment() {
     }
 
     fun initView() {
+
+        var a="abc".encrypt()
+        Log.d("TAG_edata", "encript data : "+a)
+        val b=a.decrypt()
+        Log.d("TAG_edata", "decript data : "+b)
+
         keyPad.add(1)
         keyPad.add(2)
         keyPad.add(3)
@@ -94,10 +101,10 @@ class LoginFragment : BaseFragment() {
 
                     authViewModel.mobError.value=""
                     viewModel?.keyPadValue?.value?.let {
-                        val loginModel=LoginModel(authData=it)
+                        /*val loginModel=LoginModel(authData=it)
                         val gson= Gson()
                         val jsonString = gson.toJson(loginModel)
-                        viewModel.authLoginRegistration(jsonString.encrypt())
+                        viewModel.authLoginRegistration(jsonString.encrypt())*/
                     }
 
                     findNavController().navigate(R.id.action_loginFragment_to_otpFragment)

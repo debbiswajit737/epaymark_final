@@ -30,10 +30,15 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.epaymark.epay.R
+import com.epaymark.epay.utils.helpers.AesEncryptionUtil
+import com.epaymark.epay.utils.helpers.Constants
+import com.epaymark.epay.utils.helpers.Constants.AES_ALGORITHM
+import com.epaymark.epay.utils.helpers.Constants.AES_IV
+import com.epaymark.epay.utils.helpers.Constants.AES_KEY
+import com.epaymark.epay.utils.helpers.Constants.AES_TRANSFORMATION
 import com.epaymark.epay.utils.helpers.Constants.INPUT_FILTER_MAX_VALUE
 import com.epaymark.epay.utils.helpers.Constants.INPUT_FILTER_POINTER_LENGTH
-import com.epaymark.epay.utils.helpers.Constants.iv
-import com.epaymark.epay.utils.helpers.Constants.secretKey
+
 import com.epaymark.epay.utils.helpers.DecimalDigitsInputFilter
 import com.epaymark.epay.utils.helpers.SharedPreff
 import com.epaymark.epay.utils.`interface`.CallBack
@@ -428,22 +433,34 @@ open class BaseFragment: Fragment(){
     }
 
     fun String.encrypt(): String {
-        val cipher = Cipher.getInstance("AES-256-CBC")
-        val keySpec = SecretKeySpec(secretKey.toByteArray(), "AES")
-        val ivSpec = IvParameterSpec(iv.toByteArray())
-        cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivSpec)
-        val encryptedBytes = cipher.doFinal(this.toByteArray())
-        return Base64.encodeToString(encryptedBytes,Base64.DEFAULT)
+        val fixedIV = if (AES_IV.length < 16) AES_IV + " ".repeat(16 - AES_IV.length) else AES_IV.substring(0, 16)
+
+        val keySpec = SecretKeySpec(AES_KEY.toByteArray(Charsets.UTF_8),
+            AES_ALGORITHM
+        )
+        val ivParameterSpec = IvParameterSpec(fixedIV.toByteArray(Charsets.UTF_8))
+
+        val cipher = Cipher.getInstance(AES_TRANSFORMATION)
+        cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivParameterSpec)
+
+        val encryptedBytes = cipher.doFinal(this.toByteArray(Charsets.UTF_8))
+        return Base64.encodeToString(encryptedBytes, Base64.DEFAULT)
     }
 
     fun String.decrypt(): String {
-        val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
-        val keySpec = SecretKeySpec(secretKey.toByteArray(), "AES")
-        val ivSpec = IvParameterSpec(iv.toByteArray())
-        cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec)
-        val encryptedBytes = Base64.decode(this,Base64.DEFAULT)
+        val fixedIV = if (AES_IV.length < 16) AES_IV + " ".repeat(16 - AES_IV.length) else AES_IV.substring(0, 16)
+
+        val keySpec = SecretKeySpec(AES_KEY.toByteArray(Charsets.UTF_8),
+            AES_ALGORITHM
+        )
+        val ivParameterSpec = IvParameterSpec(fixedIV.toByteArray(Charsets.UTF_8))
+
+        val cipher = Cipher.getInstance(AES_TRANSFORMATION)
+        cipher.init(Cipher.DECRYPT_MODE, keySpec, ivParameterSpec)
+
+        val encryptedBytes = Base64.decode(this, Base64.DEFAULT)
         val decryptedBytes = cipher.doFinal(encryptedBytes)
-        return String(decryptedBytes)
+        return String(decryptedBytes, Charsets.UTF_8)
     }
 }
 

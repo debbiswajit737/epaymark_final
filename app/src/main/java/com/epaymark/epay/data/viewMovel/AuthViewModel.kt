@@ -1,6 +1,7 @@
 package com.epaymark.epay.data.viewMovel
 
 import android.net.Uri
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.epaymark.epay.data.genericmodel.BaseResponse
 import com.epaymark.epay.data.model.FileModel
+import com.epaymark.epay.data.model.login.LoginResponse
 import com.epaymark.epay.data.model.onBoading.DocumentUploadModel
 import com.epaymark.epay.data.model.onBoading.RegForm
 import com.epaymark.epay.data.model.sample.Test
@@ -663,16 +665,17 @@ class AuthViewModel @Inject constructor(private val repository: AuthRepositoryRe
             repository.docUpload(requestBody)
         }
     }
-        
-        
-    val authLogin: LiveData<ResponseState<BaseResponse<Test>>>
-    get() = repository.docUploadResponseLiveData
+
+
+
+    val authLogin: LiveData<ResponseState<BaseResponse<LoginResponse>>>
+        get() = repository.loginResponseLiveData
     fun authLoginRegistration(loginModel: String) {
         viewModelScope.launch {
+            Log.d("TAG_logd", "authLoginRegistration: \n"+loginModel)
             repository.userLogin(loginModel)
         }
     }
-
 
 
 }

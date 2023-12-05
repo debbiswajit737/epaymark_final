@@ -1,9 +1,12 @@
 package com.epaymark.epay.utils.helpers
 
 import android.content.Context
+import com.epaymark.epay.data.model.login.LoginResponse
 import com.epaymark.epay.utils.helpers.Constants.EPAY_SHAREDFREFFRENCE
 import com.epaymark.epay.utils.helpers.Constants.ISLogin
 import com.epaymark.epay.utils.helpers.Constants.TEST
+import com.epaymark.epay.utils.helpers.Constants.loginData
+import com.google.gson.Gson
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
@@ -35,14 +38,17 @@ class SharedPreff @Inject constructor(@ApplicationContext private val context: C
     }
 
 
-    fun setLoginData() {
+    fun setLoginData(loginResponse: LoginResponse,iSLogin:Boolean) {
 
         context?.let {
              settings =
                 context.getSharedPreferences(EPAY_SHAREDFREFFRENCE, Context.MODE_PRIVATE)
             val editor = settings?.edit()
 
-                editor?.putBoolean(ISLogin, true)
+            editor?.putBoolean(ISLogin, iSLogin)
+            val gson = Gson()
+            val json = gson.toJson(loginResponse)
+            editor?.putString(loginData, json)
 
             editor?.apply()
         }
@@ -58,6 +64,21 @@ class SharedPreff @Inject constructor(@ApplicationContext private val context: C
         return isLogin ?: false
 
     }
+    fun getLoginData(): LoginResponse? {
+        var loginData: String? = null
+        context?.let {
+            settings =
+                it.getSharedPreferences(EPAY_SHAREDFREFFRENCE, Context.MODE_PRIVATE)
+            loginData = settings?.getString(loginData, "")
+        }
+        val gson = Gson()
+
+        val loginResponse = gson.fromJson(loginData, LoginResponse::class.java)
+        return loginResponse?:null
+
+    }
+
+
 
     fun clearUserData() {
         context?.let {

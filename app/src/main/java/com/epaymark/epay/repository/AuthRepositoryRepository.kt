@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.epaymark.epay.data.genericmodel.BaseResponse
+import com.epaymark.epay.data.model.login.LoginResponse
 import com.epaymark.epay.data.model.onBoading.DocumentUploadModel
 import com.epaymark.epay.data.model.onBoading.RegForm
 import com.epaymark.epay.data.model.sample.Test
@@ -63,23 +64,23 @@ class AuthRepositoryRepository  @Inject constructor(private val api : RetroApi) 
     //Login Model
 
     private val _loginResponseLiveData =
-            MutableLiveData< ResponseState<BaseResponse<Test>>>()
-        val loginResponseLiveData: LiveData<ResponseState<BaseResponse<Test>>>
+            MutableLiveData< ResponseState<BaseResponse<LoginResponse>>>()
+        val loginResponseLiveData: LiveData<ResponseState<BaseResponse<LoginResponse>>>
             get() = _loginResponseLiveData
 
 
 
         suspend fun userLogin(loginModel: String) {
-            _loginResponseLiveData.postValue(ResponseState.Loading())
+           _loginResponseLiveData.postValue(ResponseState.Loading())
             try {
 
-                val response = api.epayLogin(loginModel)
+                val response = api.epayLogin(loginModel.replace("\n", "").replace("\r", ""),"loginModel")
                 _loginResponseLiveData.postValue(ResponseState.create(response,"aa"))
-                //Log.e("TAG_error", "login:OK "+response)
+
 
             } catch (throwable: Throwable) {
                 _loginResponseLiveData.postValue(ResponseState.create(throwable))
-                //Log.e("TAG_error", "login: "+throwable.message)
+                Log.e("TAG_error", "login: "+throwable.message)
             }
 
         }

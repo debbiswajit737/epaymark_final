@@ -91,11 +91,11 @@ class DashboardActivity  : BaseActivity() {
                 }
                 is ResponseState.Success -> {
                     loadingPopup?.dismiss()
-                    Toast.makeText(this, ""+it?.data?.response?.data?.get(0)?.name, Toast.LENGTH_SHORT).show()
+                  //  Toast.makeText(this, ""+it?.data?.response?.data?.get(0)?.name, Toast.LENGTH_SHORT).show()
                     //var a=it.data?.response?.data?.get(0)?.name?.encryptData("ttt")
-                    var a=it?.data?.response?.data?.get(0)?.name
-                    var b=a?.decryptData("ttt")
-                    Toast.makeText(this, "$b", Toast.LENGTH_SHORT).show()
+                   // var a=it?.data?.response?.data?.get(0)?.name
+                    //var b=a?.decryptData("ttt")
+                    //Toast.makeText(this, "$b", Toast.LENGTH_SHORT).show()
                 }
                 is ResponseState.Error -> {
                     loadingPopup?.dismiss()
