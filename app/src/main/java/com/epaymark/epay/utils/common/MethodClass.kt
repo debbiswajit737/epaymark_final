@@ -24,6 +24,12 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import okhttp3.ResponseBody
 import org.json.JSONObject
+import java.net.InetAddress
+import java.net.NetworkInterface
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Enumeration
+import java.util.Locale
 
 
 object MethodClass {
@@ -116,6 +122,57 @@ object MethodClass {
             context.contentResolver,
             Settings.Secure.ANDROID_ID
         )
+    }
+
+    fun getLocalIPAddress(): String {
+        try {
+            val interfaces: Enumeration<NetworkInterface> = NetworkInterface.getNetworkInterfaces()
+            while (interfaces.hasMoreElements()) {
+                val networkInterface: NetworkInterface = interfaces.nextElement()
+                val addresses: Enumeration<InetAddress> = networkInterface.inetAddresses
+                while (addresses.hasMoreElements()) {
+                    val address: InetAddress = addresses.nextElement()
+                    if (!address.isLoopbackAddress) {
+                        return address.hostAddress
+                    }
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return "Unable to retrieve IP address"
+    }
+
+
+    fun getCurrentTimestamp(): String {
+        val calendar = Calendar.getInstance()
+
+        // Format for the date and time
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+
+        // Extracting components
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH) + 1 // Month is zero-based
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+        val minute = calendar.get(Calendar.MINUTE)
+        val second = calendar.get(Calendar.SECOND)
+
+        // Creating a formatted date and time string
+        val formattedDateTime = dateFormat.format(calendar.time)
+
+        // Example: Print the current date and time components
+        println("Year: $year")
+        println("Month: $month")
+        println("Day: $day")
+        println("Hour: $hour")
+        println("Minute: $minute")
+        println("Second: $second")
+
+        // Example: Print the formatted date and time
+        println("Formatted Date and Time: $formattedDateTime")
+
+        return formattedDateTime
     }
 }
 

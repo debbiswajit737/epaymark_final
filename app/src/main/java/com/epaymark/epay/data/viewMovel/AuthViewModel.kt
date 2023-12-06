@@ -1,7 +1,6 @@
 package com.epaymark.epay.data.viewMovel
 
 import android.net.Uri
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,6 +11,7 @@ import com.epaymark.epay.data.model.FileModel
 import com.epaymark.epay.data.model.login.LoginResponse
 import com.epaymark.epay.data.model.onBoading.DocumentUploadModel
 import com.epaymark.epay.data.model.onBoading.RegForm
+import com.epaymark.epay.data.model.otp.OtpResponse
 import com.epaymark.epay.data.model.sample.Test
 import com.epaymark.epay.network.ResponseState
 
@@ -672,10 +672,18 @@ class AuthViewModel @Inject constructor(private val repository: AuthRepositoryRe
         get() = repository.loginResponseLiveData
     fun authLoginRegistration(loginModel: String) {
         viewModelScope.launch {
-            Log.d("TAG_logd", "authLoginRegistration: \n"+loginModel)
             repository.userLogin(loginModel)
         }
     }
+
+    val otpResponse: LiveData<ResponseState<OtpResponse>>
+        get() = repository.otpResponseLiveData
+    fun sendOtp(token: String, data: String) {
+        viewModelScope.launch {
+            repository.otp(token,data)
+        }
+    }
+
 
 
 }

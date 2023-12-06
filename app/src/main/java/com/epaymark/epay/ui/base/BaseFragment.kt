@@ -448,7 +448,7 @@ open class BaseFragment: Fragment(){
     }
 
     fun String.decrypt(): String {
-        val fixedIV = if (AES_IV.length < 16) AES_IV + " ".repeat(16 - AES_IV.length) else AES_IV.substring(0, 16)
+        val fixedIV = if (AES_IV.length < 13) AES_IV + " ".repeat(13 - AES_IV.length) else AES_IV.substring(0, 13)
 
         val keySpec = SecretKeySpec(AES_KEY.toByteArray(Charsets.UTF_8),
             AES_ALGORITHM

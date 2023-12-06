@@ -5,6 +5,7 @@ import com.epaymark.epay.data.genericmodel.BaseResponse
 import com.epaymark.epay.data.model.login.LoginResponse
 import com.epaymark.epay.data.model.onBoading.DocumentUploadModel
 import com.epaymark.epay.data.model.onBoading.RegForm
+import com.epaymark.epay.data.model.otp.OtpResponse
 import com.google.gson.JsonObject
 import retrofit2.Response
 import retrofit2.http.Body
@@ -33,4 +34,11 @@ interface RetroApi {
     suspend fun epayLogin(
         @Header("Authorize") header: String,
         @Field("authData") authData: String): Response<BaseResponse<LoginResponse>>
+
+
+    @POST("otpverify")
+    suspend fun otpverify(
+        @Header("Authtoken") token: String,
+        @Body data: String): Response<OtpResponse>
+
 }

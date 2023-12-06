@@ -1,6 +1,7 @@
 package com.epaymark.epay.utils.helpers
 
 import android.content.Context
+import android.util.Log
 import com.epaymark.epay.data.model.login.LoginResponse
 import com.epaymark.epay.utils.helpers.Constants.EPAY_SHAREDFREFFRENCE
 import com.epaymark.epay.utils.helpers.Constants.ISLogin
@@ -38,14 +39,19 @@ class SharedPreff @Inject constructor(@ApplicationContext private val context: C
     }
 
 
-    fun setLoginData(loginResponse: LoginResponse,iSLogin:Boolean) {
+    fun setLoginData(loginResponse: LoginResponse, iSLogin: Boolean,  status: String) {
 
         context?.let {
              settings =
                 context.getSharedPreferences(EPAY_SHAREDFREFFRENCE, Context.MODE_PRIVATE)
             val editor = settings?.edit()
+            if (status=="ACTIVE"){
+                editor?.putBoolean(ISLogin, true)
+            }
+            else{
+                editor?.putBoolean(ISLogin, false)
+            }
 
-            editor?.putBoolean(ISLogin, iSLogin)
             val gson = Gson()
             val json = gson.toJson(loginResponse)
             editor?.putString(loginData, json)
@@ -64,19 +70,39 @@ class SharedPreff @Inject constructor(@ApplicationContext private val context: C
         return isLogin ?: false
 
     }
-    fun getLoginData(): LoginResponse? {
+
+    fun getLoginData(): Pair<Boolean, LoginResponse?> {
+        context?.let {
+            //var settings2 = context.getSharedPreferences(EPAY_SHAREDFREFFRENCE, Context.MODE_PRIVATE)
+
+            val isLogin = settings?.getBoolean(ISLogin, false) ?: false
+            val json = settings?.getString(loginData, null)
+
+            val gson = Gson()
+            val loginResponse = if (json != null) gson.fromJson(json, LoginResponse::class.java) else null
+
+            return Pair(isLogin, loginResponse)
+        }
+
+        // Return default values if context is null
+        return Pair(false, null)
+    }
+
+    /*fun getLoginData(): LoginResponse? {
         var loginData: String? = null
         context?.let {
             settings =
                 it.getSharedPreferences(EPAY_SHAREDFREFFRENCE, Context.MODE_PRIVATE)
             loginData = settings?.getString(loginData, "")
         }
+        Log.d("TAG_loginData", "getLoginData:json "+loginData)
         val gson = Gson()
 
         val loginResponse = gson.fromJson(loginData, LoginResponse::class.java)
+
         return loginResponse?:null
 
-    }
+    }*/
 
 
 

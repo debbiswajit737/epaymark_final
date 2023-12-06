@@ -5,7 +5,6 @@ package com.epaymark.epay.ui.fragment.regandkyc
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +24,6 @@ import com.epaymark.epay.ui.activity.AuthenticationActivity
 import com.epaymark.epay.ui.activity.DashboardActivity
 import com.epaymark.epay.ui.base.BaseFragment
 import com.epaymark.epay.ui.popup.LoadingPopup
-import com.epaymark.epay.utils.helpers.Constants
 import com.epaymark.epay.utils.helpers.Constants.API_KEY
 import com.epaymark.epay.utils.helpers.Constants.CLIENT_ID
 import com.epaymark.epay.utils.`interface`.KeyPadOnClickListner
@@ -82,16 +80,18 @@ class LoginMobileFragment : BaseFragment() {
                   //  loadingPopup?.dismiss()
                     val bundle=Bundle()
                     bundle.putBoolean("isForgotPin",false)
-                    it?.data?.data?.let { logindata->sharedPreff?.setLoginData(logindata,true) }
+
                     it?.data?.data?.let {loginResponse->
                         try {
                             loginResponse.beforeLogin?.let {
                                 if (it.toInt()>6){
+                                    sharedPreff?.setLoginData(loginResponse,true,"INACTIVE")
                                     findNavController().navigate(R.id.action_loginMobileFragment_to_otpMobileFragment,bundle)
                                 }
                                 else{
                                     if (loginResponse.userStatus?.trim()=="INACTIVE"){
-                                        if (loginResponse.kycstep==null) {
+                                        sharedPreff?.setLoginData(loginResponse,true,"INACTIVE")
+                                        if (loginResponse.kycstep!=null) {
                                             startActivity(
                                                 Intent(
                                                     requireActivity(),
@@ -99,16 +99,23 @@ class LoginMobileFragment : BaseFragment() {
                                                 )
                                             )
                                         }
+                                        else{
+                                            findNavController().navigate(R.id.action_loginMobileFragment_to_otpMobileFragment,bundle)
+                                        }
                                     }
                                     else if (loginResponse.userStatus?.trim()=="ACTIVE"){
+                                        sharedPreff?.setLoginData(loginResponse,true,"ACTIVE")
                                         startActivity(Intent(requireActivity(), DashboardActivity::class.java))
+                                    }
+                                    else{
+                                        Toast.makeText(requireContext(), "You are not valid user", Toast.LENGTH_SHORT).show()
                                     }
                                 }
                             }
 
 
                         }catch (e:Exception){
-
+                            Toast.makeText(requireContext(), ""+e.message, Toast.LENGTH_SHORT).show()
                         }
 
                     }
@@ -132,18 +139,16 @@ class LoginMobileFragment : BaseFragment() {
                     viewModel?.keyPadValue?.value?.let {
                         loadingPopup?.show()
 
-
+                        //"9356561988"
                         val data = mapOf(
                             "ClientID" to CLIENT_ID,
                             "secretKey" to API_KEY,
-                            "Mobile" to "9356561988",
+
                             "refid" to "big9"+generateRandomNumberInRange().toString()
                         )
                         val gson= Gson()
                         var jsonString = gson.toJson(data)
-                        Log.d("TAG_data", "onViewClick: "+jsonString)
 
-                        Log.d("TAG_data", "onViewClick:E "+jsonString.encrypt())
                         viewModel?.authLoginRegistration(jsonString.encrypt())
                     }
 

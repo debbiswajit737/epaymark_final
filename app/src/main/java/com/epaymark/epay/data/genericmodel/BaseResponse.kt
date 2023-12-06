@@ -9,3 +9,6 @@ data class BaseResponse<T>(
     @SerializedName("data") var data: T? = null
 
 )
+
+
+
